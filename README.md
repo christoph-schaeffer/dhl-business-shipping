@@ -4,7 +4,8 @@ An unofficial library for the DHL business shipping soap API (Version 3.0) writt
 
 [![api version](https://img.shields.io/badge/api%20version-3.0-yellow)](https://entwickler.dhl.de/group/ep/wsapis/geschaeftskundenversand-3.0)
 ![PHP version](https://img.shields.io/badge/php->=5.6-blue)
-[![Build Status](https://img.shields.io/travis/christoph-schaeffer/dhl-business-shipping/3.0)](https://travis-ci.org/christoph-schaeffer/dhl-business-shipping)
+[![Build Status](https://api.travis-ci.com/christoph-schaeffer/dhl-business-shipping.svg)](https://travis-ci.com/github/christoph-schaeffer/dhl-business-shipping/builds)
+![Coverage](https://img.shields.io/badge/coverage-100%25-green)
 [![License](https://img.shields.io/github/license/christoph-schaeffer/dhl-business-shipping?branch=3.0)](http://badges.mit-license.org)
 
 ## Features
@@ -117,11 +118,11 @@ endif;
 ```
 ## Documentation
 - There is an official documentation by DHL found [here](https://entwickler.dhl.de). However it is partly outdated and incomplete.
-- A [documentation](https://christoph-schaeffer.de/dhl-business-shipping/documentation/3-0) page for this project will follow soon.
+- A documentation page for this project can be found [here](https://christoph-schaeffer.de/dhl-business-shipping/documentation/3-0).
 
 ## Support
 - For reporting bugs and suggestions please use the [issues tab](https://github.com/christoph-schaeffer/dhl-business-shipping/issues).
 - If you have any questions feel free to contact me by mail christoph-dietrich@web.de.
 
-##License
+## License
 This project is licensed under the [MIT license](http://badges.mit-license.org). Please read the [LICENSE file](https://github.com/christoph-schaeffer/dhl-business-shipping/blob/master/LICENSE) for details.
