@@ -13,7 +13,7 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Resource\AbstractOrigin;
 class Packstation {
 
     /**
-     * @var AbstractOrigin
+     * @var Packstation\Origin
      *
      * Optional
      *

@@ -13,7 +13,7 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Resource\AbstractOrigin;
 class Postfiliale {
 
     /**
-     * @var AbstractOrigin
+     * @var Postfiliale\Origin
      *
      * Optional
      *
