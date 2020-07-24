@@ -22,6 +22,7 @@ Additional functions this library provides:
 - Seperation of street name and street/house number. However this is experimental.
 - Country code to country name conversion
 - PHPunit testing of internal functions
+- A detailed [documentation](https://christoph-schaeffer.de/dhl-business-shipping/documentation/3-0) page
 
 ## Getting started
 ### Technical Requirements
