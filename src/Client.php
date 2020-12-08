@@ -22,7 +22,7 @@ class Client {
     /**
      * Minor Release this package is developed for
      */
-    const MINOR_RELEASE = 0;
+    const MINOR_RELEASE = 1;
 
     /**
      * @var Soap
