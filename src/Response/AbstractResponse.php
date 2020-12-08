@@ -76,7 +76,7 @@ abstract class AbstractResponse {
      * Checks if the status array only contains one status, which is the success status.
      */
     public function hasNoErrors() {
-        return count($this->Status) === 1 && $this->firstStatusIsSuccess($this->Status);
+        return $this->Status === null || (count($this->Status) === 1 && $this->firstStatusIsSuccess($this->Status));
     }
 
     /**
