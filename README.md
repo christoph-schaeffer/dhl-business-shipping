@@ -1,12 +1,12 @@
 # DHL business shipping
 
-An unofficial library for the DHL business shipping soap API (Version 3.0) written in PHP. 
+An unofficial library for the DHL business shipping soap API (Version 3.1) written in PHP. 
 
-[![api version](https://img.shields.io/badge/api%20version-3.0-yellow)](https://entwickler.dhl.de/group/ep/wsapis/geschaeftskundenversand-3.0)
+[![api version](https://img.shields.io/badge/api%20version-3.1-yellow)](https://entwickler.dhl.de/group/ep/geschaeftskundenversand-3.1)
 ![PHP version](https://img.shields.io/badge/php->=5.6-blue)
 [![Build Status](https://api.travis-ci.com/christoph-schaeffer/dhl-business-shipping.svg)](https://travis-ci.com/github/christoph-schaeffer/dhl-business-shipping/builds)
 ![Coverage](https://img.shields.io/badge/coverage-100%25-green)
-[![License](https://img.shields.io/github/license/christoph-schaeffer/dhl-business-shipping?branch=3.0)](http://badges.mit-license.org)
+[![License](https://img.shields.io/github/license/christoph-schaeffer/dhl-business-shipping)](http://badges.mit-license.org)
 
 ## Features
 This library provides access to functions provided by the official dhl business shipping soap api in an object oriented way. 
