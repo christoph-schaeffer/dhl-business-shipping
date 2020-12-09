@@ -66,6 +66,7 @@ Set the shipment details.
 $shipmentOrder->Shipment->ShipmentDetails->product = 'V01PAK'; // V01PAK = National package
 $shipmentOrder->Shipment->ShipmentDetails->accountNumber = '22222222220101'; // DHL bussiness customer account number
 $shipmentOrder->Shipment->ShipmentDetails->ShipmentItem->weightInKG = 1.2; // The weight including packaging
+$shipmentOrder->Shipment->ShipmentDetails->shipmentDate = '2020-12-08'; // The shipping date. Must not be in the past
 ```
 Set the shippers address in case the shipment can't be delivered it will be returned to that address.
 ```
