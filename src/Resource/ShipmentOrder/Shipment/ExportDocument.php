@@ -19,6 +19,7 @@ class ExportDocument {
     const EXPORT_TYPE_COMMERCIAL_SAMPLE = 'COMMERCIAL_SAMPLE';
     const EXPORT_TYPE_DOCUMENT          = 'DOCUMENT';
     const EXPORT_TYPE_RETURN_OF_GOODS   = 'RETURN_OF_GOODS';
+    const EXPORT_TYPE_COMMERCIAL_GOODS  = 'COMMERCIAL_GOODS';
 
     const TERMS_OF_TRADE_DELIVERY_DUTY_PAID                          = 'DDP';
     const TERMS_OF_TRADE_DELIVERY_DUTY_PAID_EXCLUDING_VAT            = 'DXV';
@@ -27,6 +28,8 @@ class ExportDocument {
 
     /**
      * @var ExportDocument\ExportDocPosition[]
+     *
+     * Max count: 99
      *
      * Optional
      */
@@ -57,7 +60,35 @@ class ExportDocument {
     /**
      * @var string
      *
-     * Export type ("OTHER", "PRESENT", "COMMERCIAL_SAMPLE", "DOCUMENT", "RETURN_OF_GOODS")
+     * Optional
+     *
+     * Min length: 0
+     * Max length: 35
+     *
+     * The customs reference is used by customs authorities to identify economics operators an/or other persons involved.
+     * With the given reference, granted authorizations and/or relevant processes in customs clearance an/or taxation
+     * can be taken into account.
+     */
+    public $addresseesCustomsReference;
+
+    /**
+     * @var string
+     *
+     * Optional
+     *
+     * Min length: 0
+     * Max length: 35
+     *
+     * The customs reference is used by customs authorities to identify economics operators an/or other persons involved.
+     * With the given reference, granted authorizations and/or relevant processes in customs clearance an/or taxation
+     * can be taken into account.
+     */
+    public $sendersCustomsReference;
+
+    /**
+     * @var string
+     *
+     * Export type ("OTHER", "PRESENT", "COMMERCIAL_SAMPLE", "DOCUMENT", "RETURN_OF_GOODS", "COMMERCIAL_GOODS")
      * (depends on chosen product -> only mandatory for international non EU shipments).
      */
     public $exportType;

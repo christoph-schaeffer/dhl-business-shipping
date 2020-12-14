@@ -20,6 +20,7 @@ class ShipmentDetails {
     const PRODUCT_PARCEL_CONNECT         = 'V87PARCEL';
     const PRODUCT_PARCEL_INTERNATIONAL   = 'V82PARCEL';
     const PRODUCT_SAME_DAY               = 'V06PAK';
+    const PRODUCT_MAIL_OF_GOODS          = 'V62WP';
 
     /**
      * @var ShipmentDetails\BankData
@@ -106,6 +107,7 @@ class ShipmentDetails {
      * V86PARCEL: DHL PAKET Austria / Austria parcel
      * V87PARCEL: DHL PAKET Connect / DHL Connect parcel
      * V82PARCEL: DHL PAKET International / International parcel
+     * V62WP: DHL Warenpost / DHL mail of goods
      */
     public $product = self::PRODUCT_NATIONAL;
 

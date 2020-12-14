@@ -55,13 +55,6 @@ class createShipmentOrder extends AbstractRequest {
      * @var string
      *
      * Optional
-     */
-    public $feederSystem;
-
-    /**
-     * @var string
-     *
-     * Optional
      *
      * Choose the label output format.
      * A4

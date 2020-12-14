@@ -53,6 +53,15 @@ class Shipment {
     public $Shipper;
 
     /**
+     * @var string
+     *
+     * Optional
+     *
+     * Only relevant for parcel partners of DHL
+     */
+    public $feederSystem;
+
+    /**
      * Shipment constructor.
      */
     public function __construct() {
