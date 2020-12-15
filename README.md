@@ -26,7 +26,7 @@ Additional functions this library provides:
 
 ## Getting started
 ### Technical Requirements
-- PHP 5.6=< / for using PHPunit PHP 7.2=<
+- PHP 5.6=< / for using PHPunit PHP 7.3=<
 - [PHP soap extension](https://www.php.net/manual/en/book.soap.php)
 - [Composer](https://getcomposer.org)
 ### Authentication Requirements
