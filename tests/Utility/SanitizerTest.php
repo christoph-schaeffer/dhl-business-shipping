@@ -141,6 +141,92 @@ class SanitizerTest extends AbstractUnitTest {
     }
 
     /**
+     * @return array
+     */
+    public function providerConvertFloatToStringArrayRecursiveWithValidData()
+    {
+        return [
+            [
+                ['1' => NULL, '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE,
+                    '9' => 1.25, '10' => 1, '11' => 0, '12' => 0.555555, '13' => -0.5, '14' => -99999, '15' => 0.0001,
+                    '16' => '1.25', '17' => '1', '18' => '0', '19' => '0.555555', '20' => '-0.5', '21' => '-99999', '22' => '0.0001'],
+                ['1' => NULL, '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE,
+                    '9' => '1.25', '10' => 1, '11' => 0, '12' => '0.555555', '13' => '-0.5', '14' => -99999, '15' => '0.0001',
+                    '16' => '1.25', '17' => '1', '18' => '0', '19' => '0.555555', '20' => '-0.5', '21' => '-99999', '22' => '0.0001']
+            ],
+            [
+
+                [
+                    ['1' => NULL, '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE,
+                        '9' => 1.25, '10' => 1, '11' => 0, '12' => 0.555555, '13' => -0.5, '14' => -99999, '15' => 0.0001,
+                        '16' => '1.25', '17' => '1', '18' => '0', '19' => '0.555555', '20' => '-0.5', '21' => '-99999', '22' => '0.0001']
+                ],
+                [
+                    ['1' => NULL, '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE,
+                        '9' => '1.25', '10' => 1, '11' => 0, '12' => '0.555555', '13' => '-0.5', '14' => -99999, '15' => '0.0001',
+                        '16' => '1.25', '17' => '1', '18' => '0', '19' => '0.555555', '20' => '-0.5', '21' => '-99999', '22' => '0.0001']
+                ]
+            ],
+            [
+
+                [
+                    (object)['1' => NULL, '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE,
+                        '9' => 1.25, '10' => 1, '11' => 0, '12' => 0.555555, '13' => -0.5, '14' => -99999, '15' => 0.0001,
+                        '16' => '1.25', '17' => '1', '18' => '0', '19' => '0.555555', '20' => '-0.5', '21' => '-99999', '22' => '0.0001']
+                ],
+                [
+                    (object)['1' => NULL, '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE,
+                        '9' => '1.25', '10' => 1, '11' => 0, '12' => '0.555555', '13' => '-0.5', '14' => -99999, '15' => '0.0001',
+                        '16' => '1.25', '17' => '1', '18' => '0', '19' => '0.555555', '20' => '-0.5', '21' => '-99999', '22' => '0.0001']
+                ]
+            ]
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function providerConvertFloatToStringObjectRecursiveWithValidData()
+    {
+        return [
+            [
+                (object)['1' => NULL, '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE,
+                    '9' => 1.25, '10' => 1, '11' => 0, '12' => 0.555555, '13' => -0.5, '14' => -99999, '15' => 0.0001,
+                    '16' => '1.25', '17' => '1', '18' => '0', '19' => '0.555555', '20' => '-0.5', '21' => '-99999', '22' => '0.0001'],
+                (object)['1' => NULL, '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE,
+                    '9' => '1.25', '10' => 1, '11' => 0, '12' => '0.555555', '13' => '-0.5', '14' => -99999, '15' => '0.0001',
+                    '16' => '1.25', '17' => '1', '18' => '0', '19' => '0.555555', '20' => '-0.5', '21' => '-99999', '22' => '0.0001']
+            ],
+            [
+
+                (object)[
+                    (object)['1' => NULL, '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE,
+                        '9' => 1.25, '10' => 1, '11' => 0, '12' => 0.555555, '13' => -0.5, '14' => -99999, '15' => 0.0001,
+                        '16' => '1.25', '17' => '1', '18' => '0', '19' => '0.555555', '20' => '-0.5', '21' => '-99999', '22' => '0.0001']
+                ],
+                (object)[
+                    (object)['1' => NULL, '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE,
+                        '9' => '1.25', '10' => 1, '11' => 0, '12' => '0.555555', '13' => '-0.5', '14' => -99999, '15' => '0.0001',
+                        '16' => '1.25', '17' => '1', '18' => '0', '19' => '0.555555', '20' => '-0.5', '21' => '-99999', '22' => '0.0001']
+                ]
+            ],
+            [
+
+                (object)[
+                    ['1' => NULL, '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE,
+                        '9' => 1.25, '10' => 1, '11' => 0, '12' => 0.555555, '13' => -0.5, '14' => -99999, '15' => 0.0001,
+                        '16' => '1.25', '17' => '1', '18' => '0', '19' => '0.555555', '20' => '-0.5', '21' => '-99999', '22' => '0.0001']
+                ],
+                (object)[
+                    ['1' => NULL, '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE,
+                        '9' => '1.25', '10' => 1, '11' => 0, '12' => '0.555555', '13' => '-0.5', '14' => -99999, '15' => '0.0001',
+                        '16' => '1.25', '17' => '1', '18' => '0', '19' => '0.555555', '20' => '-0.5', '21' => '-99999', '22' => '0.0001']
+                ]
+            ]
+        ];
+    }
+
+    /**
      * @return array[]
      */
     public function providerSanitizeArrayRecursiveWithValidData() {
@@ -539,6 +625,22 @@ class SanitizerTest extends AbstractUnitTest {
     }
 
     /**
+     * @param mixed $invalidInput
+     *
+     * @dataProvider providerNonArrayInputs
+     */
+    public function testConvertFloatToStringArrayRecursiveWithInvalidData($invalidInput) {
+        try {
+            Sanitizer::convertFloatToStringArrayRecursive($invalidInput);
+
+            $this->assertIsArray($invalidInput, 'Invalid data type has been inserted, but no type error has ' .
+                'been thrown. convertFloatToStringArrayRecursive should only allow arrays as input.');
+        } catch (\TypeError $e) {
+            $this->addToAssertionCount(1);
+        }
+    }
+
+    /**
      * @param array $arrayToSanitize
      * @param array $expectedSanitizedArray
      *
@@ -562,6 +664,22 @@ class SanitizerTest extends AbstractUnitTest {
      */
     public function testConvertBooleanToIntegerArrayRecursiveWithValidData($arrayToConvert, $expectedConvertedArray) {
         Sanitizer::convertBooleanToIntegerArrayRecursive($arrayToConvert);
+        $convertedArray = $arrayToConvert;
+
+        if($convertedArray !== NULL)
+            $this->assertIsArray($convertedArray);
+
+        $this->assertEquals($expectedConvertedArray, $convertedArray);
+    }
+
+    /**
+     * @param array $arrayToConvert
+     * @param array $expectedConvertedArray
+     *
+     * @dataProvider providerConvertFloatToStringArrayRecursiveWithValidData
+     */
+    public function testConvertFloatToStringArrayRecursiveWithValidData($arrayToConvert, $expectedConvertedArray) {
+        Sanitizer::convertFloatToStringArrayRecursive($arrayToConvert);
         $convertedArray = $arrayToConvert;
 
         if($convertedArray !== NULL)
@@ -601,6 +719,21 @@ class SanitizerTest extends AbstractUnitTest {
     }
 
     /**
+     * @param mixed $invalidInput
+     *
+     * @dataProvider providerNonObjectInputs
+     */
+    public function testConvertFloatToStringObjectRecursiveWithValidDataWithInvalidData($invalidInput) {
+        $invalidInputBefore = $invalidInput;
+        Sanitizer::convertFloatToStringObjectRecursive($invalidInput);
+        $invalidInputAfter = $invalidInput;
+
+        $this->assertIsNotObject($invalidInputBefore);
+        $this->assertIsNotObject($invalidInputAfter);
+        $this->assertEquals($invalidInputBefore, $invalidInputAfter);
+    }
+
+    /**
      * @param object $objectToSanitize
      * @param object $expectedSanitizedObject
      *
@@ -625,6 +758,23 @@ class SanitizerTest extends AbstractUnitTest {
     public function testConvertBooleanToIntegerObjectRecursiveWithValidData($objectToConvert,
                                                                             $expectedConvertedObject) {
         Sanitizer::convertBooleanToIntegerObjectRecursive($objectToConvert);
+        $convertedObject = $objectToConvert;
+
+        if($convertedObject !== NULL)
+            $this->assertIsObject($convertedObject);
+
+        $this->assertEquals($expectedConvertedObject, $convertedObject);
+    }
+
+    /**
+     * @param object $objectToConvert
+     * @param object $expectedConvertedObject
+     *
+     * @dataProvider providerConvertFloatToStringObjectRecursiveWithValidData
+     */
+    public function testConvertFloatToStringObjectRecursiveWithValidData($objectToConvert,
+                                                                            $expectedConvertedObject) {
+        Sanitizer::convertFloatToStringObjectRecursive($objectToConvert);
         $convertedObject = $objectToConvert;
 
         if($convertedObject !== NULL)

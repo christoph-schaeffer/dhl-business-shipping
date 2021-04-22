@@ -47,6 +47,39 @@ class Sanitizer {
     /**
      * @param array $array
      */
+    public static function convertFloatToStringArrayRecursive(array &$array) {
+        foreach ($array as $key => $value):
+            if(is_array($value)):
+                self::convertBooleanToIntegerArrayRecursive($value);
+            elseif(is_object($value)):
+                self::convertBooleanToIntegerObjectRecursive($value);
+            elseif(is_float($value)):
+                $array[$key] = var_export($value, true);
+            endif;
+        endforeach;
+    }
+
+    /**
+     * @param object $object
+     */
+    public static function convertFloatToStringObjectRecursive(&$object) {
+        if(!is_object($object))
+            return;
+
+        foreach ($object as $property => $value):
+            if(is_array($value)):
+                self::convertBooleanToIntegerArrayRecursive($value);
+            elseif(is_object($value)):
+                self::convertBooleanToIntegerObjectRecursive($value);
+            elseif(is_float($value)):
+                $object->{$property} = var_export($value, true);
+            endif;
+        endforeach;
+    }
+
+    /**
+     * @param array $array
+     */
     public static function sanitizeArrayRecursive(array &$array) {
         foreach ($array as $key => $value):
             if(is_array($value)):
