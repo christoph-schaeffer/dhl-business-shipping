@@ -5,7 +5,7 @@
         xmlns:cis="http://dhl.de/webservice/cisbase"
         targetNamespace="http://dhl.de/webservices/businesscustomershipping/3.0">
 	  <import namespace="http://dhl.de/webservice/cisbase"
-           schemaLocation="geschaeftskundenversand-api-3.1.2-schema-cis_base.xsd"/>
+           schemaLocation="geschaeftskundenversand-api-3.1.4-schema-cis_base.xsd"/>
 	  <simpleType name="SequenceNumber">
 		    <annotation>
 			      <documentation>A sequence number defined by the (soap-) client. The sequenceNumber is
@@ -14,7 +14,7 @@
 				shipment data of the request.</documentation>
 		    </annotation>
 		    <restriction base="xs:string">
-			      <maxLength value="30"/>
+			      <maxLength value="50"/>
 		    </restriction>
 	  </simpleType>
 	  <!-- The response-type of the webservice GetVersion -->
@@ -69,21 +69,44 @@
 					          </simpleType>
 				        </element>
 				        <element name="groupProfileName" minOccurs="0">
+                    <annotation>
+                        <documentation>The group profile you select defines the billing numbers you can use for creating shipments. To define group profiles please visit our business costumer portal.</documentation>
+                    </annotation>
 					          <simpleType>
 						            <restriction base="xs:string"> </restriction>
 					          </simpleType>
 				        </element>
 				        <element name="labelFormat" minOccurs="0">
+                    <annotation>
+                        <documentation>In this optional section you can define the following label formats:
+A4:             common label laser printing A4 plain paper;
+910-300-700:    common label laser printing 105 x 205 mm (910-300-700);
+910-300-700-oz: common label laser printing 105 x 205 mm (910-300-700) without additional label;
+910-300-600:    common label thermal printing 103 x 199 (910-300-600, 910-300-610);
+910-300-710:    common label laser printing 105 x 208 mm (910-300-710);
+100x70mm:       100x70mm (only for Warenpost);</documentation>
+                    </annotation>
 					          <simpleType>
 						            <restriction base="xs:string"> </restriction>
 					          </simpleType>
 				        </element>
 				        <element name="labelFormatRetoure" minOccurs="0">
+                    <annotation>
+                        <documentation>In this optional section you can define the following label formats:
+A4:             common label laser printing A4 plain paper;
+910-300-700:    common label laser printing 105 x 205 mm (910-300-700);
+910-300-700-oz: common label laser printing 105 x 205 mm (910-300-700) without additional label;
+910-300-600:    common label thermal printing 103 x 199 (910-300-600, 910-300-610);
+910-300-710:    common label laser printing 105 x 208 mm (910-300-710);</documentation>
+                    </annotation>
 					          <simpleType>
 						            <restriction base="xs:string"> </restriction>
 					          </simpleType>
 				        </element>
 				        <element name="combinedPrinting" minOccurs="0">
+                    <annotation>
+                        <documentation>To get a single PDF for shipping and return label select this option.</documentation>
+                    </annotation>
 					          <simpleType>
 						            <restriction base="xs:string"> </restriction>
 					          </simpleType>
@@ -202,26 +225,45 @@
 					          </simpleType>
 				        </element>
 				        <element name="groupProfileName" minOccurs="0">
+                    <annotation>
+                        <documentation>The group profile you select defines the billing numbers you can use for creating shipments. To define group profiles please visit our business costumer portal.
+The group profile defines the shipments you can get documents for. The shipment needs to have an account/billing number allocated to the group profile. To define group profiles please visit our business costumer portal.</documentation>
+                    </annotation>
 					          <simpleType>
 						            <restriction base="xs:string"> </restriction>
 					          </simpleType>
 				        </element>
 				        <element name="labelFormat" minOccurs="0">
+                    <annotation>
+                        <documentation>In this optional section you can define the following label formats:
+A4:             common label laser printing A4 plain paper
+910-300-700:    common label laser printing 105 x 205 mm (910-300-700);
+910-300-700-oz: common label laser printing 105 x 205 mm (910-300-700) without additional label;
+910-300-600:    common label thermal printing 103 x 199 (910-300-600, 910-300-610);
+910-300-710:    common label laser printing 105 x 208 mm (910-300-710);
+100x70mm:       100x70mm (only for Warenpost);</documentation>
+                    </annotation>
 					          <simpleType>
 						            <restriction base="xs:string"> </restriction>
 					          </simpleType>
 				        </element>
 				        <element name="labelFormatRetoure" minOccurs="0">
+                    <annotation>
+                        <documentation>In this optional section you can define the following label formats:
+A4:             common label laser printing A4 plain paper;
+910-300-700:    common label laser printing 105 x 205 mm (910-300-700);
+910-300-700-oz: common label laser printing 105 x 205 mm (910-300-700) without additional label;
+910-300-600:    common label thermal printing 103 x 199 (910-300-600, 910-300-610);
+910-300-710:    common label laser printing 105 x 208 mm (910-300-710);</documentation>
+                    </annotation>
 					          <simpleType>
 						            <restriction base="xs:string"> </restriction>
 					          </simpleType>
 				        </element>
 				        <element name="combinedPrinting" minOccurs="0">
-					          <simpleType>
-						            <restriction base="xs:string"> </restriction>
-					          </simpleType>
-				        </element>
-				        <element name="feederSystem" minOccurs="0">
+                    <annotation>
+                        <documentation>To get a single PDF for shipping and return label select this option.</documentation>
+                    </annotation>
 					          <simpleType>
 						            <restriction base="xs:string"> </restriction>
 					          </simpleType>
@@ -261,8 +303,7 @@
 	  </element>
 	  <element name="DoManifestRequest">
 		    <annotation>
-			      <documentation>The identifier for the shipment which should be
-				manifested.</documentation>
+			      <documentation>Manifests one ore more shipments.</documentation>
 		    </annotation>
 		    <complexType>
 			      <sequence>
@@ -272,12 +313,19 @@
 							requesting client is developed.</documentation>
 					          </annotation>
 				        </element>
-				        <element ref="cis:shipmentNumber" maxOccurs="30">
-					          <annotation>
-						            <documentation>The identifier of the shipment. The shipment number is read
-							from ShipmentNumberType-&gt;shipmentNumber </documentation>
-					          </annotation>
-				        </element>
+                <choice>
+				           <element ref="cis:shipmentNumber" maxOccurs="50">
+					             <annotation>
+						               <documentation>Identifiers of the shipments that should be manifested. The shipment number is read
+							 from ShipmentNumberType-&gt;shipmentNumber </documentation>
+					             </annotation>
+				           </element>
+                    <element name="allShipments">
+					             <annotation>
+						               <documentation>Presence of this element signals that all available shipments should be manifested.</documentation>
+                       </annotation>
+                    </element>
+                </choice>
 			      </sequence>
 		    </complexType>
 	  </element>
@@ -401,26 +449,15 @@
 					          </simpleType>
 				        </element>
 				        <element name="groupProfileName" minOccurs="0">
-					          <simpleType>
-						            <restriction base="xs:string"> </restriction>
-					          </simpleType>
-				        </element>
-				        <element name="labelFormat" minOccurs="0">
-					          <simpleType>
-						            <restriction base="xs:string"> </restriction>
-					          </simpleType>
-				        </element>
-				        <element name="labelFormatRetoure" minOccurs="0">
+                    <annotation>
+                        <documentation>The group profile you select defines the billing numbers you can use for creating shipments. To define group profiles please visit our business costumer portal.
+The group profile defines the shipments you can get documents for. The shipment needs to have an account/billing number allocated to the group profile. To define group profiles please visit our business costumer portal.</documentation>
+                    </annotation>
 					          <simpleType>
 						            <restriction base="xs:string"> </restriction>
 					          </simpleType>
 				        </element>
 				        <element name="combinedPrinting" minOccurs="0">
-					          <simpleType>
-						            <restriction base="xs:string"> </restriction>
-					          </simpleType>
-				        </element>
-				        <element name="feederSystem" minOccurs="0">
 					          <simpleType>
 						            <restriction base="xs:string"> </restriction>
 					          </simpleType>
@@ -552,21 +589,44 @@
 					          </simpleType>
 				        </element>
 				        <element name="groupProfileName" minOccurs="0">
+                    <annotation>
+                        <documentation>The group profile you select defines the billing numbers you can use for creating shipments. To define group profiles please visit our business costumer portal.</documentation>
+                    </annotation>
 					          <simpleType>
 						            <restriction base="xs:string"> </restriction>
 					          </simpleType>
 				        </element>
 				        <element name="labelFormat" minOccurs="0">
+                    <annotation>
+                        <documentation>In this optional section you can define the following label formats:
+A4:             common label laser printing A4 plain paper;
+910-300-700:    common label laser printing 105 x 205 mm (910-300-700);
+910-300-700-oz: common label laser printing 105 x 205 mm (910-300-700) without additional label;
+910-300-600:    common label thermal printing 103 x 199 (910-300-600, 910-300-610);
+910-300-710:    common label laser printing 105 x 208 mm (910-300-710);
+100x70mm:       100x70mm (only for Warenpost);</documentation>
+                    </annotation>
 					          <simpleType>
 						            <restriction base="xs:string"> </restriction>
 					          </simpleType>
 				        </element>
 				        <element name="labelFormatRetoure" minOccurs="0">
+                    <annotation>
+                        <documentation>In this optional section you can define the following label formats:
+A4:             common label laser printing A4 plain paper;
+910-300-700:    common label laser printing 105 x 205 mm (910-300-700);
+910-300-700-oz: common label laser printing 105 x 205 mm (910-300-700) without additional label;
+910-300-600:    common label thermal printing 103 x 199 (910-300-600, 910-300-610);
+910-300-710:    common label laser printing 105 x 208 mm (910-300-710);</documentation>
+                    </annotation> 
 					          <simpleType>
 						            <restriction base="xs:string"> </restriction>
 					          </simpleType>
 				        </element>
 				        <element name="combinedPrinting" minOccurs="0">
+                    <annotation>
+                        <documentation>To get a single PDF for shipping and return label select this option.</documentation>
+                    </annotation>
 					          <simpleType>
 						            <restriction base="xs:string"> </restriction>
 					          </simpleType>
@@ -798,17 +858,13 @@
 						            </element>
 						            <element name="ExportDocument" type="bcs:ExportDocumentType" minOccurs="0">
 							              <annotation>
-								                <documentation>For international shipments, this section contains
-									information about the exported goods relevant for customs. For
-									international shipments: commercial invoice, dispatch note
-									(CP71) and customs declaration (CN23) are printed into returned
-									label information. Data is also transferred as electronic
-									declaration to customs. For european shipments. For
-									international shipments, ExportDocument can contain one or more
-									positions in child element. </documentation>
+								                <documentation>For international shipments. This section contains information about the exported goods relevant for customs. For international shipments: commercial invoice and customs declaration (CN23) have to be attached to the shipment. Data relevant for customs also has to be transferred as electronically.  </documentation>
 							              </annotation>
 						            </element>
                         <element name="feederSystem" minOccurs="0">
+							              <annotation>
+								                <documentation>Is only to be indicated by DHL partners</documentation>
+							              </annotation>
                             <simpleType>
                                 <restriction base="xs:string"> </restriction>
                             </simpleType>
@@ -872,17 +928,13 @@
 						            </element>
 						            <element name="ExportDocument" type="bcs:ExportDocumentType" minOccurs="0">
 							              <annotation>
-								                <documentation>For international shipments, this section contains
-									information about the exported goods relevant for customs. For
-									international shipments: commercial invoice, dispatch note
-									(CP71) and customs declaration (CN23) are printed into returned
-									label information. Data is also transferred as electronic
-									declaration to customs. For european shipments. For
-									international shipments, ExportDocument can contain one or more
-									positions in child element. </documentation>
+								                <documentation>For international shipments. This section contains information about the exported goods relevant for customs. For international shipments: commercial invoice and customs declaration (CN23) have to be attached to the shipment. Data relevant for customs also has to be transferred as electronically.</documentation>
 							              </annotation>
 						            </element>
                         <element name="feederSystem" minOccurs="0">
+                        	<annotation>
+								                <documentation>Is only to be indicated by DHL partners</documentation>
+							              </annotation>
                             <simpleType>
                                 <restriction base="xs:string"> </restriction>
                             </simpleType>
@@ -908,7 +960,7 @@
 					          <documentation>Name of the Return Receiver</documentation>
 				        </annotation>
 			      </element>
-			      <element name="Address" type="cis:NativeAddressType">
+			      <element name="Address" type="cis:NativeAddressTypeNew">
 				        <annotation>
 					          <documentation>Contains address data.</documentation>
 				        </annotation>
@@ -954,7 +1006,7 @@
 							Packstation.</documentation>
 					          </annotation>
 				        </element>
-				        <element name="Postfiliale" type="cis:PostfilialeType">
+				        <element name="Postfiliale" type="cis:PostfilialeTypeNoCountry">
 					          <annotation>
 						            <documentation>The address of the receiver is a german
 							Postfiliale.</documentation>
@@ -1043,12 +1095,6 @@
 						V01PAK:    DHL PAKET;
 						V53WPAK:   DHL PAKET International;
 						V54EPAK:   DHL Europaket;
-						V06PAK:    DHL PAKET Taggleich;
-						V06TG:     Kurier Taggleich;
-						V06WZ:     Kurier Wunschzeit;
-						V86PARCEL: DHL PAKET Austria;
-						V87PARCEL: DHL PAKET Connect;
-						V82PARCEL: DHL PAKET International;
                         V62WP:     DHL Warenpost
 					</documentation>
 				        </annotation>
@@ -1056,8 +1102,7 @@
 			      <element ref="cis:accountNumber"/>
 			      <element name="customerReference" minOccurs="0">
 				        <annotation>
-					          <documentation>A reference number that the client can assign for better
-						association purposes. Appears on shipment label.</documentation>
+					          <documentation>A reference number that the client can assign for better	association purposes. Appears on shipment label. To use the reference number for tracking purposes, it should be at least 8 characters long and unique</documentation>
 				        </annotation>
 				        <xs:simpleType>
 					          <xs:restriction base="xs:string">
@@ -1079,7 +1124,7 @@
 			      </element>
 			      <element name="costCentre" minOccurs="0">
 				        <annotation>
-					          <documentation>Name of a cost center.</documentation>
+					          <documentation>Name of a cost center. Appears on shipment label.</documentation>
 				        </annotation>
 				        <xs:simpleType>
 					          <xs:restriction base="xs:string">
@@ -1101,7 +1146,7 @@
 			      <element name="returnShipmentReference" minOccurs="0">
 				        <annotation>
 					          <documentation>A reference number that the client can assign for better
-						association purposes. Appears on return shipment label. </documentation>
+						association purposes. Appears on return shipment label. To use the reference number for tracking purposes, it should be at least 8 characters long and unique. </documentation>
 				        </annotation>
 				        <xs:simpleType>
 					          <xs:restriction base="xs:string">
@@ -1226,87 +1271,25 @@
 			      <annotation>
 				        <documentation>can be</documentation>
 			      </annotation>
-			      <element name="DayOfDelivery" type="bcs:ServiceconfigurationDateOfDelivery"
-                  minOccurs="0"
-                  maxOccurs="1">
-				        <annotation>
-					          <documentation>
-						Day of Delivery for product:
-						V06TG: Kurier Taggleich;
-						V06WZ: Kurier Wunschzeit
-					</documentation>
-				        </annotation>
-			      </element>
-			      <element name="DeliveryTimeframe" type="bcs:ServiceconfigurationDeliveryTimeframe"
-                  minOccurs="0"
-                  maxOccurs="1">
-				        <annotation>
-					          <documentation>
-						Timeframe of delivery for product:
-						V06TG: Kurier Taggleich;
-						V06WZ: Kurier Wunschzeit
-					</documentation>
-				        </annotation>
-			      </element>
-			      <element name="PreferredTime" type="bcs:ServiceconfigurationDeliveryTimeframe"
-                  minOccurs="0"
-                  maxOccurs="1">
-				        <annotation>
-					          <documentation>
-						Preferred Time of delivery for product:
-						V01PAK: DHL PAKET
-						V06PAK: DHL PAKET TAGGLEICH
-					</documentation>
-				        </annotation>
-			      </element>
 			      <element name="IndividualSenderRequirement" type="bcs:ServiceconfigurationISR"
                   minOccurs="0"
                   maxOccurs="1">
 				        <annotation>
 					          <documentation>
-						Individual sender requirements for product:
-						V06TG: Kurier Taggleich
-						V06WZ: Kurier Wunschzeit
+						This service is used exclusively for shipments with special delivery requirements. It is not available for our regular business customers.
 					</documentation>
 				        </annotation>
 			      </element>
 			      <element name="PackagingReturn" type="bcs:Serviceconfiguration" minOccurs="0"
                   maxOccurs="1">
 				        <annotation>
-					          <documentation>Service for package return.</documentation>
-				        </annotation>
-			      </element>
-			      <element name="ReturnImmediately" type="bcs:Serviceconfiguration" minOccurs="0"
-                  maxOccurs="1">
-				        <annotation>
-					          <documentation>
-						Service of immediatly shipment return in case of
-						non sucessful delivery for product:
-						V06PAK: DHL PAKET TAGGLEICH
-					</documentation>
-				        </annotation>
-			      </element>
-			      <element name="NoticeOfNonDeliverability" type="bcs:Serviceconfiguration" minOccurs="0"
-                  maxOccurs="1">
-				        <annotation>
-					          <documentation>Service Notice of non-deliverability.</documentation>
-				        </annotation>
-			      </element>
-			      <element name="ShipmentHandling" type="bcs:ServiceconfigurationShipmentHandling"
-                  minOccurs="0"
-                  maxOccurs="1">
-				        <annotation>
-					          <documentation>
-						Shipment handling for product:
-						V06TG: Kurier Taggleich;
-						V06WZ: Kurier Wunschzeit
-					</documentation>
+					          <documentation>Service for package return. For packagingReturn you also have to book a return label.</documentation>
 				        </annotation>
 			      </element>
 			      <element name="Endorsement" type="bcs:ServiceconfigurationEndorsement" minOccurs="0"
                   maxOccurs="1">
 				        <annotation>
-					          <documentation>Service "Endorsement".</documentation>
+					          <documentation>Service "Endorsement". Mandatory for shipments with product DHL Paket International: V53WPAK</documentation>
 				        </annotation>
 			      </element>
 			      <element name="VisualCheckOfAge" type="bcs:ServiceconfigurationVisualAgeCheck"
@@ -1334,21 +1317,6 @@
                   maxOccurs="1">
 				        <annotation>
 					          <documentation>Service preferred day</documentation>
-				        </annotation>
-			      </element>
-			      <element name="GoGreen" type="bcs:Serviceconfiguration" minOccurs="0" maxOccurs="1">
-				        <annotation>
-					          <documentation>GoGreen</documentation>
-				        </annotation>
-			      </element>
-			      <element name="Perishables" type="bcs:Serviceconfiguration" minOccurs="0" maxOccurs="1">
-				        <annotation>
-					          <documentation>DHL Kurier Verderbliche Ware</documentation>
-				        </annotation>
-			      </element>
-			      <element name="Personally" type="bcs:Serviceconfiguration" minOccurs="0" maxOccurs="1">
-				        <annotation>
-					          <documentation>Invoke service personal handover.</documentation>
 				        </annotation>
 			      </element>
 			      <element name="NoNeighbourDelivery" type="bcs:Serviceconfiguration" minOccurs="0"
@@ -1436,7 +1404,7 @@
 		    </xs:attribute>
 		    <xs:attribute name="details" use="required">
 			      <xs:annotation>
-				        <xs:documentation>Details of the Service (freetext)</xs:documentation>
+				        <xs:documentation> e-mail address for notification in case of non-deliverability</xs:documentation>
 			      </xs:annotation>
 			      <xs:simpleType>
 				        <xs:restriction base="xs:string">
@@ -1460,7 +1428,7 @@
 		    </xs:attribute>
 		    <xs:attribute name="details" use="optional">
 			      <xs:annotation>
-				        <xs:documentation>Details of the Service (freetext)</xs:documentation>
+				        <xs:documentation>E-mail address for notification in case of non-deliverability.</xs:documentation>
 			      </xs:annotation>
 			      <xs:simpleType>
 				        <xs:restriction base="xs:string">
@@ -1523,24 +1491,13 @@
 		    <xs:attribute name="type" use="required">
 			      <xs:annotation>
 				        <xs:documentation>
-					Service endorsement is used to specify handling if recipient not met
-					There are the following types are allowed:
-					For Germany:
-					SOZU (Return immediately),
-					ZWZU (2nd attempt of Delivery);
-					for International:
-					IMMEDIATE (Sending back immediately to sender),
-					AFTER_DEADLINE (Sending back immediately to sender after expiration of time),
-					ABANDONMENT (Abandonment of parcel at the hands of sender (free of charge))
+					This service defines the handling of parcels that cannot be delivered. There are two options: IMMEDIATE (Sending back to sender), ABANDONMENT (Abandonment of parcel at the hands of sender (free of charge). The definition of undeliverability is country-specific and depends on the regulations of the postal company of the receiving country. Usually, if parcels cannot be delivered at first try, recipients receive a notification card and can pick up their shipment at a local postal office. After the storage period has expired, the shipment will be handled according to your choosen endorsement option. Shipments that cannot be delivered due to address problems or active refusal will be either returned immediately or treated as abandoned.
 				</xs:documentation>
 			      </xs:annotation>
 			      <xs:simpleType>
 				        <xs:restriction base="xs:string">
-					          <xs:enumeration value="SOZU"/>
-					          <xs:enumeration value="ZWZU"/>
 					          <xs:enumeration value="IMMEDIATE"/>
 					          <xs:enumeration value="AFTER_DEADLINE"/>
-					          <xs:enumeration value="ABANDONMENT"/>
 				        </xs:restriction>
 			      </xs:simpleType>
 		    </xs:attribute>
@@ -1564,7 +1521,7 @@
 			      <xs:simpleType>
 				        <xs:restriction base="xs:string">
 					          <xs:minLength value="1"/>
-					          <xs:maxLength value="250"/>
+					          <xs:maxLength value="2"/>
 				        </xs:restriction>
 			      </xs:simpleType>
 		    </xs:attribute>
@@ -1609,10 +1566,8 @@
 		    <xs:attribute name="type" use="required">
 			      <xs:annotation>
 				        <xs:documentation>
-					Service VisualCheckOfAge is used to specify the minimum age of the recipient
-					There are the following types are allowed:
-					• A16
-					• A18
+					Service VisualCheckOfAge is used to specify the minimum age of the recipient.
+					The following types are allowed: "A16" or "A18"
 				</xs:documentation>
 			      </xs:annotation>
 			      <xs:simpleType>
@@ -1722,64 +1677,15 @@
 				        </xs:restriction>
 			      </xs:simpleType>
 		    </xs:attribute>
-		    <xs:attribute name="addFee" use="optional">
-			      <xs:annotation>
-				        <xs:documentation> Configuration whether the transmission fee to be added to the COD
-					amount or not by DHL. Select the option then the new COD amount will
-					automatically printed on the shipping label and will transferred to the end of
-					the day to DHL. Do not select the option and the specified COD amount remains
-					unchanged. </xs:documentation>
-			      </xs:annotation>
-			      <xs:simpleType>
-				        <xs:restriction base="xs:string">
-					          <xs:enumeration value="0"/>
-					          <xs:enumeration value="1"/>
-				        </xs:restriction>
-			      </xs:simpleType>
-		    </xs:attribute>
 		    <xs:attribute name="codAmount" use="required">
 			      <annotation>
-				        <documentation> Money amount to be collected. Mandatory if COD is chosen. Attention:
-					Please add the additional 2 EURO transmittal fee when entering the COD Amount
+				        <documentation> Money amount to be collected. Mandatory if COD is chosen.
 				</documentation>
 			      </annotation>
 			      <xs:simpleType>
 				        <xs:restriction base="xs:decimal">
 					          <minInclusive value="0.0"/>
 					          <maxInclusive value="9999999999"/>
-				        </xs:restriction>
-			      </xs:simpleType>
-		    </xs:attribute>
-	  </xs:complexType>
-	  <xs:complexType name="ServiceconfigurationShipmentHandling">
-		    <xs:attribute name="active" use="required">
-			      <xs:annotation>
-				        <xs:documentation>Indicates, if the option is on/off</xs:documentation>
-			      </xs:annotation>
-			      <xs:simpleType>
-				        <xs:restriction base="xs:string">
-					          <xs:enumeration value="0"/>
-					          <xs:enumeration value="1"/>
-				        </xs:restriction>
-			      </xs:simpleType>
-		    </xs:attribute>
-		    <xs:attribute name="type" use="required">
-			      <xs:annotation>
-				        <xs:documentation>
-					
-										Type of shipment handling. There are the following types are allowed:
-										a: Remove content, return box;
-										b: Remove content, pick up and dispose cardboard packaging;
-										c: Handover parcel/box to customer – no disposal of cardboar.d/box;
-										d: Remove bag from of cooling unit and handover to customer;
-										e: Remove content, apply return label und seal box, return box
-										
-				</xs:documentation>
-			      </xs:annotation>
-			      <xs:simpleType>
-				        <xs:restriction base="xs:string">
-					          <xs:minLength value="1"/>
-					          <xs:maxLength value="1"/>
 				        </xs:restriction>
 			      </xs:simpleType>
 		    </xs:attribute>
@@ -1865,7 +1771,7 @@
 						            </xs:element>
 						            <xs:element name="minimumAge">
 							              <xs:annotation>
-								                <xs:documentation> minimum age of the person for ident check
+								                <xs:documentation> minimum age of the person for ident check ("A16" or "A18")
 								</xs:documentation>
 							              </xs:annotation>
 							              <xs:simpleType>
@@ -1916,8 +1822,7 @@
 		    <sequence>
 			      <element name="invoiceNumber" minOccurs="0">
 				        <annotation>
-					          <documentation>In case invoice has a number, client app can provide it in this
-						field.</documentation>
+					          <documentation>Invoice number if applicable</documentation>
 				        </annotation>
 				        <simpleType>
 					          <restriction base="xs:string">
@@ -1927,9 +1832,7 @@
 			      </element>
 			      <element name="exportType" minOccurs="1">
 				        <annotation>
-					          <documentation>Export type ("OTHER", "PRESENT", "COMMERCIAL_SAMPLE", "DOCUMENT",
-						"RETURN_OF_GOODS", "COMMERCIAL_GOODS") (depends on chosen product -&gt; only mandatory for
-						international, non EU shipments). </documentation>
+					          <documentation>Export type</documentation>
 				        </annotation>
 				        <simpleType>
 					          <restriction base="xs:string">
@@ -1956,14 +1859,18 @@
 			      <element name="termsOfTrade" minOccurs="0">
 				        <annotation>
 					          <documentation>
-						Element provides terms of trades,
-						incoterms codes:
-						DDP (Delivery Duty Paid)
-						DXV (Delivery duty paid (excl. VAT ))
-						DDU (DDU - Delivery Duty Paid)
-						DDX (Delivery duty paid (excl. Duties, taxes and VAT)
-						are vaild values.
-					</documentation>
+						            <code xmlns="http://www.w3.org/1999/xhtml">
+							Element provides terms of trades, incoterms codes:
+							<ul>
+  								              <li>DDP (Delivery Duty Paid)</li>
+								                <li>DXV (Delivery Duty Paid (excl. VAT))</li>
+								                <li>DAP (formerly DDU, Delivery At Place)</li>
+								                <li>DDX (Delivery Duty Paid (excl. Duties, taxes and VAT)</li>
+								                <li>CPT (Carriage Paid To (within EU only))</li>
+							              </ul>
+							are vaild values.
+						</code>
+					          </documentation>
 				        </annotation>
 				        <simpleType>
 					          <restriction base="xs:string">
@@ -1971,14 +1878,15 @@
 						            <maxLength value="3"/>
 						            <enumeration value="DDP"/>
 						            <enumeration value="DXV"/>
-						            <enumeration value="DDU"/>
+						            <enumeration value="DAP"/>
 						            <enumeration value="DDX"/>
+						            <enumeration value="CPT"/>
 					          </restriction>
 				        </simpleType>
 			      </element>
 			      <element name="placeOfCommital">
 				        <annotation>
-					          <documentation>PlaceOfCommital is a Locaton</documentation>
+					          <documentation>PlaceOfCommital is a Locaton the shipment is handed over to DHL</documentation>
 				        </annotation>
 				        <simpleType>
 					          <restriction base="xs:string">
@@ -1988,7 +1896,7 @@
 			      </element>
 			      <element name="additionalFee" minOccurs="0">
 				        <annotation>
-					          <documentation>Additional custom fees to be payed.</documentation>
+					          <documentation>Postage costs billed in the invoice</documentation>
 				        </annotation>
 				        <simpleType>
 					          <restriction base="xs:decimal">
@@ -2004,7 +1912,7 @@
 				        </annotation>
 				        <simpleType>
 					          <restriction base="xs:string">
-						            <maxLength value="10"/>
+						            <maxLength value="35"/>
 					          </restriction>
 				        </simpleType>
 			      </element>
@@ -2051,16 +1959,14 @@
 			      </element>
 			      <element name="ExportDocPosition" minOccurs="0" maxOccurs="99">
 				        <annotation>
-					          <documentation>One or more child elements for every position to be defined
-						within the Export Document. Each one contains description, country code of
-						origin, amount, net weight, customs value. Multiple positions only possible
-						for international shipments, other than EU shipments.</documentation>
+					          <documentation>One or more child elements for every position to be defined within the Export Document. Each one contains description, country code of origin, amount, net weight, customs value. Multiple positions only possible for shipments using DHL Paket International (V53WPAK).
+Shipments using DHL Europaket (V54EPAK) can only contain one ExportDocPosition.</documentation>
 				        </annotation>
 				        <complexType>
 					          <sequence>
 						            <element name="description">
 							              <annotation>
-								                <documentation>Description of the unit / position</documentation>
+								                <documentation>Description of the goods</documentation>
 							              </annotation>
 							              <simpleType>
 								                <restriction base="xs:string">
@@ -2070,7 +1976,7 @@
 						            </element>
 						            <element name="countryCodeOrigin">
 							              <annotation>
-								                <documentation>Country's ISO-Code (ISO 3166-2) of the unit / position. </documentation>
+								                <documentation>ISO-Code (ISO 3166-2) of country the goods were manufactured  </documentation>
 							              </annotation>
 							              <simpleType>
 								                <restriction base="xs:string">
@@ -2081,7 +1987,7 @@
 						            </element>
 						            <element name="customsTariffNumber">
 							              <annotation>
-								                <documentation>Customs tariff number of the unit / position. Only 6-, 8- or 10-digits are allowed.</documentation>
+								                <documentation>Customs tariff number of the unit / position.</documentation>
 							              </annotation>
 							              <simpleType>
 								                <restriction base="xs:string">
@@ -2102,7 +2008,7 @@
 						            </element>
 						            <element name="netWeightInKG">
 							              <annotation>
-								                <documentation>Net weight of the unit / position. Only positive values (&gt; 0) are allowed.</documentation>
+								                <documentation>Net weight of the unit / position. Only positive values (&gt; 0) are allowed.The total net weight must not exceed the shipment weight</documentation>
 							              </annotation>
 							              <simpleType>
 								                <restriction base="xs:decimal">
@@ -2310,7 +2216,7 @@ Email Address    (mandatory): cis:CommunicationType-&gt;email
 			      <documentation>The status of a doManifest operation. </documentation>
 		    </annotation>
 		    <sequence>
-			      <element ref="cis:shipmentNumber">
+			      <element ref="cis:shipmentNumber" minOccurs="0">
 				        <annotation>
 					          <documentation>ShipmentNumber</documentation>
 				        </annotation>
@@ -3014,8 +2920,8 @@ Email Address    (mandatory): cis:CommunicationType-&gt;email
 				        </xs:annotation>
 				        <xs:element name="majorRelease">
 					          <xs:annotation>
-						            <xs:documentation>The number of the major release. E.g. the '2' in version
-							"2.1.".</xs:documentation>
+						            <xs:documentation>The number of the major release. E.g. the '3' in version
+							"3.1.".</xs:documentation>
 					          </xs:annotation>
 					          <xs:simpleType>
 						            <xs:restriction base="xs:string">
@@ -3023,10 +2929,10 @@ Email Address    (mandatory): cis:CommunicationType-&gt;email
 						            </xs:restriction>
 					          </xs:simpleType>
 				        </xs:element>
-				        <xs:element name="minorRelease">
+				        <xs:element name="minorRelease" minOccurs="0">
 					          <xs:annotation>
 						            <xs:documentation>The number of the minor release. E.g. the '1' in version
-							"2.1.".</xs:documentation>
+							"3.1.".</xs:documentation>
 					          </xs:annotation>
 					          <xs:simpleType>
 						            <xs:restriction base="xs:string">

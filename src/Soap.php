@@ -15,7 +15,7 @@ class Soap extends \SoapClient {
     const HEADER_NAMESPACE = 'http://dhl.de/webservice/cisbase';
     const PRODUCTION_URL   = 'https://cig.dhl.de/services/production/soap';
     const SANDBOX_URL      = 'https://cig.dhl.de/services/sandbox/soap';
-    const WSDL_PATH        = __DIR__ . '/../wsdl/geschaeftskundenversand-api-3.1.2.wsdl';
+    const WSDL_PATH        = __DIR__ . '/../wsdl/geschaeftskundenversand-api-3.1.4.wsdl';
 
     /**
      * @param string $appID

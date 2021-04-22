@@ -23,8 +23,13 @@ class ExportDocument {
 
     const TERMS_OF_TRADE_DELIVERY_DUTY_PAID                          = 'DDP';
     const TERMS_OF_TRADE_DELIVERY_DUTY_PAID_EXCLUDING_VAT            = 'DXV';
-    const TERMS_OF_TRADE_DELIVERY_DUTY_UNPAID                        = 'DDU';
+    const TERMS_OF_TRADE_DELIVERY_AT_PLACE                           = 'DAP';
+    /**
+     * @deprecated
+     */
+    const TERMS_OF_TRADE_DELIVERY_DUTY_UNPAID                        =  self::TERMS_OF_TRADE_DELIVERY_AT_PLACE;
     const TERMS_OF_TRADE_DELIVERY_DUTY_PAID_EXCLUDING_DUTIES_TAX_VAT = 'DDX';
+    const TERMS_OF_TRADE_CARRIAGE_PAID_TO                            = 'CPT'; // within EU only
 
     /**
      * @var ExportDocument\ExportDocPosition[]
