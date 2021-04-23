@@ -192,12 +192,12 @@ class ClientTest extends AbstractUnitTest {
 
         $this->assertInstanceOf(Request\createShipmentOrder::class, $sanitizedRequest);
         $this->assertFalse(array_key_exists('labelFormat', (array)$sanitizedRequest));
-        $this->assertEquals(0, $sanitizedRequest->combinedPrinting);
+        $this->assertTrue(0 === $sanitizedRequest->combinedPrinting, 'Boolean conversion, doesnt work properly. Expected request createShipmentOrder combinedPrinting to be 0 (int)');
 
         $sanitizedShipmentOrder = array_shift($sanitizedRequest->ShipmentOrder);
         $this->assertInstanceOf(Resource\ShipmentOrder::class, $sanitizedShipmentOrder);
-        $this->assertEquals(1, $sanitizedShipmentOrder->sequenceNumber);
-        $this->assertEquals('1.2', $sanitizedShipmentOrder->Shipment->ShipmentDetails->ShipmentItem->weightInKG);
+        $this->assertTrue(1 === $sanitizedShipmentOrder->sequenceNumber, 'Boolean conversion, doesnt work properly. Expected shipmentOrder sequenceNumber to be 1 (int)');
+        $this->assertTrue('1.2' === $sanitizedShipmentOrder->Shipment->ShipmentDetails->ShipmentItem->weightInKG, 'Float conversion, doesnt work properly. Expected shipmentItem weightInKg to be "1.2" (string)');
     }
 
     /**
