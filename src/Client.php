@@ -69,7 +69,7 @@ class Client {
      * With this operation creates shipments for DHL Paket including the relevant shipping documents.
      */
     public function createShipmentOrder(Request\createShipmentOrder $request) {
-        $this->sanitizeRequest($request);
+        $request = $this->sanitizeRequest($request);
         $soapResponse = $this->soap->callSoapFunction('createShipmentOrder', $request);
 
         return new Response\createShipmentOrder($request, $soapResponse, $this->soap->getLastSoapXMLRequest(),
@@ -86,7 +86,7 @@ class Client {
      * "Geschäftskundenportal" there will be an automatic doManifest call on all open shipments at 6 pm every day.
      */
     public function deleteShipmentOrder(Request\deleteShipmentOrder $request) {
-        $this->sanitizeRequest($request);
+        $request = $this->sanitizeRequest($request);
         $soapResponse = $this->soap->callSoapFunction('deleteShipmentOrder', $request);
 
         return new Response\deleteShipmentOrder($request, $soapResponse, $this->soap->getLastSoapXMLRequest(),
@@ -102,7 +102,7 @@ class Client {
      * keep in mind, that once you have called this function for a shipment order it can't be canceled anymore.
      */
     public function doManifest(Request\doManifest $request) {
-        $this->sanitizeRequest($request);
+        $request = $this->sanitizeRequest($request);
         $soapResponse = $this->soap->callSoapFunction('doManifest', $request);
 
         return new Response\doManifest($request, $soapResponse, $this->soap->getLastSoapXMLRequest(),
@@ -117,7 +117,7 @@ class Client {
      * This operation hands back export documents for previously created shipments.
      */
     public function getExportDoc(Request\getExportDoc $request) {
-        $this->sanitizeRequest($request);
+        $request = $this->sanitizeRequest($request);
         $soapResponse = $this->soap->callSoapFunction('getExportDoc', $request);
 
         return new Response\getExportDoc($request, $soapResponse, $this->soap->getLastSoapXMLRequest(),
@@ -132,7 +132,7 @@ class Client {
      * This operation hands back the shipping label for previously created shipments.
      */
     public function getLabel(Request\getLabel $request) {
-        $this->sanitizeRequest($request);
+        $request = $this->sanitizeRequest($request);
         $soapResponse = $this->soap->callSoapFunction('getLabel', $request);
 
         return new Response\getLabel($request, $soapResponse, $this->soap->getLastSoapXMLRequest(),
@@ -147,7 +147,7 @@ class Client {
      * With this operation end-of-day reports are available for a specific day or period.
      */
     public function getManifest(Request\getManifest $request) {
-        $this->sanitizeRequest($request);
+        $request = $this->sanitizeRequest($request);
         $soapResponse = $this->soap->callSoapFunction('getManifest', $request);
 
         return new Response\getManifest($request, $soapResponse, $this->soap->getLastSoapXMLRequest(),
@@ -162,7 +162,7 @@ class Client {
      * With this operation the latest version available on the web can be queried.
      */
     public function getVersion(Request\getVersion $request) {
-        $this->sanitizeRequest($request);
+        $request = $this->sanitizeRequest($request);
         $soapResponse = $this->soap->callSoapFunction('getVersion', $request);
 
         return new Response\getVersion($request, $soapResponse, $this->soap->getLastSoapXMLRequest(),
@@ -180,7 +180,7 @@ class Client {
      * "Geschäftskundenportal" there will be an automatic doManifest call on all open shipments at 6 pm every day.
      */
     public function updateShipmentOrder(Request\updateShipmentOrder $request) {
-        $this->sanitizeRequest($request);
+        $request = $this->sanitizeRequest($request);
         $soapResponse = $this->soap->callSoapFunction('updateShipmentOrder', $request);
 
         return new Response\updateShipmentOrder($request, $soapResponse, $this->soap->getLastSoapXMLRequest(),
@@ -196,7 +196,7 @@ class Client {
      * created.
      */
     public function validateShipment(Request\validateShipment $request) {
-        $this->sanitizeRequest($request);
+        $request = $this->sanitizeRequest($request);
         $soapResponse = $this->soap->callSoapFunction('validateShipment', $request);
 
         return new Response\validateShipment($request, $soapResponse, $this->soap->getLastSoapXMLRequest(),
@@ -214,6 +214,8 @@ class Client {
         Sanitizer::sanitizeObjectRecursive($request);
         Sanitizer::convertBooleanToIntegerObjectRecursive($request);
         Sanitizer::convertFloatToStringObjectRecursive($request);
+
+        return $request;
     }
 
 }

@@ -161,6 +161,46 @@ class ClientTest extends AbstractUnitTest {
     }
 
     /**
+     * @throws \ReflectionException
+     */
+    public function testSanitizeRequest() {
+        $shipmentOrder = new Resource\ShipmentOrder();
+        $shipmentOrder->Shipment->ShipmentDetails->product = 'V01PAK';
+        $shipmentOrder->Shipment->ShipmentDetails->accountNumber = '22222222220101';
+        $shipmentOrder->Shipment->ShipmentDetails->ShipmentItem->weightInKG = 1.2;
+        $shipmentOrder->Shipment->ShipmentDetails->shipmentDate = '2020-12-08';
+
+        $shipmentOrder->Shipment->Shipper->Name->name1 = 'DHL Paket GmbH';
+        $shipmentOrder->Shipment->Shipper->Address->streetName = 'Sträßchensweg';
+        $shipmentOrder->Shipment->Shipper->Address->streetNumber = '10';
+        $shipmentOrder->Shipment->Shipper->Address->zip = '53113';
+        $shipmentOrder->Shipment->Shipper->Address->city = 'Bonn';
+        $shipmentOrder->Shipment->Shipper->Address->Origin->countryISOCode = 'DE';
+
+        $shipmentOrder->Shipment->Receiver->name1 = 'DHL Paket GmbH';
+        $shipmentOrder->Shipment->Receiver->Address->streetName = 'Charles-de-Gaulle-Str.';
+        $shipmentOrder->Shipment->Receiver->Address->streetNumber = '20';
+        $shipmentOrder->Shipment->Receiver->Address->zip = '53113';
+        $shipmentOrder->Shipment->Receiver->Address->city = 'Bonn';
+        $shipmentOrder->Shipment->Receiver->Address->Origin->countryISOCode = 'DE';
+
+        $request = new Request\createShipmentOrder([$shipmentOrder]);
+
+        $sanitizedRequest = $this->runProtectedMethod((new Client('','')), 'sanitizeRequest', [
+            $request
+        ]);
+
+        $this->assertInstanceOf(Request\createShipmentOrder::class, $sanitizedRequest);
+        $this->assertFalse(array_key_exists('labelFormat', (array)$sanitizedRequest));
+        $this->assertEquals(0, $sanitizedRequest->combinedPrinting);
+
+        $sanitizedShipmentOrder = array_shift($sanitizedRequest->ShipmentOrder);
+        $this->assertInstanceOf(Resource\ShipmentOrder::class, $sanitizedShipmentOrder);
+        $this->assertEquals(1, $sanitizedShipmentOrder->sequenceNumber);
+        $this->assertEquals('1.2', $sanitizedShipmentOrder->Shipment->ShipmentDetails->ShipmentItem->weightInKG);
+    }
+
+    /**
      * @param Response\AbstractResponse $response
      */
     private function defaultAssertions(Response\AbstractResponse $response) {

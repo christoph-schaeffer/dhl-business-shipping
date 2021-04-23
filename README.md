@@ -2,7 +2,7 @@
 
 An unofficial library for the DHL business shipping soap API (Version 3.1) written in PHP. 
 
-[![api version](https://img.shields.io/badge/api%20version-3.1-yellow)](https://entwickler.dhl.de/group/ep/geschaeftskundenversand-3.1)
+[![api version](https://img.shields.io/badge/api%20version-3.1.4-yellow)](https://entwickler.dhl.de/group/ep/geschaeftskundenversand-3.1)
 ![PHP version](https://img.shields.io/badge/php->=5.6-blue)
 [![Build Status](https://travis-ci.com/christoph-schaeffer/dhl-business-shipping.svg?branch=develop)](https://travis-ci.com/github/christoph-schaeffer/dhl-business-shipping/builds)
 ![Coverage](https://img.shields.io/badge/coverage-100%25-green)
@@ -51,9 +51,9 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Client; // Autoload the Client class
 $client = new Client(
     'appID',        // In sandbox mode this is your developer ID.
     'apiToken',     // In sandbox mode this is your developer account password.
-    'login',        // DHL business customer account name
-    'password',     // DHL business customer password
-    TRUE            // isSandbox
+    'login',        // DHL business customer account name. The sandbox login is 2222222222_01
+    'password',     // DHL business customer password. The sandbox password is pass
+    TRUE,            // isSandbox
     Client::LANGUAGE_LOCALE_ENGLISH_GB // Set the status message language to english(default is german).
 );
 ```
