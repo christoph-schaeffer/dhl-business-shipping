@@ -22,4 +22,17 @@ class Notification {
      */
     public $recipientEmailAddress;
 
+    /**
+     * @var string
+     *
+     * Optional
+     *
+     * Min length: 0
+     * Max length: 35
+     *
+     * You may choose between a standard DHL e-mail text (no ID needed)
+     * or configure an individual text within the section "Administration".
+     */
+    public $templateId;
+
 }

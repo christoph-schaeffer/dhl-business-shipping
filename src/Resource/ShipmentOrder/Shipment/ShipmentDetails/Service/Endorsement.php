@@ -21,6 +21,7 @@ class Endorsement extends AbstractService {
      */
     const IMMEDIATE = 'IMMEDIATE';
     /**
+     * @deprecated
      * Abandonment of parcel at the hands of sender (free of charge)
      */
     const AFTER_DEADLINE = 'AFTER_DEADLINE';

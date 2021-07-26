@@ -66,7 +66,7 @@ class ExportDocPosition {
     /**
      * @var float
      *
-     * Min value: 0.0
+     * Min value: 0.01
      * Max value: infinity
      *
      * Net weight of the unit / position.

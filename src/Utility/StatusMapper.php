@@ -142,7 +142,13 @@ class StatusMapper {
         'diepostleitzahlkonntenichtgefundenwerden'                                       => Status\ZipCodeNotFound::class,
         'daszpl2formatwurdeautomatischauf103x199mmgendert'                               => Status\ZPL2LabelFormatAutomaticallyChanged::class,
         'essindkeinesendungenfrdiegewhlteabrechnungsnummerunddentag'                     => Status\NoShipmentsForManifestFound::class,
-        'illegalshipmentstate'                                                           => Status\IllegalShipmentState::class
+        'illegalshipmentstate'                                                           => Status\IllegalShipmentState::class,
+        'vorausverfgungfrsendungenmitdhlpaketinternationalverpflichtend'                 => Status\NoEndorsementOnInternationalShipping::class,
+        'bittebeachtensiedassdievorausverfgungsoptionafter_deadlinercksendungandenabsendernachablaufderfristentflltihresendungerhltdieoptionimmediatesofortigercksendungandenabsender'
+                                                                                         => Status\EndorsementAfterDeadlineDeprecationWarning::class,
+        'entfllt'                                                                        => Status\DeprecationWarning::class,
+        'veraltet'                                                                       => Status\DeprecationWarning::class,
+        'nichtmehruntersttzt'                                                            => Status\DeprecationWarning::class
     ];
 
     /**

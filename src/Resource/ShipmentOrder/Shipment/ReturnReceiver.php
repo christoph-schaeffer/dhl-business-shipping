@@ -20,7 +20,7 @@ class ReturnReceiver {
     /**
      * @var returnreceiver\communication
      *
-     * optional
+     * Optional
      *
      * Information about communication.
      */

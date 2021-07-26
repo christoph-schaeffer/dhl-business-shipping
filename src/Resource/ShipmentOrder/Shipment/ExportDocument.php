@@ -81,6 +81,22 @@ class ExportDocument {
      *
      * Optional
      *
+     * Min length: 3
+     * Max length: 3
+     *
+     * CustomsCurrency refers to all stated goods / customs values as well as postage costs. The information has to
+     * match the currency of the commercial invoice or the invoice for customs purposes. ISO 4217 alpha, p.E.:
+     * EUR for Euro
+     * USD for US Dollar
+     * GBP for British Pound
+     */
+    public $customsCurrency;
+
+    /**
+     * @var string
+     *
+     * Optional
+     *
      * Min length: 0
      * Max length: 35
      *
