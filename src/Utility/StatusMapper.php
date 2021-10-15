@@ -146,6 +146,24 @@ class StatusMapper {
         'vorausverfgungfrsendungenmitdhlpaketinternationalverpflichtend'                 => Status\NoEndorsementOnInternationalShipping::class,
         'bittebeachtensiedassdievorausverfgungsoptionafter_deadlinercksendungandenabsendernachablaufderfristentflltihresendungerhltdieoptionimmediatesofortigercksendungandenabsender'
                                                                                          => Status\EndorsementAfterDeadlineDeprecationWarning::class,
+        'bittegebensiedieartderfrankaturan'                                              => Status\EmptyExportType::class,
+        'dieangegebeneartderfrankaturistnichtgltig'                                      => Status\InvalidExportType::class,
+        'bittegebensiedieversandkostenfrdiezollabfertigungan'                            => Status\EmptyShippingFeeForExportDocument::class,
+        'bittegebensiedieversandkostenandiesesindfrdiezollabfertigungnotwendigwennsiedemempfngerkeineversandkostenberechnengebensiebitte000an'
+                                                                                         => Status\EmptyShippingFeeForExportDocument::class,
+        'diezolltarifnummermussnumerischund68oder10stellenlangseinbittebeachtensiedassdiezolltarifnummerdesempfangslandesnichtdiedeutschezolltarifnummereingetragenwerdenmuss'
+                                                                                         => Status\InvalidCustomsTariffNumber::class,
+        'dieangegebenezolltarifnummeristnichtgltig'                                      => Status\InvalidCustomsTariffNumber::class,
+        'dieausgewhlteartdervorausverfgungistnichtgltig'                                 => Status\InvalidEndorsementType::class,
+        'bittebeachtensiedassdievorausverfgungsoptionafter_deadline(rcksendungandenabsendernachablaufderfrist)entflltihresendungerhltdieoptionimmediate(sofortigercksendungandenabsender)'
+                                                                                         => Status\EndorsementTypeChangedFromAfterDeadlineToImmediate::class,
+        'dievonihnenmitgegebenekennnummerdesabsendersfrzollzweckedarfnurbuchstabenundzahlenbeinhalten'
+                                                                                         => Status\InvalidSendersCustomsReference::class,
+        'dasfeldgewichteinheitmussdasformat0000kgaufweisenundeinenwertgrer0enthalten'    => Status\InvalidExportDocPositionNetWeight::class,
+        'diemengeeinesartikelsmusspositivseinbeachtensiebittedassrabatteundbezahlungenbergutscheinnichtzollrelevantsind' => Status\NegativeExportDocPositionAmount::class,
+        'dieangegebenewhrungistnichtgltig'                                               => Status\InvalidCustomsCurrency::class,
+        'maximalzulssigesgewichtfrwarenpost1kgsendungenbismax315kgknnenalsdhlpaketbeauftragtwerden'
+                                                                                         => Status\WeightToHighForV62WP::class,
         'entfllt'                                                                        => Status\DeprecationWarning::class,
         'veraltet'                                                                       => Status\DeprecationWarning::class,
         'nichtmehruntersttzt'                                                            => Status\DeprecationWarning::class
