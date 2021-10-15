@@ -43,10 +43,11 @@ class ExportDocument {
     /**
      * @var float
      *
-     * Min value: 0.01
+     * Min value: 0.00
      * Max value: infinity
      *
-     * Additional custom fees to be payed.
+     * Postage costs billed in the invoice. This field is used for the shipping cost that the receiver payed the sender.
+     * Not the value of the conatined products.
      */
     public $additionalFee;
 
