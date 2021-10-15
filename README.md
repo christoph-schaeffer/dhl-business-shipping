@@ -99,7 +99,7 @@ To check if the request was successful use the hasNoErrors function. If the requ
 ```
 if($response->hasNoErrors()): // checks if any error status messages have been returned.
     echo 'Success!';
-    foreach($response->CreationState as $creationState):
+    foreach($response->CreationStates as $creationState):
         echo 'shipment number: '. $creationState->shipmentNumber;
         echo 'shipment label url:'.$creationState->LabelData->labelUrl; // When the label response type is url
         echo 'shipment label data:'.$creationState->LabelData->labelData; // When the label response type is base64 or ZPL2
