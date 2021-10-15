@@ -79,7 +79,7 @@ class getLabelTest extends AbstractUnitTest {
 
         $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
-        $this->assertIsArray($response->LabelData);
+        $this->assertTrue(is_array($response->LabelData));
         $this->assertCount(1, $response->LabelData);
         $labelData = array_shift($response->LabelData);
 
@@ -198,7 +198,7 @@ class getLabelTest extends AbstractUnitTest {
 
         $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
-        $this->assertIsArray($response->LabelData);
+        $this->assertTrue(is_array($response->LabelData));
         $this->assertCount(1, $response->LabelData);
         $labelData = array_shift($response->LabelData);
 

@@ -20,7 +20,7 @@ class getManifestTest extends AbstractUnitTest {
 
         $this->assertInstanceOf(Version::class, $request->Version);
         $this->assertNotEmpty($request->Version);
-        $this->assertIsString($request->manifestDate);
+        $this->assertTrue(is_string($request->manifestDate));
         $this->assertEquals('2020-01-01', $request->manifestDate);
 
     }

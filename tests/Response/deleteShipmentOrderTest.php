@@ -79,7 +79,7 @@ class deleteShipmentOrderTest extends AbstractUnitTest {
 
         $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
-        $this->assertIsArray($response->DeletionStates);
+        $this->assertTrue(is_array($response->DeletionStates));
         $this->assertCount(1, $response->DeletionStates);
         $deletionState = array_shift($response->DeletionStates);
 
@@ -110,7 +110,7 @@ class deleteShipmentOrderTest extends AbstractUnitTest {
 
         $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
-        $this->assertIsArray($response->DeletionStates);
+        $this->assertTrue(is_array($response->DeletionStates));
         $this->assertCount(3, $response->DeletionStates);
 
         $deletionState1 = array_shift($response->DeletionStates);
@@ -200,7 +200,7 @@ class deleteShipmentOrderTest extends AbstractUnitTest {
 
         $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
-        $this->assertIsArray($response->DeletionStates);
+        $this->assertTrue(is_array($response->DeletionStates));
         $this->assertCount(1, $response->DeletionStates);
         $deletionState = array_shift($response->DeletionStates);
 

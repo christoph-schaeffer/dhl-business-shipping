@@ -20,7 +20,7 @@ class getExportDocTest extends AbstractUnitTest {
 
         $this->assertInstanceOf(Version::class, $request->Version);
         $this->assertNotEmpty($request->Version);
-        $this->assertIsArray($request->shipmentNumber);
+        $this->assertTrue(is_array($request->shipmentNumber));
         $this->assertEmpty($request->shipmentNumber);
     }
 
@@ -32,7 +32,7 @@ class getExportDocTest extends AbstractUnitTest {
 
         $this->assertInstanceOf(Version::class, $request->Version);
         $this->assertNotEmpty($request->Version);
-        $this->assertIsArray($request->shipmentNumber);
+        $this->assertTrue(is_array($request->shipmentNumber));
         $this->assertCount(3, $request->shipmentNumber);
         $this->assertEquals('tester1', $request->shipmentNumber[0]);
         $this->assertEquals('tester2', $request->shipmentNumber[1]);
@@ -48,7 +48,7 @@ class getExportDocTest extends AbstractUnitTest {
 
         $this->assertInstanceOf(Version::class, $request->Version);
         $this->assertNotEmpty($request->Version);
-        $this->assertIsArray($request->shipmentNumber);
+        $this->assertTrue(is_array($request->shipmentNumber));
         $this->assertCount(1, $request->shipmentNumber);
         $this->assertEquals('tester', $request->shipmentNumber[0]);
 

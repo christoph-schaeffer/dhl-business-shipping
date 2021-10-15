@@ -79,7 +79,7 @@ class doManifestTest extends AbstractUnitTest {
 
         $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
-        $this->assertIsArray($response->ManifestStates);
+        $this->assertTrue(is_array($response->ManifestStates));
         $this->assertCount(1, $response->ManifestStates);
         $manifestState = array_shift($response->ManifestStates);
 
@@ -109,7 +109,7 @@ class doManifestTest extends AbstractUnitTest {
 
         $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
-        $this->assertIsArray($response->ManifestStates);
+        $this->assertTrue(is_array($response->ManifestStates));
         $this->assertCount(3, $response->ManifestStates);
 
         $manifestState1 = array_shift($response->ManifestStates);
@@ -197,7 +197,7 @@ class doManifestTest extends AbstractUnitTest {
 
         $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
-        $this->assertIsArray($response->ManifestStates);
+        $this->assertTrue(is_array($response->ManifestStates));
         $this->assertCount(1, $response->ManifestStates);
         $manifestState = array_shift($response->ManifestStates);
 

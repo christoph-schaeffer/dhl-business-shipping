@@ -21,7 +21,7 @@ class createShipmentOrderTest extends AbstractUnitTest {
         $this->assertInstanceOf(Version::class, $request->Version);
         $this->assertNotEmpty($request->Version);
 
-        $this->assertIsArray($request->ShipmentOrder);
+        $this->assertTrue(is_array($request->ShipmentOrder));
         $this->assertEmpty($request->ShipmentOrder);
     }
 
@@ -40,7 +40,7 @@ class createShipmentOrderTest extends AbstractUnitTest {
         $this->assertInstanceOf(Version::class, $request->Version);
         $this->assertNotEmpty($request->Version);
 
-        $this->assertIsArray($request->ShipmentOrder);
+        $this->assertTrue(is_array($request->ShipmentOrder));
         $this->assertCount(3, $request->ShipmentOrder);
 
         $this->assertInstanceOf(ShipmentOrder::class, $request->ShipmentOrder[0]);
@@ -64,7 +64,7 @@ class createShipmentOrderTest extends AbstractUnitTest {
         $this->assertInstanceOf(Version::class, $request->Version);
         $this->assertNotEmpty($request->Version);
 
-        $this->assertIsArray($request->ShipmentOrder);
+        $this->assertTrue(is_array($request->ShipmentOrder));
         $this->assertCount(1, $request->ShipmentOrder);
 
         $this->assertInstanceOf(ShipmentOrder::class, $request->ShipmentOrder[0]);

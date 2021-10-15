@@ -80,7 +80,7 @@ class createShipmentOrderTest extends AbstractUnitTest {
 
         $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
-        $this->assertIsArray($response->CreationStates);
+        $this->assertTrue(is_array($response->CreationStates));
         $this->assertCount(1, $response->CreationStates);
         $creationState = array_shift($response->CreationStates);
 
@@ -113,7 +113,7 @@ class createShipmentOrderTest extends AbstractUnitTest {
 
         $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
-        $this->assertIsArray($response->CreationStates);
+        $this->assertTrue(is_array($response->CreationStates));
         $this->assertCount(3, $response->CreationStates);
 
         $creationState1 = array_shift($response->CreationStates);
@@ -207,7 +207,7 @@ class createShipmentOrderTest extends AbstractUnitTest {
 
         $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
-        $this->assertIsArray($response->CreationStates);
+        $this->assertTrue(is_array($response->CreationStates));
         $this->assertCount(1, $response->CreationStates);
         $creationState = array_shift($response->CreationStates);
 

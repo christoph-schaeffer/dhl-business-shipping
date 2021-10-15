@@ -221,7 +221,7 @@ class ClientTest extends AbstractUnitTest {
     private function getClient() {
         $soapMock = $this->getMockBuilder(Soap::class)
                          ->setConstructorArgs(['appIDTest', 'apiTokenTest', 'loginTest', 'passwordTest', TRUE])
-                         ->onlyMethods(['callSoapFunction', 'getLastSoapXMLRequest'])
+                         ->setMethods(['callSoapFunction', 'getLastSoapXMLRequest'])
                          ->getMock()
         ;
 

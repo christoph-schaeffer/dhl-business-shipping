@@ -79,7 +79,7 @@ class getExportDocTest extends AbstractUnitTest {
 
         $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
-        $this->assertIsArray($response->ExportDocData);
+        $this->assertTrue(is_array($response->ExportDocData));
         $this->assertCount(1, $response->ExportDocData);
         $exportDocData = array_shift($response->ExportDocData);
 
@@ -192,7 +192,7 @@ class getExportDocTest extends AbstractUnitTest {
 
         $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
-        $this->assertIsArray($response->ExportDocData);
+        $this->assertTrue(is_array($response->ExportDocData));
         $this->assertCount(1, $response->ExportDocData);
         $exportDocData = array_shift($response->ExportDocData);
 

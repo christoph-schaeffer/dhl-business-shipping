@@ -15,30 +15,6 @@ class SanitizerTest extends AbstractUnitTest
     /**
      * @return array[]
      */
-    public function providerNonArrayInputs()
-    {
-        return [
-            [NULL],
-            [1],
-            [22],
-            [0],
-            [-23],
-            [TRUE],
-            [FALSE],
-            ['STRING'],
-            ['22'],
-            ['11'],
-            ['Object'],
-            ['object'],
-            ['array'],
-            ['Array'],
-            [(object)['prop' => 'value']]
-        ];
-    }
-
-    /**
-     * @return array[]
-     */
     public function providerNonObjectInputs()
     {
         return [
@@ -402,51 +378,51 @@ class SanitizerTest extends AbstractUnitTest
         return [
             [
                 (object)[
-                    '1' => NULL, '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' =>
+                    'a' => NULL, 'b' => 'test', 'c' => '', 'd' => ' ', 'e' => 0, 'f' => 1, 'g' => FALSE, 'h' =>
                         TRUE
                 ],
-                (object)['2' => 'test', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE]
+                (object)['b' => 'test', 'd' => ' ', 'e' => 0, 'f' => 1, 'g' => FALSE, 'h' => TRUE]
             ],
             [
                 (object)[
-                    '1' => ['1' => NULL, '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE],
-                    '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE,
-                    '9' => NULL, 'test' => ['a' => NULL, 22 => 'test', 23 => '', '4' => ' '],
-                    55 => ['a' => NULL, 22 => '', 23 => '', '4' => NULL],
-                    56 => ['a' => NULL, 22 => '', 23 => '', '4' => 0],
-                    57 => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => NULL]]],
-                    58 => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => 1]]]
+                    'a' => ['a' => NULL, 'b' => 'test', 'c' => '', 'd' => ' ', 'e' => 0, 'f' => 1, 'g' => FALSE, 'h' => TRUE],
+                    'b' => 'test', 'c' => '', 'd' => ' ', 'e' => 0, 'f' => 1, 'g' => FALSE, 'h' => TRUE,
+                    'i' => NULL, 'test' => ['a' => NULL, 'aa' => 'test', 'bb' => '', 'd' => ' '],
+                    'ee' => ['a' => NULL, 'aa' => '', 'bb' => '', 'd' => NULL],
+                    'ff' => ['a' => NULL, 'aa' => '', 'bb' => '', 'd' => 0],
+                    'gg' => ['a' => NULL, 'aa' => '', 'bb' => '', 'd' => ['a' => NULL, 'aa' => '', 'bb' => '', 'd' => ['a' => NULL, 'aa' => '', 'bb' => '', 'd' => NULL]]],
+                    'hh' => ['a' => NULL, 'aa' => '', 'bb' => '', 'd' => ['a' => NULL, 'aa' => '', 'bb' => '', 'd' => ['a' => NULL, 'aa' => '', 'bb' => '', 'd' => 1]]]
 
                 ],
                 (object)[
-                    '1' => ['2' => 'test', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE],
-                    '2' => 'test', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE,
-                    'test' => [22 => 'test', '4' => ' '],
-                    56 => ['4' => 0],
-                    58 => ['4' => ['4' => ['4' => 1]]]
+                    'a' => ['b' => 'test', 'd' => ' ', 'e' => 0, 'f' => 1, 'g' => FALSE, 'h' => TRUE],
+                    'b' => 'test', 'd' => ' ', 'e' => 0, 'f' => 1, 'g' => FALSE, 'h' => TRUE,
+                    'test' => ['aa' => 'test', 'd' => ' '],
+                    'ff' => ['d' => 0],
+                    'hh' => ['d' => ['d' => ['d' => 1]]]
                 ]
             ],
             [
-                (object)[55 => NULL],
+                (object)['a' => NULL],
                 NULL
             ],
             [
-                (object)[55 => (object)['prop1' => NULL, 'prop2' => (object)[NULL, 'prop' => NULL]]],
+                (object)['a' => (object)['prop1' => NULL, 'prop2' => (object)[NULL, 'prop' => NULL]]],
                 NULL,
             ],
             [
-                (object)[55 => (object)['prop1' => 0, 'prop2' => NULL, 'prop3' => '', 'prop4' => 'tester']],
-                (object)[55 => (object)['prop1' => 0, 'prop4' => 'tester']]
+                (object)['a' => (object)['prop1' => 0, 'prop2' => NULL, 'prop3' => '', 'prop4' => 'tester']],
+                (object)['a' => (object)['prop1' => 0, 'prop4' => 'tester']]
             ],
             [
                 (object)[
-                    55 => (object)[
+                    'a' => (object)[
                         'prop1' => 0, 'prop2' => NULL, 'prop3' => '', 'prop4' => 'tester',
                         'prop5' => (object)['prop1' => 0, 'prop2' => NULL, 'prop3' => '', 'prop4' => 'tester']
                     ]
                 ],
                 (object)[
-                    55 => (object)[
+                    'a' => (object)[
                         'prop1' => 0, 'prop4' => 'tester',
                         'prop5' => (object)['prop1' => 0, 'prop4' => 'tester']
                     ]
@@ -811,57 +787,6 @@ class SanitizerTest extends AbstractUnitTest
     }
 
     /**
-     * @param mixed $invalidInput
-     *
-     * @dataProvider providerNonArrayInputs
-     */
-    public function testSanitizeArrayRecursiveWithInvalidData($invalidInput)
-    {
-        try {
-            Sanitizer::sanitizeArrayRecursive($invalidInput);
-
-            $this->assertIsArray($invalidInput, 'Invalid data type has been inserted, but no type error has ' .
-                'been thrown. sanitizeArrayRecursive should only allow arrays as input.');
-        } catch (\TypeError $e) {
-            $this->addToAssertionCount(1);
-        }
-    }
-
-    /**
-     * @param mixed $invalidInput
-     *
-     * @dataProvider providerNonArrayInputs
-     */
-    public function testConvertBooleanToIntegerArrayRecursiveWithInvalidData($invalidInput)
-    {
-        try {
-            Sanitizer::convertBooleanToIntegerArrayRecursive($invalidInput);
-
-            $this->assertIsArray($invalidInput, 'Invalid data type has been inserted, but no type error has ' .
-                'been thrown. convertBooleanToIntegerArrayRecursive should only allow arrays as input.');
-        } catch (\TypeError $e) {
-            $this->addToAssertionCount(1);
-        }
-    }
-
-    /**
-     * @param mixed $invalidInput
-     *
-     * @dataProvider providerNonArrayInputs
-     */
-    public function testConvertFloatToStringArrayRecursiveWithInvalidData($invalidInput)
-    {
-        try {
-            Sanitizer::convertFloatToStringArrayRecursive($invalidInput);
-
-            $this->assertIsArray($invalidInput, 'Invalid data type has been inserted, but no type error has ' .
-                'been thrown. convertFloatToStringArrayRecursive should only allow arrays as input.');
-        } catch (\TypeError $e) {
-            $this->addToAssertionCount(1);
-        }
-    }
-
-    /**
      * @param array $arrayToSanitize
      * @param array $expectedSanitizedArray
      *
@@ -873,7 +798,7 @@ class SanitizerTest extends AbstractUnitTest
         $sanitizedArray = $arrayToSanitize;
 
         if ($sanitizedArray !== NULL)
-            $this->assertIsArray($sanitizedArray);
+            $this->assertTrue(is_array($sanitizedArray));
 
         $this->assertEquals($expectedSanitizedArray, $sanitizedArray);
     }
@@ -890,7 +815,7 @@ class SanitizerTest extends AbstractUnitTest
         $convertedArray = $arrayToConvert;
 
         if ($convertedArray !== NULL)
-            $this->assertIsArray($convertedArray);
+            $this->assertTrue(is_array($convertedArray));
 
         $this->assertEquals($expectedConvertedArray, $convertedArray);
     }
@@ -907,7 +832,7 @@ class SanitizerTest extends AbstractUnitTest
         $convertedArray = $arrayToConvert;
 
         if ($convertedArray !== NULL)
-            $this->assertIsArray($convertedArray);
+            $this->assertTrue(is_array($convertedArray));
 
         $this->assertEquals($expectedConvertedArray, $convertedArray);
     }
@@ -923,8 +848,8 @@ class SanitizerTest extends AbstractUnitTest
         Sanitizer::sanitizeObjectRecursive($invalidInput);
         $invalidInputAfter = $invalidInput;
 
-        $this->assertIsNotObject($invalidInputBefore);
-        $this->assertIsNotObject($invalidInputAfter);
+        $this->assertFalse(is_object($invalidInputBefore));
+        $this->assertFalse(is_object($invalidInputAfter));
         $this->assertEquals($invalidInputBefore, $invalidInputAfter);
     }
 
@@ -939,8 +864,8 @@ class SanitizerTest extends AbstractUnitTest
         Sanitizer::convertBooleanToIntegerObjectRecursive($invalidInput);
         $invalidInputAfter = $invalidInput;
 
-        $this->assertIsNotObject($invalidInputBefore);
-        $this->assertIsNotObject($invalidInputAfter);
+        $this->assertFalse(is_object($invalidInputBefore));
+        $this->assertFalse(is_object($invalidInputAfter));
         $this->assertEquals($invalidInputBefore, $invalidInputAfter);
     }
 
@@ -955,8 +880,8 @@ class SanitizerTest extends AbstractUnitTest
         Sanitizer::convertFloatToStringObjectRecursive($invalidInput);
         $invalidInputAfter = $invalidInput;
 
-        $this->assertIsNotObject($invalidInputBefore);
-        $this->assertIsNotObject($invalidInputAfter);
+        $this->assertFalse(is_object($invalidInputBefore));
+        $this->assertFalse(is_object($invalidInputAfter));
         $this->assertEquals($invalidInputBefore, $invalidInputAfter);
     }
 
@@ -972,7 +897,7 @@ class SanitizerTest extends AbstractUnitTest
         $sanitizedObject = $objectToSanitize;
 
         if ($sanitizedObject !== NULL)
-            $this->assertIsObject($sanitizedObject);
+            $this->assertTrue(is_object($sanitizedObject));
 
         $this->assertEquals($expectedSanitizedObject, $sanitizedObject);
     }
@@ -990,7 +915,7 @@ class SanitizerTest extends AbstractUnitTest
         $convertedObject = $objectToConvert;
 
         if ($convertedObject !== NULL)
-            $this->assertIsObject($convertedObject);
+            $this->assertTrue(is_object($convertedObject));
 
         $this->assertEquals($expectedConvertedObject, $convertedObject);
     }
@@ -1008,28 +933,9 @@ class SanitizerTest extends AbstractUnitTest
         $convertedObject = $objectToConvert;
 
         if ($convertedObject !== NULL)
-            $this->assertIsObject($convertedObject);
+            $this->assertTrue(is_object($convertedObject));
 
         $this->assertEquals($expectedConvertedObject, $convertedObject);
-    }
-
-    /**
-     * @param mixed $invalidInput
-     *
-     * @dataProvider providerNonArrayInputs
-     *
-     * @throws \ReflectionException
-     */
-    public function testUnsetKeyIfEmptyWithInvalidData($invalidInput)
-    {
-        try {
-            $this->runProtectedMethod((new Sanitizer()), 'unsetKeyIfEmpty', [$invalidInput, 'value', 'key']);
-
-            $this->assertIsArray($invalidInput, 'Invalid data type has been inserted, but no type error has ' .
-                'been thrown. unsetKeyIfEmpty should only allow arrays as input.');
-        } catch (\TypeError $e) {
-            $this->addToAssertionCount(1);
-        }
     }
 
     /**
@@ -1062,8 +968,8 @@ class SanitizerTest extends AbstractUnitTest
         $this->runProtectedMethod((new Sanitizer()), 'unsetPropertyIfEmpty', [$invalidInput, 'val', 'prop']);
         $invalidInputAfter = $invalidInput;
 
-        $this->assertIsNotObject($invalidInputBefore);
-        $this->assertIsNotObject($invalidInputAfter);
+        $this->assertFalse(is_object($invalidInputBefore));
+        $this->assertFalse(is_object($invalidInputAfter));
         $this->assertEquals($invalidInputBefore, $invalidInputAfter);
     }
 

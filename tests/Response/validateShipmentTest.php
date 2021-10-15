@@ -79,7 +79,7 @@ class validateShipmentTest extends AbstractUnitTest {
 
         $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
-        $this->assertIsArray($response->ValidationStates);
+        $this->assertTrue(is_array($response->ValidationStates));
         $this->assertCount(1, $response->ValidationStates);
         $validationState = array_shift($response->ValidationStates);
 
@@ -109,7 +109,7 @@ class validateShipmentTest extends AbstractUnitTest {
 
         $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
-        $this->assertIsArray($response->ValidationStates);
+        $this->assertTrue(is_array($response->ValidationStates));
         $this->assertCount(3, $response->ValidationStates);
 
         $validationState1 = array_shift($response->ValidationStates);
@@ -195,7 +195,7 @@ class validateShipmentTest extends AbstractUnitTest {
 
         $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
-        $this->assertIsArray($response->ValidationStates);
+        $this->assertTrue(is_array($response->ValidationStates));
         $this->assertCount(1, $response->ValidationStates);
         $validationState = array_shift($response->ValidationStates);
 
