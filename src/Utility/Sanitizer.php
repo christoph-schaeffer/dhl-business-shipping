@@ -54,7 +54,7 @@ class Sanitizer {
             elseif(is_object($value)):
                 self::convertFloatToStringObjectRecursive($value);
             elseif(is_float($value)):
-                $array[$key] = var_export($value, true);
+                $array[$key] = self::floatToString($value);
             endif;
         endforeach;
     }
@@ -72,7 +72,7 @@ class Sanitizer {
             elseif(is_object($value)):
                 self::convertFloatToStringObjectRecursive($value);
             elseif(is_float($value)):
-                $object->{$property} = var_export($value, true);
+                $object->{$property} = self::floatToString($value);
             endif;
         endforeach;
     }
@@ -114,6 +114,33 @@ class Sanitizer {
         endforeach;
 
         $recursiveObject = $allPropertiesAreNull ? NULL : $recursiveObject;
+    }
+
+    /**
+     * @param float $float
+     * @param int   $precision
+     * @return string
+     */
+    private static function floatToString($float, $precision = 10) {
+        return number_format($float, self::getDecimalDigitCountOfloat($float, $precision), '.', '');
+    }
+
+    /**
+     * @param float $float
+     * @param int   $precision
+     * @return int
+     */
+    private static function getDecimalDigitCountOfloat($float, $precision = 10) {
+        $formatted = number_format($float, $precision, '.', '');
+        $decimals = explode('.', $formatted)[1];
+
+        for($i = $precision; $i >= 0; $i--) {
+            if(substr($decimals,$i-1, 1) !== '0') {
+                return $i;
+            }
+        }
+
+        return 0;
     }
 
     /**

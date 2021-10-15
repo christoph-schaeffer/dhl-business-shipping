@@ -9,12 +9,14 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Utility\Sanitizer;
  * Class SanitizerTest
  * @package ChristophSchaeffer\Dhl\BusinessShipment\Test\Utility
  */
-class SanitizerTest extends AbstractUnitTest {
+class SanitizerTest extends AbstractUnitTest
+{
 
     /**
      * @return array[]
      */
-    public function providerNonArrayInputs() {
+    public function providerNonArrayInputs()
+    {
         return [
             [NULL],
             [1],
@@ -37,7 +39,8 @@ class SanitizerTest extends AbstractUnitTest {
     /**
      * @return array[]
      */
-    public function providerNonObjectInputs() {
+    public function providerNonObjectInputs()
+    {
         return [
             [NULL],
             [1],
@@ -60,7 +63,8 @@ class SanitizerTest extends AbstractUnitTest {
     /**
      * @return array
      */
-    public function providerConvertBooleanToIntegerArrayRecursiveWithValidData() {
+    public function providerConvertBooleanToIntegerArrayRecursiveWithValidData()
+    {
         return [
             [
                 ['1' => NULL, '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE],
@@ -71,20 +75,20 @@ class SanitizerTest extends AbstractUnitTest {
                     '1' => ['1' => NULL, '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE],
                     '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE,
                     '9' => NULL, 'test' => ['a' => NULL, 22 => 'test', 23 => '', '4' => ' '],
-                    55  => ['a' => NULL, 22 => '', 23 => '', '4' => NULL],
-                    56  => ['a' => NULL, 22 => '', 23 => '', '4' => 0],
-                    57  => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => NULL]]],
-                    58  => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => 1]]]
+                    55 => ['a' => NULL, 22 => '', 23 => '', '4' => NULL],
+                    56 => ['a' => NULL, 22 => '', 23 => '', '4' => 0],
+                    57 => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => NULL]]],
+                    58 => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => 1]]]
 
                 ],
                 [
                     '1' => ['1' => NULL, '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => 0, '8' => 1],
                     '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => 0, '8' => 1,
                     '9' => NULL, 'test' => ['a' => NULL, 22 => 'test', 23 => '', '4' => ' '],
-                    55  => ['a' => NULL, 22 => '', 23 => '', '4' => NULL],
-                    56  => ['a' => NULL, 22 => '', 23 => '', '4' => 0],
-                    57  => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => NULL]]],
-                    58  => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => 1]]]
+                    55 => ['a' => NULL, 22 => '', 23 => '', '4' => NULL],
+                    56 => ['a' => NULL, 22 => '', 23 => '', '4' => 0],
+                    57 => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => NULL]]],
+                    58 => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => 1]]]
 
                 ]
             ],
@@ -120,7 +124,7 @@ class SanitizerTest extends AbstractUnitTest {
                         'prop1' => 0, 'prop2' => NULL, 'prop3' => '', 'prop4' => 'tester',
                         'prop5' => (object)['prop1' => 0, 'prop2' => NULL, 'prop3' => '', 'prop4' => 'tester'],
                         'prop6' => (object)[
-                            'prop1'                        => 0, 'prop2' => [NULL, NULL], 'prop3' => '', 'prop5' =>
+                            'prop1' => 0, 'prop2' => [NULL, NULL], 'prop3' => '', 'prop5' =>
                                 ['', 'asdf' => 1], 'prop4' => 'tester', 'true' => TRUE, 'false' => FALSE
                         ]
                     ], 'true' => TRUE, 'false' => FALSE
@@ -130,7 +134,7 @@ class SanitizerTest extends AbstractUnitTest {
                         'prop1' => 0, 'prop2' => NULL, 'prop3' => '', 'prop4' => 'tester',
                         'prop5' => (object)['prop1' => 0, 'prop2' => NULL, 'prop3' => '', 'prop4' => 'tester'],
                         'prop6' => (object)[
-                            'prop1'                        => 0, 'prop2' => [NULL, NULL], 'prop3' => '', 'prop5' =>
+                            'prop1' => 0, 'prop2' => [NULL, NULL], 'prop3' => '', 'prop5' =>
                                 ['', 'asdf' => 1], 'prop4' => 'tester', 'true' => 1, 'false' => 0
                         ]
                     ], 'true' => 1, 'false' => 0
@@ -229,7 +233,8 @@ class SanitizerTest extends AbstractUnitTest {
     /**
      * @return array[]
      */
-    public function providerSanitizeArrayRecursiveWithValidData() {
+    public function providerSanitizeArrayRecursiveWithValidData()
+    {
         return [
             [
                 ['1' => NULL, '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE],
@@ -240,18 +245,18 @@ class SanitizerTest extends AbstractUnitTest {
                     '1' => ['1' => NULL, '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE],
                     '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE,
                     '9' => NULL, 'test' => ['a' => NULL, 22 => 'test', 23 => '', '4' => ' '],
-                    55  => ['a' => NULL, 22 => '', 23 => '', '4' => NULL],
-                    56  => ['a' => NULL, 22 => '', 23 => '', '4' => 0],
-                    57  => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => NULL]]],
-                    58  => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => 1]]]
+                    55 => ['a' => NULL, 22 => '', 23 => '', '4' => NULL],
+                    56 => ['a' => NULL, 22 => '', 23 => '', '4' => 0],
+                    57 => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => NULL]]],
+                    58 => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => 1]]]
 
                 ],
                 [
-                    '1'    => ['2' => 'test', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE],
-                    '2'    => 'test', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE,
+                    '1' => ['2' => 'test', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE],
+                    '2' => 'test', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE,
                     'test' => [22 => 'test', '4' => ' '],
-                    56     => ['4' => 0],
-                    58     => ['4' => ['4' => ['4' => 1]]]
+                    56 => ['4' => 0],
+                    58 => ['4' => ['4' => ['4' => 1]]]
                 ]
             ],
             [
@@ -286,7 +291,7 @@ class SanitizerTest extends AbstractUnitTest {
                         'prop1' => 0, 'prop2' => NULL, 'prop3' => '', 'prop4' => 'tester',
                         'prop5' => (object)['prop1' => 0, 'prop2' => NULL, 'prop3' => '', 'prop4' => 'tester'],
                         'prop6' => (object)[
-                            'prop1'                        => 0, 'prop2' => [NULL, NULL], 'prop3' => '', 'prop5' =>
+                            'prop1' => 0, 'prop2' => [NULL, NULL], 'prop3' => '', 'prop5' =>
                                 ['', 'asdf' => 1], 'prop4' => 'tester'
                         ]
                     ]
@@ -307,7 +312,8 @@ class SanitizerTest extends AbstractUnitTest {
     /**
      * @return array
      */
-    public function providerConvertBooleanToIntegerObjectRecursiveWithValidData() {
+    public function providerConvertBooleanToIntegerObjectRecursiveWithValidData()
+    {
         return [
             [
                 (object)['1' => NULL, '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE],
@@ -318,20 +324,20 @@ class SanitizerTest extends AbstractUnitTest {
                     '1' => ['1' => NULL, '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE],
                     '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE,
                     '9' => NULL, 'test' => ['a' => NULL, 22 => 'test', 23 => '', '4' => ' '],
-                    55  => ['a' => NULL, 22 => '', 23 => '', '4' => NULL],
-                    56  => ['a' => NULL, 22 => '', 23 => '', '4' => 0],
-                    57  => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => NULL]]],
-                    58  => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => 1]]]
+                    55 => ['a' => NULL, 22 => '', 23 => '', '4' => NULL],
+                    56 => ['a' => NULL, 22 => '', 23 => '', '4' => 0],
+                    57 => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => NULL]]],
+                    58 => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => 1]]]
 
                 ],
                 (object)[
                     '1' => ['1' => NULL, '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => 0, '8' => 1],
                     '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => 0, '8' => 1,
                     '9' => NULL, 'test' => ['a' => NULL, 22 => 'test', 23 => '', '4' => ' '],
-                    55  => ['a' => NULL, 22 => '', 23 => '', '4' => NULL],
-                    56  => ['a' => NULL, 22 => '', 23 => '', '4' => 0],
-                    57  => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => NULL]]],
-                    58  => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => 1]]]
+                    55 => ['a' => NULL, 22 => '', 23 => '', '4' => NULL],
+                    56 => ['a' => NULL, 22 => '', 23 => '', '4' => 0],
+                    57 => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => NULL]]],
+                    58 => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => 1]]]
 
                 ]
             ],
@@ -367,7 +373,7 @@ class SanitizerTest extends AbstractUnitTest {
                         'prop1' => 0, 'prop2' => NULL, 'prop3' => '', 'prop4' => 'tester',
                         'prop5' => (object)['prop1' => 0, 'prop2' => NULL, 'prop3' => '', 'prop4' => 'tester'],
                         'prop6' => (object)[
-                            'prop1'                        => 0, 'prop2' => [NULL, NULL], 'prop3' => '', 'prop5' =>
+                            'prop1' => 0, 'prop2' => [NULL, NULL], 'prop3' => '', 'prop5' =>
                                 ['', 'asdf' => 1], 'prop4' => 'tester', 'true' => TRUE, 'false' => FALSE
                         ]
                     ], 'true' => TRUE, 'false' => FALSE
@@ -377,7 +383,7 @@ class SanitizerTest extends AbstractUnitTest {
                         'prop1' => 0, 'prop2' => NULL, 'prop3' => '', 'prop4' => 'tester',
                         'prop5' => (object)['prop1' => 0, 'prop2' => NULL, 'prop3' => '', 'prop4' => 'tester'],
                         'prop6' => (object)[
-                            'prop1'                        => 0, 'prop2' => [NULL, NULL], 'prop3' => '', 'prop5' =>
+                            'prop1' => 0, 'prop2' => [NULL, NULL], 'prop3' => '', 'prop5' =>
                                 ['', 'asdf' => 1], 'prop4' => 'tester', 'true' => 1, 'false' => 0
                         ]
                     ], 'true' => 1, 'false' => 0
@@ -391,7 +397,8 @@ class SanitizerTest extends AbstractUnitTest {
     /**
      * @return array[]
      */
-    public function providerSanitizeObjectRecursiveWithValidData() {
+    public function providerSanitizeObjectRecursiveWithValidData()
+    {
         return [
             [
                 (object)[
@@ -405,18 +412,18 @@ class SanitizerTest extends AbstractUnitTest {
                     '1' => ['1' => NULL, '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE],
                     '2' => 'test', '3' => '', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE,
                     '9' => NULL, 'test' => ['a' => NULL, 22 => 'test', 23 => '', '4' => ' '],
-                    55  => ['a' => NULL, 22 => '', 23 => '', '4' => NULL],
-                    56  => ['a' => NULL, 22 => '', 23 => '', '4' => 0],
-                    57  => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => NULL]]],
-                    58  => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => 1]]]
+                    55 => ['a' => NULL, 22 => '', 23 => '', '4' => NULL],
+                    56 => ['a' => NULL, 22 => '', 23 => '', '4' => 0],
+                    57 => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => NULL]]],
+                    58 => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => ['a' => NULL, 22 => '', 23 => '', '4' => 1]]]
 
                 ],
                 (object)[
-                    '1'    => ['2' => 'test', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE],
-                    '2'    => 'test', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE,
+                    '1' => ['2' => 'test', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE],
+                    '2' => 'test', '4' => ' ', '5' => 0, '6' => 1, '7' => FALSE, '8' => TRUE,
                     'test' => [22 => 'test', '4' => ' '],
-                    56     => ['4' => 0],
-                    58     => ['4' => ['4' => ['4' => 1]]]
+                    56 => ['4' => 0],
+                    58 => ['4' => ['4' => ['4' => 1]]]
                 ]
             ],
             [
@@ -451,7 +458,7 @@ class SanitizerTest extends AbstractUnitTest {
                         'prop1' => 0, 'prop2' => NULL, 'prop3' => '', 'prop4' => 'tester',
                         'prop5' => (object)['prop1' => 0, 'prop2' => NULL, 'prop3' => '', 'prop4' => 'tester'],
                         'prop6' => (object)[
-                            'prop1'                        => 0, 'prop2' => [NULL, NULL], 'prop3' => '', 'prop5' =>
+                            'prop1' => 0, 'prop2' => [NULL, NULL], 'prop3' => '', 'prop5' =>
                                 ['', 'asdf' => 1], 'prop4' => 'tester'
                         ]
                     ]
@@ -472,7 +479,8 @@ class SanitizerTest extends AbstractUnitTest {
     /**
      * @return array[]
      */
-    public function providerUnsetKeyIfEmptyWithValidData() {
+    public function providerUnsetKeyIfEmptyWithValidData()
+    {
         return [
             [
                 ['key' => 'value', 'emptyKey' => NULL, 'emptyKey2' => '', 'notEmpty' => ' ', 'notEmpty2' => '0', 'notEmpty3' => 0, 'notEmpty4' => 22, 'notEmpty5' => -22], NULL, 'emptyKey',
@@ -532,11 +540,221 @@ class SanitizerTest extends AbstractUnitTest {
     /**
      * @return array[]
      */
-    public function providerUnsetPropertyIfEmptyWithValidData() {
+    public function providerFloatToString()
+    {
+        return [
+            [1, "1", 0],
+            [2, "2", 0],
+            [100, "100", 0],
+            [9, "9", 0],
+            [256, "256", 0],
+            [1024, "1024", 0],
+            [99999999999, "99999999999", 0],
+            [0, "0", 0],
+            [0.1, "0.1", 1],
+            [0.2, "0.2", 1],
+            [0.4, "0.4", 1],
+            [0.5, "0.5", 1],
+            [0.6, "0.6", 1],
+            [0.8, "0.8", 1],
+            [0.9, "0.9", 1],
+            [1.1, "1.1", 1],
+            [1.2, "1.2", 1],
+            [1.4, "1.4", 1],
+            [1.5, "1.5", 1],
+            [1.6, "1.6", 1],
+            [1.8, "1.8", 1],
+            [1.9, "1.9", 1],
+            [0.15, "0.15", 2],
+            [0.25, "0.25", 2],
+            [0.45, "0.45", 2],
+            [0.55, "0.55", 2],
+            [0.65, "0.65", 2],
+            [0.85, "0.85", 2],
+            [0.95, "0.95", 2],
+            [1.15, "1.15", 2],
+            [1.25, "1.25", 2],
+            [1.45, "1.45", 2],
+            [1.55, "1.55", 2],
+            [1.65, "1.65", 2],
+            [1.85, "1.85", 2],
+            [1.95, "1.95", 2],
+            [0.19, "0.19", 2],
+            [0.29, "0.29", 2],
+            [0.49, "0.49", 2],
+            [0.59, "0.59", 2],
+            [0.69, "0.69", 2],
+            [0.89, "0.89", 2],
+            [0.99, "0.99", 2],
+            [1.19, "1.19", 2],
+            [1.29, "1.29", 2],
+            [1.49, "1.49", 2],
+            [1.59, "1.59", 2],
+            [1.69, "1.69", 2],
+            [1.89, "1.89", 2],
+            [1.99, "1.99", 2],
+            [19.99, "19.99", 2],
+            [20.99, "20.99", 2],
+            [20.01, "20.01", 2],
+            [20.09, "20.09", 2],
+            [20.05, "20.05", 2],
+            [0.01, "0.01", 2],
+            [0.02, "0.02", 2],
+            [0.04, "0.04", 2],
+            [0.05, "0.05", 2],
+            [0.06, "0.06", 2],
+            [0.08, "0.08", 2],
+            [0.09, "0.09", 2],
+            [1.01, "1.01", 2],
+            [1.02, "1.02", 2],
+            [1.04, "1.04", 2],
+            [1.05, "1.05", 2],
+            [1.06, "1.06", 2],
+            [1.08, "1.08", 2],
+            [1.09, "1.09", 2],
+            [0.001, "0.001", 3],
+            [0.002, "0.002", 3],
+            [0.004, "0.004", 3],
+            [0.005, "0.005", 3],
+            [0.006, "0.006", 3],
+            [0.008, "0.008", 3],
+            [0.009, "0.009", 3],
+            [1.001, "1.001", 3],
+            [1.002, "1.002", 3],
+            [1.004, "1.004", 3],
+            [1.005, "1.005", 3],
+            [1.006, "1.006", 3],
+            [1.008, "1.008", 3],
+            [1.009, "1.009", 3],
+            [1.0010, "1.001", 3],
+            [1.00100, "1.001", 3],
+            [1.001000, "1.001", 3],
+            [1.0010000, "1.001", 3],
+            [1.00100000, "1.001", 3],
+            [1.00000000, "1", 0],
+            [1.9999999999, "1.9999999999", 10],
+            [1.99999999, "1.99999999", 8],
+            [1.9999999, "1.9999999", 7],
+            [1.999999, "1.999999", 6],
+            [1.0000000001, "1.0000000001", 10],
+            [1.00000001, "1.00000001", 8],
+            [1.0000001, "1.0000001", 7],
+            [1.000001, "1.000001", 6],
+            [1.00001, "1.00001", 5],
+            [1.0001, "1.0001", 4],
+            [1.0, "1", 0],
+            [-1, "-1", 0],
+            [-2, "-2", 0],
+            [-100, "-100", 0],
+            [-9, "-9", 0],
+            [-256, "-256", 0],
+            [-1024, "-1024", 0],
+            [-99999999999, "-99999999999", 0],
+            [-0, "0", 0],
+            [-0.1, "-0.1", 1],
+            [-0.2, "-0.2", 1],
+            [-0.4, "-0.4", 1],
+            [-0.5, "-0.5", 1],
+            [-0.6, "-0.6", 1],
+            [-0.8, "-0.8", 1],
+            [-0.9, "-0.9", 1],
+            [-1.1, "-1.1", 1],
+            [-1.2, "-1.2", 1],
+            [-1.4, "-1.4", 1],
+            [-1.5, "-1.5", 1],
+            [-1.6, "-1.6", 1],
+            [-1.8, "-1.8", 1],
+            [-1.9, "-1.9", 1],
+            [-0.15, "-0.15", 2],
+            [-0.25, "-0.25", 2],
+            [-0.45, "-0.45", 2],
+            [-0.55, "-0.55", 2],
+            [-0.65, "-0.65", 2],
+            [-0.85, "-0.85", 2],
+            [-0.95, "-0.95", 2],
+            [-1.15, "-1.15", 2],
+            [-1.25, "-1.25", 2],
+            [-1.45, "-1.45", 2],
+            [-1.55, "-1.55", 2],
+            [-1.65, "-1.65", 2],
+            [-1.85, "-1.85", 2],
+            [-1.95, "-1.95", 2],
+            [-0.19, "-0.19", 2],
+            [-0.29, "-0.29", 2],
+            [-0.49, "-0.49", 2],
+            [-0.59, "-0.59", 2],
+            [-0.69, "-0.69", 2],
+            [-0.89, "-0.89", 2],
+            [-0.99, "-0.99", 2],
+            [-1.19, "-1.19", 2],
+            [-1.29, "-1.29", 2],
+            [-1.49, "-1.49", 2],
+            [-1.59, "-1.59", 2],
+            [-1.69, "-1.69", 2],
+            [-1.89, "-1.89", 2],
+            [-1.99, "-1.99", 2],
+            [-19.99, "-19.99", 2],
+            [-20.99, "-20.99", 2],
+            [-20.01, "-20.01", 2],
+            [-20.09, "-20.09", 2],
+            [-20.05, "-20.05", 2],
+            [-0.01, "-0.01", 2],
+            [-0.02, "-0.02", 2],
+            [-0.04, "-0.04", 2],
+            [-0.05, "-0.05", 2],
+            [-0.06, "-0.06", 2],
+            [-0.08, "-0.08", 2],
+            [-0.09, "-0.09", 2],
+            [-1.01, "-1.01", 2],
+            [-1.02, "-1.02", 2],
+            [-1.04, "-1.04", 2],
+            [-1.05, "-1.05", 2],
+            [-1.06, "-1.06", 2],
+            [-1.08, "-1.08", 2],
+            [-1.09, "-1.09", 2],
+            [-0.001, "-0.001", 3],
+            [-0.002, "-0.002", 3],
+            [-0.004, "-0.004", 3],
+            [-0.005, "-0.005", 3],
+            [-0.006, "-0.006", 3],
+            [-0.008, "-0.008", 3],
+            [-0.009, "-0.009", 3],
+            [-1.001, "-1.001", 3],
+            [-1.002, "-1.002", 3],
+            [-1.004, "-1.004", 3],
+            [-1.005, "-1.005", 3],
+            [-1.006, "-1.006", 3],
+            [-1.008, "-1.008", 3],
+            [-1.009, "-1.009", 3],
+            [-1.0010, "-1.001", 3],
+            [-1.00100, "-1.001", 3],
+            [-1.001000, "-1.001", 3],
+            [-1.0010000, "-1.001", 3],
+            [-1.00100000, "-1.001", 3],
+            [-1.00000000, "-1", 0],
+            [-1.9999999999, "-1.9999999999", 10],
+            [-1.99999999, "-1.99999999", 8],
+            [-1.9999999, "-1.9999999", 7],
+            [-1.999999, "-1.999999", 6],
+            [-1.0000000001, "-1.0000000001", 10],
+            [-1.00000001, "-1.00000001", 8],
+            [-1.0000001, "-1.0000001", 7],
+            [-1.000001, "-1.000001", 6],
+            [-1.00001, "-1.00001", 5],
+            [-1.0001, "-1.0001", 4],
+        ];
+    }
+
+
+    /**
+     * @return array[]
+     */
+    public function providerUnsetPropertyIfEmptyWithValidData()
+    {
         return [
             [
                 (object)[
-                    'property'  => 'value', 'emptyProperty' => NULL, 'emptyProperty2' => '', 'notEmpty' => ' ', 'notEmpty2' => '0',
+                    'property' => 'value', 'emptyProperty' => NULL, 'emptyProperty2' => '', 'notEmpty' => ' ', 'notEmpty2' => '0',
                     'notEmpty3' => 0, 'notEmpty4' => 22, 'notEmpty5' => -22
                 ], NULL, 'emptyProperty',
                 (object)['property' => 'value', 'emptyProperty2' => '', 'notEmpty' => ' ', 'notEmpty2' => '0', 'notEmpty3' => 0, 'notEmpty4' => 22, 'notEmpty5' => -22]
@@ -597,12 +815,13 @@ class SanitizerTest extends AbstractUnitTest {
      *
      * @dataProvider providerNonArrayInputs
      */
-    public function testSanitizeArrayRecursiveWithInvalidData($invalidInput) {
+    public function testSanitizeArrayRecursiveWithInvalidData($invalidInput)
+    {
         try {
             Sanitizer::sanitizeArrayRecursive($invalidInput);
 
             $this->assertIsArray($invalidInput, 'Invalid data type has been inserted, but no type error has ' .
-                                              'been thrown. sanitizeArrayRecursive should only allow arrays as input.');
+                'been thrown. sanitizeArrayRecursive should only allow arrays as input.');
         } catch (\TypeError $e) {
             $this->addToAssertionCount(1);
         }
@@ -613,12 +832,13 @@ class SanitizerTest extends AbstractUnitTest {
      *
      * @dataProvider providerNonArrayInputs
      */
-    public function testConvertBooleanToIntegerArrayRecursiveWithInvalidData($invalidInput) {
+    public function testConvertBooleanToIntegerArrayRecursiveWithInvalidData($invalidInput)
+    {
         try {
             Sanitizer::convertBooleanToIntegerArrayRecursive($invalidInput);
 
             $this->assertIsArray($invalidInput, 'Invalid data type has been inserted, but no type error has ' .
-                                              'been thrown. convertBooleanToIntegerArrayRecursive should only allow arrays as input.');
+                'been thrown. convertBooleanToIntegerArrayRecursive should only allow arrays as input.');
         } catch (\TypeError $e) {
             $this->addToAssertionCount(1);
         }
@@ -629,7 +849,8 @@ class SanitizerTest extends AbstractUnitTest {
      *
      * @dataProvider providerNonArrayInputs
      */
-    public function testConvertFloatToStringArrayRecursiveWithInvalidData($invalidInput) {
+    public function testConvertFloatToStringArrayRecursiveWithInvalidData($invalidInput)
+    {
         try {
             Sanitizer::convertFloatToStringArrayRecursive($invalidInput);
 
@@ -646,11 +867,12 @@ class SanitizerTest extends AbstractUnitTest {
      *
      * @dataProvider providerSanitizeArrayRecursiveWithValidData
      */
-    public function testSanitizeArrayRecursiveWithValidData($arrayToSanitize, $expectedSanitizedArray) {
+    public function testSanitizeArrayRecursiveWithValidData($arrayToSanitize, $expectedSanitizedArray)
+    {
         Sanitizer::sanitizeArrayRecursive($arrayToSanitize);
         $sanitizedArray = $arrayToSanitize;
 
-        if($sanitizedArray !== NULL)
+        if ($sanitizedArray !== NULL)
             $this->assertIsArray($sanitizedArray);
 
         $this->assertEquals($expectedSanitizedArray, $sanitizedArray);
@@ -662,11 +884,12 @@ class SanitizerTest extends AbstractUnitTest {
      *
      * @dataProvider providerConvertBooleanToIntegerArrayRecursiveWithValidData
      */
-    public function testConvertBooleanToIntegerArrayRecursiveWithValidData($arrayToConvert, $expectedConvertedArray) {
+    public function testConvertBooleanToIntegerArrayRecursiveWithValidData($arrayToConvert, $expectedConvertedArray)
+    {
         Sanitizer::convertBooleanToIntegerArrayRecursive($arrayToConvert);
         $convertedArray = $arrayToConvert;
 
-        if($convertedArray !== NULL)
+        if ($convertedArray !== NULL)
             $this->assertIsArray($convertedArray);
 
         $this->assertEquals($expectedConvertedArray, $convertedArray);
@@ -678,11 +901,12 @@ class SanitizerTest extends AbstractUnitTest {
      *
      * @dataProvider providerConvertFloatToStringArrayRecursiveWithValidData
      */
-    public function testConvertFloatToStringArrayRecursiveWithValidData($arrayToConvert, $expectedConvertedArray) {
+    public function testConvertFloatToStringArrayRecursiveWithValidData($arrayToConvert, $expectedConvertedArray)
+    {
         Sanitizer::convertFloatToStringArrayRecursive($arrayToConvert);
         $convertedArray = $arrayToConvert;
 
-        if($convertedArray !== NULL)
+        if ($convertedArray !== NULL)
             $this->assertIsArray($convertedArray);
 
         $this->assertEquals($expectedConvertedArray, $convertedArray);
@@ -693,7 +917,8 @@ class SanitizerTest extends AbstractUnitTest {
      *
      * @dataProvider providerNonObjectInputs
      */
-    public function testSanitizeObjectRecursiveWithInvalidData($invalidInput) {
+    public function testSanitizeObjectRecursiveWithInvalidData($invalidInput)
+    {
         $invalidInputBefore = $invalidInput;
         Sanitizer::sanitizeObjectRecursive($invalidInput);
         $invalidInputAfter = $invalidInput;
@@ -708,7 +933,8 @@ class SanitizerTest extends AbstractUnitTest {
      *
      * @dataProvider providerNonObjectInputs
      */
-    public function testConvertBooleanToIntegerObjectRecursiveWithValidDataWithInvalidData($invalidInput) {
+    public function testConvertBooleanToIntegerObjectRecursiveWithValidDataWithInvalidData($invalidInput)
+    {
         $invalidInputBefore = $invalidInput;
         Sanitizer::convertBooleanToIntegerObjectRecursive($invalidInput);
         $invalidInputAfter = $invalidInput;
@@ -723,7 +949,8 @@ class SanitizerTest extends AbstractUnitTest {
      *
      * @dataProvider providerNonObjectInputs
      */
-    public function testConvertFloatToStringObjectRecursiveWithValidDataWithInvalidData($invalidInput) {
+    public function testConvertFloatToStringObjectRecursiveWithValidDataWithInvalidData($invalidInput)
+    {
         $invalidInputBefore = $invalidInput;
         Sanitizer::convertFloatToStringObjectRecursive($invalidInput);
         $invalidInputAfter = $invalidInput;
@@ -739,11 +966,12 @@ class SanitizerTest extends AbstractUnitTest {
      *
      * @dataProvider providerSanitizeObjectRecursiveWithValidData
      */
-    public function testSanitizeObjectRecursiveWithValidData($objectToSanitize, $expectedSanitizedObject) {
+    public function testSanitizeObjectRecursiveWithValidData($objectToSanitize, $expectedSanitizedObject)
+    {
         Sanitizer::sanitizeObjectRecursive($objectToSanitize);
         $sanitizedObject = $objectToSanitize;
 
-        if($sanitizedObject !== NULL)
+        if ($sanitizedObject !== NULL)
             $this->assertIsObject($sanitizedObject);
 
         $this->assertEquals($expectedSanitizedObject, $sanitizedObject);
@@ -756,11 +984,12 @@ class SanitizerTest extends AbstractUnitTest {
      * @dataProvider providerConvertBooleanToIntegerObjectRecursiveWithValidData
      */
     public function testConvertBooleanToIntegerObjectRecursiveWithValidData($objectToConvert,
-                                                                            $expectedConvertedObject) {
+                                                                            $expectedConvertedObject)
+    {
         Sanitizer::convertBooleanToIntegerObjectRecursive($objectToConvert);
         $convertedObject = $objectToConvert;
 
-        if($convertedObject !== NULL)
+        if ($convertedObject !== NULL)
             $this->assertIsObject($convertedObject);
 
         $this->assertEquals($expectedConvertedObject, $convertedObject);
@@ -773,11 +1002,12 @@ class SanitizerTest extends AbstractUnitTest {
      * @dataProvider providerConvertFloatToStringObjectRecursiveWithValidData
      */
     public function testConvertFloatToStringObjectRecursiveWithValidData($objectToConvert,
-                                                                            $expectedConvertedObject) {
+                                                                         $expectedConvertedObject)
+    {
         Sanitizer::convertFloatToStringObjectRecursive($objectToConvert);
         $convertedObject = $objectToConvert;
 
-        if($convertedObject !== NULL)
+        if ($convertedObject !== NULL)
             $this->assertIsObject($convertedObject);
 
         $this->assertEquals($expectedConvertedObject, $convertedObject);
@@ -790,12 +1020,13 @@ class SanitizerTest extends AbstractUnitTest {
      *
      * @throws \ReflectionException
      */
-    public function testUnsetKeyIfEmptyWithInvalidData($invalidInput) {
+    public function testUnsetKeyIfEmptyWithInvalidData($invalidInput)
+    {
         try {
             $this->runProtectedMethod((new Sanitizer()), 'unsetKeyIfEmpty', [$invalidInput, 'value', 'key']);
 
             $this->assertIsArray($invalidInput, 'Invalid data type has been inserted, but no type error has ' .
-                                              'been thrown. unsetKeyIfEmpty should only allow arrays as input.');
+                'been thrown. unsetKeyIfEmpty should only allow arrays as input.');
         } catch (\TypeError $e) {
             $this->addToAssertionCount(1);
         }
@@ -811,7 +1042,8 @@ class SanitizerTest extends AbstractUnitTest {
      *
      * @throws \ReflectionException
      */
-    public function testUnsetKeyIfEmptyWithValidData($array, $value, $key, $expectedUnsetArray) {
+    public function testUnsetKeyIfEmptyWithValidData($array, $value, $key, $expectedUnsetArray)
+    {
         $unsetArray = $this->runProtectedMethod((new Sanitizer()), 'unsetKeyIfEmpty', [$array, $value, $key]);
 
         $this->assertEquals($expectedUnsetArray, $unsetArray);
@@ -824,7 +1056,8 @@ class SanitizerTest extends AbstractUnitTest {
      *
      * @throws \ReflectionException
      */
-    public function testUnsetPropertyIfEmptyWithInvalidData($invalidInput) {
+    public function testUnsetPropertyIfEmptyWithInvalidData($invalidInput)
+    {
         $invalidInputBefore = $invalidInput;
         $this->runProtectedMethod((new Sanitizer()), 'unsetPropertyIfEmpty', [$invalidInput, 'val', 'prop']);
         $invalidInputAfter = $invalidInput;
@@ -844,13 +1077,49 @@ class SanitizerTest extends AbstractUnitTest {
      *
      * @throws \ReflectionException
      */
-    public function testUnsetPropertyIfEmptyWithValidData($object, $value, $property, $expectedUnsetObject) {
+    public function testUnsetPropertyIfEmptyWithValidData($object, $value, $property, $expectedUnsetObject)
+    {
         $unsetObject = $this->runProtectedMethod((new Sanitizer()), 'unsetPropertyIfEmpty', [
             $object, $value,
             $property
         ]);
 
         $this->assertEquals($expectedUnsetObject, $unsetObject);
+    }
+
+    /**
+     * @param float $float
+     * @param string $expectedFloatString
+     *
+     * @dataProvider providerFloatToString
+     *
+     * @throws \ReflectionException
+     */
+    public function testFloatToString($float, $expectedFloatString)
+    {
+        $actualFloatToString = $this->runProtectedMethod((new Sanitizer()), 'floatToString', [
+            $float
+        ]);
+
+        $this->assertEquals($expectedFloatString, $actualFloatToString);
+    }
+
+    /**
+     * @param float $float
+     * @param string $_ // not used but in provider
+     * @param int $expectedDecimalCount
+     *
+     * @dataProvider providerFloatToString
+     *
+     * @throws \ReflectionException
+     */
+    public function testGetDecimalDigitCountOfloat($float, $_, $expectedDecimalCount)
+    {
+        $actualDecimalCount = $this->runProtectedMethod((new Sanitizer()), 'getDecimalDigitCountOfloat', [
+            $float
+        ]);
+
+        $this->assertEquals($expectedDecimalCount, $actualDecimalCount);
     }
 }
 
