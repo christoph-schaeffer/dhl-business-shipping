@@ -33,7 +33,7 @@ Additional functions this library provides:
 - [DHL developer account](https://entwickler.dhl.de)
 - To get an API key login to your DHL developer account and register your application [here](https://entwickler.dhl.de/group/ep/myapps). 
 For production mode you will also have to request approval of your application by DHL.
-- [DHL business customer account](https://www.dhl-geschaeftskundenportal.de/webcenter/portal/gkpExternal), which is essentially the live account a user will login and order shipment labels.
+- [DHL business customer account](https://www.dhl-geschaeftskundenportal.de/webcenter/portal/gkpExternal), which is essentially the live account a user will login and order shipment labels with.
 ### Installation
 Add this repository to your composer.json requirements manually or navigate to your repository and enter the following command:
 ```
