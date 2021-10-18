@@ -144,6 +144,8 @@ class StatusMapper {
         'essindkeinesendungenfrdiegewhlteabrechnungsnummerunddentag'                     => Status\NoShipmentsForManifestFound::class,
         'illegalshipmentstate'                                                           => Status\IllegalShipmentState::class,
         'vorausverfgungfrsendungenmitdhlpaketinternationalverpflichtend'                 => Status\NoEndorsementOnInternationalShipping::class,
+        'bittebeachtensiedassderservicevorausverfgungfrsendungenmitdhlpaketinternationalverpflichtendist'
+                                                                                         => Status\NoEndorsementOnInternationalShipping::class,
         'bittebeachtensiedassdievorausverfgungsoptionafter_deadlinercksendungandenabsendernachablaufderfristentflltihresendungerhltdieoptionimmediatesofortigercksendungandenabsender'
                                                                                          => Status\EndorsementAfterDeadlineDeprecationWarning::class,
         'bittegebensiedieartderfrankaturan'                                              => Status\EmptyExportType::class,
