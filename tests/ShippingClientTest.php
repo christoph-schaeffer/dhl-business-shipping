@@ -7,13 +7,14 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Request;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
+use ChristophSchaeffer\Dhl\BusinessShipping\ShippingClient;
 use ChristophSchaeffer\Dhl\BusinessShipping\Soap;
 
 /**
- * Class ClientTest
+ * Class ShippingClientTest
  * @package ChristophSchaeffer\Dhl\BusinessShipment\Test
  */
-class ClientTest extends AbstractUnitTest {
+class ShippingClientTest extends AbstractUnitTest {
 
     /**
      * @throws \ReflectionException
@@ -21,12 +22,12 @@ class ClientTest extends AbstractUnitTest {
      */
     public function testConstruct() {
 
-        $clientEn = new Client('appIDTest', 'apiTokenTest', 'loginTest', 'passwordTest',
+        $clientEn = new ShippingClient('appIDTest', 'apiTokenTest', 'loginTest', 'passwordTest',
                                TRUE, Client::LANGUAGE_LOCALE_ENGLISH_GB);
 
         $this->assertEquals(Client::LANGUAGE_LOCALE_ENGLISH_GB, $this->getProtectedPropertyValue($clientEn, 'languageLocale'));
 
-        $client = new Client('appIDTest', 'apiTokenTest', 'loginTest', 'passwordTest',
+        $client = new ShippingClient('appIDTest', 'apiTokenTest', 'loginTest', 'passwordTest',
                              TRUE);
         $this->assertEquals(Client::LANGUAGE_LOCALE_GERMAN_DE, $this->getProtectedPropertyValue($client, 'languageLocale'));
 
@@ -186,7 +187,7 @@ class ClientTest extends AbstractUnitTest {
 
         $request = new Request\createShipmentOrder([$shipmentOrder]);
 
-        $sanitizedRequest = $this->runProtectedMethod((new Client('','')), 'sanitizeRequest', [
+        $sanitizedRequest = $this->runProtectedMethod((new ShippingClient('','')), 'sanitizeRequest', [
             $request
         ]);
 
@@ -215,7 +216,7 @@ class ClientTest extends AbstractUnitTest {
     }
 
     /**
-     * @return Client
+     * @return ShippingClient
      * @throws \SoapFault
      */
     private function getClient() {
@@ -233,7 +234,7 @@ class ClientTest extends AbstractUnitTest {
                  ->willReturn('xmlString')
         ;
 
-        return new Client('appIDTest', 'apiTokenTest', 'loginTest', 'passwordTest', TRUE,
+        return new ShippingClient('appIDTest', 'apiTokenTest', 'loginTest', 'passwordTest', TRUE,
                           Client::LANGUAGE_LOCALE_GERMAN_DE, $soapMock);
     }
 

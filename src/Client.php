@@ -17,18 +17,19 @@ class Client {
     const LANGUAGE_LOCALE_ENGLISH_GB = 'en_GB';
 
     /**
-     * Major Release this package is developed for
+     * this used to be the major release of the business shipping api, however this library supports both the dhl
+     * business shipping api which is used to create shipping labels and the dhl shipment tracking api, which is used
+     * for tracking. if you still need this please use ShippingClient::MAJOR_RELEASE
+     * @deprecated
      */
     const MAJOR_RELEASE = 3;
     /**
-     * Minor Release this package is developed for
+     * this used to be the minor release of the business shipping api, however this library supports both the dhl
+     * business shipping api which is used to create shipping labels and the dhl shipment tracking api, which is used
+     * for tracking. if you still need this please use ShippingClient::MINOR_RELEASE
+     * @deprecated
      */
     const MINOR_RELEASE = 1;
-
-    /**
-     * @var Soap
-     */
-    public $soap;
 
     /**
      * @var string
@@ -38,27 +39,41 @@ class Client {
     private $languageLocale = self::LANGUAGE_LOCALE_GERMAN_DE;
 
     /**
-     * @param string      $appID
-     * @param string      $apiToken
-     * @param string      $login
-     * @param string      $password
-     * @param bool        $isSandbox
-     * @param string      $languageLocale
-     * @param \SoapClient $soap
-     *
-     * @throws \SoapFault
-     *
+     * @var ShippingClient
+     */
+    private $shippingClient;
+
+    /**
+     * @var TrackingClient
+     */
+    private $trackingClient;
+
+    /**
      * Client constructor.
+     * @param string $appID
+     * @param string $apiToken
+     * @param string $login
+     * @param string $password
+     * @param null|bool $isSandbox
+     * @param null|string $languageLocale
+     * @param null|ShippingClient $shippingClient
+     * @param null|TrackingClient $trackingClient
+     * @throws \SoapFault
      */
     public function __construct($appID, $apiToken, $login = '', $password = '', $isSandbox = FALSE,
-                                $languageLocale = self::LANGUAGE_LOCALE_GERMAN_DE, $soap = NULL) {
+                                $languageLocale = self::LANGUAGE_LOCALE_GERMAN_DE, $shippingClient = null, $trackingClient = null) {
 
         $this->languageLocale = $languageLocale;
-
-        if(empty($soap))
-            $this->soap = new Soap($appID, $apiToken, $login, $password, $isSandbox);
-        else
-            $this->soap = $soap;
+        if(empty($shippingClient)) {
+            $this->shippingClient = new ShippingClient($appID, $apiToken, $login, $password, $isSandbox, $languageLocale);
+        } else {
+            $this->shippingClient = $shippingClient;
+        }
+        if(empty($trackingClient)) {
+//            $this->trackingClient = new TrackingClient($appID, $apiToken, $login, $password, $isSandbox, $languageLocale);
+        } else {
+            $this->trackingClient = $trackingClient;
+        }
     }
 
     /**
@@ -69,11 +84,7 @@ class Client {
      * With this operation creates shipments for DHL Paket including the relevant shipping documents.
      */
     public function createShipmentOrder(Request\createShipmentOrder $request) {
-        $request = $this->sanitizeRequest($request);
-        $soapResponse = $this->soap->callSoapFunction('createShipmentOrder', $request);
-
-        return new Response\createShipmentOrder($request, $soapResponse, $this->soap->getLastSoapXMLRequest(),
-                                                $this->languageLocale);
+        $this->shippingClient->createShipmentOrder($request);
     }
 
     /**
@@ -86,11 +97,7 @@ class Client {
      * "Geschäftskundenportal" there will be an automatic doManifest call on all open shipments at 6 pm every day.
      */
     public function deleteShipmentOrder(Request\deleteShipmentOrder $request) {
-        $request = $this->sanitizeRequest($request);
-        $soapResponse = $this->soap->callSoapFunction('deleteShipmentOrder', $request);
-
-        return new Response\deleteShipmentOrder($request, $soapResponse, $this->soap->getLastSoapXMLRequest(),
-                                                $this->languageLocale);
+        $this->shippingClient->deleteShipmentOrder($request);
     }
 
     /**
@@ -102,11 +109,7 @@ class Client {
      * keep in mind, that once you have called this function for a shipment order it can't be canceled anymore.
      */
     public function doManifest(Request\doManifest $request) {
-        $request = $this->sanitizeRequest($request);
-        $soapResponse = $this->soap->callSoapFunction('doManifest', $request);
-
-        return new Response\doManifest($request, $soapResponse, $this->soap->getLastSoapXMLRequest(),
-                                       $this->languageLocale);
+        $this->shippingClient->doManifest($request);
     }
 
     /**
@@ -117,11 +120,7 @@ class Client {
      * This operation hands back export documents for previously created shipments.
      */
     public function getExportDoc(Request\getExportDoc $request) {
-        $request = $this->sanitizeRequest($request);
-        $soapResponse = $this->soap->callSoapFunction('getExportDoc', $request);
-
-        return new Response\getExportDoc($request, $soapResponse, $this->soap->getLastSoapXMLRequest(),
-                                         $this->languageLocale);
+        $this->shippingClient->getExportDoc($request);
     }
 
     /**
@@ -132,11 +131,7 @@ class Client {
      * This operation hands back the shipping label for previously created shipments.
      */
     public function getLabel(Request\getLabel $request) {
-        $request = $this->sanitizeRequest($request);
-        $soapResponse = $this->soap->callSoapFunction('getLabel', $request);
-
-        return new Response\getLabel($request, $soapResponse, $this->soap->getLastSoapXMLRequest(),
-                                     $this->languageLocale);
+        $this->shippingClient->getLabel($request);
     }
 
     /**
@@ -147,11 +142,7 @@ class Client {
      * With this operation end-of-day reports are available for a specific day or period.
      */
     public function getManifest(Request\getManifest $request) {
-        $request = $this->sanitizeRequest($request);
-        $soapResponse = $this->soap->callSoapFunction('getManifest', $request);
-
-        return new Response\getManifest($request, $soapResponse, $this->soap->getLastSoapXMLRequest(),
-                                        $this->languageLocale);
+        $this->shippingClient->getManifest($request);
     }
 
     /**
@@ -162,11 +153,7 @@ class Client {
      * With this operation the latest version available on the web can be queried.
      */
     public function getVersion(Request\getVersion $request) {
-        $request = $this->sanitizeRequest($request);
-        $soapResponse = $this->soap->callSoapFunction('getVersion', $request);
-
-        return new Response\getVersion($request, $soapResponse, $this->soap->getLastSoapXMLRequest(),
-                                       $this->languageLocale);
+        $this->shippingClient->getVersion($request);
     }
 
     /**
@@ -180,11 +167,7 @@ class Client {
      * "Geschäftskundenportal" there will be an automatic doManifest call on all open shipments at 6 pm every day.
      */
     public function updateShipmentOrder(Request\updateShipmentOrder $request) {
-        $request = $this->sanitizeRequest($request);
-        $soapResponse = $this->soap->callSoapFunction('updateShipmentOrder', $request);
-
-        return new Response\updateShipmentOrder($request, $soapResponse, $this->soap->getLastSoapXMLRequest(),
-                                                $this->languageLocale);
+        $this->shippingClient->updateShipmentOrder($request);
     }
 
     /**
@@ -196,26 +179,7 @@ class Client {
      * created.
      */
     public function validateShipment(Request\validateShipment $request) {
-        $request = $this->sanitizeRequest($request);
-        $soapResponse = $this->soap->callSoapFunction('validateShipment', $request);
-
-        return new Response\validateShipment($request, $soapResponse, $this->soap->getLastSoapXMLRequest(),
-                                             $this->languageLocale);
-    }
-
-    /**
-     * @param AbstractRequest $request
-     *
-     * @return AbstractRequest $request
-     *
-     * This is an internal function to sanitize and convert data objects for SOAP
-     */
-    private function sanitizeRequest(AbstractRequest $request) {
-        Sanitizer::sanitizeObjectRecursive($request);
-        Sanitizer::convertBooleanToIntegerObjectRecursive($request);
-        Sanitizer::convertFloatToStringObjectRecursive($request);
-
-        return $request;
+        $this->shippingClient->validateShipment($request);
     }
 
 }
