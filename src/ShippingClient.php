@@ -203,7 +203,7 @@ class ShippingClient {
     /**
      * @param AbstractRequest $request
      *
-     * @return AbstractRequest $request
+     * @return AbstractRequest
      *
      * This is an internal function to sanitize and convert data objects for SOAP
      */

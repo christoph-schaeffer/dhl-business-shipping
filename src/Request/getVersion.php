@@ -2,7 +2,7 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Request;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Client;
+use ChristophSchaeffer\Dhl\BusinessShipping\ShippingClient;
 
 /**
  * Class getVersion
@@ -39,7 +39,7 @@ class getVersion extends AbstractRequest {
      */
     public function __construct() {
         parent::__construct();
-        $this->majorRelease = Client::MAJOR_RELEASE;
-        $this->minorRelease = Client::MINOR_RELEASE;
+        $this->majorRelease = ShippingClient::MAJOR_RELEASE;
+        $this->minorRelease = ShippingClient::MINOR_RELEASE;
     }
 }

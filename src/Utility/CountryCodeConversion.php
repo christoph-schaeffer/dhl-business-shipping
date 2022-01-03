@@ -58,6 +58,10 @@ class CountryCodeConversion {
 
     }
 
+    public static function languageLocaleToIsoAlpha2($languageLocale) {
+        return strtoupper(substr($languageLocale, 0, 2));
+    }
+
 }
 
 ?>

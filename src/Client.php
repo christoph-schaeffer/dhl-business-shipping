@@ -3,6 +3,7 @@
 namespace ChristophSchaeffer\Dhl\BusinessShipping;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractRequest;
+use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Tracking\PieceData;
 use ChristophSchaeffer\Dhl\BusinessShipping\Utility\Sanitizer;
 
 /**
@@ -30,13 +31,6 @@ class Client {
      * @deprecated
      */
     const MINOR_RELEASE = 1;
-
-    /**
-     * @var string
-     *
-     * The clients language for status messages
-     */
-    private $languageLocale = self::LANGUAGE_LOCALE_GERMAN_DE;
 
     /**
      * @var ShippingClient
@@ -70,7 +64,7 @@ class Client {
             $this->shippingClient = $shippingClient;
         }
         if(empty($trackingClient)) {
-//            $this->trackingClient = new TrackingClient($appID, $apiToken, $login, $password, $isSandbox, $languageLocale);
+            $this->trackingClient = new TrackingClient($appID, $apiToken, $login, $password, $isSandbox, $languageLocale);
         } else {
             $this->trackingClient = $trackingClient;
         }
@@ -180,6 +174,15 @@ class Client {
      */
     public function validateShipment(Request\validateShipment $request) {
         $this->shippingClient->validateShipment($request);
+    }
+
+    /**
+     * @param PieceData[] $pieces
+     *
+     * @return string //@TODO need response objects
+     */
+    public function getStatusForPublicUser($pieces) {
+        $this->trackingClient->getStatusForPublicUser($pieces);
     }
 
 }

@@ -26,7 +26,7 @@ class Soap extends \SoapClient {
      *
      * @throws \SoapFault
      *
-     * SoapClient constructor.
+     * Soap constructor.
      */
     public function __construct($appID, $apiToken, $login, $password, $isSandbox = FALSE) {
         parent::__construct(

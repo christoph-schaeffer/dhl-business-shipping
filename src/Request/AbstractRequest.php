@@ -2,8 +2,8 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Request;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Client;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
+use ChristophSchaeffer\Dhl\BusinessShipping\ShippingClient;
 
 /**
  * Class AbstractRequest
@@ -24,8 +24,8 @@ abstract class AbstractRequest {
      */
     public function __construct() {
         $this->Version               = new Version();
-        $this->Version->majorRelease = Client::MAJOR_RELEASE;
-        $this->Version->minorRelease = Client::MINOR_RELEASE;
+        $this->Version->majorRelease = ShippingClient::MAJOR_RELEASE;
+        $this->Version->minorRelease = ShippingClient::MINOR_RELEASE;
     }
 
 }
