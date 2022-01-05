@@ -361,7 +361,11 @@ class StatusMapper {
      */
     private static function sanitizeStatusMessage($statusMessage) {
         return strtolower(str_replace([
-                                          'ä', 'ü', 'ö', 'ß', '.', ',', ' ', '-', '"', '\'', '\\', '/', ':', ';',
+                                          'ä', 'ü', 'ö', 'ß', '.', ',', '!', ' ', '-', '"', '“', '”', '\'', '‘', '’', '\\', '/', ':', ';',
+                                          'u00e4', 'u00fc', 'u00f6', 'u00df', 'u002e', 'u002c', 'u0021',
+                                          'u0020', 'u0009', 'u000a', 'u000b', 'u000c', 'u000d',
+                                          'u002d', 'u0022', 'u0093', 'u0094', 'u0027', 'u0091', 'u0092',
+                                          'u005c', 'u002f', 'u003a', 'u003b',
                                           PHP_EOL
                                       ], '',
                                       $statusMessage));
