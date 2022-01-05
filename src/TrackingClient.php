@@ -3,9 +3,10 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Credentials\TrackingClientCredentials;
+use ChristophSchaeffer\Dhl\BusinessShipping\Protocol\Rest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Tracking\PieceData;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Tracking\RequestData;
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\Tracking\PieceStatusPublic;
 use ChristophSchaeffer\Dhl\BusinessShipping\Utility\CountryCodeConversion;
 
 /**
@@ -16,6 +17,15 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Utility\CountryCodeConversion;
  */
 class TrackingClient
 {
+
+    /**
+     * Major Release of the tracking api this package is developed for
+     */
+    const MAJOR_RELEASE = 1;
+    /**
+     * Minor Release of the tracking api this package is developed for
+     */
+    const MINOR_RELEASE = 0;
 
     const LANGUAGE_LOCALE_ALPHA2_DE = 'DE';
     const LANGUAGE_LOCALE_ALPHA2_EN = 'EN';
@@ -29,16 +39,13 @@ class TrackingClient
 
     /**
      * TrackingClient constructor.
-     * @param string $appID
-     * @param string $apiToken
-     * @param string $zTToken
-     * @param string $password
+     * @param TrackingClientCredentials $credentials
      * @param false $isSandbox
      * @param string $languageLocale
-     * @param ?Rest $rest
+     * @param ?Rest $rest  // dependency injection
      */
-    public function __construct($appID, $apiToken, $zTToken, $password, $isSandbox = FALSE,
-                                $languageLocale = Client::LANGUAGE_LOCALE_GERMAN_DE, $rest = null)
+    public function __construct(TrackingClientCredentials $credentials, $isSandbox = FALSE,
+                                                          $languageLocale = MultiClient::LANGUAGE_LOCALE_GERMAN_DE, $rest = null)
     {
         if(strlen($languageLocale) > 2) {
             $this->languageLocaleAlpha2 = CountryCodeConversion::languageLocaleToIsoAlpha2($languageLocale);
@@ -47,7 +54,7 @@ class TrackingClient
         }
 
         if(empty($soap))
-            $this->rest = new Rest($appID, $apiToken, $zTToken, $password, $isSandbox, $this->languageLocaleAlpha2);
+            $this->rest = new Rest($credentials->appID, $credentials->apiToken, $credentials->ztToken, $credentials->password, $isSandbox, $this->languageLocaleAlpha2);
         else
             $this->rest = $rest;
     }

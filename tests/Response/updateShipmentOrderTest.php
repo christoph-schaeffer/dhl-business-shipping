@@ -2,7 +2,7 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Response;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Client;
+use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\ShipmentOrder;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\updateShipmentOrder as updateShipmentOrderResponse;
@@ -67,7 +67,7 @@ class updateShipmentOrderTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseWithEmptyLabelData();
 
         $response = new updateShipmentOrderResponse($request, $soapResponse, 'requestTest',
-                                                    Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                    MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -78,9 +78,9 @@ class updateShipmentOrderTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
-        $this->assertEquals((new LabelData(Client::LANGUAGE_LOCALE_GERMAN_DE)), $response->LabelData);
+        $this->assertEquals((new LabelData(MultiClient::LANGUAGE_LOCALE_GERMAN_DE)), $response->LabelData);
     }
 
     /**
@@ -91,7 +91,7 @@ class updateShipmentOrderTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseWithLabelData();
 
         $response = new updateShipmentOrderResponse($request, $soapResponse, 'requestTest',
-                                                    Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                    MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -102,9 +102,9 @@ class updateShipmentOrderTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
-        $this->assertEquals((new LabelData(Client::LANGUAGE_LOCALE_GERMAN_DE)), $response->LabelData);
+        $this->assertEquals((new LabelData(MultiClient::LANGUAGE_LOCALE_GERMAN_DE)), $response->LabelData);
     }
 
     /**
@@ -115,7 +115,7 @@ class updateShipmentOrderTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseWithoutLabelData();
 
         $response = new updateShipmentOrderResponse($request, $soapResponse, 'requestTest',
-                                                    Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                    MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -126,7 +126,7 @@ class updateShipmentOrderTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertNull($response->LabelData);
     }
@@ -143,7 +143,7 @@ class updateShipmentOrderTest extends AbstractUnitTest {
         $soapResponse->Status = $statusObject;
 
         $response     = new updateShipmentOrderResponse($request, $soapResponse, 'requestTest',
-                                                        Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                        MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $actualResult = $response->hasNoErrors();
 
         $this->assertEquals($expectedResult, $actualResult);
@@ -161,7 +161,7 @@ class updateShipmentOrderTest extends AbstractUnitTest {
         $soapResponse->LabelData->Status = $statusObject;
 
         $response     = new updateShipmentOrderResponse($request, $soapResponse, 'requestTest',
-                                                        Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                        MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $actualResult = $response->hasNoErrors();
 
         $this->assertEquals($expectedResult, $actualResult);

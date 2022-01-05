@@ -2,7 +2,7 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Soap;
+use ChristophSchaeffer\Dhl\BusinessShipping\Protocol\Soap;
 
 /**
  * Class StatusMapperTest

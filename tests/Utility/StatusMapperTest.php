@@ -2,7 +2,7 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Utility;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Client;
+use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Utility\StatusMapper;
@@ -24,9 +24,9 @@ class StatusMapperTest extends AbstractUnitTest {
                 'Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
                 [
                     (new Status\CityNotKnownToZipCode('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
-                                                      Client::LANGUAGE_LOCALE_GERMAN_DE)),
+                                                      MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
                     (new Status\RoutingCodeNotPossible('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
-                                                       Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                                       MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
@@ -35,29 +35,29 @@ class StatusMapperTest extends AbstractUnitTest {
                 'Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
                 [
                     (new Status\CityNotKnownToZipCode('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
-                                                      Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                                      MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 [Status\CityNotKnownToZipCode::class, Status\RoutingCodeNotPossible::class],
-                [(new Status\EmptyStreetName('test', Client::LANGUAGE_LOCALE_GERMAN_DE))],
+                [(new Status\EmptyStreetName('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))],
                 'Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
                 [
-                    (new Status\EmptyStreetName('test', Client::LANGUAGE_LOCALE_GERMAN_DE)),
+                    (new Status\EmptyStreetName('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
                     (new Status\CityNotKnownToZipCode('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
-                                                      Client::LANGUAGE_LOCALE_GERMAN_DE)),
+                                                      MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
                     (new Status\RoutingCodeNotPossible('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
-                                                       Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                                       MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 [Status\CityNotKnownToZipCode::class],
-                [(new Status\EmptyStreetName('test', Client::LANGUAGE_LOCALE_GERMAN_DE))],
+                [(new Status\EmptyStreetName('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))],
                 'Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
                 [
-                    (new Status\EmptyStreetName('test', Client::LANGUAGE_LOCALE_GERMAN_DE)),
+                    (new Status\EmptyStreetName('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
                     (new Status\CityNotKnownToZipCode('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
-                                                      Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                                      MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ]
         ];
@@ -74,17 +74,17 @@ class StatusMapperTest extends AbstractUnitTest {
                 'Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
                 [
                     (new Status\CityNotKnownToZipCode('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
-                                                      Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                                      MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 Status\CityNotKnownToZipCode::class,
-                [(new Status\EmptyStreetName('test', Client::LANGUAGE_LOCALE_GERMAN_DE))],
+                [(new Status\EmptyStreetName('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))],
                 'Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
                 [
-                    (new Status\EmptyStreetName('test', Client::LANGUAGE_LOCALE_GERMAN_DE)),
+                    (new Status\EmptyStreetName('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
                     (new Status\CityNotKnownToZipCode('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
-                                                      Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                                      MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ]
         ];
@@ -98,40 +98,40 @@ class StatusMapperTest extends AbstractUnitTest {
             [
                 [],
                 'status message',
-                [(new Status\UnknownError('status message', Client::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new Status\UnknownError('status message', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ],
             [
                 [],
                 '',
-                [(new Status\UnknownError('', Client::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new Status\UnknownError('', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ],
             [
                 [],
                 NULL,
-                [(new Status\UnknownError(NULL, Client::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new Status\UnknownError(NULL, MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ],
             [
-                [(new Status\EmptyCity('test', Client::LANGUAGE_LOCALE_GERMAN_DE))],
+                [(new Status\EmptyCity('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))],
                 'status message',
                 [
-                    (new Status\EmptyCity('test', Client::LANGUAGE_LOCALE_GERMAN_DE)),
-                    (new Status\UnknownError('status message', Client::LANGUAGE_LOCALE_GERMAN_DE))
+                    (new Status\EmptyCity('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
+                    (new Status\UnknownError('status message', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
-                [(new Status\EmptyCity('test', Client::LANGUAGE_LOCALE_GERMAN_DE))],
+                [(new Status\EmptyCity('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))],
                 '',
                 [
-                    (new Status\EmptyCity('test', Client::LANGUAGE_LOCALE_GERMAN_DE)),
-                    (new Status\UnknownError('', Client::LANGUAGE_LOCALE_GERMAN_DE))
+                    (new Status\EmptyCity('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
+                    (new Status\UnknownError('', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
-                [(new Status\EmptyCity('test', Client::LANGUAGE_LOCALE_GERMAN_DE))],
+                [(new Status\EmptyCity('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))],
                 NULL,
                 [
-                    (new Status\EmptyCity('test', Client::LANGUAGE_LOCALE_GERMAN_DE)),
-                    (new Status\UnknownError(NULL, Client::LANGUAGE_LOCALE_GERMAN_DE))
+                    (new Status\EmptyCity('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
+                    (new Status\UnknownError(NULL, MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ]
         ];
@@ -255,7 +255,7 @@ class StatusMapperTest extends AbstractUnitTest {
                 ],
                 [
                     (new Status\WeakValidationError('Weak validation error occured.',
-                                                    Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                                    MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
@@ -275,13 +275,13 @@ class StatusMapperTest extends AbstractUnitTest {
                 ],
                 [
                     (new Status\StreetNumberNotFound('Die angegebene Hausnummer kann nicht gefunden werden.',
-                                                     Client::LANGUAGE_LOCALE_GERMAN_DE)),
+                                                     MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
                     (new Status\WeakValidationError('Weak validation error occured.',
-                                                    Client::LANGUAGE_LOCALE_GERMAN_DE)),
+                                                    MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
                     (new Status\Success('Der Webservice wurde ohne Fehler ausgeführt.',
-                                        Client::LANGUAGE_LOCALE_GERMAN_DE)),
+                                        MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
                     (new Status\StreetNotFound('Die angegebene Straße kann nicht gefunden werden.',
-                                               Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                               MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ]
         ];
@@ -364,42 +364,42 @@ class StatusMapperTest extends AbstractUnitTest {
                 (object)['statusCode' => 500, 'statusMessage' => NULL, 'statusText' => 'Service temporary not available'],
                 [
                     (new Status\ServiceTemporaryNotAvailable('Service temporary not available',
-                                                             Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                                             MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusCode' => 500, 'statusMessage' => NULL, 'statusText' => NULL],
                 [
                     (new Status\ServiceTemporaryNotAvailable(NULL,
-                                                             Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                                             MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusCode' => 500, 'statusMessage' => 'Der service steht temporär nicht zur verfügung.', 'statusText' => 'test'],
                 [
                     (new Status\ServiceTemporaryNotAvailable('Der service steht temporär nicht zur verfügung.',
-                                                             Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                                             MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusCode' => 500, 'statusMessage' => 'Der service steht temporär nicht zur verfügung.', 'statusText' => NULL],
                 [
                     (new Status\ServiceTemporaryNotAvailable('Der service steht temporär nicht zur verfügung.',
-                                                             Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                                             MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusCode' => 500, 'statusMessage' => NULL, 'statusText' => 'Weak validation error occured.'],
                 [
                     (new Status\ServiceTemporaryNotAvailable('Weak validation error occured.',
-                                                             Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                                             MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusCode' => 500, 'statusMessage' => NULL, 'statusText' => 'tester'],
                 [
                     (new Status\ServiceTemporaryNotAvailable('tester',
-                                                             Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                                             MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
@@ -412,71 +412,71 @@ class StatusMapperTest extends AbstractUnitTest {
             ],
             [
                 (object)['statusCode' => 10, 'statusMessage' => 'test'],
-                [(new Status\RequestProcessingFailure('test', Client::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new Status\RequestProcessingFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ],
             [
                 (object)['statusCode' => 11, 'statusMessage' => 'test'],
-                [(new Status\NotWellformedXML('test', Client::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new Status\NotWellformedXML('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ],
             [
                 (object)['statusCode' => 12, 'statusMessage' => 'test'],
-                [(new Status\XMLSchemaViolation('test', Client::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new Status\XMLSchemaViolation('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ],
             [
                 (object)['statusCode' => 13, 'statusMessage' => 'test'],
-                [(new Status\WrongServiceCall('test', Client::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new Status\WrongServiceCall('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ],
             [
                 (object)['statusCode' => 14, 'statusMessage' => 'test'],
-                [(new Status\RequestProcessingFailure('test', Client::LANGUAGE_LOCALE_GERMAN_DE, 14))]
+                [(new Status\RequestProcessingFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 14))]
             ],
             [
                 (object)['statusCode' => 15, 'statusMessage' => 'test'],
-                [(new Status\RequestProcessingFailure('test', Client::LANGUAGE_LOCALE_GERMAN_DE, 15))]
+                [(new Status\RequestProcessingFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 15))]
             ],
             [
                 (object)['statusCode' => 17, 'statusMessage' => 'test'],
-                [(new Status\RequestProcessingFailure('test', Client::LANGUAGE_LOCALE_GERMAN_DE, 17))]
+                [(new Status\RequestProcessingFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 17))]
             ],
             [
                 (object)['statusCode' => 19, 'statusMessage' => 'test'],
-                [(new Status\RequestProcessingFailure('test', Client::LANGUAGE_LOCALE_GERMAN_DE, 19))]
+                [(new Status\RequestProcessingFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 19))]
             ],
             [
                 (object)['statusCode' => 20, 'statusMessage' => 'test'],
-                [(new Status\QoSFailure('test', Client::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new Status\QoSFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ],
             [
                 (object)['statusCode' => 21, 'statusMessage' => 'test'],
-                [(new Status\SystemOverload('test', Client::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new Status\SystemOverload('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ],
             [
                 (object)['statusCode' => 100, 'statusMessage' => 'test'],
-                [(new Status\GeneralFailure('test', Client::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new Status\GeneralFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ],
             [
                 (object)['statusCode' => 101, 'statusMessage' => 'test'],
-                [(new Status\GeneralFailure('test', Client::LANGUAGE_LOCALE_GERMAN_DE, 101))]
+                [(new Status\GeneralFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 101))]
             ],
             [
                 (object)['statusCode' => 102, 'statusMessage' => 'test'],
-                [(new Status\GeneralFailure('test', Client::LANGUAGE_LOCALE_GERMAN_DE, 102))]
+                [(new Status\GeneralFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 102))]
             ],
             [
                 (object)['statusCode' => 105, 'statusMessage' => 'test'],
-                [(new Status\GeneralFailure('test', Client::LANGUAGE_LOCALE_GERMAN_DE, 105))]
+                [(new Status\GeneralFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 105))]
             ],
             [
                 (object)['statusCode' => 109, 'statusMessage' => 'test'],
-                [(new Status\GeneralFailure('test', Client::LANGUAGE_LOCALE_GERMAN_DE, 109))]
+                [(new Status\GeneralFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 109))]
             ],
             [
                 (object)['statusCode' => 110, 'statusMessage' => 'test'],
-                [(new Status\AuthorizationFailure('test', Client::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new Status\AuthorizationFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ],
             [
                 (object)['statusCode' => 111, 'statusMessage' => 'test'],
-                [(new Status\AuthentificationFailed('test', Client::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new Status\AuthentificationFailed('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ]
         ];
 
@@ -491,106 +491,106 @@ class StatusMapperTest extends AbstractUnitTest {
                 (object)['statusMessage' => NULL, 'statusText' => 'Weak validation error occured.'],
                 [
                     (new Status\WeakValidationError('Weak validation error occured.',
-                                                    Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                                    MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusMessage' => NULL, 'statusText' => 'Hard validation error occured.'],
                 [
                     (new Status\HardValidationError('Hard validation error occured.',
-                                                    Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                                    MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusMessage' => NULL, 'statusText' => 'ok'],
-                [(new Status\Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new Status\Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ],
             [
                 (object)['statusMessage' => 'Der Webservice wurde ohne Fehler ausgeführt.', 'statusText' => 'ok'],
                 [
                     (new Status\Success('Der Webservice wurde ohne Fehler ausgeführt.',
-                                        Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                        MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusMessage' => 'Der Webservice wurde ohne Fehler ausgeführt.', 'statusText' => NULL],
                 [
                     (new Status\Success('Der Webservice wurde ohne Fehler ausgeführt.',
-                                        Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                        MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusMessage' => 'Bitte geben Sie Name 1 an.'],
                 [
                     (new Status\EmptyName1('Bitte geben Sie Name 1 an.',
-                                           Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                           MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusMessage' => 'Die Sendung ist nicht leitcodierbar.'],
                 [
                     (new Status\RoutingCodeNotPossible('Die Sendung ist nicht leitcodierbar.',
-                                                       Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                                       MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusMessage' => 'Der Ort ist zu dieser PLZ nicht bekannt.'],
                 [
                     (new Status\CityNotKnownToZipCode('Der Ort ist zu dieser PLZ nicht bekannt.',
-                                                      Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                                      MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusMessage' => 'Die Postleitzahl konnte nicht gefunden werden.'],
                 [
                     (new Status\ZipCodeNotFound('Die Postleitzahl konnte nicht gefunden werden.',
-                                                Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                                MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusMessage' => 'Die angegebene Straße kann nicht gefunden werden.'],
                 [
                     (new Status\StreetNotFound('Die angegebene Straße kann nicht gefunden werden.',
-                                               Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                               MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusMessage' => 'Die angegebene Hausnummer kann nicht gefunden werden.'],
                 [
                     (new Status\StreetNumberNotFound('Die angegebene Hausnummer kann nicht gefunden werden.',
-                                                     Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                                     MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusMessage' => 'Unbekannt'],
-                [(new Status\UnknownError('Unbekannt', Client::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new Status\UnknownError('Unbekannt', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ],
             [
                 (object)['statusMessage' => 'Es handelt sich um eine ungültige Postleitzahl. Bitte verwenden Sie das Format 99999. Es ist dennoch möglich, einen Versandschein zu drucken.'],
                 [
                     (new Status\InvalidZipCode('Es handelt sich um eine ungültige Postleitzahl. Bitte verwenden Sie das Format 99999. Es ist dennoch möglich, einen Versandschein zu drucken.',
-                                               Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                               MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusMessage' => 'Es handelt sich um eine ungültige Postleitzahl. Bitte verwenden Sie das Format 99999 oder 99999-9999. Es ist dennoch möglich, einen Versandschein zu drucken.'],
                 [
                     (new Status\InvalidZipCode('Es handelt sich um eine ungültige Postleitzahl. Bitte verwenden Sie das Format 99999 oder 99999-9999. Es ist dennoch möglich, einen Versandschein zu drucken.',
-                                               Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                               MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusMessage' => 'Es handelt sich um eine ungültige Postleitzahl. Bitte verwenden Sie eine britisches Format: AA9A 9AA, A9A 9AA, A9 9AA, A99 9AA, AA9 9AA oder AA99 9AA. Es ist dennoch möglich, einen Versandschein zu drucken.'],
                 [
                     (new Status\InvalidZipCode('Es handelt sich um eine ungültige Postleitzahl. Bitte verwenden Sie eine britisches Format: AA9A 9AA, A9A 9AA, A9 9AA, A99 9AA, AA9 9AA oder AA99 9AA. Es ist dennoch möglich, einen Versandschein zu drucken.',
-                                               Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                               MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusMessage' => 'Bitte geben Sie eine gültige Postleitzahl ein. Das Format ist 99999. Das Postleitzahlensystem von Südkorea wurde am 1.8.2015 umgestellt. Falls Ihnen noch eine Postleitzahl im alten Format vorliegt (999-999), kontaktieren Sie bitte den Empfänger für die neue Postleitzahl. Es ist dennoch möglich, einen Versandschein zu drucken.'],
                 [
                     (new Status\InvalidZipCode('Bitte geben Sie eine gültige Postleitzahl ein. Das Format ist 99999. Das Postleitzahlensystem von Südkorea wurde am 1.8.2015 umgestellt. Falls Ihnen noch eine Postleitzahl im alten Format vorliegt (999-999), kontaktieren Sie bitte den Empfänger für die neue Postleitzahl. Es ist dennoch möglich, einen Versandschein zu drucken.',
-                                               Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                               MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ]
         ];
@@ -605,9 +605,9 @@ class StatusMapperTest extends AbstractUnitTest {
                 (object)['statusMessage' => 'Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar'],
                 [
                     (new Status\CityNotKnownToZipCode('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
-                                                      Client::LANGUAGE_LOCALE_GERMAN_DE)),
+                                                      MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
                     (new Status\RoutingCodeNotPossible('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
-                                                       Client::LANGUAGE_LOCALE_GERMAN_DE))
+                                                       MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ]
         ];
@@ -625,11 +625,11 @@ class StatusMapperTest extends AbstractUnitTest {
                 $classes = $class;
                 foreach ($classes as $subClass):
                     $subClass                = '\\' . str_replace('\\\\', '\\', $subClass);
-                    $expectedStatusObjects[] = new $subClass($message, Client::LANGUAGE_LOCALE_GERMAN_DE);
+                    $expectedStatusObjects[] = new $subClass($message, MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
                 endforeach;
             else:
                 $class                   = '\\' . str_replace('\\\\', '\\', $class);
-                $expectedStatusObjects[] = new $class($message, Client::LANGUAGE_LOCALE_GERMAN_DE);
+                $expectedStatusObjects[] = new $class($message, MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
             endif;
 
             $data[] = [(object)['statusMessage' => $message], $expectedStatusObjects];
@@ -653,7 +653,7 @@ class StatusMapperTest extends AbstractUnitTest {
         $statusObjects = $this->runProtectedMethod(
             (new StatusMapper()),
             'addMultipleStatusClasses',
-            [$statusClasses, $statusObjects, $statusMessage, Client::LANGUAGE_LOCALE_GERMAN_DE]
+            [$statusClasses, $statusObjects, $statusMessage, MultiClient::LANGUAGE_LOCALE_GERMAN_DE]
         );
 
         $this->assertEquals($expectedStatusObjects, $statusObjects);
@@ -674,7 +674,7 @@ class StatusMapperTest extends AbstractUnitTest {
         $statusObjects = $this->runProtectedMethod(
             (new StatusMapper()),
             'addSingleStatusClass',
-            [$statusClass, $statusObjects, $statusMessage, Client::LANGUAGE_LOCALE_GERMAN_DE]
+            [$statusClass, $statusObjects, $statusMessage, MultiClient::LANGUAGE_LOCALE_GERMAN_DE]
         );
 
         $this->assertEquals($expectedStatusObjects, $statusObjects);
@@ -693,7 +693,7 @@ class StatusMapperTest extends AbstractUnitTest {
         $statusObjects = $this->runProtectedMethod(
             (new StatusMapper()),
             'addUnknownErrorStatus',
-            [$statusObjects, $statusMessage, Client::LANGUAGE_LOCALE_GERMAN_DE]
+            [$statusObjects, $statusMessage, MultiClient::LANGUAGE_LOCALE_GERMAN_DE]
         );
 
         $this->assertEquals($expectedStatusObjects, $statusObjects);
@@ -711,7 +711,7 @@ class StatusMapperTest extends AbstractUnitTest {
         $statusObjects = $this->runProtectedMethod(
             (new StatusMapper()),
             'getStatusObjectsByCode',
-            [$statusResponse, Client::LANGUAGE_LOCALE_GERMAN_DE]
+            [$statusResponse, MultiClient::LANGUAGE_LOCALE_GERMAN_DE]
         );
 
         $this->assertEquals($expectedStatusObjects, $statusObjects);
@@ -788,7 +788,7 @@ class StatusMapperTest extends AbstractUnitTest {
      * @dataProvider providerStatusObjectsWithMapData
      */
     public function testGetStatusObjectsWithMapData($statusResponse, $expectedStatusObjects) {
-        $statusObjects = StatusMapper::getStatusObjects($statusResponse, Client::LANGUAGE_LOCALE_GERMAN_DE);
+        $statusObjects = StatusMapper::getStatusObjects($statusResponse, MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         foreach ($statusObjects as $statusObject):
             $this->assertInstanceOf(Status\AbstractStatus::class, $statusObject);
@@ -806,7 +806,7 @@ class StatusMapperTest extends AbstractUnitTest {
      * @dataProvider providerSingleStatusResponseToStatusObjects
      */
     public function testGetStatusObjectsWithValidData($statusResponse, $expectedStatusObjects) {
-        $statusObjects = StatusMapper::getStatusObjects($statusResponse, Client::LANGUAGE_LOCALE_GERMAN_DE);
+        $statusObjects = StatusMapper::getStatusObjects($statusResponse, MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         foreach ($statusObjects as $statusObject):
             $this->assertInstanceOf(Status\AbstractStatus::class, $statusObject);
@@ -859,7 +859,7 @@ class StatusMapperTest extends AbstractUnitTest {
         $statusObjects = $this->runProtectedMethod(
             (new StatusMapper()),
             'mapMultipleStatusMessagesToStatusObjects',
-            [$statusResponse, Client::LANGUAGE_LOCALE_GERMAN_DE]
+            [$statusResponse, MultiClient::LANGUAGE_LOCALE_GERMAN_DE]
         );
 
         foreach ($statusObjects as $statusObject):
@@ -884,7 +884,7 @@ class StatusMapperTest extends AbstractUnitTest {
             [
                 $statusResponse->statusMessage,
                 $statusResponse,
-                Client::LANGUAGE_LOCALE_GERMAN_DE
+                MultiClient::LANGUAGE_LOCALE_GERMAN_DE
             ]
         );
 
@@ -909,7 +909,7 @@ class StatusMapperTest extends AbstractUnitTest {
             [
                 $statusResponse->statusMessage,
                 $statusResponse,
-                Client::LANGUAGE_LOCALE_GERMAN_DE
+                MultiClient::LANGUAGE_LOCALE_GERMAN_DE
             ]
         );
 

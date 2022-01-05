@@ -2,7 +2,7 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Client;
+use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
 
 /**
  * Class Status
@@ -81,9 +81,9 @@ abstract class AbstractStatus {
      */
     public function translateMessage($languageLocale) {
         switch ($languageLocale):
-            case Client::LANGUAGE_LOCALE_GERMAN_DE:
+            case MultiClient::LANGUAGE_LOCALE_GERMAN_DE:
                 return $this->messageGerman;
-            case Client::LANGUAGE_LOCALE_ENGLISH_GB:
+            case MultiClient::LANGUAGE_LOCALE_ENGLISH_GB:
                 return $this->messageEnglish;
             default:
                 return FALSE;

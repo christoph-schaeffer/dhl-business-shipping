@@ -2,7 +2,7 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Response\Status;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Client;
+use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\Status\AbstractStatus;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\Status\Success;
 use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
@@ -18,7 +18,7 @@ class AbstractStatusTest extends AbstractUnitTest {
      */
     public function testConstruct() {
         $abstractStatus = $this->getMockBuilder(AbstractStatus::class)
-                               ->setConstructorArgs(['testMessage', Client::LANGUAGE_LOCALE_GERMAN_DE, 9999999])
+                               ->setConstructorArgs(['testMessage', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 9999999])
                                ->getMock()
         ;
 
@@ -27,10 +27,10 @@ class AbstractStatusTest extends AbstractUnitTest {
     }
 
     public function testConstructorTranslation() {
-        $status = new Success('testMessage', Client::LANGUAGE_LOCALE_GERMAN_DE, 9999999);
+        $status = new Success('testMessage', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 9999999);
         $this->assertEquals($this->getProtectedPropertyValue($status, 'messageGerman'), $status->message);
 
-        $statusEn = new Success('testMessage', Client::LANGUAGE_LOCALE_ENGLISH_GB, 9999999);
+        $statusEn = new Success('testMessage', MultiClient::LANGUAGE_LOCALE_ENGLISH_GB, 9999999);
         $this->assertEquals($this->getProtectedPropertyValue($statusEn, 'messageEnglish'), $statusEn->message);
     }
 
@@ -38,14 +38,14 @@ class AbstractStatusTest extends AbstractUnitTest {
      * @throws \ReflectionException
      */
     public function testTranslateMessage() {
-        $status = new Success('testMessage', Client::LANGUAGE_LOCALE_GERMAN_DE, 9999999);
+        $status = new Success('testMessage', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 9999999);
         $this->setProtectedPropertyValue($status, 'messageGerman', 'deutsch');
         $this->setProtectedPropertyValue($status, 'messageEnglish', 'english');
 
-        $translated = $status->translateMessage(Client::LANGUAGE_LOCALE_GERMAN_DE);
+        $translated = $status->translateMessage(MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $this->assertEquals('deutsch', $translated);
 
-        $translated = $status->translateMessage(Client::LANGUAGE_LOCALE_ENGLISH_GB);
+        $translated = $status->translateMessage(MultiClient::LANGUAGE_LOCALE_ENGLISH_GB);
         $this->assertEquals('english', $translated);
 
         $translated = $status->translateMessage('asdf');

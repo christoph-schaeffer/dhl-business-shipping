@@ -2,6 +2,8 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Credentials\ShippingClientCredentials;
+use ChristophSchaeffer\Dhl\BusinessShipping\Protocol\Soap;
 use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractRequest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Utility\Sanitizer;
 
@@ -14,11 +16,11 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Utility\Sanitizer;
 class ShippingClient {
 
     /**
-     * Major Release this package is developed for
+     * Major Release of the shipping api this package is developed for
      */
     const MAJOR_RELEASE = 3;
     /**
-     * Minor Release this package is developed for
+     * Minor Release of the shipping this package is developed for
      */
     const MINOR_RELEASE = 1;
 
@@ -32,28 +34,25 @@ class ShippingClient {
      *
      * The clients language for status messages
      */
-    private $languageLocale = Client::LANGUAGE_LOCALE_GERMAN_DE;
+    private $languageLocale;
 
     /**
-     * @param string      $appID
-     * @param string      $apiToken
-     * @param string      $login
-     * @param string      $password
-     * @param bool        $isSandbox
-     * @param string      $languageLocale
-     * @param \SoapClient $soap
+     * @param ShippingClientCredentials $credentials
+     * @param bool                      $isSandbox
+     * @param string                    $languageLocale
+     * @param \SoapClient               $soap // dependency injection
      *
      * @throws \SoapFault
      *
      * Client constructor.
      */
-    public function __construct($appID, $apiToken, $login = '', $password = '', $isSandbox = FALSE,
-                                $languageLocale = Client::LANGUAGE_LOCALE_GERMAN_DE, $soap = NULL) {
+    public function __construct(ShippingClientCredentials $credentials, $isSandbox = FALSE,
+                                                          $languageLocale = MultiClient::LANGUAGE_LOCALE_GERMAN_DE, $soap = NULL) {
 
         $this->languageLocale = $languageLocale;
 
         if(empty($soap))
-            $this->soap = new Soap($appID, $apiToken, $login, $password, $isSandbox);
+            $this->soap = new Soap($credentials->appID, $credentials->apiToken, $credentials->login, $credentials->password, $isSandbox);
         else
             $this->soap = $soap;
     }

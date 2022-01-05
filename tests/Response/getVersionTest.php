@@ -2,7 +2,7 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Response;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Client;
+use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\getVersion as getVersionResponse;
 use ChristophSchaeffer\Dhl\BusinessShipping\Request\getVersion as getVersionRequest;
@@ -23,7 +23,7 @@ class getVersionTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponse();
 
         $response = new getVersionResponse($request, $soapResponse, 'requestTest',
-                                           Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                           MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -34,7 +34,7 @@ class getVersionTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Response;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Client;
+use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\deleteShipmentOrder as deleteShipmentOrderResponse;
 use ChristophSchaeffer\Dhl\BusinessShipping\Request\deleteShipmentOrder as deleteShipmentOrderRequest;
@@ -66,7 +66,7 @@ class deleteShipmentOrderTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseEmptyDeletionState();
 
         $response = new deleteShipmentOrderResponse($request, $soapResponse, 'requestTest',
-                                                    Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                    MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -77,7 +77,7 @@ class deleteShipmentOrderTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertTrue(is_array($response->DeletionStates));
         $this->assertCount(1, $response->DeletionStates);
@@ -97,7 +97,7 @@ class deleteShipmentOrderTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseMultipleDeletionStates();
 
         $response = new deleteShipmentOrderResponse($request, $soapResponse, 'requestTest',
-                                                    Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                    MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -108,7 +108,7 @@ class deleteShipmentOrderTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertTrue(is_array($response->DeletionStates));
         $this->assertCount(3, $response->DeletionStates);
@@ -116,17 +116,17 @@ class deleteShipmentOrderTest extends AbstractUnitTest {
         $deletionState1 = array_shift($response->DeletionStates);
         $this->assertInstanceOf(DeletionState::class, $deletionState1);
         $this->assertEquals('1234567891', $deletionState1->shipmentNumber);
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $deletionState1->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $deletionState1->Status);
 
         $deletionState2 = array_shift($response->DeletionStates);
         $this->assertInstanceOf(DeletionState::class, $deletionState2);
         $this->assertEquals('1234567892', $deletionState2->shipmentNumber);
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $deletionState2->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $deletionState2->Status);
 
         $deletionState3 = array_shift($response->DeletionStates);
         $this->assertInstanceOf(DeletionState::class, $deletionState3);
         $this->assertEquals('1234567893', $deletionState3->shipmentNumber);
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $deletionState3->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $deletionState3->Status);
 
 
     }
@@ -139,7 +139,7 @@ class deleteShipmentOrderTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseNoDeletionState();
 
         $response = new deleteShipmentOrderResponse($request, $soapResponse, 'requestTest',
-                                                    Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                    MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -150,7 +150,7 @@ class deleteShipmentOrderTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertNull($response->DeletionStates);
     }
@@ -163,7 +163,7 @@ class deleteShipmentOrderTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseNullDeletionState();
 
         $response = new deleteShipmentOrderResponse($request, $soapResponse, 'requestTest',
-                                                    Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                    MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -174,7 +174,7 @@ class deleteShipmentOrderTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertNull($response->DeletionStates);
     }
@@ -187,7 +187,7 @@ class deleteShipmentOrderTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseSingleDeletionState();
 
         $response = new deleteShipmentOrderResponse($request, $soapResponse, 'requestTest',
-                                                    Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                    MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -198,7 +198,7 @@ class deleteShipmentOrderTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertTrue(is_array($response->DeletionStates));
         $this->assertCount(1, $response->DeletionStates);
@@ -206,7 +206,7 @@ class deleteShipmentOrderTest extends AbstractUnitTest {
 
         $this->assertInstanceOf(DeletionState::class, $deletionState);
         $this->assertEquals('123456789', $deletionState->shipmentNumber);
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $deletionState->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $deletionState->Status);
     }
 
     /**
@@ -221,7 +221,7 @@ class deleteShipmentOrderTest extends AbstractUnitTest {
         $soapResponse->Status = $statusObject;
 
         $response     = new deleteShipmentOrderResponse($request, $soapResponse, 'requestTest',
-                                                        Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                        MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $actualResult = $response->hasNoErrors();
 
         $this->assertEquals($expectedResult, $actualResult);
@@ -239,7 +239,7 @@ class deleteShipmentOrderTest extends AbstractUnitTest {
         $soapResponse->DeletionState[1]->Status = $statusObject;
 
         $response     = new deleteShipmentOrderResponse($request, $soapResponse, 'requestTest',
-                                                        Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                        MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $actualResult = $response->hasNoErrors();
 
         $this->assertEquals($expectedResult, $actualResult);
@@ -247,7 +247,7 @@ class deleteShipmentOrderTest extends AbstractUnitTest {
         $soapResponse->DeletionState[0]->Status = $statusObject;
 
         $response2     = new deleteShipmentOrderResponse($request, $soapResponse, 'requestTest',
-                                                         Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                         MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $actualResult2 = $response2->hasNoErrors();
 
         $this->assertEquals($expectedResult, $actualResult2);
@@ -265,7 +265,7 @@ class deleteShipmentOrderTest extends AbstractUnitTest {
         $soapResponse->DeletionState->Status = $statusObject;
 
         $response     = new deleteShipmentOrderResponse($request, $soapResponse, 'requestTest',
-                                                        Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                        MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $actualResult = $response->hasNoErrors();
 
         $this->assertEquals($expectedResult, $actualResult);

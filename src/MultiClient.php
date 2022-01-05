@@ -3,64 +3,56 @@
 namespace ChristophSchaeffer\Dhl\BusinessShipping;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\Credentials\ShippingClientCredentials;
-use ChristophSchaeffer\Dhl\BusinessShipping\Protocol\Soap;
+use ChristophSchaeffer\Dhl\BusinessShipping\Credentials\TrackingClientCredentials;
+use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Tracking\PieceData;
 
 /**
- * Class Client
- * @deprecated
+ * Class MultiClient
  * @package ChristophSchaeffer\Dhl\BusinessShipping
  *
- * This class has been deprecated and will be removed soon. Please use either the MultiClient or ShippingClient please.
+ * This is the main class of this plugin, which is used to call function of the api.
  */
-class Client {
+class MultiClient {
 
-    /** @deprecated */
     const LANGUAGE_LOCALE_GERMAN_DE  = 'de_DE';
-    /** @deprecated */
     const LANGUAGE_LOCALE_ENGLISH_GB = 'en_GB';
-    /** @deprecated */
-    const MAJOR_RELEASE = 3;
-    /** @deprecated */
-    const MINOR_RELEASE = 1;
 
     /**
-     * @var Soap
-     * @deprecated
+     * @var ShippingClient
      */
-    public $soap;
-
     private $shippingClient;
 
     /**
-     * @deprecated
-     *
-     * This class has been deprecated and will be removed soon. Please use either the MultiClient or ShippingClient please.
-     *
-     * @param string      $appID
-     * @param string      $apiToken
-     * @param string      $login
-     * @param string      $password
-     * @param bool        $isSandbox
-     * @param string      $languageLocale
-     * @param \SoapClient $soap
-     *
-     * @throws \SoapFault
-     *
-     * Client constructor.
+     * @var TrackingClient
      */
-    public function __construct($appID, $apiToken, $login = '', $password = '', $isSandbox = FALSE,
-                                $languageLocale = self::LANGUAGE_LOCALE_GERMAN_DE, $soap = NULL) {
+    private $trackingClient;
 
-        $credentials = new ShippingClientCredentials($appID, $apiToken, $login, $password);
-        $this->shippingClient = new ShippingClient($credentials, $isSandbox, $languageLocale, $soap);
+    /**
+     * Client constructor.
+     * @param ShippingClientCredentials $shippingCredentials
+     * @param TrackingClientCredentials $trackingCredentials
+     * @param null|bool $isSandbox
+     * @param null|string $languageLocale
+     * @param null|ShippingClient $shippingClient // dependency injection
+     * @param null|TrackingClient $trackingClient // dependency injection
+     * @throws \SoapFault
+     */
+    public function __construct(ShippingClientCredentials $shippingCredentials, TrackingClientCredentials $trackingCredentials, $isSandbox = FALSE,
+                                $languageLocale = self::LANGUAGE_LOCALE_GERMAN_DE, $shippingClient = null, $trackingClient = null) {
+
+        if(empty($shippingClient)) {
+            $this->shippingClient = new ShippingClient($shippingCredentials, $isSandbox, $languageLocale);
+        } else {
+            $this->shippingClient = $shippingClient;
+        }
+        if(empty($trackingClient)) {
+            $this->trackingClient = new TrackingClient($trackingCredentials, $isSandbox, $languageLocale);
+        } else {
+            $this->trackingClient = $trackingClient;
+        }
     }
 
     /**
-     * @deprecated
-     *
-     * This class has been deprecated and will be removed soon. Please use either the MultiClient or ShippingClient please.
-     *
-     *
      * @param Request\createShipmentOrder $request
      *
      * @return Response\createShipmentOrder
@@ -72,11 +64,6 @@ class Client {
     }
 
     /**
-     * @deprecated
-     *
-     * This class has been deprecated and will be removed soon. Please use either the MultiClient or ShippingClient please.
-     *
-     *
      * @param Request\deleteShipmentOrder $request
      *
      * @return Response\deleteShipmentOrder
@@ -90,11 +77,6 @@ class Client {
     }
 
     /**
-     * @deprecated
-     *
-     * This class has been deprecated and will be removed soon. Please use either the MultiClient or ShippingClient please.
-     *
-     *
      * @param Request\doManifest $request
      *
      * @return Response\doManifest
@@ -107,11 +89,6 @@ class Client {
     }
 
     /**
-     * @deprecated
-     *
-     * This class has been deprecated and will be removed soon. Please use either the MultiClient or ShippingClient please.
-     *
-     *
      * @param Request\getExportDoc $request
      *
      * @return Response\getExportDoc
@@ -123,11 +100,6 @@ class Client {
     }
 
     /**
-     * @deprecated
-     *
-     * This class has been deprecated and will be removed soon. Please use either the MultiClient or ShippingClient please.
-     *
-     *
      * @param Request\getLabel $request
      *
      * @return Response\getLabel
@@ -139,11 +111,6 @@ class Client {
     }
 
     /**
-     * @deprecated
-     *
-     * This class has been deprecated and will be removed soon. Please use either the MultiClient or ShippingClient please.
-     *
-     *
      * @param Request\getManifest $request
      *
      * @return Response\getManifest
@@ -155,11 +122,6 @@ class Client {
     }
 
     /**
-     * @deprecated
-     *
-     * This class has been deprecated and will be removed soon. Please use either the MultiClient or ShippingClient please.
-     *
-     *
      * @param Request\getVersion $request
      *
      * @return Response\getVersion
@@ -171,11 +133,6 @@ class Client {
     }
 
     /**
-     * @deprecated
-     *
-     * This class has been deprecated and will be removed soon. Please use either the MultiClient or ShippingClient please.
-     *
-     *
      * @param Request\updateShipmentOrder $request
      *
      * @return Response\updateShipmentOrder
@@ -190,11 +147,6 @@ class Client {
     }
 
     /**
-     * @deprecated
-     *
-     * This class has been deprecated and will be removed soon. Please use either the MultiClient or ShippingClient please.
-     *
-     *
      * @param Request\validateShipment $request
      *
      * @return Response\validateShipment
@@ -204,6 +156,15 @@ class Client {
      */
     public function validateShipment(Request\validateShipment $request) {
         $this->shippingClient->validateShipment($request);
+    }
+
+    /**
+     * @param PieceData[] $pieces
+     *
+     * @return string //@TODO need response objects
+     */
+    public function getStatusForPublicUser($pieces) {
+        $this->trackingClient->getStatusForPublicUser($pieces);
     }
 
 }

@@ -2,7 +2,7 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Response;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Client;
+use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\doManifest as doManifestResponse;
 use ChristophSchaeffer\Dhl\BusinessShipping\Request\doManifest as doManifestRequest;
@@ -66,7 +66,7 @@ class doManifestTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseEmptyManifestState();
 
         $response = new doManifestResponse($request, $soapResponse, 'requestTest',
-                                           Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                           MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -77,7 +77,7 @@ class doManifestTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertTrue(is_array($response->ManifestStates));
         $this->assertCount(1, $response->ManifestStates);
@@ -96,7 +96,7 @@ class doManifestTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseMultipleManifestStates();
 
         $response = new doManifestResponse($request, $soapResponse, 'requestTest',
-                                           Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                           MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -107,7 +107,7 @@ class doManifestTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertTrue(is_array($response->ManifestStates));
         $this->assertCount(3, $response->ManifestStates);
@@ -115,17 +115,17 @@ class doManifestTest extends AbstractUnitTest {
         $manifestState1 = array_shift($response->ManifestStates);
         $this->assertInstanceOf(ManifestState::class, $manifestState1);
         $this->assertEquals('1234567891', $manifestState1->shipmentNumber);
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $manifestState1->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $manifestState1->Status);
 
         $manifestState2 = array_shift($response->ManifestStates);
         $this->assertInstanceOf(ManifestState::class, $manifestState2);
         $this->assertEquals('1234567892', $manifestState2->shipmentNumber);
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $manifestState2->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $manifestState2->Status);
 
         $manifestState3 = array_shift($response->ManifestStates);
         $this->assertInstanceOf(ManifestState::class, $manifestState3);
         $this->assertEquals('1234567893', $manifestState3->shipmentNumber);
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $manifestState3->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $manifestState3->Status);
     }
 
     /**
@@ -136,7 +136,7 @@ class doManifestTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseNoManifestState();
 
         $response = new doManifestResponse($request, $soapResponse, 'requestTest',
-                                           Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                           MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -147,7 +147,7 @@ class doManifestTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertNull($response->ManifestStates);
     }
@@ -160,7 +160,7 @@ class doManifestTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseNullManifestState();
 
         $response = new doManifestResponse($request, $soapResponse, 'requestTest',
-                                           Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                           MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -171,7 +171,7 @@ class doManifestTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertNull($response->ManifestStates);
     }
@@ -184,7 +184,7 @@ class doManifestTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseSingleManifestState();
 
         $response = new doManifestResponse($request, $soapResponse, 'requestTest',
-                                           Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                           MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -195,7 +195,7 @@ class doManifestTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertTrue(is_array($response->ManifestStates));
         $this->assertCount(1, $response->ManifestStates);
@@ -203,7 +203,7 @@ class doManifestTest extends AbstractUnitTest {
 
         $this->assertInstanceOf(ManifestState::class, $manifestState);
         $this->assertEquals('123456789', $manifestState->shipmentNumber);
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $manifestState->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $manifestState->Status);
     }
 
     /**
@@ -218,7 +218,7 @@ class doManifestTest extends AbstractUnitTest {
         $soapResponse->Status = $statusObject;
 
         $response     = new doManifestResponse($request, $soapResponse, 'requestTest',
-                                               Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                               MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $actualResult = $response->hasNoErrors();
 
         $this->assertEquals($expectedResult, $actualResult);
@@ -236,7 +236,7 @@ class doManifestTest extends AbstractUnitTest {
         $soapResponse->ManifestState[1]->Status = $statusObject;
 
         $response     = new doManifestResponse($request, $soapResponse, 'requestTest',
-                                               Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                               MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $actualResult = $response->hasNoErrors();
 
         $this->assertEquals($expectedResult, $actualResult);
@@ -244,7 +244,7 @@ class doManifestTest extends AbstractUnitTest {
         $soapResponse->ManifestState[0]->Status = $statusObject;
 
         $response2     = new doManifestResponse($request, $soapResponse, 'requestTest',
-                                                Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $actualResult2 = $response2->hasNoErrors();
 
         $this->assertEquals($expectedResult, $actualResult2);
@@ -262,7 +262,7 @@ class doManifestTest extends AbstractUnitTest {
         $soapResponse->ManifestState->Status = $statusObject;
 
         $response     = new doManifestResponse($request, $soapResponse, 'requestTest',
-                                               Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                               MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $actualResult = $response->hasNoErrors();
 
         $this->assertEquals($expectedResult, $actualResult);

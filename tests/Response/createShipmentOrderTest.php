@@ -2,7 +2,7 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Response;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Client;
+use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\createShipmentOrder as createShipmentOrderResponse;
 use ChristophSchaeffer\Dhl\BusinessShipping\Request\createShipmentOrder as createShipmentOrderRequest;
@@ -67,7 +67,7 @@ class createShipmentOrderTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseEmptyCreationState();
 
         $response = new createShipmentOrderResponse($request, $soapResponse, 'requestTest',
-                                                    Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                    MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -78,7 +78,7 @@ class createShipmentOrderTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertTrue(is_array($response->CreationStates));
         $this->assertCount(1, $response->CreationStates);
@@ -100,7 +100,7 @@ class createShipmentOrderTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseMultipleCreationStates();
 
         $response = new createShipmentOrderResponse($request, $soapResponse, 'requestTest',
-                                                    Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                    MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -111,7 +111,7 @@ class createShipmentOrderTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertTrue(is_array($response->CreationStates));
         $this->assertCount(3, $response->CreationStates);
@@ -146,7 +146,7 @@ class createShipmentOrderTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseNoCreationState();
 
         $response = new createShipmentOrderResponse($request, $soapResponse, 'requestTest',
-                                                    Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                    MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -157,7 +157,7 @@ class createShipmentOrderTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertNull($response->CreationStates);
     }
@@ -170,7 +170,7 @@ class createShipmentOrderTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseNullCreationState();
 
         $response = new createShipmentOrderResponse($request, $soapResponse, 'requestTest',
-                                                    Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                    MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -181,7 +181,7 @@ class createShipmentOrderTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertNull($response->CreationStates);
     }
@@ -194,7 +194,7 @@ class createShipmentOrderTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseSingleCreationState();
 
         $response = new createShipmentOrderResponse($request, $soapResponse, 'requestTest',
-                                                    Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                    MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -205,7 +205,7 @@ class createShipmentOrderTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertTrue(is_array($response->CreationStates));
         $this->assertCount(1, $response->CreationStates);
@@ -231,7 +231,7 @@ class createShipmentOrderTest extends AbstractUnitTest {
         $soapResponse->Status = $statusObject;
 
         $response     = new createShipmentOrderResponse($request, $soapResponse, 'requestTest',
-                                                        Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                        MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $actualResult = $response->hasNoErrors();
 
         $this->assertEquals($expectedResult, $actualResult);
@@ -249,7 +249,7 @@ class createShipmentOrderTest extends AbstractUnitTest {
         $soapResponse->CreationState[1]->LabelData->Status = $statusObject;
 
         $response     = new createShipmentOrderResponse($request, $soapResponse, 'requestTest',
-                                                        Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                        MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $actualResult = $response->hasNoErrors();
 
         $this->assertEquals($expectedResult, $actualResult);
@@ -257,7 +257,7 @@ class createShipmentOrderTest extends AbstractUnitTest {
         $soapResponse->CreationState[0]->LabelData->Status = $statusObject;
 
         $response2     = new createShipmentOrderResponse($request, $soapResponse, 'requestTest',
-                                                         Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                         MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $actualResult2 = $response2->hasNoErrors();
 
         $this->assertEquals($expectedResult, $actualResult2);
@@ -275,7 +275,7 @@ class createShipmentOrderTest extends AbstractUnitTest {
         $soapResponse->CreationState->LabelData->Status = $statusObject;
 
         $response     = new createShipmentOrderResponse($request, $soapResponse, 'requestTest',
-                                                        Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                        MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $actualResult = $response->hasNoErrors();
 
         $this->assertEquals($expectedResult, $actualResult);
@@ -283,7 +283,7 @@ class createShipmentOrderTest extends AbstractUnitTest {
 
     private function getMockedLabelData() {
         return new LabelData(
-            Client::LANGUAGE_LOCALE_GERMAN_DE,
+            MultiClient::LANGUAGE_LOCALE_GERMAN_DE,
             (object)['Status' => (object)['statusText' => 'ok']]
         );
     }

@@ -2,7 +2,7 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Response;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Client;
+use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\getExportDoc as getExportDocResponse;
 use ChristophSchaeffer\Dhl\BusinessShipping\Request\getExportDoc as getExportDocRequest;
@@ -66,7 +66,7 @@ class getExportDocTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseEmptyExportDocData();
 
         $response = new getExportDocResponse($request, $soapResponse, 'requestTest',
-                                             Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                             MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -77,7 +77,7 @@ class getExportDocTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertTrue(is_array($response->ExportDocData));
         $this->assertCount(1, $response->ExportDocData);
@@ -97,7 +97,7 @@ class getExportDocTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseMultipleExportDocData();
 
         $response = new getExportDocResponse($request, $soapResponse, 'requestTest',
-                                             Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                             MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -108,7 +108,7 @@ class getExportDocTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $exportDocData1 = array_shift($response->ExportDocData);
         $this->assertInstanceOf(ExportDocData::class, $exportDocData1);
@@ -131,7 +131,7 @@ class getExportDocTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseNoExportDocData();
 
         $response = new getExportDocResponse($request, $soapResponse, 'requestTest',
-                                             Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                             MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -142,7 +142,7 @@ class getExportDocTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertNull($response->ExportDocData);
     }
@@ -155,7 +155,7 @@ class getExportDocTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseNullExportDocData();
 
         $response = new getExportDocResponse($request, $soapResponse, 'requestTest',
-                                             Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                             MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -166,7 +166,7 @@ class getExportDocTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertNull($response->ExportDocData);
     }
@@ -179,7 +179,7 @@ class getExportDocTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseSingleExportDocData();
 
         $response = new getExportDocResponse($request, $soapResponse, 'requestTest',
-                                             Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                             MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -190,7 +190,7 @@ class getExportDocTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertTrue(is_array($response->ExportDocData));
         $this->assertCount(1, $response->ExportDocData);
@@ -212,7 +212,7 @@ class getExportDocTest extends AbstractUnitTest {
         $soapResponse->Status = $statusObject;
 
         $response     = new getExportDocResponse($request, $soapResponse, 'requestTest',
-                                                 Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                 MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $actualResult = $response->hasNoErrors();
 
         $this->assertEquals($expectedResult, $actualResult);
@@ -230,7 +230,7 @@ class getExportDocTest extends AbstractUnitTest {
         $soapResponse->ExportDocData[1]->Status = $statusObject;
 
         $response     = new getExportDocResponse($request, $soapResponse, 'requestTest',
-                                                 Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                 MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $actualResult = $response->hasNoErrors();
 
         $this->assertEquals($expectedResult, $actualResult);
@@ -238,7 +238,7 @@ class getExportDocTest extends AbstractUnitTest {
         $soapResponse->ExportDocData[0]->Status = $statusObject;
 
         $response2     = new getExportDocResponse($request, $soapResponse, 'requestTest',
-                                                  Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                  MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $actualResult2 = $response2->hasNoErrors();
 
         $this->assertEquals($expectedResult, $actualResult2);
@@ -256,7 +256,7 @@ class getExportDocTest extends AbstractUnitTest {
         $soapResponse->ExportDocData->Status = $statusObject;
 
         $response     = new getExportDocResponse($request, $soapResponse, 'requestTest',
-                                                 Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                 MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $actualResult = $response->hasNoErrors();
 
         $this->assertEquals($expectedResult, $actualResult);
@@ -264,7 +264,7 @@ class getExportDocTest extends AbstractUnitTest {
 
     private function getMockedExportData() {
         return new ExportDocData(
-            Client::LANGUAGE_LOCALE_GERMAN_DE,
+            MultiClient::LANGUAGE_LOCALE_GERMAN_DE,
             (object)['Status' => (object)['statusText' => 'ok']]
         );
     }

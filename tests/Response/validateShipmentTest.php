@@ -2,7 +2,7 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Response;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Client;
+use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\validateShipment as validateShipmentResponse;
 use ChristophSchaeffer\Dhl\BusinessShipping\Request\validateShipment as validateShipmentRequest;
@@ -66,7 +66,7 @@ class validateShipmentTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseEmptyValidationState();
 
         $response = new validateShipmentResponse($request, $soapResponse, 'requestTest',
-                                                 Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                 MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -77,7 +77,7 @@ class validateShipmentTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertTrue(is_array($response->ValidationStates));
         $this->assertCount(1, $response->ValidationStates);
@@ -96,7 +96,7 @@ class validateShipmentTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseMultipleValidationStates();
 
         $response = new validateShipmentResponse($request, $soapResponse, 'requestTest',
-                                                 Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                 MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -107,7 +107,7 @@ class validateShipmentTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertTrue(is_array($response->ValidationStates));
         $this->assertCount(3, $response->ValidationStates);
@@ -119,7 +119,7 @@ class validateShipmentTest extends AbstractUnitTest {
         $validationState2 = array_shift($response->ValidationStates);
         $this->assertInstanceOf(ValidationState::class, $validationState2);
         $this->assertEquals(4, $validationState2->sequenceNumber);
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $validationState2->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $validationState2->Status);
 
         $validationState3 = array_shift($response->ValidationStates);
         $this->assertInstanceOf(ValidationState::class, $validationState3);
@@ -134,7 +134,7 @@ class validateShipmentTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseNoValidationState();
 
         $response = new validateShipmentResponse($request, $soapResponse, 'requestTest',
-                                                 Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                 MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -145,7 +145,7 @@ class validateShipmentTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertNull($response->ValidationStates);
     }
@@ -158,7 +158,7 @@ class validateShipmentTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseNullValidationState();
 
         $response = new validateShipmentResponse($request, $soapResponse, 'requestTest',
-                                                 Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                 MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -169,7 +169,7 @@ class validateShipmentTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertNull($response->ValidationStates);
     }
@@ -182,7 +182,7 @@ class validateShipmentTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseSingleValidationState();
 
         $response = new validateShipmentResponse($request, $soapResponse, 'requestTest',
-                                                 Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                 MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -193,7 +193,7 @@ class validateShipmentTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertTrue(is_array($response->ValidationStates));
         $this->assertCount(1, $response->ValidationStates);
@@ -201,7 +201,7 @@ class validateShipmentTest extends AbstractUnitTest {
 
         $this->assertInstanceOf(ValidationState::class, $validationState);
         $this->assertEquals(2, $validationState->sequenceNumber);
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $validationState->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $validationState->Status);
     }
 
     /**
@@ -216,7 +216,7 @@ class validateShipmentTest extends AbstractUnitTest {
         $soapResponse->Status = $statusObject;
 
         $response     = new validateShipmentResponse($request, $soapResponse, 'requestTest',
-                                                     Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                     MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $actualResult = $response->hasNoErrors();
 
         $this->assertEquals($expectedResult, $actualResult);
@@ -234,7 +234,7 @@ class validateShipmentTest extends AbstractUnitTest {
         $soapResponse->ValidationState[1]->Status = $statusObject;
 
         $response     = new validateShipmentResponse($request, $soapResponse, 'requestTest',
-                                                     Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                     MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $actualResult = $response->hasNoErrors();
 
         $this->assertEquals($expectedResult, $actualResult);
@@ -242,7 +242,7 @@ class validateShipmentTest extends AbstractUnitTest {
         $soapResponse->ValidationState[0]->Status = $statusObject;
 
         $response2     = new validateShipmentResponse($request, $soapResponse, 'requestTest',
-                                                      Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                      MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $actualResult2 = $response2->hasNoErrors();
 
         $this->assertEquals($expectedResult, $actualResult2);
@@ -260,7 +260,7 @@ class validateShipmentTest extends AbstractUnitTest {
         $soapResponse->ValidationState->Status = $statusObject;
 
         $response     = new validateShipmentResponse($request, $soapResponse, 'requestTest',
-                                                     Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                                     MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $actualResult = $response->hasNoErrors();
 
         $this->assertEquals($expectedResult, $actualResult);

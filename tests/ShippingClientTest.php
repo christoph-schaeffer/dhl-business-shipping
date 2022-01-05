@@ -2,13 +2,14 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Client;
+use ChristophSchaeffer\Dhl\BusinessShipping\Credentials\ShippingClientCredentials;
+use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
+use ChristophSchaeffer\Dhl\BusinessShipping\Protocol\Soap;
 use ChristophSchaeffer\Dhl\BusinessShipping\Request;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 use ChristophSchaeffer\Dhl\BusinessShipping\ShippingClient;
-use ChristophSchaeffer\Dhl\BusinessShipping\Soap;
 
 /**
  * Class ShippingClientTest
@@ -22,14 +23,13 @@ class ShippingClientTest extends AbstractUnitTest {
      */
     public function testConstruct() {
 
-        $clientEn = new ShippingClient('appIDTest', 'apiTokenTest', 'loginTest', 'passwordTest',
-                               TRUE, Client::LANGUAGE_LOCALE_ENGLISH_GB);
+        $credentials = new ShippingClientCredentials('appIDTest', 'apiTokenTest', 'loginTest', 'passwordTest');
+        $clientEn = new ShippingClient($credentials, TRUE, MultiClient::LANGUAGE_LOCALE_ENGLISH_GB);
 
-        $this->assertEquals(Client::LANGUAGE_LOCALE_ENGLISH_GB, $this->getProtectedPropertyValue($clientEn, 'languageLocale'));
+        $this->assertEquals(MultiClient::LANGUAGE_LOCALE_ENGLISH_GB, $this->getProtectedPropertyValue($clientEn, 'languageLocale'));
 
-        $client = new ShippingClient('appIDTest', 'apiTokenTest', 'loginTest', 'passwordTest',
-                             TRUE);
-        $this->assertEquals(Client::LANGUAGE_LOCALE_GERMAN_DE, $this->getProtectedPropertyValue($client, 'languageLocale'));
+        $client = new ShippingClient($credentials, TRUE);
+        $this->assertEquals(MultiClient::LANGUAGE_LOCALE_GERMAN_DE, $this->getProtectedPropertyValue($client, 'languageLocale'));
 
         $soap = $this->getProtectedPropertyValue($client, 'soap');
 
@@ -208,7 +208,7 @@ class ShippingClientTest extends AbstractUnitTest {
         $this->assertEquals('xmlString', $response->rawRequest);
         $this->assertEquals($this->mockResponse(), $response->rawResponse);
 
-        $this->assertEquals((new Status\Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE)), array_shift($response->Status));
+        $this->assertEquals((new Status\Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)), array_shift($response->Status));
 
         $this->assertInstanceOf(Resource\Version::class, $response->Version);
         $this->assertEquals(3, $response->Version->majorRelease);
@@ -234,8 +234,9 @@ class ShippingClientTest extends AbstractUnitTest {
                  ->willReturn('xmlString')
         ;
 
-        return new ShippingClient('appIDTest', 'apiTokenTest', 'loginTest', 'passwordTest', TRUE,
-                          Client::LANGUAGE_LOCALE_GERMAN_DE, $soapMock);
+        $credentials = new ShippingClientCredentials('appIDTest', 'apiTokenTest', 'loginTest', 'passwordTest');
+
+        return new ShippingClient($credentials, TRUE,MultiClient::LANGUAGE_LOCALE_GERMAN_DE, $soapMock);
     }
 
     /**

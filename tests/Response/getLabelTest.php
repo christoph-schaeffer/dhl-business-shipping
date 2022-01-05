@@ -2,7 +2,7 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Response;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Client;
+use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\getLabel as getLabelResponse;
 use ChristophSchaeffer\Dhl\BusinessShipping\Request\getLabel as getLabelRequest;
@@ -66,7 +66,7 @@ class getLabelTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseEmptyLabelData();
 
         $response = new getLabelResponse($request, $soapResponse, 'requestTest',
-                                         Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                         MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -77,7 +77,7 @@ class getLabelTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertTrue(is_array($response->LabelData));
         $this->assertCount(1, $response->LabelData);
@@ -103,7 +103,7 @@ class getLabelTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseMultipleLabelData();
 
         $response = new getLabelResponse($request, $soapResponse, 'requestTest',
-                                         Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                         MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -114,7 +114,7 @@ class getLabelTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $labelData1 = array_shift($response->LabelData);
         $this->assertInstanceOf(LabelData::class, $labelData1);
@@ -137,7 +137,7 @@ class getLabelTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseNoLabelData();
 
         $response = new getLabelResponse($request, $soapResponse, 'requestTest',
-                                         Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                         MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -148,7 +148,7 @@ class getLabelTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertNull($response->LabelData);
     }
@@ -161,7 +161,7 @@ class getLabelTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseNullLabelData();
 
         $response = new getLabelResponse($request, $soapResponse, 'requestTest',
-                                         Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                         MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -172,7 +172,7 @@ class getLabelTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertNull($response->LabelData);
     }
@@ -185,7 +185,7 @@ class getLabelTest extends AbstractUnitTest {
         $soapResponse = $this->mockSoapResponseSingleLabelData();
 
         $response = new getLabelResponse($request, $soapResponse, 'requestTest',
-                                         Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                         MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         $this->assertEquals($soapResponse, $response->rawResponse);
         $this->assertEquals('requestTest', $response->rawRequest);
@@ -196,7 +196,7 @@ class getLabelTest extends AbstractUnitTest {
         $this->assertEquals(3, $response->Version->majorRelease);
         $this->assertEquals(0, $response->Version->minorRelease);
 
-        $this->assertEquals([(new Success('ok', Client::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
+        $this->assertEquals([(new Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $response->Status);
 
         $this->assertTrue(is_array($response->LabelData));
         $this->assertCount(1, $response->LabelData);
@@ -218,7 +218,7 @@ class getLabelTest extends AbstractUnitTest {
         $soapResponse->Status = $statusObject;
 
         $response     = new getLabelResponse($request, $soapResponse, 'requestTest',
-                                             Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                             MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $actualResult = $response->hasNoErrors();
 
         $this->assertEquals($expectedResult, $actualResult);
@@ -236,7 +236,7 @@ class getLabelTest extends AbstractUnitTest {
         $soapResponse->LabelData[1]->Status = $statusObject;
 
         $response     = new getLabelResponse($request, $soapResponse, 'requestTest',
-                                             Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                             MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $actualResult = $response->hasNoErrors();
 
         $this->assertEquals($expectedResult, $actualResult);
@@ -244,7 +244,7 @@ class getLabelTest extends AbstractUnitTest {
         $soapResponse->LabelData[0]->Status = $statusObject;
 
         $response2     = new getLabelResponse($request, $soapResponse, 'requestTest',
-                                              Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                              MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $actualResult2 = $response2->hasNoErrors();
 
         $this->assertEquals($expectedResult, $actualResult2);
@@ -262,7 +262,7 @@ class getLabelTest extends AbstractUnitTest {
         $soapResponse->LabelData->Status = $statusObject;
 
         $response     = new getLabelResponse($request, $soapResponse, 'requestTest',
-                                             Client::LANGUAGE_LOCALE_GERMAN_DE);
+                                             MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
         $actualResult = $response->hasNoErrors();
 
         $this->assertEquals($expectedResult, $actualResult);
@@ -270,7 +270,7 @@ class getLabelTest extends AbstractUnitTest {
 
     private function getMockedLabelData() {
         return new LabelData(
-            Client::LANGUAGE_LOCALE_GERMAN_DE,
+            MultiClient::LANGUAGE_LOCALE_GERMAN_DE,
             (object)['Status' => (object)['statusText' => 'ok']]
         );
     }
