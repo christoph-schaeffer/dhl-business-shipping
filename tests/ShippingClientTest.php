@@ -187,7 +187,7 @@ class ShippingClientTest extends AbstractUnitTest {
 
         $request = new Request\createShipmentOrder([$shipmentOrder]);
 
-        $sanitizedRequest = $this->runProtectedMethod((new ShippingClient('','')), 'sanitizeRequest', [
+        $sanitizedRequest = $this->runProtectedMethod((new ShippingClient(new ShippingClientCredentials('', ''))), 'sanitizeRequest', [
             $request
         ]);
 
