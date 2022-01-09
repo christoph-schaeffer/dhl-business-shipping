@@ -3,23 +3,16 @@
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractRequest;
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\Status\AbstractStatus;
+use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractShippingRequest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\Status\Success;
-use ChristophSchaeffer\Dhl\BusinessShipping\Utility\StatusMapper;
+use ChristophSchaeffer\Dhl\BusinessShipping\TrackingClient;
 
 /**
- * Class Response
+ * Class AbstractResponse
  * @package ChristophSchaeffer\Dhl\BusinessShipping\Response
  */
 abstract class AbstractResponse {
 
-    /**
-     * @var AbstractStatus[]
-     *
-     * Status objects which have been returned. Those objects can be found in src/Status
-     */
-    public $Status;
 
     /**
      * @var Version
@@ -51,46 +44,33 @@ abstract class AbstractResponse {
 
     /**
      * @param AbstractRequest $request
-     * @param Object          $soapResponse
-     * @param string          $soapRequest
+     * @param Object           $rawResponse
+     * @param string          $rawRequest
      * @param string          $languageLocale
      *
-     * Response constructor.
+     * AbstractResponse constructor.
      */
-    public function __construct(AbstractRequest $request, $soapResponse, $soapRequest, $languageLocale) {
-        $this->rawResponse = $soapResponse;
-        $this->rawRequest  = $soapRequest;
+    public function __construct(AbstractRequest $request, $rawResponse, $rawRequest, $languageLocale) {
+        $this->rawResponse = $rawResponse;
+        $this->rawRequest  = $rawRequest;
         $this->request     = $request;
 
-        $this->Version               = new Version();
-        $this->Version->majorRelease = $soapResponse->Version->majorRelease;
-        $this->Version->minorRelease = $soapResponse->Version->minorRelease;
-
-        if(property_exists($soapResponse, 'Status'))
-            $this->Status = StatusMapper::getStatusObjects($soapResponse->Status, $languageLocale);
+        $this->Version = new Version();
+        if(is_a($request, AbstractShippingRequest::class)) {
+            $this->Version->majorRelease = $rawResponse->Version->majorRelease;
+            $this->Version->minorRelease = $rawResponse->Version->minorRelease;
+        } else {
+            $this->Version->majorRelease = TrackingClient::MAJOR_RELEASE;
+            $this->Version->minorRelease = TrackingClient::MINOR_RELEASE;
+        }
     }
 
     /**
      * @return bool
      *
-     * Checks if the status array only contains one status, which is the success status.
+     * Checks if the request was successful. Should return true if it was.
      */
-    public function hasNoErrors() {
-        return $this->Status === null || (count($this->Status) === 1 && $this->firstStatusIsSuccess($this->Status));
-    }
+    public abstract function hasNoErrors();
 
-    /**
-     * @param AbstractStatus[] $statusArray
-     *
-     * @return bool
-     */
-    protected function firstStatusIsSuccess(array $statusArray) {
-        if(empty($statusArray))
-            return FALSE;
-
-        $firstStatus = array_shift($statusArray);
-
-        return is_a($firstStatus, Success::class);
-    }
 
 }

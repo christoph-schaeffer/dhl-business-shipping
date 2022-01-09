@@ -2,7 +2,7 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Request;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Request\deleteShipmentOrder;
+use ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\deleteShipmentOrder;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
 use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
 
@@ -16,7 +16,7 @@ class deleteShipmentOrderTest extends AbstractUnitTest {
      *
      */
     public function testConstructEmpty() {
-        $request = new deleteShipmentOrder([]);
+        $request = new \ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\deleteShipmentOrder([]);
 
         $this->assertInstanceOf(Version::class, $request->Version);
         $this->assertNotEmpty($request->Version);
@@ -44,7 +44,7 @@ class deleteShipmentOrderTest extends AbstractUnitTest {
      *
      */
     public function testConstructSingle() {
-        $request = new deleteShipmentOrder(['tester']);
+        $request = new \ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\deleteShipmentOrder(['tester']);
 
         $this->assertInstanceOf(Version::class, $request->Version);
         $this->assertNotEmpty($request->Version);

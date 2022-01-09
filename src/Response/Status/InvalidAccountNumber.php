@@ -2,15 +2,12 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 
 /**
- * Class InvalidAccountNumber
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class InvalidAccountNumber extends HardValidationError {
-
-    protected $messageEnglish = 'The selected account number is not valid or a service you have selected is not activated for your account number.';
-
-    protected $messageGerman  = 'Die ausgewählte Abrechnungsnummer ist nicht gültig oder ein von Ihnen ausgewählter Service ist für Ihre Abrechnungsnummer nicht aktiviert.';
-
-}
+class InvalidAccountNumber extends Shipping\Status\InvalidAccountNumber {}

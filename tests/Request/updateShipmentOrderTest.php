@@ -2,7 +2,7 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Request;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Request\updateShipmentOrder;
+use ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\updateShipmentOrder;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\ShipmentOrder;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
 use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
@@ -17,7 +17,7 @@ class updateShipmentOrderTest extends AbstractUnitTest {
      *
      */
     public function testConstructEmpty() {
-        $request = new updateShipmentOrder('', (new ShipmentOrder()));
+        $request = new \ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\updateShipmentOrder('', (new ShipmentOrder()));
         $this->assertInstanceOf(Version::class, $request->Version);
         $this->assertNotEmpty($request->Version);
 

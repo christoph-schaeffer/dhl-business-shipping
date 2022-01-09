@@ -2,18 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class NetworkIOWriteFailure
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ *
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class NetworkIOWriteFailure extends NetworkFailure {
-
-    public    $code           = 183;
-
-    protected $messageEnglish = 'Error writing request (server) or response (client)';
-
-    protected $messageGerman  = 'Fehler beim schreiben des Requests (Server) oder Responses (Client)';
-
-    public    $text           = 'Network IO write failure';
-
-}
+class NetworkIOWriteFailure extends Shipping\Status\NetworkIOWriteFailure {}

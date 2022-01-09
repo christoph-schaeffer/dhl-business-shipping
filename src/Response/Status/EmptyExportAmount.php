@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class EmptyExportAmount
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class EmptyExportAmount extends HardValidationError {
-
-    protected $messageEnglish = 'Please specify an amount.';
-
-    protected $messageGerman  = 'Bitte geben Sie die Anzahl an.';
-
-}
+class EmptyExportAmount extends Shipping\Status\EmptyExportAmount {}

@@ -37,11 +37,54 @@ class XmlParser
     }
 
     /**
+     * @param string $xmlString
+     * @return \SimpleXMLElement
+     * @throws \Exception
+     */
+    public static function parseFromXml($xmlString) {
+       $parsed = simplexml_load_string($xmlString);
+
+       if($parsed === false) {
+           throw new \Exception('XML parse error');
+       }
+
+       return $parsed;
+    }
+
+    /**
      * @param string $camelCase
      * @return string
      */
-    private static function camelCaseToKebabCase($camelCase) {
+    public static function camelCaseToKebabCase($camelCase) {
         return ltrim(strtolower(preg_replace('/[A-Z]([A-Z](?![a-z]))*/', '-$0', $camelCase)), '-');
+    }
+
+    /**
+     * @param string $camelCase
+     * @return string
+     */
+    public static function kebabCaseToCamelCase($camelCase) {
+        return trim(lcfirst(str_replace('-', '', ucwords($camelCase, '-'))));
+    }
+
+
+
+    /**
+     * @param \SimpleXMLElement $rawResponse
+     * @param Object $object
+     *
+     * @return Object
+     */
+    public static function mapXmlAttributesToObjectProperties(\SimpleXMLElement $rawResponse, $object) {
+        $attributes = (array)((array)$rawResponse->attributes())['@attributes'];
+        foreach($attributes as $property => $value) {
+            $propertyInCamelCase = self::kebabCaseToCamelCase($property);
+            if(property_exists($object, $propertyInCamelCase)) {
+                $object->{$propertyInCamelCase} = $value;
+            }
+        }
+
+        return $object;
     }
 
 }

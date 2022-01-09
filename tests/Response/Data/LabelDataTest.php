@@ -3,8 +3,8 @@
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Response\Data;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\Data\LabelData;
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\Status\Success;
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Data\LabelData;
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\Success;
 use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
 
 /**
@@ -20,7 +20,7 @@ class LabelDataTest extends AbstractUnitTest {
         $labelDataResponse = $this->mockEmptyLabelDataResponse();
         $labelData         = new LabelData(MultiClient::LANGUAGE_LOCALE_GERMAN_DE, $labelDataResponse);
 
-        $this->assertEquals((new LabelData(MultiClient::LANGUAGE_LOCALE_GERMAN_DE)), $labelData);
+        $this->assertEquals((new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Data\LabelData(MultiClient::LANGUAGE_LOCALE_GERMAN_DE)), $labelData);
     }
 
     /**

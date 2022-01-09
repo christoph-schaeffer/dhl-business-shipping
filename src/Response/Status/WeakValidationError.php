@@ -2,18 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class WeakValidationError
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class WeakValidationError extends AbstractStatus {
-
-    public    $code           = 0;
-
-    protected $messageEnglish = 'A weak validation error has occured.';
-
-    protected $messageGerman  = 'Es ist ein leichter Fehler aufgetreten.';
-
-    public    $text           = 'Weak validation error occured.';
-
-}
+class WeakValidationError extends Shipping\Status\WeakValidationError {}

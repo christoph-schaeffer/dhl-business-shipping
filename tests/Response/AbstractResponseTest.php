@@ -3,9 +3,9 @@
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Response;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
+use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractShippingRequest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
-use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractRequest;
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\AbstractResponse;
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\AbstractShippingResponse;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
 
@@ -20,42 +20,42 @@ class AbstractResponseTest extends AbstractUnitTest {
      */
     public function providerFirstStatusIsSuccess() {
         return [
-            [[(new Status\Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], TRUE],
-            [[(new Status\Success('Der Webservice wurde ohne Fehler ausgeführt.', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], TRUE],
+            [[(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], TRUE],
+            [[(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\Success('Der Webservice wurde ohne Fehler ausgeführt.', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], TRUE],
             [[], FALSE],
-            [[(new Status\EmptyProduct('Bitte geben Sie ein Produkt an.', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], FALSE],
-            [[(new Status\EmptyProduct('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], FALSE],
+            [[(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\EmptyProduct('Bitte geben Sie ein Produkt an.', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], FALSE],
+            [[(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\EmptyProduct('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], FALSE],
             [
                 [
-                    (new Status\EmptyProduct('Bitte geben Sie ein Produkt an.', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
-                    (new Status\Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\EmptyProduct('Bitte geben Sie ein Produkt an.', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ], FALSE
             ],
             [
                 [
-                    (new Status\Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
-                    (new Status\EmptyProduct('Bitte geben Sie ein Produkt an.', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\EmptyProduct('Bitte geben Sie ein Produkt an.', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ], TRUE
             ],
             [
                 [
-                    (new Status\Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
-                    (new Status\EmptyProduct('Bitte geben Sie ein Produkt an.', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
-                    (new Status\HardValidationError('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\EmptyProduct('Bitte geben Sie ein Produkt an.', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\HardValidationError('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ], TRUE
             ],
             [
                 [
-                    (new Status\HardValidationError('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
-                    (new Status\EmptyProduct('Bitte geben Sie ein Produkt an.', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
-                    (new Status\Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\HardValidationError('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\EmptyProduct('Bitte geben Sie ein Produkt an.', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ], FALSE
             ],
             [
                 [
-                    (new Status\EmptyProduct('Bitte geben Sie ein Produkt an.', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
-                    (new Status\HardValidationError('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
-                    (new Status\Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\EmptyProduct('Bitte geben Sie ein Produkt an.', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\HardValidationError('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ], FALSE
             ]
         ];
@@ -86,10 +86,10 @@ class AbstractResponseTest extends AbstractUnitTest {
      *
      */
     public function testConstruct() {
-        $request      = $this->getMockForAbstractClass(AbstractRequest::class);
+        $request      = $this->getMockForAbstractClass(AbstractShippingRequest::class);
         $soapResponse = $this->mockSoapResponse();
 
-        $responseMock = $this->getMockForAbstractClass(AbstractResponse::class,
+        $responseMock = $this->getMockForAbstractClass(AbstractShippingResponse::class,
                                                        [
                                                            $request, $soapResponse, 'requestTest',
                                                            MultiClient::LANGUAGE_LOCALE_GERMAN_DE
@@ -103,11 +103,11 @@ class AbstractResponseTest extends AbstractUnitTest {
         $this->assertEquals(3, $responseMock->Version->majorRelease);
         $this->assertEquals(0, $responseMock->Version->minorRelease);
 
-        $this->assertEquals([(new Status\Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $responseMock->Status);
+        $this->assertEquals([(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))], $responseMock->Status);
     }
 
     /**
-     * @param Status\AbstractStatus[] $statusArray
+     * @param \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\AbstractStatus[] $statusArray
      * @param                         $expectedResult
      *
      * @dataProvider providerFirstStatusIsSuccess
@@ -115,10 +115,10 @@ class AbstractResponseTest extends AbstractUnitTest {
      * @throws \ReflectionException
      */
     public function testFirstStatusIsSuccess(array $statusArray, $expectedResult) {
-        $request      = $this->getMockForAbstractClass(AbstractRequest::class);
+        $request      = $this->getMockForAbstractClass(AbstractShippingRequest::class);
         $soapResponse = $this->mockSoapResponse();
 
-        $responseMock = $this->getMockForAbstractClass(AbstractResponse::class,
+        $responseMock = $this->getMockForAbstractClass(AbstractShippingResponse::class,
                                                        [
                                                            $request, $soapResponse, 'requestTest',
                                                            MultiClient::LANGUAGE_LOCALE_GERMAN_DE
@@ -140,11 +140,11 @@ class AbstractResponseTest extends AbstractUnitTest {
      * @dataProvider providerHasNoErrors
      */
     public function testHasNoErrors($statusObject, $expectedResult) {
-        $request              = $this->getMockForAbstractClass(AbstractRequest::class);
+        $request              = $this->getMockForAbstractClass(AbstractShippingRequest::class);
         $soapResponse         = $this->mockSoapResponse();
         $soapResponse->Status = $statusObject;
 
-        $responseMock = $this->getMockForAbstractClass(AbstractResponse::class,
+        $responseMock = $this->getMockForAbstractClass(AbstractShippingResponse::class,
                                                        [
                                                            $request, $soapResponse, 'requestTest',
                                                            MultiClient::LANGUAGE_LOCALE_GERMAN_DE

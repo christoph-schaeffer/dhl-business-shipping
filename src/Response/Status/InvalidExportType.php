@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class InvalidExportType
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class InvalidExportType extends HardValidationError {
-
-    protected $messageEnglish = 'The specified type of shipment is not valid.';
-
-    protected $messageGerman  = 'Die angegebene Art der Sendung ist nicht gültig.';
-
-}
+class InvalidExportType extends Shipping\Status\InvalidExportType {}

@@ -56,153 +56,153 @@ class Client {
     }
 
     /**
-     * @deprecated
+     * @param \ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\createShipmentOrder $request
+     *
+     * @return \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\createShipmentOrder
+     *
+     * With this operation creates shipments for DHL Paket including the relevant shipping documents.
+     *@deprecated
      *
      * This class has been deprecated and will be removed soon. Please use either the MultiClient or ShippingClient please.
      *
      *
-     * @param Request\createShipmentOrder $request
-     *
-     * @return Response\createShipmentOrder
-     *
-     * With this operation creates shipments for DHL Paket including the relevant shipping documents.
      */
-    public function createShipmentOrder(Request\createShipmentOrder $request) {
+    public function createShipmentOrder(Request\Shipping\createShipmentOrder $request) {
         $this->shippingClient->createShipmentOrder($request);
     }
 
     /**
-     * @deprecated
+     * @param \ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\deleteShipmentOrder $request
      *
-     * This class has been deprecated and will be removed soon. Please use either the MultiClient or ShippingClient please.
-     *
-     *
-     * @param Request\deleteShipmentOrder $request
-     *
-     * @return Response\deleteShipmentOrder
+     * @return \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\deleteShipmentOrder
      *
      * This operation cancels earlier created shipments. However, this will only work for shipments for that you
      * haven't called the doManifest function. Also keep in mind that if not set otherwise in the
      * "Geschäftskundenportal" there will be an automatic doManifest call on all open shipments at 6 pm every day.
+     *@deprecated
+     *
+     * This class has been deprecated and will be removed soon. Please use either the MultiClient or ShippingClient please.
+     *
+     *
      */
-    public function deleteShipmentOrder(Request\deleteShipmentOrder $request) {
+    public function deleteShipmentOrder(Request\Shipping\deleteShipmentOrder $request) {
         $this->shippingClient->deleteShipmentOrder($request);
     }
 
     /**
-     * @deprecated
+     * @param \ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\doManifest $request
+     *
+     * @return \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\doManifest
+     *
+     * With this operation a end-of-day closing for up to 30 previously created shipments can be carried out. Please
+     * keep in mind, that once you have called this function for a shipment order it can't be canceled anymore.
+     *@deprecated
      *
      * This class has been deprecated and will be removed soon. Please use either the MultiClient or ShippingClient please.
      *
      *
-     * @param Request\doManifest $request
-     *
-     * @return Response\doManifest
-     *
-     * With this operation a end-of-day closing for up to 30 previously created shipments can be carried out. Please
-     * keep in mind, that once you have called this function for a shipment order it can't be canceled anymore.
      */
-    public function doManifest(Request\doManifest $request) {
+    public function doManifest(Request\Shipping\doManifest $request) {
         $this->shippingClient->doManifest($request);
     }
 
     /**
+     * @param \ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\getExportDoc $request
+     *
+     * @return \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\getExportDoc
+     *
+     * This operation hands back export documents for previously created shipments.
      * @deprecated
      *
      * This class has been deprecated and will be removed soon. Please use either the MultiClient or ShippingClient please.
      *
      *
-     * @param Request\getExportDoc $request
-     *
-     * @return Response\getExportDoc
-     *
-     * This operation hands back export documents for previously created shipments.
      */
-    public function getExportDoc(Request\getExportDoc $request) {
+    public function getExportDoc(Request\Shipping\getExportDoc $request) {
         $this->shippingClient->getExportDoc($request);
     }
 
     /**
+     * @param \ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\getLabel $request
+     *
+     * @return \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\getLabel
+     *
+     * This operation hands back the shipping label for previously created shipments.
      * @deprecated
      *
      * This class has been deprecated and will be removed soon. Please use either the MultiClient or ShippingClient please.
      *
      *
-     * @param Request\getLabel $request
-     *
-     * @return Response\getLabel
-     *
-     * This operation hands back the shipping label for previously created shipments.
      */
-    public function getLabel(Request\getLabel $request) {
+    public function getLabel(Request\Shipping\getLabel $request) {
         $this->shippingClient->getLabel($request);
     }
 
     /**
+     * @param \ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\getManifest $request
+     *
+     * @return \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\getManifest
+     *
+     * With this operation end-of-day reports are available for a specific day or period.
      * @deprecated
      *
      * This class has been deprecated and will be removed soon. Please use either the MultiClient or ShippingClient please.
      *
      *
-     * @param Request\getManifest $request
-     *
-     * @return Response\getManifest
-     *
-     * With this operation end-of-day reports are available for a specific day or period.
      */
-    public function getManifest(Request\getManifest $request) {
+    public function getManifest(Request\Shipping\getManifest $request) {
         $this->shippingClient->getManifest($request);
     }
 
     /**
+     * @param \ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\getVersion $request
+     *
+     * @return \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\getVersion
+     *
+     * With this operation the latest version available on the web can be queried.
      * @deprecated
      *
      * This class has been deprecated and will be removed soon. Please use either the MultiClient or ShippingClient please.
      *
      *
-     * @param Request\getVersion $request
-     *
-     * @return Response\getVersion
-     *
-     * With this operation the latest version available on the web can be queried.
      */
-    public function getVersion(Request\getVersion $request) {
+    public function getVersion(Request\Shipping\getVersion $request) {
         $this->shippingClient->getVersion($request);
     }
 
     /**
-     * @deprecated
+     * @param \ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\updateShipmentOrder $request
      *
-     * This class has been deprecated and will be removed soon. Please use either the MultiClient or ShippingClient please.
-     *
-     *
-     * @param Request\updateShipmentOrder $request
-     *
-     * @return Response\updateShipmentOrder
+     * @return \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\updateShipmentOrder
      *
      * With this operation shipping documents are updated for previously created shipments. The update automatically
      * performs a cancellation and creating of a shipment. However, this will only work for shipments for that you
      * haven't called the doManifest function. Also keep in mind that if not set otherwise in the
      * "Geschäftskundenportal" there will be an automatic doManifest call on all open shipments at 6 pm every day.
-     */
-    public function updateShipmentOrder(Request\updateShipmentOrder $request) {
-        $this->shippingClient->updateShipmentOrder($request);
-    }
-
-    /**
-     * @deprecated
+     *@deprecated
      *
      * This class has been deprecated and will be removed soon. Please use either the MultiClient or ShippingClient please.
      *
      *
-     * @param Request\validateShipment $request
+     */
+    public function updateShipmentOrder(Request\Shipping\updateShipmentOrder $request) {
+        $this->shippingClient->updateShipmentOrder($request);
+    }
+
+    /**
+     * @param \ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\validateShipment $request
      *
-     * @return Response\validateShipment
+     * @return \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\validateShipment
      *
      * With this operation the data for a shipment can be validated before a shipment label and tracking number will be
      * created.
+     *@deprecated
+     *
+     * This class has been deprecated and will be removed soon. Please use either the MultiClient or ShippingClient please.
+     *
+     *
      */
-    public function validateShipment(Request\validateShipment $request) {
+    public function validateShipment(Request\Shipping\validateShipment $request) {
         $this->shippingClient->validateShipment($request);
     }
 

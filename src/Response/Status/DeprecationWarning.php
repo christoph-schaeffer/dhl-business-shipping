@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class DeprecationWarning
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class DeprecationWarning extends WeakValidationError {
-
-    protected $messageEnglish = 'A value you specified is no longer supported. Please check your input.';
-
-    protected $messageGerman  = 'Ein von Ihnen angegebener Wert wird nicht mehr unterstützt. Bitte prüfen Sie Ihre Eingabe.';
-
-}
+class DeprecationWarning extends Shipping\Status\DeprecationWarning {}

@@ -2,15 +2,12 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 
 /**
- * Class InvalidCustomsCurrency
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class InvalidCustomsCurrency extends HardValidationError {
-
-    protected $messageEnglish = 'The specified currency is not valid.';
-
-    protected $messageGerman  = 'Die angegebene Währung ist nicht gültig.';
-
-}
+class InvalidCustomsCurrency extends Shipping\Status\InvalidCustomsCurrency {}

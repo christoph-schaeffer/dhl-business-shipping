@@ -2,15 +2,12 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 
 /**
- * Class CodAmountToHigh
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class CodAmountToHigh extends HardValidationError {
-
-    protected $messageEnglish = 'The entered cash on delivery amount is to high.';
-
-    protected $messageGerman  = 'Der angegebene Nachnahmebetrag zu hoch.';
-
-}
+class CodAmountToHigh extends Shipping\Status\CodAmountToHigh {}

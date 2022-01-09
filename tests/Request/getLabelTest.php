@@ -2,7 +2,7 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Request;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Request\getLabel;
+use ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\getLabel;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
 use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
 

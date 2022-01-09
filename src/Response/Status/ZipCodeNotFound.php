@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class ZipCodeNotFound
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class ZipCodeNotFound extends WeakValidationError {
-
-    protected $messageEnglish = 'The postal code could not be found.';
-
-    protected $messageGerman  = 'Die Postleitzahl konnte nicht gefunden werden.';
-
-}
+class ZipCodeNotFound extends Shipping\Status\ZipCodeNotFound {}

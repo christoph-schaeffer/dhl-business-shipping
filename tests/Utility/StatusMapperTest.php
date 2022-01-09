@@ -5,7 +5,7 @@ namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Utility;
 use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
-use ChristophSchaeffer\Dhl\BusinessShipping\Utility\StatusMapper;
+use ChristophSchaeffer\Dhl\BusinessShipping\Utility\ShippingStatusMapper;
 
 /**
  * Class StatusMapperTest
@@ -19,44 +19,44 @@ class StatusMapperTest extends AbstractUnitTest {
     public function providerAddMultipleStatusClasses() {
         return [
             [
-                [Status\CityNotKnownToZipCode::class, Status\RoutingCodeNotPossible::class],
+                [\ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\CityNotKnownToZipCode::class, \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\RoutingCodeNotPossible::class],
                 [],
                 'Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
                 [
-                    (new Status\CityNotKnownToZipCode('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\CityNotKnownToZipCode('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
                                                       MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
-                    (new Status\RoutingCodeNotPossible('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\RoutingCodeNotPossible('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
                                                        MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
-                [Status\CityNotKnownToZipCode::class],
+                [\ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\CityNotKnownToZipCode::class],
                 [],
                 'Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
                 [
-                    (new Status\CityNotKnownToZipCode('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\CityNotKnownToZipCode('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
                                                       MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
-                [Status\CityNotKnownToZipCode::class, Status\RoutingCodeNotPossible::class],
-                [(new Status\EmptyStreetName('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))],
+                [\ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\CityNotKnownToZipCode::class, \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\RoutingCodeNotPossible::class],
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\EmptyStreetName('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))],
                 'Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
                 [
-                    (new Status\EmptyStreetName('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
-                    (new Status\CityNotKnownToZipCode('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\EmptyStreetName('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\CityNotKnownToZipCode('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
                                                       MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
-                    (new Status\RoutingCodeNotPossible('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\RoutingCodeNotPossible('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
                                                        MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
-                [Status\CityNotKnownToZipCode::class],
-                [(new Status\EmptyStreetName('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))],
+                [\ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\CityNotKnownToZipCode::class],
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\EmptyStreetName('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))],
                 'Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
                 [
-                    (new Status\EmptyStreetName('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
-                    (new Status\CityNotKnownToZipCode('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\EmptyStreetName('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\CityNotKnownToZipCode('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
                                                       MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ]
@@ -69,21 +69,21 @@ class StatusMapperTest extends AbstractUnitTest {
     public function providerAddSingleStatusClass() {
         return [
             [
-                Status\CityNotKnownToZipCode::class,
+                \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\CityNotKnownToZipCode::class,
                 [],
                 'Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
                 [
-                    (new Status\CityNotKnownToZipCode('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\CityNotKnownToZipCode('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
                                                       MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
-                Status\CityNotKnownToZipCode::class,
-                [(new Status\EmptyStreetName('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))],
+                \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\CityNotKnownToZipCode::class,
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\EmptyStreetName('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))],
                 'Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
                 [
-                    (new Status\EmptyStreetName('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
-                    (new Status\CityNotKnownToZipCode('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\EmptyStreetName('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\CityNotKnownToZipCode('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
                                                       MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ]
@@ -98,40 +98,40 @@ class StatusMapperTest extends AbstractUnitTest {
             [
                 [],
                 'status message',
-                [(new Status\UnknownError('status message', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\UnknownError('status message', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ],
             [
                 [],
                 '',
-                [(new Status\UnknownError('', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\UnknownError('', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ],
             [
                 [],
                 NULL,
-                [(new Status\UnknownError(NULL, MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\UnknownError(NULL, MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ],
             [
-                [(new Status\EmptyCity('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))],
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\EmptyCity('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))],
                 'status message',
                 [
-                    (new Status\EmptyCity('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
-                    (new Status\UnknownError('status message', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\EmptyCity('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\UnknownError('status message', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
-                [(new Status\EmptyCity('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))],
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\EmptyCity('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))],
                 '',
                 [
-                    (new Status\EmptyCity('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
-                    (new Status\UnknownError('', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\EmptyCity('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\UnknownError('', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
-                [(new Status\EmptyCity('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))],
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\EmptyCity('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))],
                 NULL,
                 [
-                    (new Status\EmptyCity('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
-                    (new Status\UnknownError(NULL, MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\EmptyCity('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\UnknownError(NULL, MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ]
         ];
@@ -178,39 +178,39 @@ class StatusMapperTest extends AbstractUnitTest {
         return [
             [
                 'Weak validation error occured.',
-                Status\WeakValidationError::class
+                \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\WeakValidationError::class
             ],
             [
                 'ok',
-                Status\Success::class
+                \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\Success::class
             ],
             [
                 'Der Webservice wurde ohne Fehler ausgeführt.',
-                Status\Success::class
+                \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\Success::class
             ],
             [
                 'Bitte geben Sie Name 1 an.',
-                Status\EmptyName1::class
+                \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\EmptyName1::class
             ],
             [
                 'Die Sendung ist nicht leitcodierbar.',
-                Status\RoutingCodeNotPossible::class
+                \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\RoutingCodeNotPossible::class
             ],
             [
                 'Der Ort ist zu dieser PLZ nicht bekannt.',
-                Status\CityNotKnownToZipCode::class
+                \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\CityNotKnownToZipCode::class
             ],
             [
                 'Die Postleitzahl konnte nicht gefunden werden.',
-                Status\ZipCodeNotFound::class
+                \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\ZipCodeNotFound::class
             ],
             [
                 'Die angegebene Straße kann nicht gefunden werden.',
-                Status\StreetNotFound::class
+                \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\StreetNotFound::class
             ],
             [
                 'Die angegebene Hausnummer kann nicht gefunden werden.',
-                Status\StreetNumberNotFound::class
+                \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\StreetNumberNotFound::class
             ],
             [
                 'Unbekannt',
@@ -218,25 +218,25 @@ class StatusMapperTest extends AbstractUnitTest {
             ],
             [
                 'Es handelt sich um eine ungültige Postleitzahl. Bitte verwenden Sie das Format 99999. Es ist dennoch möglich, einen Versandschein zu drucken.',
-                Status\InvalidZipCode::class
+                \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\InvalidZipCode::class
             ],
             [
                 'Es handelt sich um eine ungültige Postleitzahl. Bitte verwenden Sie das Format 99999 oder 99999-9999. Es ist dennoch möglich, einen Versandschein zu drucken.',
-                Status\InvalidZipCode::class
+                \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\InvalidZipCode::class
             ],
             [
                 'Es handelt sich um eine ungültige Postleitzahl. Bitte verwenden Sie eine britisches Format: AA9A 9AA, A9A 9AA, A9 9AA, A99 9AA, AA9 9AA oder AA99 9AA. Es ist dennoch möglich, einen Versandschein zu drucken.',
-                Status\InvalidZipCode::class
+                \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\InvalidZipCode::class
             ],
             [
                 'Bitte geben Sie eine gültige Postleitzahl ein. Das Format ist 99999. Das Postleitzahlensystem von Südkorea wurde am 1.8.2015 umgestellt. Falls Ihnen noch eine Postleitzahl im alten Format vorliegt (999-999), kontaktieren Sie bitte den Empfänger für die neue Postleitzahl. Es ist dennoch möglich, einen Versandschein zu drucken.',
-                Status\InvalidZipCode::class
+                \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\InvalidZipCode::class
             ],
             [
                 'Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
                 [
-                    Status\CityNotKnownToZipCode::class,
-                    Status\RoutingCodeNotPossible::class
+                    \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\CityNotKnownToZipCode::class,
+                    \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\RoutingCodeNotPossible::class
                 ]
             ]
         ];
@@ -254,7 +254,7 @@ class StatusMapperTest extends AbstractUnitTest {
                     ]
                 ],
                 [
-                    (new Status\WeakValidationError('Weak validation error occured.',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\WeakValidationError('Weak validation error occured.',
                                                     MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
@@ -274,13 +274,13 @@ class StatusMapperTest extends AbstractUnitTest {
                     ]
                 ],
                 [
-                    (new Status\StreetNumberNotFound('Die angegebene Hausnummer kann nicht gefunden werden.',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\StreetNumberNotFound('Die angegebene Hausnummer kann nicht gefunden werden.',
                                                      MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
-                    (new Status\WeakValidationError('Weak validation error occured.',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\WeakValidationError('Weak validation error occured.',
                                                     MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
-                    (new Status\Success('Der Webservice wurde ohne Fehler ausgeführt.',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\Success('Der Webservice wurde ohne Fehler ausgeführt.',
                                         MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
-                    (new Status\StreetNotFound('Die angegebene Straße kann nicht gefunden werden.',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\StreetNotFound('Die angegebene Straße kann nicht gefunden werden.',
                                                MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ]
@@ -363,42 +363,42 @@ class StatusMapperTest extends AbstractUnitTest {
             [
                 (object)['statusCode' => 500, 'statusMessage' => NULL, 'statusText' => 'Service temporary not available'],
                 [
-                    (new Status\ServiceTemporaryNotAvailable('Service temporary not available',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\ServiceTemporaryNotAvailable('Service temporary not available',
                                                              MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusCode' => 500, 'statusMessage' => NULL, 'statusText' => NULL],
                 [
-                    (new Status\ServiceTemporaryNotAvailable(NULL,
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\ServiceTemporaryNotAvailable(NULL,
                                                              MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusCode' => 500, 'statusMessage' => 'Der service steht temporär nicht zur verfügung.', 'statusText' => 'test'],
                 [
-                    (new Status\ServiceTemporaryNotAvailable('Der service steht temporär nicht zur verfügung.',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\ServiceTemporaryNotAvailable('Der service steht temporär nicht zur verfügung.',
                                                              MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusCode' => 500, 'statusMessage' => 'Der service steht temporär nicht zur verfügung.', 'statusText' => NULL],
                 [
-                    (new Status\ServiceTemporaryNotAvailable('Der service steht temporär nicht zur verfügung.',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\ServiceTemporaryNotAvailable('Der service steht temporär nicht zur verfügung.',
                                                              MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusCode' => 500, 'statusMessage' => NULL, 'statusText' => 'Weak validation error occured.'],
                 [
-                    (new Status\ServiceTemporaryNotAvailable('Weak validation error occured.',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\ServiceTemporaryNotAvailable('Weak validation error occured.',
                                                              MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusCode' => 500, 'statusMessage' => NULL, 'statusText' => 'tester'],
                 [
-                    (new Status\ServiceTemporaryNotAvailable('tester',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\ServiceTemporaryNotAvailable('tester',
                                                              MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
@@ -412,71 +412,71 @@ class StatusMapperTest extends AbstractUnitTest {
             ],
             [
                 (object)['statusCode' => 10, 'statusMessage' => 'test'],
-                [(new Status\RequestProcessingFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\RequestProcessingFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ],
             [
                 (object)['statusCode' => 11, 'statusMessage' => 'test'],
-                [(new Status\NotWellformedXML('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\NotWellformedXML('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ],
             [
                 (object)['statusCode' => 12, 'statusMessage' => 'test'],
-                [(new Status\XMLSchemaViolation('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\XMLSchemaViolation('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ],
             [
                 (object)['statusCode' => 13, 'statusMessage' => 'test'],
-                [(new Status\WrongServiceCall('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\WrongServiceCall('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ],
             [
                 (object)['statusCode' => 14, 'statusMessage' => 'test'],
-                [(new Status\RequestProcessingFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 14))]
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\RequestProcessingFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 14))]
             ],
             [
                 (object)['statusCode' => 15, 'statusMessage' => 'test'],
-                [(new Status\RequestProcessingFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 15))]
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\RequestProcessingFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 15))]
             ],
             [
                 (object)['statusCode' => 17, 'statusMessage' => 'test'],
-                [(new Status\RequestProcessingFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 17))]
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\RequestProcessingFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 17))]
             ],
             [
                 (object)['statusCode' => 19, 'statusMessage' => 'test'],
-                [(new Status\RequestProcessingFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 19))]
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\RequestProcessingFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 19))]
             ],
             [
                 (object)['statusCode' => 20, 'statusMessage' => 'test'],
-                [(new Status\QoSFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\QoSFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ],
             [
                 (object)['statusCode' => 21, 'statusMessage' => 'test'],
-                [(new Status\SystemOverload('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\SystemOverload('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ],
             [
                 (object)['statusCode' => 100, 'statusMessage' => 'test'],
-                [(new Status\GeneralFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\GeneralFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ],
             [
                 (object)['statusCode' => 101, 'statusMessage' => 'test'],
-                [(new Status\GeneralFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 101))]
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\GeneralFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 101))]
             ],
             [
                 (object)['statusCode' => 102, 'statusMessage' => 'test'],
-                [(new Status\GeneralFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 102))]
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\GeneralFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 102))]
             ],
             [
                 (object)['statusCode' => 105, 'statusMessage' => 'test'],
-                [(new Status\GeneralFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 105))]
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\GeneralFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 105))]
             ],
             [
                 (object)['statusCode' => 109, 'statusMessage' => 'test'],
-                [(new Status\GeneralFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 109))]
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\GeneralFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE, 109))]
             ],
             [
                 (object)['statusCode' => 110, 'statusMessage' => 'test'],
-                [(new Status\AuthorizationFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\AuthorizationFailure('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ],
             [
                 (object)['statusCode' => 111, 'statusMessage' => 'test'],
-                [(new Status\AuthentificationFailed('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\AuthentificationFailed('test', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ]
         ];
 
@@ -490,106 +490,106 @@ class StatusMapperTest extends AbstractUnitTest {
             [
                 (object)['statusMessage' => NULL, 'statusText' => 'Weak validation error occured.'],
                 [
-                    (new Status\WeakValidationError('Weak validation error occured.',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\WeakValidationError('Weak validation error occured.',
                                                     MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusMessage' => NULL, 'statusText' => 'Hard validation error occured.'],
                 [
-                    (new Status\HardValidationError('Hard validation error occured.',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\HardValidationError('Hard validation error occured.',
                                                     MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusMessage' => NULL, 'statusText' => 'ok'],
-                [(new Status\Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\Success('ok', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ],
             [
                 (object)['statusMessage' => 'Der Webservice wurde ohne Fehler ausgeführt.', 'statusText' => 'ok'],
                 [
-                    (new Status\Success('Der Webservice wurde ohne Fehler ausgeführt.',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\Success('Der Webservice wurde ohne Fehler ausgeführt.',
                                         MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusMessage' => 'Der Webservice wurde ohne Fehler ausgeführt.', 'statusText' => NULL],
                 [
-                    (new Status\Success('Der Webservice wurde ohne Fehler ausgeführt.',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\Success('Der Webservice wurde ohne Fehler ausgeführt.',
                                         MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusMessage' => 'Bitte geben Sie Name 1 an.'],
                 [
-                    (new Status\EmptyName1('Bitte geben Sie Name 1 an.',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\EmptyName1('Bitte geben Sie Name 1 an.',
                                            MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusMessage' => 'Die Sendung ist nicht leitcodierbar.'],
                 [
-                    (new Status\RoutingCodeNotPossible('Die Sendung ist nicht leitcodierbar.',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\RoutingCodeNotPossible('Die Sendung ist nicht leitcodierbar.',
                                                        MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusMessage' => 'Der Ort ist zu dieser PLZ nicht bekannt.'],
                 [
-                    (new Status\CityNotKnownToZipCode('Der Ort ist zu dieser PLZ nicht bekannt.',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\CityNotKnownToZipCode('Der Ort ist zu dieser PLZ nicht bekannt.',
                                                       MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusMessage' => 'Die Postleitzahl konnte nicht gefunden werden.'],
                 [
-                    (new Status\ZipCodeNotFound('Die Postleitzahl konnte nicht gefunden werden.',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\ZipCodeNotFound('Die Postleitzahl konnte nicht gefunden werden.',
                                                 MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusMessage' => 'Die angegebene Straße kann nicht gefunden werden.'],
                 [
-                    (new Status\StreetNotFound('Die angegebene Straße kann nicht gefunden werden.',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\StreetNotFound('Die angegebene Straße kann nicht gefunden werden.',
                                                MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusMessage' => 'Die angegebene Hausnummer kann nicht gefunden werden.'],
                 [
-                    (new Status\StreetNumberNotFound('Die angegebene Hausnummer kann nicht gefunden werden.',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\StreetNumberNotFound('Die angegebene Hausnummer kann nicht gefunden werden.',
                                                      MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusMessage' => 'Unbekannt'],
-                [(new Status\UnknownError('Unbekannt', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
+                [(new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\UnknownError('Unbekannt', MultiClient::LANGUAGE_LOCALE_GERMAN_DE))]
             ],
             [
                 (object)['statusMessage' => 'Es handelt sich um eine ungültige Postleitzahl. Bitte verwenden Sie das Format 99999. Es ist dennoch möglich, einen Versandschein zu drucken.'],
                 [
-                    (new Status\InvalidZipCode('Es handelt sich um eine ungültige Postleitzahl. Bitte verwenden Sie das Format 99999. Es ist dennoch möglich, einen Versandschein zu drucken.',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\InvalidZipCode('Es handelt sich um eine ungültige Postleitzahl. Bitte verwenden Sie das Format 99999. Es ist dennoch möglich, einen Versandschein zu drucken.',
                                                MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusMessage' => 'Es handelt sich um eine ungültige Postleitzahl. Bitte verwenden Sie das Format 99999 oder 99999-9999. Es ist dennoch möglich, einen Versandschein zu drucken.'],
                 [
-                    (new Status\InvalidZipCode('Es handelt sich um eine ungültige Postleitzahl. Bitte verwenden Sie das Format 99999 oder 99999-9999. Es ist dennoch möglich, einen Versandschein zu drucken.',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\InvalidZipCode('Es handelt sich um eine ungültige Postleitzahl. Bitte verwenden Sie das Format 99999 oder 99999-9999. Es ist dennoch möglich, einen Versandschein zu drucken.',
                                                MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusMessage' => 'Es handelt sich um eine ungültige Postleitzahl. Bitte verwenden Sie eine britisches Format: AA9A 9AA, A9A 9AA, A9 9AA, A99 9AA, AA9 9AA oder AA99 9AA. Es ist dennoch möglich, einen Versandschein zu drucken.'],
                 [
-                    (new Status\InvalidZipCode('Es handelt sich um eine ungültige Postleitzahl. Bitte verwenden Sie eine britisches Format: AA9A 9AA, A9A 9AA, A9 9AA, A99 9AA, AA9 9AA oder AA99 9AA. Es ist dennoch möglich, einen Versandschein zu drucken.',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\InvalidZipCode('Es handelt sich um eine ungültige Postleitzahl. Bitte verwenden Sie eine britisches Format: AA9A 9AA, A9A 9AA, A9 9AA, A99 9AA, AA9 9AA oder AA99 9AA. Es ist dennoch möglich, einen Versandschein zu drucken.',
                                                MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ],
             [
                 (object)['statusMessage' => 'Bitte geben Sie eine gültige Postleitzahl ein. Das Format ist 99999. Das Postleitzahlensystem von Südkorea wurde am 1.8.2015 umgestellt. Falls Ihnen noch eine Postleitzahl im alten Format vorliegt (999-999), kontaktieren Sie bitte den Empfänger für die neue Postleitzahl. Es ist dennoch möglich, einen Versandschein zu drucken.'],
                 [
-                    (new Status\InvalidZipCode('Bitte geben Sie eine gültige Postleitzahl ein. Das Format ist 99999. Das Postleitzahlensystem von Südkorea wurde am 1.8.2015 umgestellt. Falls Ihnen noch eine Postleitzahl im alten Format vorliegt (999-999), kontaktieren Sie bitte den Empfänger für die neue Postleitzahl. Es ist dennoch möglich, einen Versandschein zu drucken.',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\InvalidZipCode('Bitte geben Sie eine gültige Postleitzahl ein. Das Format ist 99999. Das Postleitzahlensystem von Südkorea wurde am 1.8.2015 umgestellt. Falls Ihnen noch eine Postleitzahl im alten Format vorliegt (999-999), kontaktieren Sie bitte den Empfänger für die neue Postleitzahl. Es ist dennoch möglich, einen Versandschein zu drucken.',
                                                MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ]
@@ -604,9 +604,9 @@ class StatusMapperTest extends AbstractUnitTest {
             [
                 (object)['statusMessage' => 'Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar'],
                 [
-                    (new Status\CityNotKnownToZipCode('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\CityNotKnownToZipCode('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
                                                       MultiClient::LANGUAGE_LOCALE_GERMAN_DE)),
-                    (new Status\RoutingCodeNotPossible('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
+                    (new \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\RoutingCodeNotPossible('Der Ort ist zu dieser PLZ nicht bekannt die Sendung ist nicht leitcodierbar',
                                                        MultiClient::LANGUAGE_LOCALE_GERMAN_DE))
                 ]
             ]
@@ -618,7 +618,7 @@ class StatusMapperTest extends AbstractUnitTest {
      */
     public function providerStatusObjectsWithMapData() {
         $data = [];
-        foreach (StatusMapper::MESSAGE_MAP as $message => $class):
+        foreach (ShippingStatusMapper::MESSAGE_MAP as $message => $class):
             $expectedStatusObjects = [];
 
             if(is_array($class)):
@@ -651,7 +651,7 @@ class StatusMapperTest extends AbstractUnitTest {
     public function testAddMultipleStatusClasses($statusClasses, $statusObjects, $statusMessage,
                                                  $expectedStatusObjects) {
         $statusObjects = $this->runProtectedMethod(
-            (new StatusMapper()),
+            (new ShippingStatusMapper()),
             'addMultipleStatusClasses',
             [$statusClasses, $statusObjects, $statusMessage, MultiClient::LANGUAGE_LOCALE_GERMAN_DE]
         );
@@ -672,7 +672,7 @@ class StatusMapperTest extends AbstractUnitTest {
     public function testAddSingleStatusClass($statusClass, $statusObjects, $statusMessage,
                                              $expectedStatusObjects) {
         $statusObjects = $this->runProtectedMethod(
-            (new StatusMapper()),
+            (new ShippingStatusMapper()),
             'addSingleStatusClass',
             [$statusClass, $statusObjects, $statusMessage, MultiClient::LANGUAGE_LOCALE_GERMAN_DE]
         );
@@ -691,7 +691,7 @@ class StatusMapperTest extends AbstractUnitTest {
      */
     public function testAddUnknownErrorStatus($statusObjects, $statusMessage, $expectedStatusObjects) {
         $statusObjects = $this->runProtectedMethod(
-            (new StatusMapper()),
+            (new ShippingStatusMapper()),
             'addUnknownErrorStatus',
             [$statusObjects, $statusMessage, MultiClient::LANGUAGE_LOCALE_GERMAN_DE]
         );
@@ -709,7 +709,7 @@ class StatusMapperTest extends AbstractUnitTest {
      */
     public function testGetStatusObjectsByCode($statusResponse, $expectedStatusObjects) {
         $statusObjects = $this->runProtectedMethod(
-            (new StatusMapper()),
+            (new ShippingStatusMapper()),
             'getStatusObjectsByCode',
             [$statusResponse, MultiClient::LANGUAGE_LOCALE_GERMAN_DE]
         );
@@ -727,7 +727,7 @@ class StatusMapperTest extends AbstractUnitTest {
      */
     public function testContainsZipKeyword($statusMessage, $expectedContainsZipKeyword) {
         $containsZipKeyword = $this->runProtectedMethod(
-            (new StatusMapper()),
+            (new ShippingStatusMapper()),
             'containsZipKeyword',
             [$statusMessage]
         );
@@ -741,7 +741,7 @@ class StatusMapperTest extends AbstractUnitTest {
     public function testEnsureStatusMessagePropertyExistsWith() {
         $statusResponse      = (object)['statusMessage' => NULL];
         $statusResponseAfter = $this->runProtectedMethod(
-            (new StatusMapper()),
+            (new ShippingStatusMapper()),
             'ensureStatusMessagePropertyExists',
             [$statusResponse]
         );
@@ -755,7 +755,7 @@ class StatusMapperTest extends AbstractUnitTest {
     public function testEnsureStatusMessagePropertyExistsWithout() {
         $statusResponse      = (object)[];
         $statusResponseAfter = $this->runProtectedMethod(
-            (new StatusMapper()),
+            (new ShippingStatusMapper()),
             'ensureStatusMessagePropertyExists',
             [$statusResponse]
         );
@@ -765,7 +765,7 @@ class StatusMapperTest extends AbstractUnitTest {
 
     /**
      * @param string                  $statusMessage
-     * @param Status\AbstractStatus[] $expectedStatusClass
+     * @param \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\AbstractStatus[] $expectedStatusClass
      *
      * @dataProvider providerGetStatusClassByMessage
      *
@@ -773,7 +773,7 @@ class StatusMapperTest extends AbstractUnitTest {
      */
     public function testGetStatusClassByMessage($statusMessage, $expectedStatusClass) {
         $statusClass = $this->runProtectedMethod(
-            (new StatusMapper()),
+            (new ShippingStatusMapper()),
             'getStatusClassByMessage',
             [$statusMessage]
         );
@@ -783,15 +783,15 @@ class StatusMapperTest extends AbstractUnitTest {
 
     /**
      * @param object|object[]         $statusResponse
-     * @param Status\AbstractStatus[] $expectedStatusObjects
+     * @param \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\AbstractStatus[] $expectedStatusObjects
      *
      * @dataProvider providerStatusObjectsWithMapData
      */
     public function testGetStatusObjectsWithMapData($statusResponse, $expectedStatusObjects) {
-        $statusObjects = StatusMapper::getStatusObjects($statusResponse, MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
+        $statusObjects = ShippingStatusMapper::getStatusObjects($statusResponse, MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         foreach ($statusObjects as $statusObject):
-            $this->assertInstanceOf(Status\AbstractStatus::class, $statusObject);
+            $this->assertInstanceOf(\ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\AbstractStatus::class, $statusObject);
         endforeach;
 
         $this->assertEquals($expectedStatusObjects, $statusObjects);
@@ -799,17 +799,17 @@ class StatusMapperTest extends AbstractUnitTest {
 
     /**
      * @param object|object[]         $statusResponse
-     * @param Status\AbstractStatus[] $expectedStatusObjects
+     * @param \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\AbstractStatus[] $expectedStatusObjects
      *
      * @dataProvider providerMultipleStatusResponsesToStatusObjects
      * @dataProvider providerSingleStatusResponseToStatusObject
      * @dataProvider providerSingleStatusResponseToStatusObjects
      */
     public function testGetStatusObjectsWithValidData($statusResponse, $expectedStatusObjects) {
-        $statusObjects = StatusMapper::getStatusObjects($statusResponse, MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
+        $statusObjects = ShippingStatusMapper::getStatusObjects($statusResponse, MultiClient::LANGUAGE_LOCALE_GERMAN_DE);
 
         foreach ($statusObjects as $statusObject):
-            $this->assertInstanceOf(Status\AbstractStatus::class, $statusObject);
+            $this->assertInstanceOf(\ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\AbstractStatus::class, $statusObject);
         endforeach;
 
         $this->assertEquals($expectedStatusObjects, $statusObjects);
@@ -821,7 +821,7 @@ class StatusMapperTest extends AbstractUnitTest {
     public function testHasMultipleStatusClasses() {
         $statusClasses            = [];
         $hasMultipleStatusClasses = $this->runProtectedMethod(
-            (new StatusMapper()),
+            (new ShippingStatusMapper()),
             'hasMultipleStatusClasses',
             [$statusClasses]
         );
@@ -830,7 +830,7 @@ class StatusMapperTest extends AbstractUnitTest {
 
         $statusClasses            = ['test'];
         $hasMultipleStatusClasses = $this->runProtectedMethod(
-            (new StatusMapper()),
+            (new ShippingStatusMapper()),
             'hasMultipleStatusClasses',
             [$statusClasses]
         );
@@ -839,7 +839,7 @@ class StatusMapperTest extends AbstractUnitTest {
 
         $statusClasses            = 'test';
         $hasMultipleStatusClasses = $this->runProtectedMethod(
-            (new StatusMapper()),
+            (new ShippingStatusMapper()),
             'hasMultipleStatusClasses',
             [$statusClasses]
         );
@@ -849,7 +849,7 @@ class StatusMapperTest extends AbstractUnitTest {
 
     /**
      * @param object|object[]         $statusResponse
-     * @param Status\AbstractStatus[] $expectedStatusObjects
+     * @param \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\AbstractStatus[] $expectedStatusObjects
      *
      * @dataProvider providerMultipleStatusResponsesToStatusObjects
      *
@@ -857,13 +857,13 @@ class StatusMapperTest extends AbstractUnitTest {
      */
     public function testMapMultipleStatusMessagesToStatusObjects($statusResponse, $expectedStatusObjects) {
         $statusObjects = $this->runProtectedMethod(
-            (new StatusMapper()),
+            (new ShippingStatusMapper()),
             'mapMultipleStatusMessagesToStatusObjects',
             [$statusResponse, MultiClient::LANGUAGE_LOCALE_GERMAN_DE]
         );
 
         foreach ($statusObjects as $statusObject):
-            $this->assertInstanceOf(Status\AbstractStatus::class, $statusObject);
+            $this->assertInstanceOf(\ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\AbstractStatus::class, $statusObject);
         endforeach;
 
         $this->assertEquals($expectedStatusObjects, $statusObjects);
@@ -871,7 +871,7 @@ class StatusMapperTest extends AbstractUnitTest {
 
     /**
      * @param object|object[]         $statusResponse
-     * @param Status\AbstractStatus[] $expectedStatusObjects
+     * @param \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\AbstractStatus[] $expectedStatusObjects
      *
      * @dataProvider providerSingleStatusResponseToStatusObject
      *
@@ -879,7 +879,7 @@ class StatusMapperTest extends AbstractUnitTest {
      */
     public function testMapStatusMessageToStatusObjects($statusResponse, $expectedStatusObjects) {
         $statusObjects = $this->runProtectedMethod(
-            (new StatusMapper()),
+            (new ShippingStatusMapper()),
             'mapStatusMessageToStatusObjects',
             [
                 $statusResponse->statusMessage,
@@ -889,7 +889,7 @@ class StatusMapperTest extends AbstractUnitTest {
         );
 
         foreach ($statusObjects as $statusObject):
-            $this->assertInstanceOf(Status\AbstractStatus::class, $statusObject);
+            $this->assertInstanceOf(\ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\AbstractStatus::class, $statusObject);
         endforeach;
 
         $this->assertEquals($expectedStatusObjects, $statusObjects);
@@ -897,14 +897,14 @@ class StatusMapperTest extends AbstractUnitTest {
 
     /**
      * @param object|object[]         $statusResponse
-     * @param Status\AbstractStatus[] $expectedStatusObjects
+     * @param \ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\AbstractStatus[] $expectedStatusObjects
      *
      * @dataProvider providerStatusObjectsWithMapData
      * @throws \ReflectionException
      */
     public function testMapStatusMessageToStatusObjectsWithMapData($statusResponse, $expectedStatusObjects) {
         $statusObjects = $this->runProtectedMethod(
-            (new StatusMapper()),
+            (new ShippingStatusMapper()),
             'mapStatusMessageToStatusObjects',
             [
                 $statusResponse->statusMessage,
@@ -914,7 +914,7 @@ class StatusMapperTest extends AbstractUnitTest {
         );
 
         foreach ($statusObjects as $statusObject):
-            $this->assertInstanceOf(Status\AbstractStatus::class, $statusObject);
+            $this->assertInstanceOf(\ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\AbstractStatus::class, $statusObject);
         endforeach;
 
         $this->assertEquals($expectedStatusObjects, $statusObjects);
@@ -930,7 +930,7 @@ class StatusMapperTest extends AbstractUnitTest {
      */
     public function testSanitizeStatusMessage($statusMessage, $expectedSanitizedStatusMessage) {
         $sanitizedStatusMessage = $this->runProtectedMethod(
-            (new StatusMapper()),
+            (new ShippingStatusMapper()),
             'sanitizeStatusMessage',
             [$statusMessage]
         );

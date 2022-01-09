@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class UnknownProduct
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class UnknownProduct extends HardValidationError {
-
-    protected $messageEnglish = 'The specified product is unknown.';
-
-    protected $messageGerman  = 'Das angegebene Produkt ist nicht bekannt.';
-
-}
+class UnknownProduct extends Shipping\Status\UnknownProduct {}

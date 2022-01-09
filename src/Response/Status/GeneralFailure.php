@@ -2,18 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class GeneralFailure
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class GeneralFailure extends AbstractStatus {
-
-    public    $code           = 100;
-
-    protected $messageEnglish = 'A general failure has occurred.';
-
-    protected $messageGerman  = 'Es ist ein allgemeiner Fehler aufgetreten.';
-
-    public    $text           = 'General Failure';
-
-}
+class GeneralFailure extends Shipping\Status\GeneralFailure {}

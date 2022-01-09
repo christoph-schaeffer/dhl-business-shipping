@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class LengthToLong
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class LengthToLong extends HardValidationError {
-
-    protected $messageEnglish = 'The entered length is to long.';
-
-    protected $messageGerman  = 'Die angegebene Länge ist zu groß.';
-
-}
+class LengthToLong extends Shipping\Status\LengthToLong {}

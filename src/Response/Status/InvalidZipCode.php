@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class InvalidZipCode
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class InvalidZipCode extends HardValidationError {
-
-    protected $messageEnglish = 'Invalid postal code specified.';
-
-    protected $messageGerman  = 'Es handelt sich um eine ungültige Postleitzahl.';
-
-}
+class InvalidZipCode extends Shipping\Status\InvalidZipCode {}

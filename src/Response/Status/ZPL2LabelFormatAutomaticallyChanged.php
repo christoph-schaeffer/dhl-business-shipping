@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class ZPL2LabelFormatAutomaticallyChanged
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class ZPL2LabelFormatAutomaticallyChanged extends WeakValidationError {
-
-    protected $messageEnglish = 'The ZPL2 format was automatically changed to 103 x 199 mm.';
-
-    protected $messageGerman  = 'Das ZPL2-Format wurde automatisch auf 103 x 199 mm geändert.';
-
-}
+class ZPL2LabelFormatAutomaticallyChanged extends Shipping\Status\ZPL2LabelFormatAutomaticallyChanged {}

@@ -2,18 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class SystemOverload
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class SystemOverload extends QoSFailure {
-
-    public    $code           = 21;
-
-    protected $messageEnglish = 'The system is currently unavailable due to overload.';
-
-    protected $messageGerman  = 'Das System ist wegen Überlastung zur zeit nicht erreichbar.';
-
-    public    $text           = 'System overload';
-
-}
+class SystemOverload extends Shipping\Status\SystemOverload {}

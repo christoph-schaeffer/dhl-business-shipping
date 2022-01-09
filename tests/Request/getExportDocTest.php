@@ -2,7 +2,6 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Request;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Request\getExportDoc;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
 use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
 
@@ -16,7 +15,7 @@ class getExportDocTest extends AbstractUnitTest {
      *
      */
     public function testConstructEmpty() {
-        $request = new getExportDoc([]);
+        $request = new \ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\getExportDoc([]);
 
         $this->assertInstanceOf(Version::class, $request->Version);
         $this->assertNotEmpty($request->Version);
@@ -28,7 +27,7 @@ class getExportDocTest extends AbstractUnitTest {
      *
      */
     public function testConstructMultiple() {
-        $request = new getExportDoc(['tester1', 'tester2', 'tester3']);
+        $request = new \ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\getExportDoc(['tester1', 'tester2', 'tester3']);
 
         $this->assertInstanceOf(Version::class, $request->Version);
         $this->assertNotEmpty($request->Version);
@@ -44,7 +43,7 @@ class getExportDocTest extends AbstractUnitTest {
      *
      */
     public function testConstructSingle() {
-        $request = new getExportDoc(['tester']);
+        $request = new \ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\getExportDoc(['tester']);
 
         $this->assertInstanceOf(Version::class, $request->Version);
         $this->assertNotEmpty($request->Version);

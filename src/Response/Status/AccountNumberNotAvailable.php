@@ -2,15 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
 
 /**
- * Class AccountNumberNotAvailable
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ *
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class AccountNumberNotAvailable extends HardValidationError {
-
-    protected $messageEnglish = 'The specified account number is not available.';
-
-    protected $messageGerman  = 'Die ausgewählte Abrechnungsnummer steht nicht zur Verfügung.';
-
-}
+class AccountNumberNotAvailable extends Shipping\Status\AccountNumberNotAvailable {}

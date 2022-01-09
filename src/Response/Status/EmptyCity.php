@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class EmptyCity
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class EmptyCity extends HardValidationError {
-
-    protected $messageEnglish = 'Please enter a city.';
-
-    protected $messageGerman  = 'Bitte geben Sie einen Ort an.';
-
-}
+class EmptyCity extends Shipping\Status\EmptyCity {}

@@ -2,7 +2,7 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Request;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Request\doManifest;
+use ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\doManifest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
 use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
 
@@ -16,7 +16,7 @@ class doManifestTest extends AbstractUnitTest {
      *
      */
     public function testConstructEmpty() {
-        $request = new doManifest([]);
+        $request = new \ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\doManifest([]);
 
         $this->assertInstanceOf(Version::class, $request->Version);
         $this->assertNotEmpty($request->Version);
@@ -44,7 +44,7 @@ class doManifestTest extends AbstractUnitTest {
      *
      */
     public function testConstructSingle() {
-        $request = new doManifest(['tester']);
+        $request = new \ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\doManifest(['tester']);
 
         $this->assertInstanceOf(Version::class, $request->Version);
         $this->assertNotEmpty($request->Version);

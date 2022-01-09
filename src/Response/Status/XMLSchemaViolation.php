@@ -2,18 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class XMLSchemaViolation
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class XMLSchemaViolation extends RequestProcessingFailure {
-
-    public    $code           = 12;
-
-    protected $messageEnglish = 'The XML does not correspond to the referenced schema.';
-
-    protected $messageGerman  = 'Das XML entspricht nicht dem referenzierten  Schema.';
-
-    public    $text           = 'XML schema violation';
-
-}
+class XMLSchemaViolation extends Shipping\Status\XMLSchemaViolation {}

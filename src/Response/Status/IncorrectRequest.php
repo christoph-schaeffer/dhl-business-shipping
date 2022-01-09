@@ -2,18 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class IncorrectRequest
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ *
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class IncorrectRequest extends GeneralFailure {
-
-    public    $code           = 120;
-
-    protected $messageEnglish = 'The information in the request is incorrect.';
-
-    protected $messageGerman  = 'Die Angaben im Request sind inkorrekt.';
-
-    public    $text           = 'Incorrect request';
-
-}
+class IncorrectRequest extends Shipping\Status\IncorrectRequest {}

@@ -3,6 +3,7 @@
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Protocol;
 
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractTrackingRequest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Tracking\RequestData;
 use ChristophSchaeffer\Dhl\BusinessShipping\Utility\XmlParser;
 
@@ -18,29 +19,39 @@ class Rest
     const PRODUCTION_URL = 'https://cig.dhl.de/services/production/rest/sendungsverfolgung';
     const SANDBOX_URL = 'https://cig.dhl.de/services/sandbox/rest/sendungsverfolgung';
 
+    /** @var string */
     private $appID;
+    /** @var string */
     private $apiToken;
+    /** @var string */
     private $zTToken;
+    /** @var string */
     private $password;
+    /** @var bool */
     private $isSandbox;
+    /** @var string */
     private $languageLocaleAlpha2;
+    /** @var string */
+    private $lastXML;
 
     /**
-     * @param RequestData $requestData
+     * @param AbstractTrackingRequest $request
      * @param object[] $contentObjects
      */
-    public function callFunction($requestData, $contentObjects = [])
+    public function callFunction($request)
     {
-        $requestData = $this->fillRequestData($requestData);
+        $request = $this->fillRequestData($request);
 
         $xml = '<?xml version="1.0" encoding="UTF-8" ?>';
         $xmlContent = '';
-        foreach ($contentObjects as $contentObject) {
-            $xmlContent .= XmlParser::parseToXml($contentObject);
+        if(isset($request->contentObjects)) {
+            foreach ($request->contentObjects as $contentObject) {
+                $xmlContent .= XmlParser::parseToXml($contentObject);
+            }
         }
-        $xml .= XmlParser::parseToXml($requestData, $xmlContent);
 
-        var_dump($xml);
+        $xml .= XmlParser::parseToXml($request, $xmlContent);
+
         return $this->sendCurl($xml);
     }
 
@@ -63,12 +74,20 @@ class Rest
     }
 
     /**
+     * @return string
+     */
+    public function getLastRestXMLRequest() {
+        return $this->lastXML;
+    }
+
+    /**
      * @param string $xml
      */
     private function sendCurl($xml) {
+        $this->lastXML = $xml;
+
         $curl = curl_init($this->isSandbox ? self::SANDBOX_URL : self::PRODUCTION_URL);
         curl_setopt ($curl, CURLOPT_HTTPHEADER, ['Content-Type: text/xml']);
-        curl_setopt($curl, CURLOPT_HEADER, true);
         curl_setopt($curl, CURLOPT_USERPWD, $this->appID . ":" . $this->apiToken);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $xml);
@@ -81,26 +100,44 @@ class Rest
             throw new \Exception(curl_error($curl));
         }
 
-        var_dump($response);
+        $this->handleHttpCodes(curl_getinfo($curl, CURLINFO_HTTP_CODE));
 
         curl_close($curl);
 
-        return 'asdf'; //@TODO implement curl request
+        return XmlParser::parseFromXml($response);
+    }
+
+    private function handleHttpCodes($httpCode) {
+        switch($httpCode) {
+            case 200:
+                return;
+            case 401:
+                throw new \Exception('Unauthorized - Please check your tracking client credentials');
+            case 403:
+                throw new \Exception('Forbidden - Please check if you supplied enough information in your request. This is not an authorization error.');
+            case 500:
+                throw new \Exception('The API Endpoint had an internal server error. Please check your input data');
+            default:
+                throw new \Exception("Unexcepted HTTP Code - $httpCode");
+        }
     }
 
     /**
-     * @param RequestData $requestData
+     * @param AbstractTrackingRequest $request
      *
-     * @return RequestData
+     * @return AbstractTrackingRequest
      */
-    private function fillRequestData($requestData)
+    private function fillRequestData($request)
     {
-        $requestData->appname = empty($requestData->appname) ? $this->zTToken : $requestData->appname;
-        $requestData->password = empty($requestData->password) ? $this->password : $requestData->password;
-        $requestData->languageCode = empty($requestData->languageCode) ? $this->languageLocaleAlpha2 : $requestData->languageCode;
-        $requestData->languageCode = strtolower($requestData->languageCode);
+        $request->request = $request->getRequestString();
 
-        return $requestData;
+        $request->appname = empty($request->appname) ? $this->zTToken : $request->appname;
+        $request->password = empty($request->password) ? $this->password : $request->password;
+
+        $request->languageCode = empty($request->languageCode) ? $this->languageLocaleAlpha2 : $request->languageCode;
+        $request->languageCode = strtolower($request->languageCode);
+
+        return $request;
     }
 
 }

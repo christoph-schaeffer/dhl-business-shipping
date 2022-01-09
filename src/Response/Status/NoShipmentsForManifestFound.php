@@ -2,18 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class NoShipmentsForManifestFound
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class NoShipmentsForManifestFound extends RequestProcessingFailure {
-
-    public    $code           = 2000;
-
-    protected $messageEnglish = 'There are no shipments for the selected account number and day.';
-
-    protected $messageGerman  = 'Es sind keine Sendungen für die gewählte Abrechnungsnummer und den Tag.';
-
-    public    $text           = 'No shipments for manifest found';
-
-}
+class NoShipmentsForManifestFound extends Shipping\Status\NoShipmentsForManifestFound {}

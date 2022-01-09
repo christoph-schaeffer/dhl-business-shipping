@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class EmptyPreferredTime
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class EmptyPreferredTime extends HardValidationError {
-
-    protected $messageEnglish = 'Please specify a time frame.';
-
-    protected $messageGerman  = 'Bitte wählen Sie ein Zeitfenster.';
-
-}
+class EmptyPreferredTime extends Shipping\Status\EmptyPreferredTime {}

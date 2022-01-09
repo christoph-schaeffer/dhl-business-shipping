@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class CityNotKnownToZipCode
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class CityNotKnownToZipCode extends WeakValidationError {
-
-    protected $messageEnglish = 'The city is not known to this postcode.';
-
-    protected $messageGerman  = 'Der Ort ist zu dieser PLZ nicht bekannt.';
-
-}
+class CityNotKnownToZipCode extends Shipping\Status\CityNotKnownToZipCode {}

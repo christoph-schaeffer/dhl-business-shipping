@@ -2,7 +2,7 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Protocol;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractRequest;
+use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractShippingRequest;
 
 /**
  * Class SoapClient
@@ -43,13 +43,13 @@ class Soap extends \SoapClient {
 
     /**
      * @param string          $function
-     * @param AbstractRequest $request
+     * @param AbstractShippingRequest $request
      *
      * @return Object //soapResponse
      *
      * @codeCoverageIgnore
      */
-    public function callSoapFunction($function, AbstractRequest $request) {
+    public function callSoapFunction($function, AbstractShippingRequest $request) {
         return $this->$function($request);
     }
 

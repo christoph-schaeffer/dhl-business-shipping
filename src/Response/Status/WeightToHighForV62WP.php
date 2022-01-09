@@ -2,13 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class WeightToHighForV62WP
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class WeightToHighForV62WP extends HardValidationError {
-
-    protected $messageEnglish = 'Maximum permissible weight for merchandise mail: 1 kg. Shipments up to max. 31.5 kg can be ordered as DHL Paket';
-
-    protected $messageGerman  = 'Maximal zulässiges Gewicht für Warenpost: 1 kg. Sendungen bis max. 31,5 kg können als DHL Paket beauftragt werden';
-}
+class WeightToHighForV62WP extends Shipping\Status\WeightToHighForV62WP {}

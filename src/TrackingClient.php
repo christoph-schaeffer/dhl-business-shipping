@@ -5,9 +5,9 @@ namespace ChristophSchaeffer\Dhl\BusinessShipping;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\Credentials\TrackingClientCredentials;
 use ChristophSchaeffer\Dhl\BusinessShipping\Protocol\Rest;
-use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Tracking\PieceData;
-use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Tracking\RequestData;
+use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractTrackingRequest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Utility\CountryCodeConversion;
+use ChristophSchaeffer\Dhl\BusinessShipping\Utility\Sanitizer;
 
 /**
  * Class ShippingClient
@@ -60,13 +60,41 @@ class TrackingClient
     }
 
     /**
-     * @param PieceData[] $pieces
+     * @param Request\Tracking\getStatusForPublicUser $request
      *
-     * @return string //@TODO need response objects
+     * @return Response\Tracking\getStatusForPublicUser
      */
-    public function getStatusForPublicUser($pieces) {
-        $requestData = new RequestData();
-        $requestData->request = RequestData::REQUEST_GET_STATUS_FOR_PUBLIC_USER;
-        return $this->rest->callFunction($requestData, $pieces);
+    public function getStatusForPublicUser(Request\Tracking\getStatusForPublicUser $request) {
+        $request = $this->sanitizeRequest($request);
+        $restResponse = $this->rest->callFunction($request);
+
+        return new Response\Tracking\getStatusForPublicUser($request, $restResponse, $this->rest->getLastRestXMLRequest(), $this->languageLocaleAlpha2);
     }
+
+    /**
+     * @param Request\Tracking\getPieceDetail $request
+     *
+     * @return Response\Tracking\getPieceDetail
+     */
+    public function getPieceDetail(Request\Tracking\getPieceDetail $request) {
+        $request = $this->sanitizeRequest($request);
+        $restResponse = $this->rest->callFunction($request);
+
+        return new Response\Tracking\getPieceDetail($request, $restResponse, $this->rest->getLastRestXMLRequest(), $this->languageLocaleAlpha2);
+    }
+
+    /**
+     * @param AbstractTrackingRequest $request
+     *
+     * @return AbstractTrackingRequest
+     *
+     * This is an internal function to sanitize and convert data objects for REST
+     */
+    private function sanitizeRequest(AbstractTrackingRequest $request) {
+        Sanitizer::sanitizeObjectRecursive($request);
+        Sanitizer::convertFloatToStringObjectRecursive($request);
+
+        return $request;
+    }
+
 }

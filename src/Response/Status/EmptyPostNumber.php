@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class EmptyPostNumber
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class EmptyPostNumber extends HardValidationError {
-
-    protected $messageEnglish = 'Please enter a post number.';
-
-    protected $messageGerman  = 'Bitte geben Sie eine Postnummer an.';
-
-}
+class EmptyPostNumber extends Shipping\Status\EmptyPostNumber {}

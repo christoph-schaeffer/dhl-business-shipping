@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class WeightToLow
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class WeightToLow extends HardValidationError {
-
-    protected $messageEnglish = 'The weight you have entered is to low.';
-
-    protected $messageGerman  = 'Die Gewichtsangabe ist zu gering.';
-
-}
+class WeightToLow extends Shipping\Status\WeightToLow {}

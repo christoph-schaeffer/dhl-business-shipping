@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class InvalidVisualCheckOfAgeType
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class InvalidVisualCheckOfAgeType extends HardValidationError {
-
-    protected $messageEnglish = 'The selected type of visual age test is not valid. Possible values: A16 or A18.';
-
-    protected $messageGerman  = 'Der gewählte Typ der Alterssichtprüfung ist nicht gültig. Mögliche Werte: A16 oder A18.';
-
-}
+class InvalidVisualCheckOfAgeType extends Shipping\Status\InvalidVisualCheckOfAgeType {}

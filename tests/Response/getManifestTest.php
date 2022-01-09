@@ -3,10 +3,10 @@
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Response;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
+use ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\getManifest as getManifestRequest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\getManifest as getManifestResponse;
-use ChristophSchaeffer\Dhl\BusinessShipping\Request\getManifest as getManifestRequest;
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\Status\Success;
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\getManifest as getManifestResponse;
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\Success;
 use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
 
 /**

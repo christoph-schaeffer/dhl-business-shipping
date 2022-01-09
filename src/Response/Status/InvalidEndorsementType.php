@@ -2,15 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class InvalidEndorsementType
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class InvalidEndorsementType extends HardValidationError
-{
-
-    protected $messageEnglish = 'The selected type of advance directive is not valid.';
-
-    protected $messageGerman = 'Die ausgewählte Art der Vorausverfügung ist nicht gültig.';
-
-}
+class InvalidEndorsementType extends Shipping\Status\InvalidEndorsementType {}

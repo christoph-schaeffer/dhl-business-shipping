@@ -2,7 +2,7 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Request;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractRequest;
+use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractShippingRequest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
 use ChristophSchaeffer\Dhl\BusinessShipping\ShippingClient;
 use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
@@ -17,7 +17,7 @@ class AbstractRequestTest extends AbstractUnitTest {
      *
      */
     public function testConstruct() {
-        $abstractRequestMock = $this->getMockForAbstractClass(AbstractRequest::class);
+        $abstractRequestMock = $this->getMockForAbstractClass(AbstractShippingRequest::class);
 
         $this->assertInstanceOf(Version::class, $abstractRequestMock->Version);
         $this->assertEquals(ShippingClient::MAJOR_RELEASE, $abstractRequestMock->Version->majorRelease);

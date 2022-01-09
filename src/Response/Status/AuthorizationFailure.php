@@ -2,18 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class AuthorizationFailure
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class AuthorizationFailure extends GeneralFailure {
-
-    public    $code           = 110;
-
-    protected $messageEnglish = 'An authorization error has occurred.';
-
-    protected $messageGerman  = 'Es ist ein Authorisierungsfehler aufgetreten.';
-
-    public    $text           = 'Authorization failure';
-
-}
+class AuthorizationFailure extends Shipping\Status\AuthorizationFailure {}

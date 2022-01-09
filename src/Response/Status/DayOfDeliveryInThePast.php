@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class DayOfDeliverInThePast
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class DayOfDeliveryInThePast extends HardValidationError {
-
-    protected $messageEnglish = 'The delivery date must be at least today.';
-
-    protected $messageGerman  = 'Das Zustelldatum muss mindestens heute sein.';
-
-}
+class DayOfDeliveryInThePast extends Shipping\Status\DayOfDeliveryInThePast {}

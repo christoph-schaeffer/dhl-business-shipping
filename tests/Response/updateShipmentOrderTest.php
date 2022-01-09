@@ -3,12 +3,12 @@
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Response;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
+use ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\updateShipmentOrder as updateShipmentOrderRequest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\ShipmentOrder;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\updateShipmentOrder as updateShipmentOrderResponse;
-use ChristophSchaeffer\Dhl\BusinessShipping\Request\updateShipmentOrder as updateShipmentOrderRequest;
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\Data\LabelData;
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\Status\Success;
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Data\LabelData;
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\Success;
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\updateShipmentOrder as updateShipmentOrderResponse;
 use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
 
 /**

@@ -3,11 +3,11 @@
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Response;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
+use ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\deleteShipmentOrder as deleteShipmentOrderRequest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\deleteShipmentOrder as deleteShipmentOrderResponse;
-use ChristophSchaeffer\Dhl\BusinessShipping\Request\deleteShipmentOrder as deleteShipmentOrderRequest;
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\State\DeletionState;
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\Status\Success;
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\deleteShipmentOrder as deleteShipmentOrderResponse;
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\State\DeletionState;
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\Success;
 use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
 
 /**

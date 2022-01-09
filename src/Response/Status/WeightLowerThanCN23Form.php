@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class WeightLowerThanCN23Form
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class WeightLowerThanCN23Form extends HardValidationError {
-
-    protected $messageEnglish = 'The weight you have entered is lower than specified in the CN23-Form.';
-
-    protected $messageGerman  = 'Die Gewichtsangabe ist kleiner als im CN23-Formular angegeben wurde.';
-
-}
+class WeightLowerThanCN23Form extends Shipping\Status\WeightLowerThanCN23Form {}

@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class EmptyZipCode
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class EmptyZipCode extends HardValidationError {
-
-    protected $messageEnglish = 'Please enter a postal code.';
-
-    protected $messageGerman  = 'Bitte geben Sie eine Postleitzahl an.';
-
-}
+class EmptyZipCode extends Shipping\Status\EmptyZipCode {}

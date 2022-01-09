@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class EmptyProduct
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class EmptyProduct extends HardValidationError {
-
-    protected $messageEnglish = 'Please enter a product.';
-
-    protected $messageGerman  = 'Bitte geben Sie ein Produkt an.';
-
-}
+class EmptyProduct extends Shipping\Status\EmptyProduct {}

@@ -2,20 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Request;
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
 
 /**
- * Class getVersion
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response
+ * @deprecated
  *
- * With this operation the latest version available on the web can be queried.
+ * this class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\getVersion
  */
-class getVersion extends AbstractResponse {
-
-    /**
-     * @var Request\getVersion
-     *
-     * The request object of this response.
-     */
-    public $request;
-}
+class getVersion extends Shipping\getVersion {}

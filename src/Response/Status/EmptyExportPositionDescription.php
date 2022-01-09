@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class EmptyExportPositionDescription
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class EmptyExportPositionDescription extends HardValidationError {
-
-    protected $messageEnglish = 'Please enter a description.';
-
-    protected $messageGerman  = 'Bitte geben Sie die Beschreibung an.';
-
-}
+class EmptyExportPositionDescription extends Shipping\Status\EmptyExportPositionDescription {}

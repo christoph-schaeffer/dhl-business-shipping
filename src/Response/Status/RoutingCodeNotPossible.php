@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class RoutingCodeNotPossible
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class RoutingCodeNotPossible extends WeakValidationError {
-
-    protected $messageEnglish = 'The shipment is not routing codable.';
-
-    protected $messageGerman  = 'Die Sendung ist nicht leitcodierbar.';
-
-}
+class RoutingCodeNotPossible extends Shipping\Status\RoutingCodeNotPossible {}

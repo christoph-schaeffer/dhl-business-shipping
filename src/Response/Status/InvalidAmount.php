@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class InvalidAmount
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class InvalidAmount extends HardValidationError {
-
-    protected $messageEnglish = 'Please enter a valid amount.';
-
-    protected $messageGerman  = 'Bitte geben Sie einen gültigen Betrag an.';
-
-}
+class InvalidAmount extends Shipping\Status\InvalidAmount {}

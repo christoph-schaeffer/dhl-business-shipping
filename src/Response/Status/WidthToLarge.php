@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class WidthToLarge
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class WidthToLarge extends HardValidationError {
-
-    protected $messageEnglish = 'The entered width is to large.';
-
-    protected $messageGerman  = 'Die angegebene Breite ist zu groß.';
-
-}
+class WidthToLarge extends Shipping\Status\WidthToLarge {}

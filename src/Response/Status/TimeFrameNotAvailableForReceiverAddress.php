@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class TimeFrameNotAvailableForReceiverAddress
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class TimeFrameNotAvailableForReceiverAddress extends HardValidationError {
-
-    protected $messageEnglish = 'The time frame you have specified is not available for the given receiver address.';
-
-    protected $messageGerman  = 'Das von Ihnen ausgewählte Zustellzeitfenster steht leider für diese Empfängeradresse nicht zur Verfügung.';
-
-}
+class TimeFrameNotAvailableForReceiverAddress extends Shipping\Status\TimeFrameNotAvailableForReceiverAddress {}

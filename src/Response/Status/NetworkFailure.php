@@ -2,18 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class NetworkFailure
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class NetworkFailure extends GeneralFailure {
-
-    public    $code           = 180;
-
-    protected $messageEnglish = 'Network errors in the context of web service processing.';
-
-    protected $messageGerman  = 'Netzwerkfehler im Kontext der Webservice Verarbeitung.';
-
-    public    $text           = 'Network failure';
-
-}
+class NetworkFailure extends Shipping\Status\NetworkFailure {}

@@ -2,18 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class ServiceTemporaryNotAvailable
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class ServiceTemporaryNotAvailable extends AbstractStatus {
-
-    public    $code           = 500;
-
-    protected $messageEnglish = 'Service temporary not available.';
-
-    protected $messageGerman  = 'Der service steht temporär nicht zur verfügung.';
-
-    public    $text           = 'Service temporary not available';
-
-}
+class ServiceTemporaryNotAvailable extends Shipping\Status\ServiceTemporaryNotAvailable {}

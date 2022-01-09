@@ -2,15 +2,12 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 
 /**
- * Class InvalidShipmentDate
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class InvalidShipmentDate extends HardValidationError {
-
-    protected $messageEnglish = 'Please enter a valid shipment date.';
-
-    protected $messageGerman  = 'Bitte geben Sie ein gültiges Sendungsdatum an.';
-
-}
+class InvalidShipmentDate extends Shipping\Status\InvalidShipmentDate {}

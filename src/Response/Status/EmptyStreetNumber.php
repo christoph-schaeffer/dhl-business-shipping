@@ -2,15 +2,12 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 
 /**
- * Class EmptyStreetNumber
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class EmptyStreetNumber extends HardValidationError {
-
-    protected $messageEnglish = 'Please enter a house number.';
-
-    protected $messageGerman  = 'Bitte geben Sie eine Hausnummer an.';
-
-}
+class EmptyStreetNumber extends Shipping\Status\EmptyStreetNumber {}

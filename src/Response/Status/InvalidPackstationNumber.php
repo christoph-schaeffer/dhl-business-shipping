@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class InvalidPackstationNumber
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class InvalidPackstationNumber extends WeakValidationError {
-
-    protected $messageEnglish = 'The Packstation number you have entered is not known, yet. Please check the Packstation number and the entered post code. In some cases it may be that a new Packstation is not yet known. You can still generate a route coded shipment label.';
-
-    protected $messageGerman  = 'Packstationsnummern liegen zwischen 101 und 999. Bitte setzen Sie sich mit dem Empfänger in Verbindung, um eine korrekte Nummer zu erfragen.';
-
-}
+class InvalidPackstationNumber extends Shipping\Status\InvalidPackstationNumber {}

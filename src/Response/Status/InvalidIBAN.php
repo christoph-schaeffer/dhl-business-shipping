@@ -2,15 +2,12 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 
 /**
- * Class InvalidIBAN
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class InvalidIBAN extends HardValidationError {
-
-    protected $messageEnglish = 'The entered IBAN is invalid.';
-
-    protected $messageGerman  = 'Die angegebene IBAN ist nicht gültig.';
-
-}
+class InvalidIBAN extends Shipping\Status\InvalidIBAN {}

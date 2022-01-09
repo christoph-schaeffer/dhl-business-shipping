@@ -3,11 +3,11 @@
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Response;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
+use ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\validateShipment as validateShipmentRequest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\validateShipment as validateShipmentResponse;
-use ChristophSchaeffer\Dhl\BusinessShipping\Request\validateShipment as validateShipmentRequest;
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\State\ValidationState;
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\Status\Success;
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\State\ValidationState;
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\Success;
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\validateShipment as validateShipmentResponse;
 use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
 
 /**

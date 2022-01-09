@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class EmptyName1
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class EmptyName1 extends HardValidationError {
-
-    protected $messageEnglish = 'Please enter name 1.';
-
-    protected $messageGerman  = 'Bitte geben Sie Name 1 an.';
-
-}
+class EmptyName1 extends Shipping\Status\EmptyName1 {}

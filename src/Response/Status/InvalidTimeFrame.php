@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class InvalidTimeFrame
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class InvalidTimeFrame extends HardValidationError {
-
-    protected $messageEnglish = 'The given time frame is not valid';
-
-    protected $messageGerman  = 'Das gewählte Zeitfenster ist nicht gültig.';
-
-}
+class InvalidTimeFrame extends Shipping\Status\InvalidTimeFrame {}

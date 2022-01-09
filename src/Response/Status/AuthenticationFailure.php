@@ -2,18 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class AuthenticationFailure
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ *
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class AuthenticationFailure extends AbstractStatus {
-
-    public    $code           = 1001;
-
-    protected $messageEnglish = 'The user of the web service could not be authenticated.';
-
-    protected $messageGerman  = 'Der Nutzer des Webservice konnte nicht authentifiziert werden.';
-
-    public    $text           = 'Authentication Failure';
-
-}
+class AuthenticationFailure extends Shipping\Status\AuthenticationFailure {}

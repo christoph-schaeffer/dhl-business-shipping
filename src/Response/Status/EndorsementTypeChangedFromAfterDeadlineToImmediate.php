@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class EndorsementTypeChangedFromAfterDeadlineToImmediate
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class EndorsementTypeChangedFromAfterDeadlineToImmediate extends WeakValidationError {
-
-    protected $messageEnglish = 'Please note that the "AFTER_DEADLINE (return to sender after deadline)" pre-delivery option will no longer apply. Your shipment will receive the option "IMMEDIATE (immediate return to sender)".';
-
-    protected $messageGerman  = 'Bitte beachten Sie, dass die Vorausverfügungsoption "AFTER_DEADLINE (Rücksendung an den Absender nach Ablauf der Frist)" entfällt. Ihre Sendung erhält die Option "IMMEDIATE (sofortige Rücksendung an den Absender)".';
-
-}
+class EndorsementTypeChangedFromAfterDeadlineToImmediate extends Shipping\Status\EndorsementTypeChangedFromAfterDeadlineToImmediate {}

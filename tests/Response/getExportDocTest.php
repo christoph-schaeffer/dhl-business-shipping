@@ -3,11 +3,11 @@
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Response;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
+use ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\getExportDoc as getExportDocRequest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\getExportDoc as getExportDocResponse;
-use ChristophSchaeffer\Dhl\BusinessShipping\Request\getExportDoc as getExportDocRequest;
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\Data\ExportDocData;
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\Status\Success;
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Data\ExportDocData;
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\getExportDoc as getExportDocResponse;
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\Success;
 use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
 
 /**

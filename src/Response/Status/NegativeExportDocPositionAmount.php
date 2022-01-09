@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class NegativeExportDocPositionAmount
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class NegativeExportDocPositionAmount extends HardValidationError {
-
-    protected $messageEnglish = 'The quantity of an item must be positive. Please note that discounts and payments via voucher are not relevant for customs.';
-
-    protected $messageGerman  = 'Die Menge eines Artikels muss positiv sein. Beachten Sie bitte, dass Rabatte und Bezahlungen über Gutschein nicht zollrelevant sind.';
-
-}
+class NegativeExportDocPositionAmount extends Shipping\Status\NegativeExportDocPositionAmount {}

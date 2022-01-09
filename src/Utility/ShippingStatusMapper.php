@@ -2,7 +2,7 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Utility;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status;
 
 /**
  * Class StatusMapper
@@ -13,7 +13,7 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
  * messages or to add custom error handling.
  * If a status message has not been created yet, it will default to the UnknownError object.
  */
-class StatusMapper {
+class ShippingStatusMapper {
 
     const CODE_MAP = [
         ['from' => 10, 'to' => 10, 'class' => Status\RequestProcessingFailure::class],
@@ -54,9 +54,9 @@ class StatusMapper {
         'weakvalidationerroroccured'                                                     => Status\WeakValidationError::class,
         'dereingegebenewertistzulangundwurdegekrzt'                                      => Status\ValueHasBeenShortened::class,
         'derortistzudieserplznichtbekanntdiesendungistnichtleitcodierbar'                => [
-            Status\CityNotKnownToZipCode::class,
-            Status\RoutingCodeNotPossible::class
-        ],
+                                                                                                Status\CityNotKnownToZipCode::class,
+                                                                                                Status\RoutingCodeNotPossible::class
+                                                                                            ],
         'dieeingegebeneadresseistnichtleitcodierbar'                                     => Status\RoutingCodeNotPossible::class,
         'ashipmentforprintcannotbefound'                                                 => Status\UnknownShipmentNumber::class,
         'dieangegebenesendungsnummerkonntenichtgefundenwerden'                           => Status\UnknownShipmentNumber::class,

@@ -2,7 +2,7 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Request;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Request\createShipmentOrder;
+use ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\createShipmentOrder;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\ShipmentOrder;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
 use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;

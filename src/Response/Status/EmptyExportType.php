@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class EmptyExportType
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class EmptyExportType extends HardValidationError {
-
-    protected $messageEnglish = 'Please specify the type of shipment.';
-
-    protected $messageGerman  = 'Bitte geben Sie die Art der Sendung an.';
-
-}
+class EmptyExportType extends Shipping\Status\EmptyExportType {}

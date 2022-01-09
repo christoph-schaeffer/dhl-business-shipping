@@ -2,18 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class QoSFailure
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class QoSFailure extends AbstractStatus {
-
-    public    $code           = 20;
-
-    protected $messageEnglish = 'Quality of service is not sufficient.';
-
-    protected $messageGerman  = 'Quality of Service nicht ausreichend.';
-
-    public    $text           = 'QoS failure';
-
-}
+class QoSFailure extends Shipping\Status\QoSFailure {}

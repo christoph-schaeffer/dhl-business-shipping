@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class EmptyExportWeight
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ *
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class EmptyExportWeight extends HardValidationError {
-
-    protected $messageEnglish = 'Please enter the weight.';
-
-    protected $messageGerman  = 'Bitte geben Sie das Gewicht an.';
-
-}
+class EmptyExportWeight extends Shipping\Status\EmptyExportWeight {}

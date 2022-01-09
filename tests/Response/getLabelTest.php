@@ -3,11 +3,11 @@
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Response;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
+use ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\getLabel as getLabelRequest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\getLabel as getLabelResponse;
-use ChristophSchaeffer\Dhl\BusinessShipping\Request\getLabel as getLabelRequest;
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\Data\LabelData;
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\Status\Success;
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Data\LabelData;
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\getLabel as getLabelResponse;
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\Success;
 use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
 
 /**

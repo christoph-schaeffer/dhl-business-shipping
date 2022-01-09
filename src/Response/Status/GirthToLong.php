@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class GirthToLong
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class GirthToLong extends HardValidationError {
-
-    protected $messageEnglish = 'The entered girth is to long.';
-
-    protected $messageGerman  = 'Das angegebene Gurtmaß ist zu groß.';
-
-}
+class GirthToLong extends Shipping\Status\GirthToLong {}

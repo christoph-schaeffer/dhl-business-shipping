@@ -2,12 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Request;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class validateShipment
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Request
+ * @deprecated
  *
- * With this operation the data for a shipment can be validated before a shipment label and tracking number will be
- * created.
+ * this class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\validateShipment
  */
-class validateShipment extends createShipmentOrder {
-}
+class validateShipment extends Shipping\validateShipment {}

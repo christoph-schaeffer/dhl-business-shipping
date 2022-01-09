@@ -14,7 +14,8 @@
   "require"    : {
     "php"     : ">=5.6.0",
     "ext-soap": "*",
-    "ext-curl": "*"
+    "ext-curl": "*",
+    "ext-simplexml": "*"
   },
   "autoload"   : {
     "psr-4": {

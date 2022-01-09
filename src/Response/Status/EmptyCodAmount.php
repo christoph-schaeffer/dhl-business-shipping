@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class EmptyCodAmount
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class EmptyCodAmount extends HardValidationError {
-
-    protected $messageEnglish = 'Please enter a cash on delivery amount.';
-
-    protected $messageGerman  = 'Bitte geben Sie einen Nachnahmebetrag an.';
-
-}
+class EmptyCodAmount extends Shipping\Status\EmptyCodAmount {}

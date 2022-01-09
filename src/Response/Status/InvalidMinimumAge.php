@@ -2,15 +2,12 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 
 /**
- * Class InvalidDate
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class InvalidMinimumAge extends HardValidationError {
-
-    protected $messageEnglish = 'The entered minimum age is invalid.';
-
-    protected $messageGerman  = 'Mindestalter hat einen falschen Wert';
-
-}
+class InvalidMinimumAge extends Shipping\Status\InvalidMinimumAge {}

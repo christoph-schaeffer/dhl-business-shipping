@@ -2,15 +2,12 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 
 /**
- * Class SameDayDeliveryNotAvailableForReceiverAddress
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class SameDayDeliveryNotAvailableForReceiverAddress extends HardValidationError {
-
-    protected $messageEnglish = 'The usage of the product "DHL Paket Taggleich" (same day delivery) is not available for the given receiver address.';
-
-    protected $messageGerman  = 'Die Benutzung des Produktes DHL Paket Taggleich ist für diese Empfängeradresse nicht möglich.';
-
-}
+class SameDayDeliveryNotAvailableForReceiverAddress extends Shipping\Status\SameDayDeliveryNotAvailableForReceiverAddress {}

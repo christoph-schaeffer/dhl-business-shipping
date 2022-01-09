@@ -1,11 +1,10 @@
 <?php
 
-namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Tracking;
-
+namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Tracking\Data;
 
 /**
  * Class PieceStatusPublic
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Tracking
+ * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Tracking\Data
  */
 class PieceStatusPublic
 {

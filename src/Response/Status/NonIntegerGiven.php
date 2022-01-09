@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class NonIntegerGiven
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class NonIntegerGiven extends HardValidationError {
-
-    protected $messageEnglish = 'Please enter an integer.';
-
-    protected $messageGerman  = 'Bitte geben Sie eine ganze Zahl ein.';
-
-}
+class NonIntegerGiven extends Shipping\Status\NonIntegerGiven {}

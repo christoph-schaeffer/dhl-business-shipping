@@ -4,6 +4,7 @@ namespace ChristophSchaeffer\Dhl\BusinessShipping;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\Credentials\ShippingClientCredentials;
 use ChristophSchaeffer\Dhl\BusinessShipping\Credentials\TrackingClientCredentials;
+use ChristophSchaeffer\Dhl\BusinessShipping\Request\Tracking\getStatusForPublicUser;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Tracking\PieceData;
 
 /**
@@ -53,118 +54,118 @@ class MultiClient {
     }
 
     /**
-     * @param Request\createShipmentOrder $request
+     * @param Request\Shipping\createShipmentOrder $request
      *
-     * @return Response\createShipmentOrder
+     * @return Response\Shipping\createShipmentOrder
      *
      * With this operation creates shipments for DHL Paket including the relevant shipping documents.
      */
-    public function createShipmentOrder(Request\createShipmentOrder $request) {
-        $this->shippingClient->createShipmentOrder($request);
+    public function createShipmentOrder(Request\Shipping\createShipmentOrder $request) {
+        return $this->shippingClient->createShipmentOrder($request);
     }
 
     /**
-     * @param Request\deleteShipmentOrder $request
+     * @param Request\Shipping\deleteShipmentOrder $request
      *
-     * @return Response\deleteShipmentOrder
+     * @return Response\Shipping\deleteShipmentOrder
      *
      * This operation cancels earlier created shipments. However, this will only work for shipments for that you
      * haven't called the doManifest function. Also keep in mind that if not set otherwise in the
      * "Geschäftskundenportal" there will be an automatic doManifest call on all open shipments at 6 pm every day.
      */
-    public function deleteShipmentOrder(Request\deleteShipmentOrder $request) {
-        $this->shippingClient->deleteShipmentOrder($request);
+    public function deleteShipmentOrder(Request\Shipping\deleteShipmentOrder $request) {
+        return $this->shippingClient->deleteShipmentOrder($request);
     }
 
     /**
-     * @param Request\doManifest $request
+     * @param Request\Shipping\doManifest $request
      *
-     * @return Response\doManifest
+     * @return Response\Shipping\doManifest
      *
      * With this operation a end-of-day closing for up to 30 previously created shipments can be carried out. Please
      * keep in mind, that once you have called this function for a shipment order it can't be canceled anymore.
      */
-    public function doManifest(Request\doManifest $request) {
-        $this->shippingClient->doManifest($request);
+    public function doManifest(Request\Shipping\doManifest $request) {
+        return $this->shippingClient->doManifest($request);
     }
 
     /**
-     * @param Request\getExportDoc $request
+     * @param Request\Shipping\getExportDoc $request
      *
-     * @return Response\getExportDoc
+     * @return Response\Shipping\getExportDoc
      *
      * This operation hands back export documents for previously created shipments.
      */
-    public function getExportDoc(Request\getExportDoc $request) {
-        $this->shippingClient->getExportDoc($request);
+    public function getExportDoc(Request\Shipping\getExportDoc $request) {
+        return $this->shippingClient->getExportDoc($request);
     }
 
     /**
-     * @param Request\getLabel $request
+     * @param Request\Shipping\getLabel $request
      *
-     * @return Response\getLabel
+     * @return Response\Shipping\getLabel
      *
      * This operation hands back the shipping label for previously created shipments.
      */
-    public function getLabel(Request\getLabel $request) {
-        $this->shippingClient->getLabel($request);
+    public function getLabel(Request\Shipping\getLabel $request) {
+        return $this->shippingClient->getLabel($request);
     }
 
     /**
-     * @param Request\getManifest $request
+     * @param Request\Shipping\getManifest $request
      *
-     * @return Response\getManifest
+     * @return Response\Shipping\getManifest
      *
      * With this operation end-of-day reports are available for a specific day or period.
      */
-    public function getManifest(Request\getManifest $request) {
-        $this->shippingClient->getManifest($request);
+    public function getManifest(Request\Shipping\getManifest $request) {
+        return $this->shippingClient->getManifest($request);
     }
 
     /**
-     * @param Request\getVersion $request
+     * @param Request\Shipping\getVersion $request
      *
-     * @return Response\getVersion
+     * @return Response\Shipping\getVersion
      *
      * With this operation the latest version available on the web can be queried.
      */
-    public function getVersion(Request\getVersion $request) {
-        $this->shippingClient->getVersion($request);
+    public function getVersion(Request\Shipping\getVersion $request) {
+        return $this->shippingClient->getVersion($request);
     }
 
     /**
-     * @param Request\updateShipmentOrder $request
+     * @param Request\Shipping\updateShipmentOrder $request
      *
-     * @return Response\updateShipmentOrder
+     * @return Response\Shipping\updateShipmentOrder
      *
      * With this operation shipping documents are updated for previously created shipments. The update automatically
      * performs a cancellation and creating of a shipment. However, this will only work for shipments for that you
      * haven't called the doManifest function. Also keep in mind that if not set otherwise in the
      * "Geschäftskundenportal" there will be an automatic doManifest call on all open shipments at 6 pm every day.
      */
-    public function updateShipmentOrder(Request\updateShipmentOrder $request) {
-        $this->shippingClient->updateShipmentOrder($request);
+    public function updateShipmentOrder(Request\Shipping\updateShipmentOrder $request) {
+        return $this->shippingClient->updateShipmentOrder($request);
     }
 
     /**
-     * @param Request\validateShipment $request
+     * @param Request\Shipping\validateShipment $request
      *
-     * @return Response\validateShipment
+     * @return Response\Shipping\validateShipment
      *
      * With this operation the data for a shipment can be validated before a shipment label and tracking number will be
      * created.
      */
-    public function validateShipment(Request\validateShipment $request) {
-        $this->shippingClient->validateShipment($request);
+    public function validateShipment(Request\Shipping\validateShipment $request) {
+        return $this->shippingClient->validateShipment($request);
     }
 
     /**
-     * @param PieceData[] $pieces
+     * @param  Request\Tracking\getStatusForPublicUser $request
      *
-     * @return string //@TODO need response objects
+     * @return Response\Tracking\getStatusForPublicUser
      */
-    public function getStatusForPublicUser($pieces) {
-        $this->trackingClient->getStatusForPublicUser($pieces);
+    public function getStatusForPublicUser(Request\Tracking\getStatusForPublicUser $request) {
+        return $this->trackingClient->getStatusForPublicUser($request);
     }
 
 }

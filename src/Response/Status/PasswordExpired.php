@@ -2,18 +2,13 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class PasswordExpired
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  *
  * The same status is being returned when the password is incorrect.
  */
-class PasswordExpired extends AuthentificationFailed {
-
-    protected $messageEnglish = 'Your password has expired.';
-
-    protected $messageGerman  = 'Ihr Passwort ist abgelaufen.';
-
-    public    $text           = 'Password expired';
-
-}
+class PasswordExpired extends Shipping\Status\PasswordExpired {}

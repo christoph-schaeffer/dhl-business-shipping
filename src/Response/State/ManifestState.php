@@ -2,31 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\State;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\Status\AbstractStatus;
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\State;
 
 /**
- * Class ManifestState
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\State
+ * @deprecated
  *
- * The status of the operation for the corresponding shipment(s).
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\State\ManifestState
  */
-class ManifestState {
-
-    /**
-     * @var string
-     *
-     * Min length: 1
-     * Max length: 39
-     *
-     * Can contain any DHL shipmentnumber
-     */
-    public $shipmentNumber;
-
-    /**
-     * @var AbstractStatus[]
-     *
-     * Status objects which have been returned. Those objects can be found in src/Status
-     */
-    public $Status;
-
-}
+class ManifestState extends State\ManifestState {}

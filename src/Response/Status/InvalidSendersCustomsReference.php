@@ -2,15 +2,12 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 
 /**
- * Class InvalidSendersCustomsReference
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class InvalidSendersCustomsReference extends HardValidationError {
-
-    protected $messageEnglish = 'The sender\'s identification number for customs purposes that you provide must contain only letters and numbers.';
-
-    protected $messageGerman  = 'Die von Ihnen mitgegebene Kennnummer des Absenders für Zollzwecke darf nur Buchstaben und Zahlen beinhalten.';
-
-}
+class InvalidSendersCustomsReference extends Shipping\Status\InvalidSendersCustomsReference {}

@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class MissingDimension
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class MissingDimension extends HardValidationError {
-
-    protected $messageEnglish = 'If one of the dimensions is specified, all must be specified.';
-
-    protected $messageGerman  = 'Wird eine der Abmessungen angegeben, müssen alle angegeben werden.';
-
-}
+class MissingDimension extends Shipping\Status\MissingDimension {}

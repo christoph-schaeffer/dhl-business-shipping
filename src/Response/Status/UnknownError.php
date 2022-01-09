@@ -2,18 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class UnknownError
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class UnknownError extends AbstractStatus {
-
-    public    $code           = 9999;
-
-    protected $messageEnglish = 'An unknown error has occurred';
-
-    protected $messageGerman  = 'Ein Unbekannter Fehler ist aufgetreten';
-
-    public    $text           = 'Unknown error occurred';
-
-}
+class UnknownError extends Shipping\Status\UnknownError {}

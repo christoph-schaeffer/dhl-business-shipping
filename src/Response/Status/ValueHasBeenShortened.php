@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class ValueHasBeenShortened
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class ValueHasBeenShortened extends WeakValidationError {
-
-    protected $messageEnglish = 'The entered value is to long and has been shortened.';
-
-    protected $messageGerman  = 'Der eingegebene Wert ist zu lang und wurde gekürzt.';
-
-}
+class ValueHasBeenShortened extends Shipping\Status\ValueHasBeenShortened {}

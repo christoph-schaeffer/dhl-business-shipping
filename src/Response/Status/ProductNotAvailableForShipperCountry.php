@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class ProductNotAvailableForShipperCountry
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class ProductNotAvailableForShipperCountry extends HardValidationError {
-
-    protected $messageEnglish = 'The product is not available for the country of origin.';
-
-    protected $messageGerman  = 'Das Produkt ist nicht für das Absenderland verfügbar.';
-
-}
+class ProductNotAvailableForShipperCountry extends Shipping\Status\ProductNotAvailableForShipperCountry {}

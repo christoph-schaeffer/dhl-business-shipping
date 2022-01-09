@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class InvalidPostNumber
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class InvalidPostNumber extends HardValidationError {
-
-    protected $messageEnglish = 'The post number used is not valid. Please enter a valid post number.';
-
-    protected $messageGerman  = 'Die verwendete Postnummer ist nicht gültig. Bitte geben Sie eine gültige Postnummer an.';
-
-}
+class InvalidPostNumber extends Shipping\Status\InvalidPostNumber {}

@@ -2,18 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class HardValidationError
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class HardValidationError extends AbstractStatus {
-
-    public    $code           = 1101;
-
-    protected $messageEnglish = 'A Hard validation error has occured.';
-
-    protected $messageGerman  = 'Es ist ein schwerwiegender Fehler aufgetreten.';
-
-    public    $text           = 'Hard validation error occured.';
-
-}
+class HardValidationError extends Shipping\Status\HardValidationError {}

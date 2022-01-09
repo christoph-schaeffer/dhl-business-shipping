@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class HeightToHigh
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class HeightToHigh extends HardValidationError {
-
-    protected $messageEnglish = 'The entered height is to high.';
-
-    protected $messageGerman  = 'Die angegebene Höhe ist zu groß.';
-
-}
+class HeightToHigh extends Shipping\Status\HeightToHigh {}

@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class UnknownPackstationNumber
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class UnknownPackstationNumber extends WeakValidationError {
-
-    protected $messageEnglish = 'The Packstation number you have entered is not known, yet. Please check the Packstation number and the entered post code. In some cases it may be that a new Packstation is not yet known.';
-
-    protected $messageGerman  = 'Die Packstationsnummer ist uns aktuell nicht bekannt. Bitte überprüfen Sie die Nummer und die Postleitzahl. Es kann in Einzelfällen sein, dass eine neue Packstation noch nicht bekannt ist.';
-
-}
+class UnknownPackstationNumber extends Shipping\Status\UnknownPackstationNumber {}

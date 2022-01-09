@@ -2,14 +2,11 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping;
+
 /**
- * Class CantSendFromShipperCountry
- * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Status
+ * @deprecated
+ * 
+ * This class has been moved to ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status
  */
-class CantSendFromShipperCountry extends HardValidationError {
-
-    protected $messageEnglish = 'You can not send from that sender country.';
-
-    protected $messageGerman  = 'Sie können aus dem Absenderland nicht verschicken.';
-
-}
+class CantSendFromShipperCountry extends Shipping\Status\CantSendFromShipperCountry {}
