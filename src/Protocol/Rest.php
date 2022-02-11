@@ -3,6 +3,8 @@
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Protocol;
 
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking\DhlRestCurlException;
+use ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking\DhlRestHttpException;
 use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractTrackingRequest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Tracking\RequestData;
 use ChristophSchaeffer\Dhl\BusinessShipping\Utility\XmlParser;
@@ -38,11 +40,11 @@ class Rest
      * @param AbstractTrackingRequest $request
      * @param object[] $contentObjects
      */
-    public function callFunction($request)
+    public function callFunction($request, $xmlVersion = "1.0", $encoding = 'ISO-8859-1')
     {
         $request = $this->fillRequestData($request);
 
-        $xml = '<?xml version="1.0" encoding="UTF-8" ?>';
+        $xml = '<?xml version="'.$xmlVersion.'" encoding="'.$encoding.'" ?>';
         $xmlContent = '';
         if(isset($request->contentObjects)) {
             foreach ($request->contentObjects as $contentObject) {
@@ -52,7 +54,7 @@ class Rest
 
         $xml .= XmlParser::parseToXml($request, $xmlContent);
 
-        return $this->sendCurl($xml);
+        return $this->sendCurl($xml, $request);
     }
 
     /**
@@ -82,8 +84,12 @@ class Rest
 
     /**
      * @param string $xml
+     * @param AbstractTrackingRequest|null $request
+     * @throws DhlRestCurlException
+     * @throws DhlRestHttpException
+     * @throws \Exception
      */
-    private function sendCurl($xml) {
+    private function sendCurl($xml, $request = null) {
         $this->lastXML = $xml;
 
         $curl = curl_init($this->isSandbox ? self::SANDBOX_URL : self::PRODUCTION_URL);
@@ -97,28 +103,34 @@ class Rest
         $response = curl_exec($curl);
 
         if(curl_errno($curl)){
-            throw new \Exception(curl_error($curl));
+            throw new DhlRestCurlException(curl_error($curl), $request, $xml);
         }
 
-        $this->handleHttpCodes(curl_getinfo($curl, CURLINFO_HTTP_CODE));
-
+        $this->handleHttpCodes(curl_getinfo($curl, CURLINFO_HTTP_CODE), $request, $xml);
         curl_close($curl);
 
         return XmlParser::parseFromXml($response);
     }
 
-    private function handleHttpCodes($httpCode) {
+    /**
+     * @param int $httpCode
+     * @param AbstractTrackingRequest $request
+     * @param string $xml
+     *
+     * @throws DhlRestHttpException
+     */
+    private function handleHttpCodes($httpCode, $request, $xml) {
         switch($httpCode) {
             case 200:
                 return;
             case 401:
-                throw new \Exception('Unauthorized - Please check your tracking client credentials');
+                throw new DhlRestHttpException($request, $xml, "$httpCode Unauthorized - Please check your tracking client credentials", $httpCode);
             case 403:
-                throw new \Exception('Forbidden - Please check if you supplied enough information in your request. This is not an authorization error.');
+                throw new DhlRestHttpException($request, $xml, "$httpCode Forbidden - Please check if you are allowed to do this action", $httpCode);
             case 500:
-                throw new \Exception('The API Endpoint had an internal server error. Please check your input data');
+                throw new DhlRestHttpException($request, $xml, "$httpCode The API Endpoint had an internal server error. Please check your input data", $httpCode);
             default:
-                throw new \Exception("Unexcepted HTTP Code - $httpCode");
+                throw new DhlRestHttpException($request, $xml, "Unexcepted HTTP Code - $httpCode", $httpCode);
         }
     }
 

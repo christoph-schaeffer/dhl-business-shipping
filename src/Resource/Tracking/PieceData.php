@@ -34,5 +34,5 @@ class PieceData
      *
      * A flag to indicate if its a international shipment. If it is not this is optional.
      */
-    public $isInternationalShipment;
+    public $internationalShipment;
 }

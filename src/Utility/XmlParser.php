@@ -2,6 +2,8 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Utility;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking\DhlXmlParseException;
+
 /**
  * Class XmlParser
  * @package ChristophSchaeffer\Dhl\BusinessShipment\Utility
@@ -45,7 +47,7 @@ class XmlParser
        $parsed = simplexml_load_string($xmlString);
 
        if($parsed === false) {
-           throw new \Exception('XML parse error');
+           throw new DhlXmlParseException($xmlString);
        }
 
        return $parsed;
