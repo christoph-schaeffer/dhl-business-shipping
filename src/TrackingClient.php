@@ -72,6 +72,18 @@ class TrackingClient
     }
 
     /**
+     * @param Request\Tracking\getPiece $request
+     *
+     * @return Response\Tracking\getPiece
+     */
+    public function getPiece(Request\Tracking\getPiece $request) {
+        $request = $this->sanitizeRequest($request);
+        $restResponse = $this->rest->callFunction($request);
+
+        return new Response\Tracking\getPiece($request, $restResponse, $this->rest->getLastRestXMLRequest(), $this->languageLocaleAlpha2);
+    }
+
+    /**
      * @param Request\Tracking\getPieceDetail $request
      *
      * @return Response\Tracking\getPieceDetail

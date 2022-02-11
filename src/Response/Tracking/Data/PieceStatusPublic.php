@@ -2,6 +2,8 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Tracking\Data;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Utility\XmlParser;
+
 /**
  * Class PieceStatusPublic
  * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Tracking\Data
@@ -48,4 +50,8 @@ class PieceStatusPublic
     public $shipmentWidth;
     public $shipmentHeight;
     public $shipmentWeight;
+
+    public function __construct(\SimpleXMLElement $rawXmlStatusForPublicData) {
+        XmlParser::mapXmlAttributesToObjectProperties($rawXmlStatusForPublicData, $this);
+    }
 }

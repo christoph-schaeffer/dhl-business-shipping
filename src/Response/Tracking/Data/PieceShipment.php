@@ -55,18 +55,19 @@ class PieceShipment
     public $shipmentCustomerReference;
     public $leitcode;
 
-    /**
-     * @var PieceEvent[]
-     */
+    /** @var PieceEvent[] */
     public $pieceEventList = [];
 
     /**
-     * @param \SimpleXMLElement $rawResponse
+     * @param \SimpleXMLElement $rawShipmentData
      */
-    public function __construct(\SimpleXMLElement $rawResponse) {
-        $rawEventList = $rawResponse->data->data;
-        foreach($rawEventList as $rawEvent) {
-            $this->pieceEventList[] = XmlParser::mapXmlAttributesToObjectProperties($rawEvent, new PieceEvent());
+    public function __construct(\SimpleXMLElement $rawShipmentData) {
+        XmlParser::mapXmlAttributesToObjectProperties($rawShipmentData, $this);
+        if(isset($rawShipmentData->data) && isset($rawShipmentData->data->data)) {
+            $rawEventList = $rawShipmentData->data->data;
+            foreach($rawEventList as $rawEvent) {
+                $this->pieceEventList[] = new PieceEvent($rawEvent);
+            }
         }
     }
 }

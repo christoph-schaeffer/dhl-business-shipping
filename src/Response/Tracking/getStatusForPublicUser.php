@@ -2,10 +2,9 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Tracking;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractTrackingRequest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\AbstractTrackingResponse;
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\Tracking\Data\PieceEvent;
-use ChristophSchaeffer\Dhl\BusinessShipping\Utility\XmlParser;
+use ChristophSchaeffer\Dhl\BusinessShipping\Response\Tracking\Data\PieceStatusPublic;
+use ChristophSchaeffer\Dhl\BusinessShipping\Request;
 
 /**
  * Class getStatusForPublicUser
@@ -15,23 +14,29 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Utility\XmlParser;
  */
 class getStatusForPublicUser extends AbstractTrackingResponse {
 
+    /** @var string */
     public $code;
+    /** @var string */
     public $_pieceCode;
+    /** @var string */
     public $_zipCode;
-    public $pieceStatusList = [];
+    /** @var PieceStatusPublic[] */
+    public $pieceStatusPublicList = [];
 
     /**
-     * @param AbstractTrackingRequest $request
+     * @param Request\Tracking\getStatusForPublicUser $request
      * @param \SimpleXMLElement $rawResponse
      * @param string $rawRequest
      * @param string $languageLocale
      */
-    public function __construct(AbstractTrackingRequest $request, \SimpleXMLElement $rawResponse, $rawRequest, $languageLocale)
+    public function __construct(Request\Tracking\getStatusForPublicUser $request, \SimpleXMLElement $rawResponse, $rawRequest, $languageLocale)
     {
         parent::__construct($request, $rawResponse, $rawRequest, $languageLocale);
-        $rawEventList = $rawResponse->data->data;
-        foreach($rawEventList as $rawEvent) {
-            $this->pieceEventList[] = XmlParser::mapXmlAttributesToObjectProperties($rawEvent, new PieceEvent());
+        if(isset($rawResponse->data) && isset($rawResponse->data->data)) {
+            $rawPieceStatusPublicList = $rawResponse->data->data;
+            foreach ($rawPieceStatusPublicList as $rawPieceStatusPublic) {
+                $this->pieceStatusPublicList[] = new PieceStatusPublic($rawPieceStatusPublic);
+            }
         }
     }
 

@@ -7,12 +7,12 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Response\Tracking\Data\PieceShipment
 use ChristophSchaeffer\Dhl\BusinessShipping\Request;
 
 /**
- * Class getPieceDetail
+ * Class getPiece
  * @package ChristophSchaeffer\Dhl\BusinessShipping\Request
  *
  * @TODO description
  */
-class getPieceDetail extends AbstractTrackingResponse {
+class getPiece extends AbstractTrackingResponse {
 
     /** @var string */
     public $requestId;
@@ -22,12 +22,12 @@ class getPieceDetail extends AbstractTrackingResponse {
     public $pieceShipment;
 
     /**
-     * @param Request\Tracking\getPieceDetail $request
+     * @param Request\Tracking\getPiece $request
      * @param \SimpleXMLElement $rawResponse
      * @param string $rawRequest
      * @param string $languageLocale
      */
-    public function __construct(Request\Tracking\getPieceDetail $request, \SimpleXMLElement $rawResponse, $rawRequest, $languageLocale)
+    public function __construct(Request\Tracking\getPiece $request, \SimpleXMLElement $rawResponse, $rawRequest, $languageLocale)
     {
         parent::__construct($request, $rawResponse, $rawRequest, $languageLocale);
         $this->pieceShipment = new PieceShipment($rawResponse->data);
