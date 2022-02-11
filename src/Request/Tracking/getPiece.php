@@ -42,8 +42,7 @@ class getPiece extends AbstractTrackingRequest {
      */
     public $tasOrderNo;
 
-    public function getRequestString()
-    {
+    public function getRequestString() {
         return 'd-get-piece';
     }
 }

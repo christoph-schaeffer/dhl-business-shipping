@@ -63,6 +63,9 @@ class TrackingClient
      * @param Request\Tracking\getStatusForPublicUser $request
      *
      * @return Response\Tracking\getStatusForPublicUser
+     *
+     * !!! IMPORTANT INFO !!!
+     * This function is disabled in sandbox mode. No idea why dhl decided that ¯\_(ツ)_/¯
      */
     public function getStatusForPublicUser(Request\Tracking\getStatusForPublicUser $request) {
         $request = $this->sanitizeRequest($request);
@@ -81,6 +84,30 @@ class TrackingClient
         $restResponse = $this->rest->callFunction($request);
 
         return new Response\Tracking\getPiece($request, $restResponse, $this->rest->getLastRestXMLRequest(), $this->languageLocaleAlpha2);
+    }
+
+    /**
+     * @param Request\Tracking\getPieceEvents $request
+     *
+     * @return Response\Tracking\getPieceEvents
+     */
+    public function getPieceEvents(Request\Tracking\getPieceEvents $request) {
+        $request = $this->sanitizeRequest($request);
+        $restResponse = $this->rest->callFunction($request);
+
+        return new Response\Tracking\getPieceEvents($request, $restResponse, $this->rest->getLastRestXMLRequest(), $this->languageLocaleAlpha2);
+    }
+
+    /**
+     * @param Request\Tracking\getSignature $request
+     *
+     * @return Response\Tracking\getSignature
+     */
+    public function getSignature(Request\Tracking\getSignature $request) {
+        $request = $this->sanitizeRequest($request);
+        $restResponse = $this->rest->callFunction($request);
+
+        return new Response\Tracking\getSignature($request, $restResponse, $this->rest->getLastRestXMLRequest(), $this->languageLocaleAlpha2);
     }
 
     /**

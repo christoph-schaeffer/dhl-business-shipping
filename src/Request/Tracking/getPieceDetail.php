@@ -60,8 +60,7 @@ class getPieceDetail extends AbstractTrackingRequest {
      */
     public $toDate;
 
-    public function getRequestString()
-    {
+    public function getRequestString() {
         return 'd-get-piece-detail';
     }
 }

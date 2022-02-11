@@ -63,11 +63,11 @@ class PieceShipment
      */
     public function __construct(\SimpleXMLElement $rawShipmentData) {
         XmlParser::mapXmlAttributesToObjectProperties($rawShipmentData, $this);
-        if(isset($rawShipmentData->data) && isset($rawShipmentData->data->data)) {
+        if(isset($rawShipmentData->data) && isset($rawShipmentData->data->data)):
             $rawEventList = $rawShipmentData->data->data;
-            foreach($rawEventList as $rawEvent) {
+            foreach($rawEventList as $rawEvent):
                 $this->pieceEventList[] = new PieceEvent($rawEvent);
-            }
-        }
+            endforeach;
+        endif;
     }
 }

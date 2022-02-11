@@ -2,6 +2,7 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Exception\DhlException;
 use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractTrackingRequest;
 
 /**
@@ -10,7 +11,7 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractTrackingRequest;
  *
  * This exception is thrown on failures with the rest client
  */
-class DhlRestException extends \Exception {
+class DhlRestException extends DhlException {
 
     /** @var string */
     private $xmlRequest;
@@ -24,8 +25,7 @@ class DhlRestException extends \Exception {
      * @param int $code
      * @param Object $previous
      */
-    public function __construct(AbstractTrackingRequest $request, $xmlRequest, $message = "DHL REST client error", $code = 0, $previous = null)
-    {
+    public function __construct(AbstractTrackingRequest $request, $xmlRequest, $message = "DHL REST client error", $code = 0, $previous = null) {
         parent::__construct($message, $code, $previous);
         $this->xmlRequest = $xmlRequest;
         $this->request = $request;
@@ -34,16 +34,14 @@ class DhlRestException extends \Exception {
     /**
      * @return string
      */
-    public function getXmlRequest()
-    {
+    public function getXmlRequest() {
         return $this->xmlRequest;
     }
 
     /**
      * @return AbstractTrackingRequest
      */
-    public function getRequest()
-    {
+    public function getRequest() {
         return $this->request;
     }
 

@@ -3,18 +3,21 @@
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Request\Tracking;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractTrackingRequest;
-use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Tracking\PieceData;
 
 /**
- * Class getStatusForPublicUser
+ * Class getSignature
  * @package ChristophSchaeffer\Dhl\BusinessShipping\Request
  *
- * !!! IMPORTANT INFO !!!
- * This function is disabled in sandbox mode. No idea why dhl decided that ¯\_(ツ)_/¯
  * @TODO description
  */
-class getStatusForPublicUser extends AbstractTrackingRequest {
+class getSignature extends AbstractTrackingRequest {
 
+    /**
+     * @var string
+     *
+     * The tracking number ("Sendungsnummer") of the shipment you want to get the signature of.
+     */
+    public $pieceCode;
     /**
      * @var string
      *
@@ -23,7 +26,7 @@ class getStatusForPublicUser extends AbstractTrackingRequest {
      * A date as a formatted string. This acts as a filter.
      * Format: YYYY-MM-DD. e.g. 2022-02-22
      */
-    public $fromDate;
+    public $dateFrom;
     /**
      * @var string
      *
@@ -32,19 +35,9 @@ class getStatusForPublicUser extends AbstractTrackingRequest {
      * A date as a formatted string. This acts as a filter.
      * Format: YYYY-MM-DD. e.g. 2022-02-22
      */
-    public $toDate;
-
-    /**
-     * getVersion constructor.
-     *
-     * @param PieceData[]
-     */
-    public function __construct($pieces) {
-        parent::__construct();
-        $this->contentObjects = $pieces;
-    }
+    public $dateTo;
 
     public function getRequestString() {
-        return 'get-status-for-public-user';
+        return 'd-get-signature';
     }
 }

@@ -32,12 +32,12 @@ class getStatusForPublicUser extends AbstractTrackingResponse {
     public function __construct(Request\Tracking\getStatusForPublicUser $request, \SimpleXMLElement $rawResponse, $rawRequest, $languageLocale)
     {
         parent::__construct($request, $rawResponse, $rawRequest, $languageLocale);
-        if(isset($rawResponse->data) && isset($rawResponse->data->data)) {
+        if(isset($rawResponse->data) && isset($rawResponse->data->data)):
             $rawPieceStatusPublicList = $rawResponse->data->data;
-            foreach ($rawPieceStatusPublicList as $rawPieceStatusPublic) {
+            foreach ($rawPieceStatusPublicList as $rawPieceStatusPublic):
                 $this->pieceStatusPublicList[] = new PieceStatusPublic($rawPieceStatusPublic);
-            }
-        }
+            endforeach;
+        endif;
     }
 
 

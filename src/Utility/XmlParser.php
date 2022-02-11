@@ -7,32 +7,26 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking\DhlXmlParseExcept
 /**
  * Class XmlParser
  * @package ChristophSchaeffer\Dhl\BusinessShipment\Utility
- *
- * Used to convert country codes as of ISO 3166-1 (Alpha 2) to its country name and the opposite.
- * You could use the const COUNTRYCODE_TO_COUNTRY_MAP as options for a select field. Use the keys which are
- * country codes as values and the array values as the label.
  */
-class XmlParser
-{
+class XmlParser {
 
     /**
      * @param object|array $objectOrArray
      * @param string $xmlTag
      * @param string $xmlContent
      */
-    public static function parseToXml($objectOrArray, $xmlContent = '', $xmlTag = 'data')
-    {
+    public static function parseToXml($objectOrArray, $xmlContent = '', $xmlTag = 'data') {
         $parsed = "<$xmlTag";
-        foreach ($objectOrArray as $key => $value) {
-            if (is_string($value) || is_integer($value) || is_float($value) || is_bool($value)) {
+        foreach ($objectOrArray as $key => $value):
+            if (is_string($value) || is_integer($value) || is_float($value) || is_bool($value)):
                 $kebabKey = self::camelCaseToKebabCase($key);
-                if(is_bool($value)) {
+                if(is_bool($value)):
                     $value = $value ? 'true' : 'false';
-                }
+                endif;
 
                 $parsed .= " $kebabKey=\"$value\"";
-            }
-        }
+            endif;
+        endforeach;
         $parsed .= ">$xmlContent</$xmlTag>";
 
         return $parsed;
@@ -46,9 +40,9 @@ class XmlParser
     public static function parseFromXml($xmlString) {
        $parsed = simplexml_load_string($xmlString);
 
-       if($parsed === false) {
+       if($parsed === false):
            throw new DhlXmlParseException($xmlString);
-       }
+       endif;
 
        return $parsed;
     }
@@ -79,12 +73,12 @@ class XmlParser
      */
     public static function mapXmlAttributesToObjectProperties(\SimpleXMLElement $rawResponse, $object) {
         $attributes = (array)((array)$rawResponse->attributes())['@attributes'];
-        foreach($attributes as $property => $value) {
+        foreach($attributes as $property => $value):
             $propertyInCamelCase = self::kebabCaseToCamelCase($property);
-            if(property_exists($object, $propertyInCamelCase)) {
+            if(property_exists($object, $propertyInCamelCase)):
                 $object->{$propertyInCamelCase} = $value;
-            }
-        }
+            endif;
+        endforeach;
 
         return $object;
     }
