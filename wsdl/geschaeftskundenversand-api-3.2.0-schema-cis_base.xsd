@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!-- Mit XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) von Andreas V. Kempf (DHL Verwaltungs GmbH) bearbeitet -->
 <!-- Mit XMLSpy Andreas Kempf bearbeitet -->
-<!--
+<!-- 
 Description:
 The descriped structures and elements are used to provide a basis for cis web services
-
+ 
 DHL Verwaltungs GmbH
 Customer Interface Solutions
 Bonn (Germany)
@@ -23,9 +23,9 @@ Refered by:
 
 History:
   v0.4  Element streetAdd renamed to careOfName
-  v0.5  Critical number elements converted to string to keep leading zeros (ZIP:germany, routeCode, identCode, PackStationType, PostOfficeType)
+  v0.5  Critical number elements converted to string to keep leading zeros (ZIP:germany, routeCode, identCode, PackStationType, PostOfficeType) 
   v0.6  streetNameCode and streetNumberCode added, PickupAddressType and DeliveryAddressType expanded by these fields
-  v0.7  version added
+  v0.7  version added 
   v0.8  BankType changed, ShipmentNumberType added
   v0.9  accountNumberExpress added
   v0.9a status and statusDescription added
@@ -37,8 +37,8 @@ History:
   v0.96 added shipmentNumber into shipmentNumberType as reference
 -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cis="http://dhl.de/webservice/cisbase"
-		   targetNamespace="http://dhl.de/webservice/cisbase" elementFormDefault="qualified"
-		   attributeFormDefault="unqualified">
+	targetNamespace="http://dhl.de/webservice/cisbase" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
 	<xs:simpleType name="countryISOType">
 		<xs:annotation>
 			<xs:documentation>Country specific ISO code.</xs:documentation>
@@ -220,7 +220,7 @@ History:
 	<xs:element name="Version">
 		<xs:annotation>
 			<xs:documentation>The version of the webservice implementation for which the
-				requesting client is developed.</xs:documentation>
+requesting client is developed.</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
@@ -299,7 +299,7 @@ History:
 			<xs:element name="streetName">
 				<xs:annotation>
 					<xs:documentation>The name of the street. Optionally the house number can be passed in this field too.
-						In this case the field "streetNumber" must not be present.</xs:documentation>
+          In this case the field "streetNumber" must not be present.</xs:documentation>
 				</xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
@@ -310,7 +310,7 @@ History:
 			<xs:element name="streetNumber" minOccurs="0" >
 				<xs:annotation>
 					<xs:documentation>The house number. This field is only optional when the house number is passed with
-						the field streetName.</xs:documentation>
+          the field streetName.</xs:documentation>
 				</xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
@@ -355,7 +355,7 @@ History:
 			<xs:element name="streetName">
 				<xs:annotation>
 					<xs:documentation>The name of the street. Optionally the house number can be passed in this field too.
-						In this case the field "streetNumber" must not be present.</xs:documentation>
+          In this case the field "streetNumber" must not be present.</xs:documentation>
 				</xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
@@ -366,7 +366,7 @@ History:
 			<xs:element name="streetNumber" minOccurs="0" >
 				<xs:annotation>
 					<xs:documentation>The house number. This field is only optional when the house number is passed with
-						the field streetName.</xs:documentation>
+          the field streetName.</xs:documentation>
 				</xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
@@ -388,10 +388,10 @@ History:
 			<xs:element ref="cis:name2" minOccurs="0"/>
 			<xs:element ref="cis:name3" minOccurs="0"/>
 			<xs:element name="streetName">
-				<xs:annotation>
-					<xs:documentation>The name of the street. Optionally the house number can be passed in this field too.
-						In this case the field "streetNumber" must not be present.</xs:documentation>
-				</xs:annotation>
+                <xs:annotation>
+                    <xs:documentation>The name of the street. Optionally the house number can be passed in this field too.
+          In this case the field "streetNumber" must not be present.</xs:documentation>
+                </xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
 						<xs:maxLength value="50"/>
@@ -399,10 +399,10 @@ History:
 				</xs:simpleType>
 			</xs:element>
 			<xs:element name="streetNumber" minOccurs="0" >
-				<xs:annotation>
-					<xs:documentation>The house number. This field is only optional when the house number is passed with
-						the field streetName.</xs:documentation>
-				</xs:annotation>
+                <xs:annotation>
+                    <xs:documentation>The house number. This field is only optional when the house number is passed with
+          the field streetName.</xs:documentation>
+                </xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
 						<xs:maxLength value="10"/>
@@ -777,7 +777,7 @@ History:
 			<xs:element ref="cis:Origin" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="PostfilialeTypeNoCountry">
+		<xs:complexType name="PostfilialeTypeNoCountry">
 		<xs:annotation>
 			<xs:documentation>Type of Postfiliale</xs:documentation>
 		</xs:annotation>

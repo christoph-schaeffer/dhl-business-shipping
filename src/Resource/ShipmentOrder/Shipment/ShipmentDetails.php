@@ -10,17 +10,18 @@ namespace ChristophSchaeffer\Dhl\BusinessShipping\Resource\ShipmentOrder\Shipmen
  */
 class ShipmentDetails {
 
-    const PRODUCT_COURIER_PREFERRED_TIME = 'V06WZ';
-    const PRODUCT_COURIER_SAME_DAY       = 'V06TG';
-    const PRODUCT_DHL_CONNECT            = 'V55PAK';
-    const PRODUCT_EUROPE                 = 'V54EPAK';
-    const PRODUCT_INTERNATIONAL          = 'V53WPAK';
-    const PRODUCT_NATIONAL               = 'V01PAK';
-    const PRODUCT_PARCEL_AUSTRIA         = 'V86PARCEL';
-    const PRODUCT_PARCEL_CONNECT         = 'V87PARCEL';
-    const PRODUCT_PARCEL_INTERNATIONAL   = 'V82PARCEL';
-    const PRODUCT_SAME_DAY               = 'V06PAK';
-    const PRODUCT_MAIL_OF_GOODS          = 'V62WP';
+    const PRODUCT_COURIER_PREFERRED_TIME        = 'V06WZ';
+    const PRODUCT_COURIER_SAME_DAY              = 'V06TG';
+    const PRODUCT_DHL_CONNECT                   = 'V55PAK';
+    const PRODUCT_EUROPE                        = 'V54EPAK';
+    const PRODUCT_INTERNATIONAL                 = 'V53WPAK';
+    const PRODUCT_NATIONAL                      = 'V01PAK';
+    const PRODUCT_PARCEL_AUSTRIA                = 'V86PARCEL';
+    const PRODUCT_PARCEL_CONNECT                = 'V87PARCEL';
+    const PRODUCT_PARCEL_INTERNATIONAL          = 'V82PARCEL';
+    const PRODUCT_SAME_DAY                      = 'V06PAK';
+    const PRODUCT_MAIL_OF_GOODS                 = 'V62WP';
+    const PRODUCT_MAIL_OF_GOODS_INTERNATIONAL   = 'V66WPI';
 
     /**
      * @var ShipmentDetails\BankData
@@ -108,6 +109,7 @@ class ShipmentDetails {
      * V87PARCEL: DHL PAKET Connect / DHL Connect parcel
      * V82PARCEL: DHL PAKET International / International parcel
      * V62WP: DHL Warenpost / DHL mail of goods
+     * V66WPI: DHL Warenpost International / DHL mail of goods international
      */
     public $product = self::PRODUCT_NATIONAL;
 
