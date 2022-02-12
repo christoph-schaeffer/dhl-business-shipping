@@ -8,8 +8,7 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Utility\XmlParser;
  * Class PieceShipment
  * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Tracking\Data
  */
-class PieceShipment
-{
+class PieceShipment {
     /**
      * @var int
      *
@@ -234,9 +233,6 @@ class PieceShipment
     public $division;
     /**
      * @var string
-     */
-    /**
-     * @var string
      *
      * "International Coded Event". For details check the attachment at the bottom of the following page
      * (you need to be authenticated on entwickler.dhl.de)
@@ -361,6 +357,10 @@ class PieceShipment
         $this->convertPropertyTo('float', 'shipmentWeight');
     }
 
+    /**
+     * @param string $type
+     * @param string $propertyName
+     */
     private function convertPropertyTo($type, $propertyName) {
         if($this->{$propertyName} === '' || $this->{$propertyName} === null) {
             return;

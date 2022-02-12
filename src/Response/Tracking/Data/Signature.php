@@ -8,8 +8,7 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Utility\XmlParser;
  * Class Signature
  * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Tracking\Data
  */
-class Signature
-{
+class Signature {
     /**
      * @var string
      *

@@ -8,8 +8,7 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Utility\XmlParser;
  * Class PieceEvent
  * @package ChristophSchaeffer\Dhl\BusinessShipping\Response\Tracking\Data
  */
-class PieceEvent
-{
+class PieceEvent {
     /**
      * @var string
      *
@@ -77,11 +76,18 @@ class PieceEvent
      */
     public $ruecksendung;
 
+    /**
+     * @param \SimpleXMLElement $rawXmlEventData
+     */
     public function __construct(\SimpleXMLElement $rawXmlEventData) {
         XmlParser::mapXmlAttributesToObjectProperties($rawXmlEventData, $this);
         $this->convertPropertyTo('bool', 'ruecksendung');
     }
 
+    /**
+     * @param string $type
+     * @param string $propertyName
+     */
     private function convertPropertyTo($type, $propertyName) {
         if($this->{$propertyName} === '' || $this->{$propertyName} === null) {
             return;
