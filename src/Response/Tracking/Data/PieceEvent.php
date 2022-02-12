@@ -19,15 +19,21 @@ class PieceEvent
     /**
      * @var string
      *
-     * A Status message for the current event in the language that has been defined.
+     * A status message for the current event in the language that has been defined.
      */
     public $eventStatus;
     /**
      * @var string
      *
-     * An event text in the language that has been defined. This can be longer than the event status, but is mostly identical
+     * An event text in the language that has been defined. This is mostly identical to eventStatus
      */
     public $eventText;
+    /**
+     * @var string
+     *
+     * A shorter status message for the current event in the language that has been defined.
+     */
+    public $eventShortStatus;
     /**
      * @var string
      *
@@ -64,8 +70,33 @@ class PieceEvent
      * https://entwickler.dhl.de/group/ep/wsapis/sendungsverfolgung/track-trace/entwicklung-und-test/version-3.0/io-referenz/xml-schnittstelle
      */
     public $standardEventCode;
+    /**
+     * @var bool
+     *
+     * Defines if it is a return shipment
+     */
+    public $ruecksendung;
 
     public function __construct(\SimpleXMLElement $rawXmlEventData) {
         XmlParser::mapXmlAttributesToObjectProperties($rawXmlEventData, $this);
+        $this->convertPropertyTo('bool', 'ruecksendung');
+    }
+
+    private function convertPropertyTo($type, $propertyName) {
+        if($this->{$propertyName} === '' || $this->{$propertyName} === null) {
+            return;
+        }
+
+        switch($type) {
+            case 'int':
+                $this->{$propertyName} = (int)$this->{$propertyName};
+                break;
+            case 'float':
+                $this->{$propertyName} = (float)$this->{$propertyName};
+                break;
+            case 'bool':
+                $this->{$propertyName} = $this->{$propertyName} === '1' || strtolower($this->{$propertyName}) === 'true';
+                break;
+        }
     }
 }
