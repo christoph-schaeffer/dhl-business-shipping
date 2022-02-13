@@ -39,14 +39,14 @@ class MultiClient {
      * @throws \SoapFault
      */
     public function __construct(ShippingClientCredentials $shippingCredentials, TrackingClientCredentials $trackingCredentials, $isSandbox = FALSE,
-                                $languageLocale = self::LANGUAGE_LOCALE_GERMAN_DE, $shippingClient = null, $trackingClient = null) {
+                                                          $languageLocale = self::LANGUAGE_LOCALE_GERMAN_DE, $shippingClient = null, $trackingClient = null) {
 
-        if(empty($shippingClient)) {
+        if (empty($shippingClient)) {
             $this->shippingClient = new ShippingClient($shippingCredentials, $isSandbox, $languageLocale);
         } else {
             $this->shippingClient = $shippingClient;
         }
-        if(empty($trackingClient)) {
+        if (empty($trackingClient)) {
             $this->trackingClient = new TrackingClient($trackingCredentials, $isSandbox, $languageLocale);
         } else {
             $this->trackingClient = $trackingClient;
@@ -160,7 +160,7 @@ class MultiClient {
     }
 
     /**
-     * @param  Request\Tracking\getStatusForPublicUser $request
+     * @param Request\Tracking\getStatusForPublicUser $request
      *
      * @return Response\Tracking\getStatusForPublicUser
      */

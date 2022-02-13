@@ -13,9 +13,9 @@ abstract class AbstractTrackingResponse extends AbstractResponse {
 
     /**
      * @param AbstractTrackingRequest $request
-     * @param \SimpleXMLElement       $rawResponse
-     * @param string                  $rawRequest
-     * @param string                  $languageLocale
+     * @param \SimpleXMLElement $rawResponse
+     * @param string $rawRequest
+     * @param string $languageLocale
      *
      * AbstractTrackingResponse constructor.
      */

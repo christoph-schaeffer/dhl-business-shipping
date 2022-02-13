@@ -56,9 +56,9 @@ class getPieceEvents extends AbstractTrackingResponse {
         parent::__construct($request, $rawResponse, $rawRequest, $languageLocale);
         $this->code = XmlParser::nullableStringTypeCast('int', $this->code);
 
-        if(isset($rawResponse->data)):
+        if (isset($rawResponse->data)):
             $rawEventList = $rawResponse->data;
-            foreach($rawEventList as $rawEvent):
+            foreach ($rawEventList as $rawEvent):
                 $this->pieceEventList[] = new PieceEvent($rawEvent);
             endforeach;
         endif;

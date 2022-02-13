@@ -9,5 +9,6 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractShippingRequest;
  *
  * moved to ChristophSchaeffer\Dhl\BusinessShipping\Protocol
  */
-class Soap extends Protocol\Soap {}
+class Soap extends Protocol\Soap {
+}
 

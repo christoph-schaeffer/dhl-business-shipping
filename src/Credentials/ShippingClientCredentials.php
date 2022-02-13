@@ -19,9 +19,9 @@ class ShippingClientCredentials {
 
     public function __construct($appID, $apiToken, $login = '2222222222_01', $password = 'pass') // the default parameters can be used for sandbox mode
     {
-        $this->appID = $appID;
+        $this->appID    = $appID;
         $this->apiToken = $apiToken;
-        $this->login = $login;
+        $this->login    = $login;
         $this->password = $password;
     }
 

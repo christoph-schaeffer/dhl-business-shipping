@@ -51,8 +51,7 @@ class getPieceDetail extends AbstractTrackingResponse {
      * @param string $languageLocale
      * @throws DhlXmlParseException
      */
-    public function __construct(Request\Tracking\getPieceDetail $request, \SimpleXMLElement $rawResponse, $rawRequest, $languageLocale)
-    {
+    public function __construct(Request\Tracking\getPieceDetail $request, \SimpleXMLElement $rawResponse, $rawRequest, $languageLocale) {
         parent::__construct($request, $rawResponse, $rawRequest, $languageLocale);
         $this->code = XmlParser::nullableStringTypeCast('int', $this->code);
 

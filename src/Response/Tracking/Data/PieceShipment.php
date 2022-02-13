@@ -97,7 +97,7 @@ class PieceShipment {
     /**
      * @var string
      *
-     * 	Recipient zip code and city name seperated by a space. E.g. "53113 Bonn"
+     *    Recipient zip code and city name seperated by a space. E.g. "53113 Bonn"
      */
     public $recipientCity;
     /**
@@ -340,24 +340,24 @@ class PieceShipment {
      */
     public function __construct(\SimpleXMLElement $rawShipmentData) {
         XmlParser::mapXmlAttributesToObjectProperties($rawShipmentData, $this);
-        if(isset($rawShipmentData->data) && isset($rawShipmentData->data->data)):
+        if (isset($rawShipmentData->data) && isset($rawShipmentData->data->data)):
             $rawEventList = $rawShipmentData->data->data;
-            foreach($rawEventList as $rawEvent):
+            foreach ($rawEventList as $rawEvent):
                 $this->pieceEventList[] = new PieceEvent($rawEvent);
             endforeach;
         endif;
 
-        $this->errorStatus = XmlParser::nullableStringTypeCast('int', $this->errorStatus);
-        $this->identifierType = XmlParser::nullableStringTypeCast('int', $this->identifierType);
-        $this->recipientId = XmlParser::nullableStringTypeCast('int', $this->recipientId);
-        $this->deliveryEventFlag = XmlParser::nullableStringTypeCast('bool', $this->deliveryEventFlag);
-        $this->internationalFlag = XmlParser::nullableStringTypeCast('bool', $this->internationalFlag);
-        $this->ruecksendung = XmlParser::nullableStringTypeCast('bool', $this->ruecksendung);
+        $this->errorStatus               = XmlParser::nullableStringTypeCast('int', $this->errorStatus);
+        $this->identifierType            = XmlParser::nullableStringTypeCast('int', $this->identifierType);
+        $this->recipientId               = XmlParser::nullableStringTypeCast('int', $this->recipientId);
+        $this->deliveryEventFlag         = XmlParser::nullableStringTypeCast('bool', $this->deliveryEventFlag);
+        $this->internationalFlag         = XmlParser::nullableStringTypeCast('bool', $this->internationalFlag);
+        $this->ruecksendung              = XmlParser::nullableStringTypeCast('bool', $this->ruecksendung);
         $this->orderPreferredDeliveryDay = XmlParser::nullableStringTypeCast('bool', $this->orderPreferredDeliveryDay);
-        $this->shipmentLength = XmlParser::nullableStringTypeCast('float', $this->shipmentLength);
-        $this->shipmentWidth = XmlParser::nullableStringTypeCast('float', $this->shipmentWidth);
-        $this->shipmentHeight = XmlParser::nullableStringTypeCast('float', $this->shipmentHeight);
-        $this->shipmentWeight = XmlParser::nullableStringTypeCast('float', $this->shipmentWeight);
+        $this->shipmentLength            = XmlParser::nullableStringTypeCast('float', $this->shipmentLength);
+        $this->shipmentWidth             = XmlParser::nullableStringTypeCast('float', $this->shipmentWidth);
+        $this->shipmentHeight            = XmlParser::nullableStringTypeCast('float', $this->shipmentHeight);
+        $this->shipmentWeight            = XmlParser::nullableStringTypeCast('float', $this->shipmentWeight);
     }
 
 }

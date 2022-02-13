@@ -8,8 +8,7 @@ namespace ChristophSchaeffer\Dhl\BusinessShipping\Resource\Tracking;
  *
  * Used for request on the function getStatusorPublicUser of the TrackingClient
  */
-class PieceData
-{
+class PieceData {
     /**
      * @var string
      *

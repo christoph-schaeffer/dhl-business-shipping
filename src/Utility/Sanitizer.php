@@ -16,11 +16,11 @@ class Sanitizer {
      */
     public static function convertBooleanToIntegerArrayRecursive(array &$array) {
         foreach ($array as $key => $value):
-            if(is_array($value)):
+            if (is_array($value)):
                 self::convertBooleanToIntegerArrayRecursive($value);
-            elseif(is_object($value)):
+            elseif (is_object($value)):
                 self::convertBooleanToIntegerObjectRecursive($value);
-            elseif(is_bool($value)):
+            elseif (is_bool($value)):
                 $array[$key] = $value ? 1 : 0;
             endif;
         endforeach;
@@ -30,15 +30,15 @@ class Sanitizer {
      * @param object $object
      */
     public static function convertBooleanToIntegerObjectRecursive(&$object) {
-        if(!is_object($object))
+        if (!is_object($object))
             return;
 
         foreach ($object as $property => $value):
-            if(is_array($value)):
+            if (is_array($value)):
                 self::convertBooleanToIntegerArrayRecursive($value);
-            elseif(is_object($value)):
+            elseif (is_object($value)):
                 self::convertBooleanToIntegerObjectRecursive($value);
-            elseif(is_bool($value)):
+            elseif (is_bool($value)):
                 $object->{$property} = $value ? 1 : 0;
             endif;
         endforeach;
@@ -49,11 +49,11 @@ class Sanitizer {
      */
     public static function convertFloatToStringArrayRecursive(array &$array) {
         foreach ($array as $key => $value):
-            if(is_array($value)):
+            if (is_array($value)):
                 self::convertFloatToStringArrayRecursive($value);
-            elseif(is_object($value)):
+            elseif (is_object($value)):
                 self::convertFloatToStringObjectRecursive($value);
-            elseif(is_float($value)):
+            elseif (is_float($value)):
                 $array[$key] = self::floatToString($value);
             endif;
         endforeach;
@@ -63,15 +63,15 @@ class Sanitizer {
      * @param object $object
      */
     public static function convertFloatToStringObjectRecursive(&$object) {
-        if(!is_object($object))
+        if (!is_object($object))
             return;
 
         foreach ($object as $property => $value):
-            if(is_array($value)):
+            if (is_array($value)):
                 self::convertFloatToStringArrayRecursive($value);
-            elseif(is_object($value)):
+            elseif (is_object($value)):
                 self::convertFloatToStringObjectRecursive($value);
-            elseif(is_float($value)):
+            elseif (is_float($value)):
                 $object->{$property} = self::floatToString($value);
             endif;
         endforeach;
@@ -82,9 +82,9 @@ class Sanitizer {
      */
     public static function sanitizeArrayRecursive(array &$array) {
         foreach ($array as $key => $value):
-            if(is_array($value)):
+            if (is_array($value)):
                 self::sanitizeArrayRecursive($value);
-            elseif(is_object($value)):
+            elseif (is_object($value)):
                 self::sanitizeObjectRecursive($value);
             endif;
 
@@ -98,14 +98,14 @@ class Sanitizer {
      * @param Object $recursiveObject
      */
     public static function sanitizeObjectRecursive(&$recursiveObject) {
-        if(!is_object($recursiveObject))
+        if (!is_object($recursiveObject))
             return;
         $allPropertiesAreNull = TRUE;
 
         foreach ($recursiveObject as $property => $value):
-            if(is_array($value)):
+            if (is_array($value)):
                 self::sanitizeArrayRecursive($value);
-            elseif(is_object($value)):
+            elseif (is_object($value)):
                 self::sanitizeObjectRecursive($value);
             endif;
 
@@ -118,7 +118,7 @@ class Sanitizer {
 
     /**
      * @param float $float
-     * @param int   $precision
+     * @param int $precision
      * @return string
      */
     private static function floatToString($float, $precision = 10) {
@@ -127,15 +127,15 @@ class Sanitizer {
 
     /**
      * @param float $float
-     * @param int   $precision
+     * @param int $precision
      * @return int
      */
     private static function getDecimalDigitCountOfloat($float, $precision = 10) {
         $formatted = number_format($float, $precision, '.', '');
-        $decimals = explode('.', $formatted)[1];
+        $decimals  = explode('.', $formatted)[1];
 
-        for($i = $precision; $i >= 0; $i--) {
-            if(substr($decimals,$i-1, 1) !== '0') {
+        for ($i = $precision; $i >= 0; $i--) {
+            if (substr($decimals, $i - 1, 1) !== '0') {
                 return $i;
             }
         }
@@ -144,14 +144,14 @@ class Sanitizer {
     }
 
     /**
-     * @param array      $array
-     * @param mixed      $value
+     * @param array $array
+     * @param mixed $value
      * @param string|int $key
      *
      * @return array
      */
     private static function unsetKeyIfEmpty(array $array, $value, $key) {
-        if($value === NULL || $value === ''):
+        if ($value === NULL || $value === ''):
             unset($array[$key]);
         else:
             $array[$key] = $value;
@@ -162,18 +162,18 @@ class Sanitizer {
 
     /**
      * @param object $object
-     * @param mixed  $value
+     * @param mixed $value
      * @param string $property
      *
      * @return object
      */
     private static function unsetPropertyIfEmpty($object, $value, $property) {
-        if(!is_object($object))
+        if (!is_object($object))
             return $object;
 
         $clonedObject = clone $object;
 
-        if($value === NULL || $value === ''):
+        if ($value === NULL || $value === ''):
             unset($clonedObject->{$property});
         else:
             $clonedObject->{$property} = $value;

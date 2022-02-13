@@ -47,128 +47,128 @@ class ShippingStatusMapper {
     ];
 
     const MESSAGE_MAP = [
-        'derwebservicewurdeohnefehlerausgefhrt'                                          => Status\Success::class,
-        'ok'                                                                             => Status\Success::class,
-        'hardvalidationerroroccured'                                                     => Status\HardValidationError::class,
-        'indersendungtratmindestenseinharterfehlerauf'                                   => Status\HardValidationError::class,
-        'weakvalidationerroroccured'                                                     => Status\WeakValidationError::class,
-        'dereingegebenewertistzulangundwurdegekrzt'                                      => Status\ValueHasBeenShortened::class,
-        'derortistzudieserplznichtbekanntdiesendungistnichtleitcodierbar'                => [
-                                                                                                Status\CityNotKnownToZipCode::class,
-                                                                                                Status\RoutingCodeNotPossible::class
-                                                                                            ],
-        'dieeingegebeneadresseistnichtleitcodierbar'                                     => Status\RoutingCodeNotPossible::class,
-        'ashipmentforprintcannotbefound'                                                 => Status\UnknownShipmentNumber::class,
-        'dieangegebenesendungsnummerkonntenichtgefundenwerden'                           => Status\UnknownShipmentNumber::class,
-        'unknownshipmentnumber'                                                          => Status\UnknownShipmentNumber::class,
-        'diesendungsnummeristinderaktuellennutzergruppenichtbekannt'                     => Status\UnknownShipmentNumber::class,
-        'ashipmentforcancelationcannotbefound'                                           => Status\UnknownShipmentNumber::class,
-        'dieausgewhlteabrechnungsnummerstehtnichtzurverfgung'                            => Status\AccountNumberNotAvailable::class,
-        'dieabrechnungsnummeristfrdiepostleitzahldesempfngersungltig'                    => Status\InvalidAccountNumberForGivenZipCode::class,
-        'sieknnenausdemabsenderlandnichtverschicken'                                     => Status\CantSendFromShipperCountry::class,
-        'derortistzudieserplznichtbekannt'                                               => Status\CityNotKnownToZipCode::class,
+        'derwebservicewurdeohnefehlerausgefhrt' => Status\Success::class,
+        'ok' => Status\Success::class,
+        'hardvalidationerroroccured' => Status\HardValidationError::class,
+        'indersendungtratmindestenseinharterfehlerauf' => Status\HardValidationError::class,
+        'weakvalidationerroroccured' => Status\WeakValidationError::class,
+        'dereingegebenewertistzulangundwurdegekrzt' => Status\ValueHasBeenShortened::class,
+        'derortistzudieserplznichtbekanntdiesendungistnichtleitcodierbar' => [
+            Status\CityNotKnownToZipCode::class,
+            Status\RoutingCodeNotPossible::class
+        ],
+        'dieeingegebeneadresseistnichtleitcodierbar' => Status\RoutingCodeNotPossible::class,
+        'ashipmentforprintcannotbefound' => Status\UnknownShipmentNumber::class,
+        'dieangegebenesendungsnummerkonntenichtgefundenwerden' => Status\UnknownShipmentNumber::class,
+        'unknownshipmentnumber' => Status\UnknownShipmentNumber::class,
+        'diesendungsnummeristinderaktuellennutzergruppenichtbekannt' => Status\UnknownShipmentNumber::class,
+        'ashipmentforcancelationcannotbefound' => Status\UnknownShipmentNumber::class,
+        'dieausgewhlteabrechnungsnummerstehtnichtzurverfgung' => Status\AccountNumberNotAvailable::class,
+        'dieabrechnungsnummeristfrdiepostleitzahldesempfngersungltig' => Status\InvalidAccountNumberForGivenZipCode::class,
+        'sieknnenausdemabsenderlandnichtverschicken' => Status\CantSendFromShipperCountry::class,
+        'derortistzudieserplznichtbekannt' => Status\CityNotKnownToZipCode::class,
         'derortistzudieserplznichtbekanntdiesendungisttrotzdemleitcodierbarundeswurdeeinversandscheinerzeugt'
-                                                                                         => Status\CityNotKnownToZipCode::class,
-        'bittewhlensieeindatum'                                                          => Status\EmptyDayOfDelivery::class,
-        'bittegebensieeinenortan'                                                        => Status\EmptyCity::class,
-        'bittegebensiedenwarenwertan'                                                    => Status\EmptyCustomsValue::class,
-        'bittegebensiedieanzahlan'                                                       => Status\EmptyExportAmount::class,
-        'bittegebensiediebeschreibungan'                                                 => Status\EmptyExportPositionDescription::class,
-        'beimtypsonstigesisteinebeschreibungerforderlich'                                => Status\EmptyExportTypeDescription::class,
-        'bittegebensiedieartdersendungan'                                                => Status\EmptyExportType::class,
-        'bittegebensiedasgewichtan'                                                      => Status\EmptyExportWeight::class,
-        'bittegebensiename1an'                                                           => Status\EmptyName1::class,
-        'bittegebensieeinproduktan'                                                      => Status\EmptyProduct::class,
-        'bittegebensieeinestraean'                                                       => Status\EmptyStreetName::class,
-        'bittegebensieeinehausnummeran'                                                  => Status\EmptyStreetNumber::class,
-        'bittegebensieeingewichtan'                                                      => Status\EmptyWeight::class,
-        'bittegebensieeinepostleitzahlan'                                                => Status\EmptyZipCode::class,
-        'bittegebensieeineganzezahlein'                                                  => Status\NonIntegerGiven::class,
-        'dasangegebenegurtmaistzugro'                                                    => Status\GirthToLong::class,
-        'dieausgewhlteabrechnungsnummeristnichtgltig'                                    => Status\InvalidAccountNumber::class,
-        'bittegebensieeinengltigenbetragan'                                              => Status\InvalidAmount::class,
-        'dieverwendetepostnummeristnichtgltigbittegebensieeinegltigepostnummeran'        => Status\InvalidPostNumber::class,
+        => Status\CityNotKnownToZipCode::class,
+        'bittewhlensieeindatum' => Status\EmptyDayOfDelivery::class,
+        'bittegebensieeinenortan' => Status\EmptyCity::class,
+        'bittegebensiedenwarenwertan' => Status\EmptyCustomsValue::class,
+        'bittegebensiedieanzahlan' => Status\EmptyExportAmount::class,
+        'bittegebensiediebeschreibungan' => Status\EmptyExportPositionDescription::class,
+        'beimtypsonstigesisteinebeschreibungerforderlich' => Status\EmptyExportTypeDescription::class,
+        'bittegebensiedieartdersendungan' => Status\EmptyExportType::class,
+        'bittegebensiedasgewichtan' => Status\EmptyExportWeight::class,
+        'bittegebensiename1an' => Status\EmptyName1::class,
+        'bittegebensieeinproduktan' => Status\EmptyProduct::class,
+        'bittegebensieeinestraean' => Status\EmptyStreetName::class,
+        'bittegebensieeinehausnummeran' => Status\EmptyStreetNumber::class,
+        'bittegebensieeingewichtan' => Status\EmptyWeight::class,
+        'bittegebensieeinepostleitzahlan' => Status\EmptyZipCode::class,
+        'bittegebensieeineganzezahlein' => Status\NonIntegerGiven::class,
+        'dasangegebenegurtmaistzugro' => Status\GirthToLong::class,
+        'dieausgewhlteabrechnungsnummeristnichtgltig' => Status\InvalidAccountNumber::class,
+        'bittegebensieeinengltigenbetragan' => Status\InvalidAmount::class,
+        'dieverwendetepostnummeristnichtgltigbittegebensieeinegltigepostnummeran' => Status\InvalidPostNumber::class,
         'bittegebensieeinegltigeemailadresseeinundverwendensiebeidereingabemehrereremailadresseneinkommazurtrennungdieeingabevonumlautenistungltigsolltensieeinegltigeemailadresseeingegebenhabensohatderempfngerdemerhaltvonemailsdurchdhlwidersprochenindiesemfallistesnichtmglichdenserviceauszufhren'
-                                                                                         => Status\InvalidEmailAddress::class,
+        => Status\InvalidEmailAddress::class,
         'bittegebensiefrdieversandbesttigungeineodermehrereemailadressenanverwendensiebeidereingabemehrereremailadresseneinkommazurtrennung'
-                                                                                         => Status\InvalidEmailAddress::class,
+        => Status\InvalidEmailAddress::class,
         'bittegebensieeinegltigeemailadresseeindieeingabevonumlautenistungltigsolltensieeinegltigeemailadresseeingegebenhabensohatderempfngerdemerhaltvonemailsdurchdhlwidersprochen'
-                                                                                         => Status\InvalidEmailAddress::class,
-        'dieangegebeneartdersendungistnichtgltig'                                        => Status\InvalidExportType::class,
-        'bittegebensieeinegltigetelefonnummeran'                                         => Status\InvalidPhoneNumber::class,
-        'bittegebensieeingltigessendungsdatuman'                                         => Status\InvalidShipmentDate::class,
-        'bittegebensieeingltigesdatuman'                                                 => Status\InvalidDate::class,
+        => Status\InvalidEmailAddress::class,
+        'dieangegebeneartdersendungistnichtgltig' => Status\InvalidExportType::class,
+        'bittegebensieeinegltigetelefonnummeran' => Status\InvalidPhoneNumber::class,
+        'bittegebensieeingltigessendungsdatuman' => Status\InvalidShipmentDate::class,
+        'bittegebensieeingltigesdatuman' => Status\InvalidDate::class,
         'bitteberprfensieihreangabendasfeldnachnameisteinpflichtfeldundmussbeflltwerden' => Status\EmptySurname::class,
-        'bitteberprfensieihreangabendasfeldvornameisteinpflichtfeldundmussbeflltwerden'  => Status\EmptyGivenName::class,
+        'bitteberprfensieihreangabendasfeldvornameisteinpflichtfeldundmussbeflltwerden' => Status\EmptyGivenName::class,
         'bitteberprfensieihreangabeningeburtsdatumundodermindestaltermindestenseinesdieserfeldermussbeflltwerdeneineangabeinbeidenfeldernistebenfallszulssig'
-                                                                                         => Status\EmptyDateOfBirthOrMinimumAge::class,
-        'daszustelldatummussmindestensheutesein'                                         => Status\DayOfDeliveryInThePast::class,
-        'wirdeinederabmessungenangegebenmssenalleangegebenwerden'                        => Status\MissingDimension::class,
-        'dieangegebenelngeistzugro'                                                      => Status\LengthToLong::class,
-        'dieangegebenehheistzugro'                                                       => Status\HeightToHigh::class,
-        'dieangegebenebreiteistzugro'                                                    => Status\WidthToLarge::class,
-        'bittegebensieeinennachnahmebetragan'                                            => Status\EmptyCodAmount::class,
-        'derangegebenenachnahmebetragzuhoch'                                             => Status\CodAmountToHigh::class,
-        'dergewhltetypderalterssichtprfungistnichtgltigmglichewertea16odera18'           => Status\InvalidVisualCheckOfAgeType::class,
-        'ihrpasswortistabgelaufen'                                                       => Status\PasswordExpired::class,
-        'passwordexpired'                                                                => Status\PasswordExpired::class,
-        'dasangegebeneproduktistfrdaslandnichtverfgbar'                                  => Status\ProductNotAvailableForReceiverCountry::class,
-        'dasproduktistnichtfrdasabsenderlandverfgbar'                                    => Status\ProductNotAvailableForShipperCountry::class,
-        'diebenutzungdesproduktesdhlpakettaggleichistfrdieseempfngeradressenichtmglich'  => Status\SameDayDeliveryNotAvailableForReceiverAddress::class,
-        'diesendungistnichtleitcodierbar'                                                => Status\RoutingCodeNotPossible::class,
-        'bittewhlensieeinzeitfenster'                                                    => Status\EmptyPreferredTime::class,
-        'bittegebensieeinepostnummeran'                                                  => Status\EmptyPostNumber::class,
-        'dasgewhltezeitfensteristnichtgltig'                                             => Status\InvalidTimeFrame::class,
-        'dieangegebeneibanistnichtgltig'                                                 => Status\InvalidIBAN::class,
-        'mindestalterhateinenfalschenwert'                                               => Status\InvalidMinimumAge::class,
+        => Status\EmptyDateOfBirthOrMinimumAge::class,
+        'daszustelldatummussmindestensheutesein' => Status\DayOfDeliveryInThePast::class,
+        'wirdeinederabmessungenangegebenmssenalleangegebenwerden' => Status\MissingDimension::class,
+        'dieangegebenelngeistzugro' => Status\LengthToLong::class,
+        'dieangegebenehheistzugro' => Status\HeightToHigh::class,
+        'dieangegebenebreiteistzugro' => Status\WidthToLarge::class,
+        'bittegebensieeinennachnahmebetragan' => Status\EmptyCodAmount::class,
+        'derangegebenenachnahmebetragzuhoch' => Status\CodAmountToHigh::class,
+        'dergewhltetypderalterssichtprfungistnichtgltigmglichewertea16odera18' => Status\InvalidVisualCheckOfAgeType::class,
+        'ihrpasswortistabgelaufen' => Status\PasswordExpired::class,
+        'passwordexpired' => Status\PasswordExpired::class,
+        'dasangegebeneproduktistfrdaslandnichtverfgbar' => Status\ProductNotAvailableForReceiverCountry::class,
+        'dasproduktistnichtfrdasabsenderlandverfgbar' => Status\ProductNotAvailableForShipperCountry::class,
+        'diebenutzungdesproduktesdhlpakettaggleichistfrdieseempfngeradressenichtmglich' => Status\SameDayDeliveryNotAvailableForReceiverAddress::class,
+        'diesendungistnichtleitcodierbar' => Status\RoutingCodeNotPossible::class,
+        'bittewhlensieeinzeitfenster' => Status\EmptyPreferredTime::class,
+        'bittegebensieeinepostnummeran' => Status\EmptyPostNumber::class,
+        'dasgewhltezeitfensteristnichtgltig' => Status\InvalidTimeFrame::class,
+        'dieangegebeneibanistnichtgltig' => Status\InvalidIBAN::class,
+        'mindestalterhateinenfalschenwert' => Status\InvalidMinimumAge::class,
         'dasvonihnenausgewhltezustellzeitfensterstehtleiderfrdieseempfngeradressenichtzurverfgung'
-                                                                                         => Status\TimeFrameNotAvailableForReceiverAddress::class,
-        'dieangegebenestraekannnichtgefundenwerden'                                      => Status\StreetNotFound::class,
-        'dieangegebenehausnummerkannnichtgefundenwerden'                                 => Status\StreetNumberNotFound::class,
-        'dasangegebeneproduktistnichtbekannt'                                            => Status\UnknownProduct::class,
+        => Status\TimeFrameNotAvailableForReceiverAddress::class,
+        'dieangegebenestraekannnichtgefundenwerden' => Status\StreetNotFound::class,
+        'dieangegebenehausnummerkannnichtgefundenwerden' => Status\StreetNumberNotFound::class,
+        'dasangegebeneproduktistnichtbekannt' => Status\UnknownProduct::class,
         'diepackstationsnummeristunsaktuellnichtbekanntbitteberprfensiedienummerunddiepostleitzahleskannineinzelfllenseindasseineneuepackstationnochnichtbekanntistsieknnentrotzdemeineleitcodiertesendungerzeugen'
-                                                                                         => Status\UnknownPackstationNumber::class,
+        => Status\UnknownPackstationNumber::class,
         'packstationsnummernliegenzwischen101und999bittesetzensiesichmitdemempfngerinverbindungumeinekorrektenummerzuerfragen'
-                                                                                         => Status\InvalidPackstationNumber::class,
+        => Status\InvalidPackstationNumber::class,
         'diefilialnummeristnichtinversendenhinterlegtbitteberprfensiedienummerunddiepostleitzahleskannineinzelfllenseindasseineneuefilialenochnichthinterlegtistsieknnentrotzdemeineleitcodiertesendungerzeugen'
-                                                                                         => Status\UnknownPostfilialNumber::class,
+        => Status\UnknownPostfilialNumber::class,
         'filialnummernliegenzwischen401und999bittesetzensiesichmitdemempfngerinverbindungumeinekorrektenummerzuerfragen'
-                                                                                         => Status\InvalidPostfilialNumber::class,
-        'diegewichtsangabeistzuhoch'                                                     => Status\WeightToHigh::class,
-        'diegewichtsangabeistkleineralsimcn23formular'                                   => Status\WeightLowerThanCN23Form::class,
+        => Status\InvalidPostfilialNumber::class,
+        'diegewichtsangabeistzuhoch' => Status\WeightToHigh::class,
+        'diegewichtsangabeistkleineralsimcn23formular' => Status\WeightLowerThanCN23Form::class,
         'dassendungsgewichtentsprichtdemgesamtnettogewichtderwarenpositionenbittetragensiehierdasgesamtgewichtdersendungeinschlielichverpackungsundfllmaterialienein'
-                                                                                         => Status\ShipmentWeightIsEqualToNetWeight::class,
-        'diegewichtsangabeistzugering'                                                   => Status\WeightToLow::class,
-        'diepostleitzahlkonntenichtgefundenwerden'                                       => Status\ZipCodeNotFound::class,
-        'daszpl2formatwurdeautomatischauf103x199mmgendert'                               => Status\ZPL2LabelFormatAutomaticallyChanged::class,
-        'essindkeinesendungenfrdiegewhlteabrechnungsnummerunddentag'                     => Status\NoShipmentsForManifestFound::class,
-        'illegalshipmentstate'                                                           => Status\IllegalShipmentState::class,
-        'vorausverfgungfrsendungenmitdhlpaketinternationalverpflichtend'                 => Status\NoEndorsementOnInternationalShipping::class,
+        => Status\ShipmentWeightIsEqualToNetWeight::class,
+        'diegewichtsangabeistzugering' => Status\WeightToLow::class,
+        'diepostleitzahlkonntenichtgefundenwerden' => Status\ZipCodeNotFound::class,
+        'daszpl2formatwurdeautomatischauf103x199mmgendert' => Status\ZPL2LabelFormatAutomaticallyChanged::class,
+        'essindkeinesendungenfrdiegewhlteabrechnungsnummerunddentag' => Status\NoShipmentsForManifestFound::class,
+        'illegalshipmentstate' => Status\IllegalShipmentState::class,
+        'vorausverfgungfrsendungenmitdhlpaketinternationalverpflichtend' => Status\NoEndorsementOnInternationalShipping::class,
         'bittebeachtensiedassderservicevorausverfgungfrsendungenmitdhlpaketinternationalverpflichtendist'
-                                                                                         => Status\NoEndorsementOnInternationalShipping::class,
+        => Status\NoEndorsementOnInternationalShipping::class,
         'bittebeachtensiedassdievorausverfgungsoptionafter_deadlinercksendungandenabsendernachablaufderfristentflltihresendungerhltdieoptionimmediatesofortigercksendungandenabsender'
-                                                                                         => Status\EndorsementAfterDeadlineDeprecationWarning::class,
-        'bittegebensiedieartderfrankaturan'                                              => Status\EmptyExportType::class,
-        'dieangegebeneartderfrankaturistnichtgltig'                                      => Status\InvalidExportType::class,
-        'bittegebensiedieversandkostenfrdiezollabfertigungan'                            => Status\EmptyShippingFeeForExportDocument::class,
+        => Status\EndorsementAfterDeadlineDeprecationWarning::class,
+        'bittegebensiedieartderfrankaturan' => Status\EmptyExportType::class,
+        'dieangegebeneartderfrankaturistnichtgltig' => Status\InvalidExportType::class,
+        'bittegebensiedieversandkostenfrdiezollabfertigungan' => Status\EmptyShippingFeeForExportDocument::class,
         'bittegebensiedieversandkostenandiesesindfrdiezollabfertigungnotwendigwennsiedemempfngerkeineversandkostenberechnengebensiebitte000an'
-                                                                                         => Status\EmptyShippingFeeForExportDocument::class,
+        => Status\EmptyShippingFeeForExportDocument::class,
         'diezolltarifnummermussnumerischund68oder10stellenlangseinbittebeachtensiedassdiezolltarifnummerdesempfangslandesnichtdiedeutschezolltarifnummereingetragenwerdenmuss'
-                                                                                         => Status\InvalidCustomsTariffNumber::class,
-        'dieangegebenezolltarifnummeristnichtgltig'                                      => Status\InvalidCustomsTariffNumber::class,
-        'dieausgewhlteartdervorausverfgungistnichtgltig'                                 => Status\InvalidEndorsementType::class,
+        => Status\InvalidCustomsTariffNumber::class,
+        'dieangegebenezolltarifnummeristnichtgltig' => Status\InvalidCustomsTariffNumber::class,
+        'dieausgewhlteartdervorausverfgungistnichtgltig' => Status\InvalidEndorsementType::class,
         'bittebeachtensiedassdievorausverfgungsoptionafter_deadline(rcksendungandenabsendernachablaufderfrist)entflltihresendungerhltdieoptionimmediate(sofortigercksendungandenabsender)'
-                                                                                         => Status\EndorsementTypeChangedFromAfterDeadlineToImmediate::class,
+        => Status\EndorsementTypeChangedFromAfterDeadlineToImmediate::class,
         'dievonihnenmitgegebenekennnummerdesabsendersfrzollzweckedarfnurbuchstabenundzahlenbeinhalten'
-                                                                                         => Status\InvalidSendersCustomsReference::class,
-        'dasfeldgewichteinheitmussdasformat0000kgaufweisenundeinenwertgrer0enthalten'    => Status\InvalidExportDocPositionNetWeight::class,
+        => Status\InvalidSendersCustomsReference::class,
+        'dasfeldgewichteinheitmussdasformat0000kgaufweisenundeinenwertgrer0enthalten' => Status\InvalidExportDocPositionNetWeight::class,
         'diemengeeinesartikelsmusspositivseinbeachtensiebittedassrabatteundbezahlungenbergutscheinnichtzollrelevantsind' => Status\NegativeExportDocPositionAmount::class,
-        'dieangegebenewhrungistnichtgltig'                                               => Status\InvalidCustomsCurrency::class,
+        'dieangegebenewhrungistnichtgltig' => Status\InvalidCustomsCurrency::class,
         'maximalzulssigesgewichtfrwarenpost1kgsendungenbismax315kgknnenalsdhlpaketbeauftragtwerden'
-                                                                                         => Status\WeightToHighForV62WP::class,
-        'entfllt'                                                                        => Status\DeprecationWarning::class,
-        'veraltet'                                                                       => Status\DeprecationWarning::class,
-        'nichtmehruntersttzt'                                                            => Status\DeprecationWarning::class
+        => Status\WeightToHighForV62WP::class,
+        'entfllt' => Status\DeprecationWarning::class,
+        'veraltet' => Status\DeprecationWarning::class,
+        'nichtmehruntersttzt' => Status\DeprecationWarning::class
     ];
 
     /**
@@ -180,14 +180,14 @@ class ShippingStatusMapper {
     public static function getStatusObjects($statusResponse, $languageLocale) {
         $statusObjects = self::getStatusObjectsByCode($statusResponse, $languageLocale);
 
-        if(empty($statusObjects)):
+        if (empty($statusObjects)):
             $statusResponse = self::ensureStatusMessagePropertyExists($statusResponse);
 
-            if(is_array($statusResponse->statusMessage))
+            if (is_array($statusResponse->statusMessage))
                 $statusObjects = self::mapMultipleStatusMessagesToStatusObjects($statusResponse, $languageLocale);
             else
                 $statusObjects = self::mapStatusMessageToStatusObjects($statusResponse->statusMessage,
-                                                                       $statusResponse, $languageLocale);
+                    $statusResponse, $languageLocale);
         endif;
 
         return $statusObjects;
@@ -196,8 +196,8 @@ class ShippingStatusMapper {
     /**
      * @param Status\AbstractStatus[] $statusClasses
      * @param Status\AbstractStatus[] $statusObjects
-     * @param string                  $statusMessage
-     * @param string                  $languageLocale
+     * @param string $statusMessage
+     * @param string $languageLocale
      *
      * @return Status\AbstractStatus[]
      */
@@ -210,10 +210,10 @@ class ShippingStatusMapper {
     }
 
     /**
-     * @param Status\AbstractStatus   $statusClass
+     * @param Status\AbstractStatus $statusClass
      * @param Status\AbstractStatus[] $statusObjects
-     * @param string                  $statusMessage
-     * @param string                  $languageLocale
+     * @param string $statusMessage
+     * @param string $languageLocale
      *
      * @return Status\AbstractStatus[]
      */
@@ -225,7 +225,7 @@ class ShippingStatusMapper {
 
     /**
      * @param Status\AbstractStatus[] $statusObjects
-     * @param string                  $statusMessage
+     * @param string $statusMessage
      *
      * @return Status\AbstractStatus[]
      */
@@ -252,7 +252,7 @@ class ShippingStatusMapper {
      * @return Object
      */
     private static function ensureStatusMessagePropertyExists($statusResponse) {
-        if(!property_exists($statusResponse, 'statusMessage'))
+        if (!property_exists($statusResponse, 'statusMessage'))
             $statusResponse->statusMessage = NULL;
 
         return $statusResponse;
@@ -265,13 +265,13 @@ class ShippingStatusMapper {
      * @return NULL|Status\AbstractStatus[]
      */
     private static function getStatusObjectsByCode($statusResponse, $languageLocale) {
-        if(!property_exists($statusResponse, 'statusCode'))
+        if (!property_exists($statusResponse, 'statusCode'))
             return NULL;
 
         $statusCode = (int)$statusResponse->statusCode;
         $rawMessage = empty($statusResponse->statusMessage) ? $statusResponse->statusText : $statusResponse->statusMessage;
         foreach (self::CODE_MAP as $codeRange):
-            if($codeRange['from'] <= $statusCode && $codeRange['to'] >= $statusCode):
+            if ($codeRange['from'] <= $statusCode && $codeRange['to'] >= $statusCode):
                 $statusObject = new $codeRange['class']($rawMessage, $languageLocale, $statusCode);
 
                 return [$statusObject];
@@ -289,9 +289,9 @@ class ShippingStatusMapper {
     private static function getStatusClassByMessage($statusMessage) {
         $sanitizedStatusMessage = self::sanitizeStatusMessage($statusMessage);
 
-        if(key_exists($sanitizedStatusMessage, self::MESSAGE_MAP)):
+        if (key_exists($sanitizedStatusMessage, self::MESSAGE_MAP)):
             $statusClass = self::MESSAGE_MAP[$sanitizedStatusMessage];
-        elseif(self::containsZipKeyword($sanitizedStatusMessage)):
+        elseif (self::containsZipKeyword($sanitizedStatusMessage)):
             $statusClass = Status\InvalidZipCode::class;
         else:
             $statusClass = NULL;
@@ -337,15 +337,15 @@ class ShippingStatusMapper {
      * @return Status\AbstractStatus[]
      */
     private static function mapStatusMessageToStatusObjects($statusMessage, $statusResponse, $languageLocale) {
-        if(empty($statusMessage))
+        if (empty($statusMessage))
             $statusMessage = $statusResponse->statusText;
 
         $statusClass = self::getStatusClassByMessage($statusMessage);
 
         $statusObjects = [];
-        if(empty($statusClass)):
+        if (empty($statusClass)):
             $statusObjects = self::addUnknownErrorStatus($statusObjects, $statusMessage, $languageLocale);
-        elseif(self::hasMultipleStatusClasses($statusClass)):
+        elseif (self::hasMultipleStatusClasses($statusClass)):
             $statusObjects = self::addMultipleStatusClasses($statusClass, $statusObjects, $statusMessage, $languageLocale);
         else:
             $statusObjects = self::addSingleStatusClass($statusClass, $statusObjects, $statusMessage, $languageLocale);
@@ -361,14 +361,14 @@ class ShippingStatusMapper {
      */
     private static function sanitizeStatusMessage($statusMessage) {
         return strtolower(str_replace([
-                                          'ä', 'ü', 'ö', 'ß', '.', ',', '!', ' ', '-', '"', '“', '”', '\'', '‘', '’', '\\', '/', ':', ';',
-                                          'u00e4', 'u00fc', 'u00f6', 'u00df', 'u002e', 'u002c', 'u0021',
-                                          'u0020', 'u0009', 'u000a', 'u000b', 'u000c', 'u000d',
-                                          'u002d', 'u0022', 'u0093', 'u0094', 'u0027', 'u0091', 'u0092',
-                                          'u005c', 'u002f', 'u003a', 'u003b',
-                                          PHP_EOL
-                                      ], '',
-                                      $statusMessage));
+            'ä', 'ü', 'ö', 'ß', '.', ',', '!', ' ', '-', '"', '“', '”', '\'', '‘', '’', '\\', '/', ':', ';',
+            'u00e4', 'u00fc', 'u00f6', 'u00df', 'u002e', 'u002c', 'u0021',
+            'u0020', 'u0009', 'u000a', 'u000b', 'u000c', 'u000d',
+            'u002d', 'u0022', 'u0093', 'u0094', 'u0027', 'u0091', 'u0092',
+            'u005c', 'u002f', 'u003a', 'u003b',
+            PHP_EOL
+        ], '',
+            $statusMessage));
     }
 
 

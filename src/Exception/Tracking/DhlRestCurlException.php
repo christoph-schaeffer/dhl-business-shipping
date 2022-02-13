@@ -22,8 +22,7 @@ class DhlRestCurlException extends DhlRestException {
      * @param int $code
      * @param Object $previous
      */
-    public function __construct($curlHandle, AbstractTrackingRequest $request, $xmlRequest, $message = "DHL REST client curl error", $code = 0, $previous = null)
-    {
+    public function __construct($curlHandle, AbstractTrackingRequest $request, $xmlRequest, $message = "DHL REST client curl error", $code = 0, $previous = null) {
         parent::__construct($request, $xmlRequest, $message, $code, $previous);
         $this->curlObject = $curlHandle;
     }
@@ -31,8 +30,7 @@ class DhlRestCurlException extends DhlRestException {
     /**
      * @return resource|false
      */
-    public function getCurlObject()
-    {
+    public function getCurlObject() {
         return $this->curlObject;
     }
 

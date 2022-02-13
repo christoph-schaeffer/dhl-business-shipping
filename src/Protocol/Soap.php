@@ -22,7 +22,7 @@ class Soap extends \SoapClient {
      * @param string $apiToken
      * @param string $login
      * @param string $password
-     * @param bool   $isSandbox
+     * @param bool $isSandbox
      *
      * @throws \SoapFault
      *
@@ -32,7 +32,7 @@ class Soap extends \SoapClient {
         parent::__construct(
             self::WSDL_PATH,
             [
-                'login'    => $appID,
+                'login' => $appID,
                 'password' => $apiToken,
                 'location' => $isSandbox ? self::SANDBOX_URL : self::PRODUCTION_URL
             ]
@@ -42,7 +42,7 @@ class Soap extends \SoapClient {
     }
 
     /**
-     * @param string          $function
+     * @param string $function
      * @param AbstractShippingRequest $request
      *
      * @return Object //soapResponse
@@ -72,9 +72,9 @@ class Soap extends \SoapClient {
         return new \SoapHeader(
             self::HEADER_NAMESPACE,
             'Authentification', [
-                'user'      => $login,
-                'signature' => $password
-            ]);
+            'user' => $login,
+            'signature' => $password
+        ]);
     }
 
 }

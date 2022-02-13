@@ -39,7 +39,7 @@ class AddressParser {
     private static function useRegexPattern($streetAndHouseNumber) {
         preg_match(self::REGEX_PATTERN, $streetAndHouseNumber, $match);
 
-        if(empty($match[1]) && empty($match[2])):
+        if (empty($match[1]) && empty($match[2])):
             $possibleStreet      = empty($match[3]) ? NULL : $match[3];
             $possibleHouseNumber = empty($match[4]) ? NULL : $match[4];
         else:
@@ -56,7 +56,7 @@ class AddressParser {
      * @return bool
      */
     private static function validateHouseNumber($match) {
-        if(!is_string($match) && !is_integer($match))
+        if (!is_string($match) && !is_integer($match))
             return FALSE;
 
         $withoutLetters = (string)(int)$match;
@@ -73,10 +73,10 @@ class AddressParser {
      */
     private static function validateStreetAndHouseNumber($possibleStreet, $possibleHouseNumber,
                                                          $streetAndHouseNumber) {
-        if(self::validateStreetName($possibleStreet)):
+        if (self::validateStreetName($possibleStreet)):
             $street = $possibleStreet;
 
-            if(self::validateHouseNumber($possibleHouseNumber)):
+            if (self::validateHouseNumber($possibleHouseNumber)):
                 $houseNumber = $possibleHouseNumber;
             else:
                 $houseNumber = NULL;

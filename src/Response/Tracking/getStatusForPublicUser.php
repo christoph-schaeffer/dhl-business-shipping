@@ -73,7 +73,7 @@ class getStatusForPublicUser extends AbstractTrackingResponse {
         parent::__construct($request, $rawResponse, $rawRequest, $languageLocale);
         $this->code = XmlParser::nullableStringTypeCast('int', $this->code);
 
-        if(isset($rawResponse->data) && isset($rawResponse->data->data)):
+        if (isset($rawResponse->data) && isset($rawResponse->data->data)):
             $rawPieceStatusPublicList = $rawResponse->data->data;
             foreach ($rawPieceStatusPublicList as $rawPieceStatusPublic):
                 $this->pieceStatusPublicList[] = new PieceStatusPublic($rawPieceStatusPublic);
@@ -85,8 +85,8 @@ class getStatusForPublicUser extends AbstractTrackingResponse {
      * @return bool
      */
     public function hasNoErrors() {
-        foreach($this->pieceStatusPublicList as $piece):
-            if($piece->errorStatus !== 0):
+        foreach ($this->pieceStatusPublicList as $piece):
+            if ($piece->errorStatus !== 0):
                 return false;
             endif;
         endforeach;

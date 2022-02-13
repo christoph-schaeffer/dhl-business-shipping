@@ -272,15 +272,15 @@ class PieceStatusPublic {
     public function __construct(\SimpleXMLElement $rawXmlStatusForPublicData) {
         XmlParser::mapXmlAttributesToObjectProperties($rawXmlStatusForPublicData, $this);
 
-        $this->errorStatus = XmlParser::nullableStringTypeCast('int', $this->errorStatus);
-        $this->identifierType = XmlParser::nullableStringTypeCast('int', $this->identifierType);
-        $this->recipientId = XmlParser::nullableStringTypeCast('int', $this->recipientId);
+        $this->errorStatus       = XmlParser::nullableStringTypeCast('int', $this->errorStatus);
+        $this->identifierType    = XmlParser::nullableStringTypeCast('int', $this->identifierType);
+        $this->recipientId       = XmlParser::nullableStringTypeCast('int', $this->recipientId);
         $this->deliveryEventFlag = XmlParser::nullableStringTypeCast('bool', $this->deliveryEventFlag);
         $this->internationalFlag = XmlParser::nullableStringTypeCast('bool', $this->internationalFlag);
-        $this->shipmentLength = XmlParser::nullableStringTypeCast('float', $this->shipmentLength);
-        $this->shipmentWidth = XmlParser::nullableStringTypeCast('float', $this->shipmentWidth);
-        $this->shipmentHeight = XmlParser::nullableStringTypeCast('float', $this->shipmentHeight);
-        $this->shipmentWeight = XmlParser::nullableStringTypeCast('float', $this->shipmentWeight);
+        $this->shipmentLength    = XmlParser::nullableStringTypeCast('float', $this->shipmentLength);
+        $this->shipmentWidth     = XmlParser::nullableStringTypeCast('float', $this->shipmentWidth);
+        $this->shipmentHeight    = XmlParser::nullableStringTypeCast('float', $this->shipmentHeight);
+        $this->shipmentWeight    = XmlParser::nullableStringTypeCast('float', $this->shipmentWeight);
     }
 
 }

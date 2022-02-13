@@ -20,7 +20,7 @@ class XmlParser {
         foreach ($objectOrArray as $key => $value):
             if (is_string($value) || is_integer($value) || is_float($value) || is_bool($value)):
                 $kebabKey = self::camelCaseToKebabCase($key);
-                if(is_bool($value)):
+                if (is_bool($value)):
                     $value = $value ? 'true' : 'false';
                 endif;
 
@@ -38,13 +38,13 @@ class XmlParser {
      * @throws DhlXmlParseException
      */
     public static function parseFromXml($xmlString) {
-       $parsed = simplexml_load_string($xmlString);
+        $parsed = simplexml_load_string($xmlString);
 
-       if($parsed === false):
-           throw new DhlXmlParseException($xmlString);
-       endif;
+        if ($parsed === false):
+            throw new DhlXmlParseException($xmlString);
+        endif;
 
-       return $parsed;
+        return $parsed;
     }
 
     /**
@@ -71,15 +71,15 @@ class XmlParser {
      * @throws DhlXmlParseException
      */
     public static function nullableStringTypeCast($type, $value) {
-        if($value === '' || $value === null):
+        if ($value === '' || $value === null):
             return null;
         endif;
 
-        switch($type) {
+        switch ($type) {
             case 'int':
-                return (int) $value;
+                return (int)$value;
             case 'float':
-                return (float) $value;
+                return (float)$value;
             case 'bool':
                 return $value === '1' || strtolower($value) === 'true';
         }
@@ -95,9 +95,9 @@ class XmlParser {
      */
     public static function mapXmlAttributesToObjectProperties(\SimpleXMLElement $rawResponse, $object) {
         $attributes = (array)((array)$rawResponse->attributes())['@attributes'];
-        foreach($attributes as $property => $value):
+        foreach ($attributes as $property => $value):
             $propertyInCamelCase = self::kebabCaseToCamelCase($property);
-            if(property_exists($object, $propertyInCamelCase)):
+            if (property_exists($object, $propertyInCamelCase)):
                 $object->{$propertyInCamelCase} = $value;
             endif;
         endforeach;

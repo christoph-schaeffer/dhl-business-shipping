@@ -26,7 +26,7 @@ class CountryCodeConversion {
      */
     public static function countryCodeToCountry($countryCode) {
         $countryCode = strtoupper($countryCode);
-        if(key_exists($countryCode, self::COUNTRYCODE_TO_COUNTRY_MAP)):
+        if (key_exists($countryCode, self::COUNTRYCODE_TO_COUNTRY_MAP)):
             $country = self::COUNTRYCODE_TO_COUNTRY_MAP[$countryCode];
         else:
             $country = NULL;
@@ -48,7 +48,7 @@ class CountryCodeConversion {
         $country = preg_replace('/[\W]/', '', $country);
         $country = trim(strtolower($country));
 
-        if(key_exists($country, self::COUNTRY_TO_COUNTRYCODE_MAP)):
+        if (key_exists($country, self::COUNTRY_TO_COUNTRYCODE_MAP)):
             $countryCode = self::COUNTRY_TO_COUNTRYCODE_MAP[$country];
         else:
             $countryCode = NULL;

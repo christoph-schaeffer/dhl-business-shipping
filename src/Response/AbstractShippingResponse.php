@@ -22,16 +22,16 @@ abstract class AbstractShippingResponse extends AbstractResponse {
 
     /**
      * @param AbstractShippingRequest $request
-     * @param Object          $rawResponse
-     * @param string          $rawRequest
-     * @param string          $languageLocale
+     * @param Object $rawResponse
+     * @param string $rawRequest
+     * @param string $languageLocale
      *
      * AbstractShippingResponse constructor.
      */
     public function __construct(AbstractShippingRequest $request, $rawResponse, $rawRequest, $languageLocale) {
         parent::__construct($request, $rawResponse, $rawRequest, $languageLocale);
 
-        if(property_exists($rawResponse, 'Status'))
+        if (property_exists($rawResponse, 'Status'))
             $this->Status = ShippingStatusMapper::getStatusObjects($rawResponse->Status, $languageLocale);
     }
 
@@ -50,7 +50,7 @@ abstract class AbstractShippingResponse extends AbstractResponse {
      * @return bool
      */
     protected function firstStatusIsSuccess(array $statusArray) {
-        if(empty($statusArray))
+        if (empty($statusArray))
             return FALSE;
 
         $firstStatus = array_shift($statusArray);

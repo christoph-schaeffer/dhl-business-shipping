@@ -15,11 +15,10 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Utility\XmlParser;
  *
  * This is the main class of this plugin, which is used to call function of the api.
  */
-class Rest
-{
+class Rest {
 
     const PRODUCTION_URL = 'https://cig.dhl.de/services/production/rest/sendungsverfolgung';
-    const SANDBOX_URL = 'https://cig.dhl.de/services/sandbox/rest/sendungsverfolgung';
+    const SANDBOX_URL    = 'https://cig.dhl.de/services/sandbox/rest/sendungsverfolgung';
 
     /** @var string */
     private $appID;
@@ -40,17 +39,16 @@ class Rest
      * @param AbstractTrackingRequest $request
      * @param object[] $contentObjects
      */
-    public function callFunction($request, $xmlVersion = "1.0", $encoding = 'ISO-8859-1')
-    {
+    public function callFunction($request, $xmlVersion = "1.0", $encoding = 'ISO-8859-1') {
         $request = $this->fillRequestData($request);
 
-        $xml = '<?xml version="'.$xmlVersion.'" encoding="'.$encoding.'" ?>';
+        $xml        = '<?xml version="' . $xmlVersion . '" encoding="' . $encoding . '" ?>';
         $xmlContent = '';
-        if(isset($request->contentObjects)) {
-            foreach ($request->contentObjects as $contentObject) {
+        if (isset($request->contentObjects)):
+            foreach ($request->contentObjects as $contentObject):
                 $xmlContent .= XmlParser::parseToXml($contentObject);
-            }
-        }
+            endforeach;
+        endif;
 
         $xml .= XmlParser::parseToXml($request, $xmlContent);
 
@@ -67,11 +65,11 @@ class Rest
      * Rest constructor.
      */
     public function __construct($appID, $apiToken, $zTToken, $password, $isSandbox, $languageLocaleAlpha2) {
-        $this->appID = $appID;
-        $this->apiToken = $apiToken;
-        $this->zTToken = $zTToken;
-        $this->password = $password;
-        $this->isSandbox = $isSandbox;
+        $this->appID                = $appID;
+        $this->apiToken             = $apiToken;
+        $this->zTToken              = $zTToken;
+        $this->password             = $password;
+        $this->isSandbox            = $isSandbox;
         $this->languageLocaleAlpha2 = $languageLocaleAlpha2;
     }
 
@@ -93,7 +91,7 @@ class Rest
         $this->lastXML = $xml;
 
         $curl = curl_init($this->isSandbox ? self::SANDBOX_URL : self::PRODUCTION_URL);
-        curl_setopt ($curl, CURLOPT_HTTPHEADER, ['Content-Type: text/xml']);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-Type: text/xml']);
         curl_setopt($curl, CURLOPT_USERPWD, $this->appID . ":" . $this->apiToken);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $xml);
@@ -102,9 +100,9 @@ class Rest
 
         $response = curl_exec($curl);
 
-        if(curl_errno($curl)){
+        if (curl_errno($curl)):
             throw new DhlRestCurlException(curl_error($curl), $request, $xml);
-        }
+        endif;
 
         $this->handleHttpCodes(curl_getinfo($curl, CURLINFO_HTTP_CODE), $request, $xml);
         curl_close($curl);
@@ -120,7 +118,7 @@ class Rest
      * @throws DhlRestHttpException
      */
     private function handleHttpCodes($httpCode, $request, $xml) {
-        switch($httpCode) {
+        switch ($httpCode) {
             case 200:
                 return;
             case 401:
@@ -139,11 +137,10 @@ class Rest
      *
      * @return AbstractTrackingRequest
      */
-    private function fillRequestData($request)
-    {
+    private function fillRequestData($request) {
         $request->request = $request->getRequestString();
 
-        $request->appname = empty($request->appname) ? $this->zTToken : $request->appname;
+        $request->appname  = empty($request->appname) ? $this->zTToken : $request->appname;
         $request->password = empty($request->password) ? $this->password : $request->password;
 
         $request->languageCode = empty($request->languageCode) ? $this->languageLocaleAlpha2 : $request->languageCode;

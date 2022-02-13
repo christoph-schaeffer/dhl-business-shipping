@@ -44,9 +44,9 @@ abstract class AbstractResponse {
 
     /**
      * @param AbstractRequest $request
-     * @param Object           $rawResponse
-     * @param string          $rawRequest
-     * @param string          $languageLocale
+     * @param Object $rawResponse
+     * @param string $rawRequest
+     * @param string $languageLocale
      *
      * AbstractResponse constructor.
      */
@@ -56,7 +56,7 @@ abstract class AbstractResponse {
         $this->request     = $request;
 
         $this->Version = new Version();
-        if(is_a($request, AbstractShippingRequest::class)) {
+        if (is_a($request, AbstractShippingRequest::class)) {
             $this->Version->majorRelease = $rawResponse->Version->majorRelease;
             $this->Version->minorRelease = $rawResponse->Version->minorRelease;
         } else {

@@ -28,7 +28,7 @@ class DhlRestException extends DhlException {
     public function __construct(AbstractTrackingRequest $request, $xmlRequest, $message = "DHL REST client error", $code = 0, $previous = null) {
         parent::__construct($message, $code, $previous);
         $this->xmlRequest = $xmlRequest;
-        $this->request = $request;
+        $this->request    = $request;
     }
 
     /**
