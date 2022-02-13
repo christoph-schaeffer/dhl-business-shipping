@@ -54,15 +54,7 @@ abstract class AbstractResponse {
         $this->rawResponse = $rawResponse;
         $this->rawRequest  = $rawRequest;
         $this->request     = $request;
-
-        $this->Version = new Version();
-        if (is_a($request, AbstractShippingRequest::class)) {
-            $this->Version->majorRelease = $rawResponse->Version->majorRelease;
-            $this->Version->minorRelease = $rawResponse->Version->minorRelease;
-        } else {
-            $this->Version->majorRelease = TrackingClient::MAJOR_RELEASE;
-            $this->Version->minorRelease = TrackingClient::MINOR_RELEASE;
-        }
+        $this->Version     = new Version();
     }
 
     /**

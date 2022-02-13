@@ -3,12 +3,32 @@
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Utility;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking\DhlXmlParseException;
+use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractTrackingRequest;
 
 /**
  * Class XmlParser
  * @package ChristophSchaeffer\Dhl\BusinessShipment\Utility
  */
 class XmlParser {
+
+    /**
+     * @param AbstractTrackingRequest $request
+     * @param string $xmlVersion
+     * @param string $encoding
+     *
+     * @return string
+     */
+    public static function buildXmlRequest($request, $xmlVersion = "1.0", $encoding = 'ISO-8859-1') {
+        $xmlRequest = '<?xml version="' . $xmlVersion . '" encoding="' . $encoding . '" ?>';
+        $xmlContent = '';
+        if (isset($request->contentObjects)):
+            foreach ($request->contentObjects as $contentObject):
+                $xmlContent .= XmlParser::parseToXml($contentObject);
+            endforeach;
+        endif;
+
+        return $xmlRequest.XmlParser::parseToXml($request, $xmlContent);
+    }
 
     /**
      * @param object|array $objectOrArray

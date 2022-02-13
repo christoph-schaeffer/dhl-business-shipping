@@ -11,6 +11,7 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Protocol\Rest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractTrackingRequest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Utility\CountryCodeConversion;
 use ChristophSchaeffer\Dhl\BusinessShipping\Utility\Sanitizer;
+use ChristophSchaeffer\Dhl\BusinessShipping\Utility\XmlParser;
 
 /**
  * Class ShippingClient
@@ -42,6 +43,11 @@ class TrackingClient {
     private $rest;
 
     /**
+     * @var TrackingClientCredentials
+     */
+    private $credentials;
+
+    /**
      * TrackingClient constructor.
      * @param TrackingClientCredentials $credentials
      * @param bool $isSandbox
@@ -50,14 +56,16 @@ class TrackingClient {
      */
     public function __construct(TrackingClientCredentials $credentials, $isSandbox = FALSE,
                                                           $languageLocale = MultiClient::LANGUAGE_LOCALE_GERMAN_DE, $rest = null) {
+        $this->credentials = $credentials;
+
         if (strlen($languageLocale) > 2):
             $this->languageLocaleAlpha2 = CountryCodeConversion::languageLocaleToIsoAlpha2($languageLocale);
         else:
-            $this->languageLocaleAlpha2 = strtoupper($languageLocale);
+            $this->languageLocaleAlpha2 = strtolower($languageLocale);
         endif;
 
         if (empty($rest)):
-            $this->rest = new Rest($credentials->appID, $credentials->apiToken, $credentials->ztToken, $credentials->password, $isSandbox, $this->languageLocaleAlpha2);
+            $this->rest = new Rest($credentials->appID, $credentials->apiToken, $isSandbox);
         else:
             $this->rest = $rest;
         endif;
@@ -82,7 +90,10 @@ class TrackingClient {
      */
     public function getStatusForPublicUser(Request\Tracking\getStatusForPublicUser $request) {
         $request      = $this->sanitizeRequest($request);
-        $restResponse = $this->rest->callFunction($request);
+        $request      = $this->fillRequestData($request);
+        $xmlRequest = XmlParser::buildXmlRequest($request);
+        $restXmlResponse = $this->rest->callRestFunction($xmlRequest, $request);
+        $restResponse = XmlParser::parseFromXml($restXmlResponse);
 
         return new Response\Tracking\getStatusForPublicUser($request, $restResponse, $this->rest->getLastRestXMLRequest(), $this->languageLocaleAlpha2);
     }
@@ -105,7 +116,10 @@ class TrackingClient {
      */
     public function getPiece(Request\Tracking\getPiece $request) {
         $request      = $this->sanitizeRequest($request);
-        $restResponse = $this->rest->callFunction($request);
+        $request      = $this->fillRequestData($request);
+        $xmlRequest = XmlParser::buildXmlRequest($request);
+        $restXmlResponse = $this->rest->callRestFunction($xmlRequest, $request);
+        $restResponse = XmlParser::parseFromXml($restXmlResponse);
 
         return new Response\Tracking\getPiece($request, $restResponse, $this->rest->getLastRestXMLRequest(), $this->languageLocaleAlpha2);
     }
@@ -128,7 +142,10 @@ class TrackingClient {
      */
     public function getPieceEvents(Request\Tracking\getPieceEvents $request) {
         $request      = $this->sanitizeRequest($request);
-        $restResponse = $this->rest->callFunction($request);
+        $request      = $this->fillRequestData($request);
+        $xmlRequest = XmlParser::buildXmlRequest($request);
+        $restXmlResponse = $this->rest->callRestFunction($xmlRequest, $request);
+        $restResponse = XmlParser::parseFromXml($restXmlResponse);
 
         return new Response\Tracking\getPieceEvents($request, $restResponse, $this->rest->getLastRestXMLRequest(), $this->languageLocaleAlpha2);
     }
@@ -157,7 +174,10 @@ class TrackingClient {
      */
     public function getSignature(Request\Tracking\getSignature $request) {
         $request      = $this->sanitizeRequest($request);
-        $restResponse = $this->rest->callFunction($request);
+        $request      = $this->fillRequestData($request);
+        $xmlRequest = XmlParser::buildXmlRequest($request);
+        $restXmlResponse = $this->rest->callRestFunction($xmlRequest, $request);
+        $restResponse = XmlParser::parseFromXml($restXmlResponse);
 
         return new Response\Tracking\getSignature($request, $restResponse, $this->rest->getLastRestXMLRequest(), $this->languageLocaleAlpha2);
     }
@@ -179,7 +199,10 @@ class TrackingClient {
      */
     public function getPieceDetail(Request\Tracking\getPieceDetail $request) {
         $request      = $this->sanitizeRequest($request);
-        $restResponse = $this->rest->callFunction($request);
+        $request      = $this->fillRequestData($request);
+        $xmlRequest = XmlParser::buildXmlRequest($request);
+        $restXmlResponse = $this->rest->callRestFunction($xmlRequest, $request);
+        $restResponse = XmlParser::parseFromXml($restXmlResponse);
 
         return new Response\Tracking\getPieceDetail($request, $restResponse, $this->rest->getLastRestXMLRequest(), $this->languageLocaleAlpha2);
     }
@@ -194,6 +217,23 @@ class TrackingClient {
     private function sanitizeRequest(AbstractTrackingRequest $request) {
         Sanitizer::sanitizeObjectRecursive($request);
         Sanitizer::convertFloatToStringObjectRecursive($request);
+
+        return $request;
+    }
+
+    /**
+     * @param AbstractTrackingRequest $request
+     *
+     * @return AbstractTrackingRequest
+     */
+    private function fillRequestData($request) {
+        $request->request = $request->getRequestString();
+
+        $request->appname  = empty($request->appname) ? $this->credentials->ztToken : $request->appname;
+        $request->password = empty($request->password) ? $this->credentials->password : $request->password;
+
+        $request->languageCode = empty($request->languageCode) ? $this->languageLocaleAlpha2 : $request->languageCode;
+        $request->languageCode = strtolower($request->languageCode);
 
         return $request;
     }

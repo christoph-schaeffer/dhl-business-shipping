@@ -49,6 +49,12 @@ class PieceShipment {
     /**
      * @var string
      *
+     * shipment tracking number
+     */
+    public $pieceCode;
+    /**
+     * @var string
+     *
      * Location at which the shipment event was created
      */
     public $eventLocation;
@@ -124,6 +130,12 @@ class PieceShipment {
      * PAN Recipient full address in one line. This is not documented by DHL. it is unclear why this exists.
      */
     public $panRecipientAddress;
+    /**
+     * @var string
+     *
+     * PAN Recipient postal code. This is not documented by DHL. it is unclear why this exists.
+     */
+    public $panRecipientPostalcode;
     /**
      * @var string
      *

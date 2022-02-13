@@ -3,6 +3,7 @@
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractTrackingRequest;
+use ChristophSchaeffer\Dhl\BusinessShipping\TrackingClient;
 use ChristophSchaeffer\Dhl\BusinessShipping\Utility\XmlParser;
 
 /**
@@ -21,6 +22,8 @@ abstract class AbstractTrackingResponse extends AbstractResponse {
      */
     public function __construct(AbstractTrackingRequest $request, \SimpleXMLElement $rawResponse, $rawRequest, $languageLocale) {
         parent::__construct($request, $rawResponse, $rawRequest, $languageLocale);
+        $this->Version->majorRelease = TrackingClient::MAJOR_RELEASE;
+        $this->Version->minorRelease = TrackingClient::MINOR_RELEASE;
         XmlParser::mapXmlAttributesToObjectProperties($rawResponse, $this);
     }
 

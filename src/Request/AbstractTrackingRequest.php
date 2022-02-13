@@ -12,7 +12,7 @@ abstract class AbstractTrackingRequest extends AbstractRequest {
     /**
      * @var string
      *
-     * Contains the "ZT-Kennung". Only DHL knows why the property is called appname insteasd of ztkennung.
+     * Contains the "ZT-Kennung". Only DHL knows why the property is called appname instead of ztKennung.
      *
      * This is set automatically, you can however overwrite it.
      */

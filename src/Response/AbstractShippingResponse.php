@@ -30,6 +30,8 @@ abstract class AbstractShippingResponse extends AbstractResponse {
      */
     public function __construct(AbstractShippingRequest $request, $rawResponse, $rawRequest, $languageLocale) {
         parent::__construct($request, $rawResponse, $rawRequest, $languageLocale);
+        $this->Version->majorRelease = $rawResponse->Version->majorRelease;
+        $this->Version->minorRelease = $rawResponse->Version->minorRelease;
 
         if (property_exists($rawResponse, 'Status'))
             $this->Status = ShippingStatusMapper::getStatusObjects($rawResponse->Status, $languageLocale);

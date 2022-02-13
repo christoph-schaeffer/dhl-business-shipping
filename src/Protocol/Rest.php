@@ -7,7 +7,6 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking\DhlRestCurlExcept
 use ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking\DhlRestHttpException;
 use ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking\DhlXmlParseException;
 use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractTrackingRequest;
-use ChristophSchaeffer\Dhl\BusinessShipping\Utility\XmlParser;
 
 /**
  * Class Rest
@@ -25,86 +24,44 @@ class Rest {
     private $appID;
     /** @var string */
     private $apiToken;
-    /** @var string */
-    private $zTToken;
-    /** @var string */
-    private $password;
     /** @var bool */
     private $isSandbox;
-    /** @var string */
-    private $languageLocaleAlpha2;
     /** @var string */
     private $lastXML;
 
     /**
-     * @param AbstractTrackingRequest $request
-     * @param string $xmlVersion
-     * @param string $encoding
-     * @return \SimpleXMLElement
-     * @throws DhlRestCurlException
-     * @throws DhlRestHttpException
-     * @throws DhlXmlParseException
-     */
-    public function callFunction($request, $xmlVersion = "1.0", $encoding = 'ISO-8859-1') {
-        $request = $this->fillRequestData($request);
-
-        $xml        = '<?xml version="' . $xmlVersion . '" encoding="' . $encoding . '" ?>';
-        $xmlContent = '';
-        if (isset($request->contentObjects)):
-            foreach ($request->contentObjects as $contentObject):
-                $xmlContent .= XmlParser::parseToXml($contentObject);
-            endforeach;
-        endif;
-
-        $xml .= XmlParser::parseToXml($request, $xmlContent);
-
-        return $this->sendCurl($xml, $request);
-    }
-
-    /**
      * @param string $appID
      * @param string $apiToken
-     * @param string $zTToken
-     * @param string $password
      * @param bool $isSandbox
      *
      * Rest constructor.
      */
-    public function __construct($appID, $apiToken, $zTToken, $password, $isSandbox, $languageLocaleAlpha2) {
+    public function __construct($appID, $apiToken, $isSandbox) {
         $this->appID                = $appID;
         $this->apiToken             = $apiToken;
-        $this->zTToken              = $zTToken;
-        $this->password             = $password;
         $this->isSandbox            = $isSandbox;
-        $this->languageLocaleAlpha2 = $languageLocaleAlpha2;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLastRestXMLRequest() {
-        return $this->lastXML;
     }
 
     /**
      * @param string $xml
      * @param AbstractTrackingRequest|null $request
+     * @param string|null $contentType
      * @throws DhlRestCurlException
      * @throws DhlRestHttpException
      * @throws DhlXmlParseException
      */
-    private function sendCurl($xml, $request = null) {
+    public function callRestFunction($xml, $request = null, $contentType = 'text/xml') {
         $this->lastXML = $xml;
 
         $curl = curl_init($this->isSandbox ? self::SANDBOX_URL : self::PRODUCTION_URL);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-Type: text/xml']);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, ["Content-Type: $contentType"]);
         curl_setopt($curl, CURLOPT_USERPWD, $this->appID . ":" . $this->apiToken);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $xml);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 
-        $response = curl_exec($curl);
+        $responseXml = curl_exec($curl);
 
         if (curl_errno($curl)):
             throw new DhlRestCurlException(curl_error($curl), $request, $xml);
@@ -113,7 +70,14 @@ class Rest {
         $this->handleHttpCodes(curl_getinfo($curl, CURLINFO_HTTP_CODE), $request, $xml);
         curl_close($curl);
 
-        return XmlParser::parseFromXml($response);
+        return $responseXml;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastRestXMLRequest() {
+        return $this->lastXML;
     }
 
     /**
@@ -136,23 +100,6 @@ class Rest {
             default:
                 throw new DhlRestHttpException($request, $xml, "Unexcepted HTTP Code - $httpCode", $httpCode);
         }
-    }
-
-    /**
-     * @param AbstractTrackingRequest $request
-     *
-     * @return AbstractTrackingRequest
-     */
-    private function fillRequestData($request) {
-        $request->request = $request->getRequestString();
-
-        $request->appname  = empty($request->appname) ? $this->zTToken : $request->appname;
-        $request->password = empty($request->password) ? $this->password : $request->password;
-
-        $request->languageCode = empty($request->languageCode) ? $this->languageLocaleAlpha2 : $request->languageCode;
-        $request->languageCode = strtolower($request->languageCode);
-
-        return $request;
     }
 
 }
