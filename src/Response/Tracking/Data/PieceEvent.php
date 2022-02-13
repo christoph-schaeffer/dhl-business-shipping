@@ -2,6 +2,7 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Tracking\Data;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking\DhlXmlParseException;
 use ChristophSchaeffer\Dhl\BusinessShipping\Utility\XmlParser;
 
 /**
@@ -78,31 +79,11 @@ class PieceEvent {
 
     /**
      * @param \SimpleXMLElement $rawXmlEventData
+     * @throws DhlXmlParseException
      */
     public function __construct(\SimpleXMLElement $rawXmlEventData) {
         XmlParser::mapXmlAttributesToObjectProperties($rawXmlEventData, $this);
-        $this->convertPropertyTo('bool', 'ruecksendung');
+        $this->ruecksendung = XmlParser::nullableStringTypeCast('bool', $this->ruecksendung);
     }
 
-    /**
-     * @param string $type
-     * @param string $propertyName
-     */
-    private function convertPropertyTo($type, $propertyName) {
-        if($this->{$propertyName} === '' || $this->{$propertyName} === null) {
-            return;
-        }
-
-        switch($type) {
-            case 'int':
-                $this->{$propertyName} = (int)$this->{$propertyName};
-                break;
-            case 'float':
-                $this->{$propertyName} = (float)$this->{$propertyName};
-                break;
-            case 'bool':
-                $this->{$propertyName} = $this->{$propertyName} === '1' || strtolower($this->{$propertyName}) === 'true';
-                break;
-        }
-    }
 }

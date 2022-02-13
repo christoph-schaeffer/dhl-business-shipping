@@ -2,6 +2,7 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Tracking\Data;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking\DhlXmlParseException;
 use ChristophSchaeffer\Dhl\BusinessShipping\Utility\XmlParser;
 
 /**
@@ -59,7 +60,7 @@ class PieceStatusPublic {
      */
     public $recipientName;
     /**
-     * @var string
+     * @var int
      *
      * Id of the recipient type, however these ids are not documented by DHL.
      *
@@ -266,39 +267,20 @@ class PieceStatusPublic {
 
     /**
      * @param \SimpleXMLElement $rawXmlStatusForPublicData
+     * @throws DhlXmlParseException
      */
     public function __construct(\SimpleXMLElement $rawXmlStatusForPublicData) {
         XmlParser::mapXmlAttributesToObjectProperties($rawXmlStatusForPublicData, $this);
 
-        $this->convertPropertyTo('int', 'errorStatus');
-        $this->convertPropertyTo('int', 'identifierType');
-        $this->convertPropertyTo('bool', 'deliveryEventFlag');
-        $this->convertPropertyTo('bool', 'internationalFlag');
-        $this->convertPropertyTo('float', 'shipmentLength');
-        $this->convertPropertyTo('float', 'shipmentWidth');
-        $this->convertPropertyTo('float', 'shipmentHeight');
-        $this->convertPropertyTo('float', 'shipmentWeight');
+        $this->errorStatus = XmlParser::nullableStringTypeCast('int', $this->errorStatus);
+        $this->identifierType = XmlParser::nullableStringTypeCast('int', $this->identifierType);
+        $this->recipientId = XmlParser::nullableStringTypeCast('int', $this->recipientId);
+        $this->deliveryEventFlag = XmlParser::nullableStringTypeCast('bool', $this->deliveryEventFlag);
+        $this->internationalFlag = XmlParser::nullableStringTypeCast('bool', $this->internationalFlag);
+        $this->shipmentLength = XmlParser::nullableStringTypeCast('float', $this->shipmentLength);
+        $this->shipmentWidth = XmlParser::nullableStringTypeCast('float', $this->shipmentWidth);
+        $this->shipmentHeight = XmlParser::nullableStringTypeCast('float', $this->shipmentHeight);
+        $this->shipmentWeight = XmlParser::nullableStringTypeCast('float', $this->shipmentWeight);
     }
 
-    /**
-     * @param string $type
-     * @param string $propertyName
-     */
-    private function convertPropertyTo($type, $propertyName) {
-        if($this->{$propertyName} === '' || $this->{$propertyName} === null) {
-            return;
-        }
-
-        switch($type) {
-            case 'int':
-                $this->{$propertyName} = (int)$this->{$propertyName};
-                break;
-            case 'float':
-                $this->{$propertyName} = (float)$this->{$propertyName};
-                break;
-            case 'bool':
-                $this->{$propertyName} = $this->{$propertyName} === '1' || strtolower($this->{$propertyName}) === 'true';
-                break;
-        }
-    }
 }

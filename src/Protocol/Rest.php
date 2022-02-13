@@ -5,8 +5,8 @@ namespace ChristophSchaeffer\Dhl\BusinessShipping\Protocol;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking\DhlRestCurlException;
 use ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking\DhlRestHttpException;
+use ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking\DhlXmlParseException;
 use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractTrackingRequest;
-use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Tracking\RequestData;
 use ChristophSchaeffer\Dhl\BusinessShipping\Utility\XmlParser;
 
 /**
@@ -87,7 +87,7 @@ class Rest
      * @param AbstractTrackingRequest|null $request
      * @throws DhlRestCurlException
      * @throws DhlRestHttpException
-     * @throws \Exception
+     * @throws DhlXmlParseException
      */
     private function sendCurl($xml, $request = null) {
         $this->lastXML = $xml;

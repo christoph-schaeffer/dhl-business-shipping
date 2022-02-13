@@ -64,6 +64,8 @@ class TrackingClient
      *
      * @return Response\Tracking\getStatusForPublicUser
      *
+     * @throws Exception\Tracking\DhlXmlParseException
+     *
      * !!! IMPORTANT INFO !!!
      * This function is disabled in sandbox mode. No idea why dhl decided that ¯\_(ツ)_/¯
      */
@@ -78,6 +80,8 @@ class TrackingClient
      * @param Request\Tracking\getPiece $request
      *
      * @return Response\Tracking\getPiece
+     *
+     * @throws Exception\Tracking\DhlXmlParseException
      */
     public function getPiece(Request\Tracking\getPiece $request) {
         $request = $this->sanitizeRequest($request);
@@ -90,6 +94,8 @@ class TrackingClient
      * @param Request\Tracking\getPieceEvents $request
      *
      * @return Response\Tracking\getPieceEvents
+     *
+     * @throws Exception\Tracking\DhlXmlParseException
      */
     public function getPieceEvents(Request\Tracking\getPieceEvents $request) {
         $request = $this->sanitizeRequest($request);
@@ -102,6 +108,8 @@ class TrackingClient
      * @param Request\Tracking\getSignature $request
      *
      * @return Response\Tracking\getSignature
+     *
+     * @throws Exception\Tracking\DhlXmlParseException
      */
     public function getSignature(Request\Tracking\getSignature $request) {
         $request = $this->sanitizeRequest($request);
@@ -114,6 +122,8 @@ class TrackingClient
      * @param Request\Tracking\getPieceDetail $request
      *
      * @return Response\Tracking\getPieceDetail
+     *
+     * @throws Exception\Tracking\DhlXmlParseException
      */
     public function getPieceDetail(Request\Tracking\getPieceDetail $request) {
         $request = $this->sanitizeRequest($request);

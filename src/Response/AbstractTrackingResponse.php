@@ -28,7 +28,7 @@ abstract class AbstractTrackingResponse extends AbstractResponse {
      * @return bool
      */
     public function hasNoErrors() {
-        return TRUE; // @TODO shouldnt be hardcoded
+        return $this->code === 0;
     }
 
 }

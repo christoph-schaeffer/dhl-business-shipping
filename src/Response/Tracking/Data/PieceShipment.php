@@ -3,6 +3,7 @@
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Tracking\Data;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\Utility\XmlParser;
+use ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking\DhlXmlParseException;
 
 /**
  * Class PieceShipment
@@ -30,7 +31,7 @@ class PieceShipment {
     /**
      * @var string
      *
-     * Shipment number
+     * Undocumented and seems to be always empty
      */
     public $shipmentCode;
     /**
@@ -42,7 +43,7 @@ class PieceShipment {
     /**
      * @var int
      *
-     * defines the type of pieceIdentifier (tracking number, ref nr, etc). It uses an undocumented enum (int)
+     * Defines the type of pieceIdentifier (tracking number, ref nr, etc). It uses an undocumented enum (int)
      */
     public $identifierType;
     /**
@@ -173,7 +174,7 @@ class PieceShipment {
      */
     public $deliveryEventFlag;
     /**
-     * @var string
+     * @var int
      *
      * Id of the recipient type, however these ids are not documented by DHL.
      *
@@ -335,6 +336,7 @@ class PieceShipment {
 
     /**
      * @param \SimpleXMLElement $rawShipmentData
+     * @throws DhlXmlParseException
      */
     public function __construct(\SimpleXMLElement $rawShipmentData) {
         XmlParser::mapXmlAttributesToObjectProperties($rawShipmentData, $this);
@@ -345,37 +347,17 @@ class PieceShipment {
             endforeach;
         endif;
 
-        $this->convertPropertyTo('int', 'errorStatus');
-        $this->convertPropertyTo('int', 'identifierType');
-        $this->convertPropertyTo('bool', 'deliveryEventFlag');
-        $this->convertPropertyTo('bool', 'internationalFlag');
-        $this->convertPropertyTo('bool', 'ruecksendung');
-        $this->convertPropertyTo('bool', 'orderPreferredDeliveryDay');
-        $this->convertPropertyTo('float', 'shipmentLength');
-        $this->convertPropertyTo('float', 'shipmentWidth');
-        $this->convertPropertyTo('float', 'shipmentHeight');
-        $this->convertPropertyTo('float', 'shipmentWeight');
+        $this->errorStatus = XmlParser::nullableStringTypeCast('int', $this->errorStatus);
+        $this->identifierType = XmlParser::nullableStringTypeCast('int', $this->identifierType);
+        $this->recipientId = XmlParser::nullableStringTypeCast('int', $this->recipientId);
+        $this->deliveryEventFlag = XmlParser::nullableStringTypeCast('bool', $this->deliveryEventFlag);
+        $this->internationalFlag = XmlParser::nullableStringTypeCast('bool', $this->internationalFlag);
+        $this->ruecksendung = XmlParser::nullableStringTypeCast('bool', $this->ruecksendung);
+        $this->orderPreferredDeliveryDay = XmlParser::nullableStringTypeCast('bool', $this->orderPreferredDeliveryDay);
+        $this->shipmentLength = XmlParser::nullableStringTypeCast('float', $this->shipmentLength);
+        $this->shipmentWidth = XmlParser::nullableStringTypeCast('float', $this->shipmentWidth);
+        $this->shipmentHeight = XmlParser::nullableStringTypeCast('float', $this->shipmentHeight);
+        $this->shipmentWeight = XmlParser::nullableStringTypeCast('float', $this->shipmentWeight);
     }
 
-    /**
-     * @param string $type
-     * @param string $propertyName
-     */
-    private function convertPropertyTo($type, $propertyName) {
-        if($this->{$propertyName} === '' || $this->{$propertyName} === null) {
-            return;
-        }
-
-        switch($type) {
-            case 'int':
-                $this->{$propertyName} = (int)$this->{$propertyName};
-                break;
-            case 'float':
-                $this->{$propertyName} = (float)$this->{$propertyName};
-                break;
-            case 'bool':
-                $this->{$propertyName} = $this->{$propertyName} === '1' || strtolower($this->{$propertyName}) === 'true';
-                break;
-        }
-    }
 }

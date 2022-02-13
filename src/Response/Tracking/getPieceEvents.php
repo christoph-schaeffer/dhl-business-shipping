@@ -2,23 +2,47 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response\Tracking;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking\DhlXmlParseException;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\AbstractTrackingResponse;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\Tracking\Data\PieceEvent;
 use ChristophSchaeffer\Dhl\BusinessShipping\Request;
+use ChristophSchaeffer\Dhl\BusinessShipping\Utility\XmlParser;
 
 /**
  * Class getPieceEvents
  * @package ChristophSchaeffer\Dhl\BusinessShipping\Request
  *
- * @TODO description
+ * The getPieceEvents functions supplies the shipment progress, comprising a shipment's individual events.
+ *
+ * For a successful call, this function requires the piece-id attribute from the getPiece/getPieceDetail call.
+ * As a result, this function can only ever be used in combination with a preceding function call for the shipment
+ * status getPiece/getPieceDetail. Since only one piece-id can ever be transferred, only one route for a shipment is
+ * ever retrieved.
  */
 class getPieceEvents extends AbstractTrackingResponse {
 
-    /** @var string */
+    /**
+     * @var string
+     *
+     * The request id. Example: 229fdf4c-6255-4cf4-947c-8441a85baaf9
+     */
     public $requestId;
-    /** @var string */
+    /**
+     * @var int
+     *
+     * Error status code for the current request
+     *
+     * For more information check the following url (you need to be authenticated on entwickler.dhl.de)
+     * https://entwickler.dhl.de/group/ep/wsapis/sendungsverfolgung/allgemeinefehlerhandhabung
+     *
+     * 0 = successful
+     */
     public $code;
-    /** @var PieceEvent[] */
+    /**
+     * @var PieceEvent[]
+     *
+     * This is where the piece event data is stored, please use this array to obtain the data you need
+     */
     public $pieceEventList = [];
 
     /**
@@ -26,9 +50,12 @@ class getPieceEvents extends AbstractTrackingResponse {
      * @param \SimpleXMLElement $rawResponse
      * @param string $rawRequest
      * @param string $languageLocale
+     * @throws DhlXmlParseException
      */
     public function __construct(Request\Tracking\getPieceEvents $request, \SimpleXMLElement $rawResponse, $rawRequest, $languageLocale) {
         parent::__construct($request, $rawResponse, $rawRequest, $languageLocale);
+        $this->code = XmlParser::nullableStringTypeCast('int', $this->code);
+
         if(isset($rawResponse->data)):
             $rawEventList = $rawResponse->data;
             foreach($rawEventList as $rawEvent):
@@ -36,6 +63,5 @@ class getPieceEvents extends AbstractTrackingResponse {
             endforeach;
         endif;
     }
-
 
 }
