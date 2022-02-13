@@ -8,7 +8,9 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractShippingRequest;
  * Class SoapClient
  * @package ChristophSchaeffer\Dhl\BusinessShipping\Protocol
  *
- * Extends the php extensions soap class with the dhl apis specific urls, wsdl and authentication
+ * Extends the php extensions soap class with the dhl apis specific urls, wsdl and authentication.
+ *
+ * You should not use this class directly. Please use the ShippingClient or MultiClient.
  */
 class Soap extends \SoapClient {
 

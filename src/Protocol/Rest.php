@@ -13,7 +13,8 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Utility\XmlParser;
  * Class Rest
  * @package ChristophSchaeffer\Dhl\BusinessShipping\Protocol
  *
- * This is the main class of this plugin, which is used to call function of the api.
+ * This class is the transport layer for this library when using rest apis. So far it is only the tracking api
+ * You should not use the class directly and instead use the TrackingClient or MultiClient classes.
  */
 class Rest {
 
@@ -37,7 +38,12 @@ class Rest {
 
     /**
      * @param AbstractTrackingRequest $request
-     * @param object[] $contentObjects
+     * @param string $xmlVersion
+     * @param string $encoding
+     * @return \SimpleXMLElement
+     * @throws DhlRestCurlException
+     * @throws DhlRestHttpException
+     * @throws DhlXmlParseException
      */
     public function callFunction($request, $xmlVersion = "1.0", $encoding = 'ISO-8859-1') {
         $request = $this->fillRequestData($request);

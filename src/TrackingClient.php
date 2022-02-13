@@ -4,6 +4,9 @@
 namespace ChristophSchaeffer\Dhl\BusinessShipping;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\Credentials\TrackingClientCredentials;
+use ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking\DhlRestCurlException;
+use ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking\DhlRestHttpException;
+use ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking\DhlXmlParseException;
 use ChristophSchaeffer\Dhl\BusinessShipping\Protocol\Rest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractTrackingRequest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Utility\CountryCodeConversion;
@@ -26,35 +29,38 @@ class TrackingClient {
      */
     const MINOR_RELEASE = 0;
 
-    const LANGUAGE_LOCALE_ALPHA2_DE = 'DE';
-    const LANGUAGE_LOCALE_ALPHA2_EN = 'EN';
-
     /**
      * @var string
      *
      * The clients language for status messages
      */
-    private $languageLocaleAlpha2 = self::LANGUAGE_LOCALE_ALPHA2_DE;
+    private $languageLocaleAlpha2 ;
+
+    /**
+     * @var Rest
+     */
+    private $rest;
 
     /**
      * TrackingClient constructor.
      * @param TrackingClientCredentials $credentials
-     * @param false $isSandbox
+     * @param bool $isSandbox
      * @param string $languageLocale
      * @param ?Rest $rest // dependency injection
      */
     public function __construct(TrackingClientCredentials $credentials, $isSandbox = FALSE,
                                                           $languageLocale = MultiClient::LANGUAGE_LOCALE_GERMAN_DE, $rest = null) {
-        if (strlen($languageLocale) > 2) {
+        if (strlen($languageLocale) > 2):
             $this->languageLocaleAlpha2 = CountryCodeConversion::languageLocaleToIsoAlpha2($languageLocale);
-        } else {
+        else:
             $this->languageLocaleAlpha2 = strtoupper($languageLocale);
-        }
+        endif;
 
-        if (empty($soap))
+        if (empty($rest)):
             $this->rest = new Rest($credentials->appID, $credentials->apiToken, $credentials->ztToken, $credentials->password, $isSandbox, $this->languageLocaleAlpha2);
-        else
+        else:
             $this->rest = $rest;
+        endif;
     }
 
     /**
@@ -62,7 +68,9 @@ class TrackingClient {
      *
      * @return Response\Tracking\getStatusForPublicUser
      *
-     * @throws Exception\Tracking\DhlXmlParseException
+     * @throws DhlRestCurlException
+     * @throws DhlRestHttpException
+     * @throws DhlXmlParseException
      *
      * !!! IMPORTANT INFO !!!
      * This function is disabled in sandbox mode (said the support). No idea why dhl decided to do that ¯\_(ツ)_/¯
@@ -84,7 +92,9 @@ class TrackingClient {
      *
      * @return Response\Tracking\getPiece
      *
-     * @throws Exception\Tracking\DhlXmlParseException
+     * @throws DhlRestCurlException
+     * @throws DhlRestHttpException
+     * @throws DhlXmlParseException
      *
      * The getPiece function returns the current shipping status of one or more shipments. In contrast to the query
      * from the DHL shipment tracking section for everyone, this function provides more status data that must only be used
@@ -105,7 +115,9 @@ class TrackingClient {
      *
      * @return Response\Tracking\getPieceEvents
      *
-     * @throws Exception\Tracking\DhlXmlParseException
+     * @throws DhlRestCurlException
+     * @throws DhlRestHttpException
+     * @throws DhlXmlParseException
      *
      * The getPieceEvents functions supplies the shipment progress, comprising a shipment's individual events.
      *
@@ -126,7 +138,9 @@ class TrackingClient {
      *
      * @return Response\Tracking\getSignature
      *
-     * @throws Exception\Tracking\DhlXmlParseException
+     * @throws DhlRestCurlException
+     * @throws DhlRestHttpException
+     * @throws DhlXmlParseException
      *
      * The getSignature function can retrieve the recipient's or substitute recipient's signature.
      * The signatures are also known as POD = Proof of Delivery.
@@ -153,7 +167,9 @@ class TrackingClient {
      *
      * @return Response\Tracking\getPieceDetail
      *
-     * @throws Exception\Tracking\DhlXmlParseException
+     * @throws DhlRestCurlException
+     * @throws DhlRestHttpException
+     * @throws DhlXmlParseException
      *
      * The getPieceDetail function retrieves all information about a shipment via a query. This is done by combining the
      * query of the getPiece and getPieceEvents functions.
