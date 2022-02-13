@@ -8,14 +8,6 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Tracking\PieceData;
 /**
  * Class getStatusForPublicUser
  * @package ChristophSchaeffer\Dhl\BusinessShipping\Request
- *
- * !!! IMPORTANT INFO !!!
- * This function is disabled in sandbox mode. No idea why dhl decided that ¯\_(ツ)_/¯
- *
- * It is highly recommended to just use getPiece or getPieceDetail, as they do the same but with more information.
- *
- * The getStatusForPublicUser function provides information in the way it is shown currently in the DHL shipment
- * tracking area for everyone.
  */
 class getStatusForPublicUser extends AbstractTrackingRequest {
 

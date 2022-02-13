@@ -11,13 +11,6 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Utility\XmlParser;
 /**
  * Class getPiece
  * @package ChristophSchaeffer\Dhl\BusinessShipping\Request
- *
- * The getPiece function returns the current shipping status of one or more shipments. In contrast to the query
- * from the DHL shipment tracking section for everyone, this function provides more status data that must only be used
- * for business-internal evaluations.
- *
- * The function can be called with a shipment number, a shipment reference or an order number for an individual pick-up
- * from the pick-up portal.
  */
 class getPiece extends AbstractTrackingResponse {
 

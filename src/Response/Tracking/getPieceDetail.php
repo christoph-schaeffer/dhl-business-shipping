@@ -11,12 +11,6 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Utility\XmlParser;
 /**
  * Class getPieceDetail
  * @package ChristophSchaeffer\Dhl\BusinessShipping\Request
- *
- * The getPieceDetail function retrieves all information about a shipment via a query. This is done by combining the
- * query of the getPiece and getPieceEvents functions.
- *
- * The function can be called with a shipment number, a shipment reference or an order number for an individual pick-up
- * from the pick-up portal.
  */
 class getPieceDetail extends AbstractTrackingResponse {
 

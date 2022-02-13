@@ -11,13 +11,6 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Utility\XmlParser;
 /**
  * Class getPieceEvents
  * @package ChristophSchaeffer\Dhl\BusinessShipping\Request
- *
- * The getPieceEvents functions supplies the shipment progress, comprising a shipment's individual events.
- *
- * For a successful call, this function requires the piece-id attribute from the getPiece/getPieceDetail call.
- * As a result, this function can only ever be used in combination with a preceding function call for the shipment
- * status getPiece/getPieceDetail. Since only one piece-id can ever be transferred, only one route for a shipment is
- * ever retrieved.
  */
 class getPieceEvents extends AbstractTrackingResponse {
 
