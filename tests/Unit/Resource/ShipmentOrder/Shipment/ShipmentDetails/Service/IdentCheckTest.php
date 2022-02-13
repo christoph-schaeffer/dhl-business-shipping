@@ -3,7 +3,7 @@
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\Resource\ShipmentOrder\Shipment\ShipmentDetails\Service;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\ShipmentOrder\Shipment\ShipmentDetails\Service\IdentCheck;
-use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
+use ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\AbstractUnitTest;
 
 /**
  * Class IdentCheckTest

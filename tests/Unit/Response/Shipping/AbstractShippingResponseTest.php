@@ -7,11 +7,11 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractShippingRequest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\AbstractShippingResponse;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
-use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
+use ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\AbstractUnitTest;
 
 /**
  * Class AbstractResponseTest
- * @package ChristophSchaeffer\Dhl\BusinessShipment\Test\Response
+ * @package ChristophSchaeffer\Dhl\BusinessShipment\Test\Unit\Response\Shipping
  */
 class AbstractShippingResponseTest extends AbstractUnitTest {
 

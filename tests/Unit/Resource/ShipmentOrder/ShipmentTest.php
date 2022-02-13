@@ -3,11 +3,11 @@
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\Resource\ShipmentOrder;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\ShipmentOrder\Shipment;
-use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
+use ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\AbstractUnitTest;
 
 /**
  * Class ShipmentTest
- * @package ChristophSchaeffer\Dhl\BusinessShipment\Test\Resource\ShipmentOrder
+ * @package ChristophSchaeffer\Dhl\BusinessShipment\Test\Unit\Resource\ShipmentOrder
  */
 class ShipmentTest extends AbstractUnitTest {
 

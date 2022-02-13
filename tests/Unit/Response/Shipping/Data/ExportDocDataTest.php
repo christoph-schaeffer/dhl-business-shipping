@@ -5,11 +5,11 @@ namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\Response\Data;
 use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Data\ExportDocData;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\Success;
-use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
+use ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\AbstractUnitTest;
 
 /**
  * Class ExportDocDataTest
- * @package ChristophSchaeffer\Dhl\BusinessShipment\Test\Response\Data
+ * @package ChristophSchaeffer\Dhl\BusinessShipment\Test\Unit\Response\Shipping\Data
  */
 class ExportDocDataTest extends AbstractUnitTest {
 

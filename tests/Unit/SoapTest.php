@@ -1,14 +1,14 @@
 <?php
 
-namespace ChristophSchaeffer\Dhl\BusinessShipping\Test;
+namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\Protocol\Soap;
 
 /**
- * Class StatusMapperTest
- * @package ChristophSchaeffer\Dhl\BusinessShipment\Test
+ * Class SoapTest
+ * @package ChristophSchaeffer\Dhl\BusinessShipment\Test\Unit
  */
-class StatusMapperTest extends AbstractUnitTest {
+class SoapTest extends AbstractUnitTest {
 
     /**
      * @throws \SoapFault

@@ -7,11 +7,11 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\getManifest as getM
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\getManifest as getManifestResponse;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\Success;
-use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
+use ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\AbstractUnitTest;
 
 /**
  * Class getManifestTest
- * @package ChristophSchaeffer\Dhl\BusinessShipment\Test\Response
+ * @package ChristophSchaeffer\Dhl\BusinessShipment\Test\Unit\Response\Shipping
  */
 class getManifestTest extends AbstractUnitTest {
 

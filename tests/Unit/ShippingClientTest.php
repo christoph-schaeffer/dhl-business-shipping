@@ -1,6 +1,6 @@
 <?php
 
-namespace ChristophSchaeffer\Dhl\BusinessShipping\Test;
+namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\Credentials\ShippingClientCredentials;
 use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
@@ -13,7 +13,7 @@ use ChristophSchaeffer\Dhl\BusinessShipping\ShippingClient;
 
 /**
  * Class ShippingClientTest
- * @package ChristophSchaeffer\Dhl\BusinessShipment\Test
+ * @package ChristophSchaeffer\Dhl\BusinessShipment\Test\Unit
  */
 class ShippingClientTest extends AbstractUnitTest {
 

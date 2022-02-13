@@ -4,11 +4,11 @@ namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\Request\Shipping;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\deleteShipmentOrder;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
-use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
+use ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\AbstractUnitTest;
 
 /**
  * Class deleteShipmentOrderTest
- * @package ChristophSchaeffer\Dhl\BusinessShipment\Test\Request
+ * @package ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\Request\Shipping
  */
 class deleteShipmentOrderTest extends AbstractUnitTest {
 

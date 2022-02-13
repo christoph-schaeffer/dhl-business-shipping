@@ -3,11 +3,11 @@
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\Response\Status;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
-use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
+use ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\AbstractUnitTest;
 
 /**
  * Class AbstractStatusTest
- * @package ChristophSchaeffer\Dhl\BusinessShipment\Test\Response\Status
+ * @package ChristophSchaeffer\Dhl\BusinessShipment\Test\Unit\Response\Shipping\Status
  */
 class AbstractStatusTest extends AbstractUnitTest {
 

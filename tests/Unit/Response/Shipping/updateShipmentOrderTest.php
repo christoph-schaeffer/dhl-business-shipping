@@ -9,11 +9,11 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Data\LabelData;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\Success;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\updateShipmentOrder as updateShipmentOrderResponse;
-use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
+use ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\AbstractUnitTest;
 
 /**
  * Class updateShipmentOrderTest
- * @package ChristophSchaeffer\Dhl\BusinessShipment\Test\Response
+ * @package ChristophSchaeffer\Dhl\BusinessShipment\Test\Unit\Response\Shipping
  */
 class updateShipmentOrderTest extends AbstractUnitTest {
 

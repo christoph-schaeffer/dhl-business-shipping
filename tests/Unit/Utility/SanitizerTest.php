@@ -2,12 +2,12 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\Utility;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
+use ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\AbstractUnitTest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Utility\Sanitizer;
 
 /**
  * Class SanitizerTest
- * @package ChristophSchaeffer\Dhl\BusinessShipment\Test\Utility
+ * @package ChristophSchaeffer\Dhl\BusinessShipment\Test\Unit\Utility
  */
 class SanitizerTest extends AbstractUnitTest
 {

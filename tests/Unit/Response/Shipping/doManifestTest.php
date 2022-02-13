@@ -8,11 +8,11 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\doManifest as doManifestResponse;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\State\ManifestState;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\Success;
-use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
+use ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\AbstractUnitTest;
 
 /**
  * Class doManifestTest
- * @package ChristophSchaeffer\Dhl\BusinessShipment\Test\Response
+ * @package ChristophSchaeffer\Dhl\BusinessShipment\Test\Unit\Response\Shipping
  */
 class doManifestTest extends AbstractUnitTest {
 

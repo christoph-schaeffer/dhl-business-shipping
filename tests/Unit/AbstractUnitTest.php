@@ -1,12 +1,12 @@
 <?php
 
-namespace ChristophSchaeffer\Dhl\BusinessShipping\Test;
+namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit;
 
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class AbstractUnitTest
- * @package ChristophSchaeffer\Dhl\BusinessShipment\Test
+ * @package ChristophSchaeffer\Dhl\BusinessShipment\Test\Unit
  */
 abstract class AbstractUnitTest extends TestCase {
 

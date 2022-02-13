@@ -7,11 +7,11 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Request\Shipping\getVersion as getVe
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\getVersion as getVersionResponse;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Status\Success;
-use ChristophSchaeffer\Dhl\BusinessShipping\Test\AbstractUnitTest;
+use ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\AbstractUnitTest;
 
 /**
  * Class getVersionTest
- * @package ChristophSchaeffer\Dhl\BusinessShipment\Test\Response
+ * @package ChristophSchaeffer\Dhl\BusinessShipment\Test\Unit\Response\Shipping
  */
 class getVersionTest extends AbstractUnitTest {
 
