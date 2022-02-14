@@ -32,6 +32,14 @@ abstract class AbstractTrackingRequest extends AbstractRequest {
      */
     public $languageCode;
 
+    /**
+     * @var string
+     *
+     * This is the request name e.g. "d-get-piece", however this is filled automatically by this library. Please do not
+     * set this field as it will be overwritten anyway.
+     */
+    public $request;
+
     public function __construct() {
     }
 
