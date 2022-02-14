@@ -95,7 +95,7 @@ class TrackingClient {
         $restXmlResponse = $this->rest->callRestFunction($xmlRequest, $request);
         $restResponse = XmlParser::parseFromXml($restXmlResponse);
 
-        return new Response\Tracking\getStatusForPublicUser($request, $restResponse, $this->rest->getLastRestXMLRequest(), $this->languageLocaleAlpha2);
+        return new Response\Tracking\getStatusForPublicUser($request, $restResponse, $xmlRequest, $this->languageLocaleAlpha2);
     }
 
     /**
@@ -121,7 +121,7 @@ class TrackingClient {
         $restXmlResponse = $this->rest->callRestFunction($xmlRequest, $request);
         $restResponse = XmlParser::parseFromXml($restXmlResponse);
 
-        return new Response\Tracking\getPiece($request, $restResponse, $this->rest->getLastRestXMLRequest(), $this->languageLocaleAlpha2);
+        return new Response\Tracking\getPiece($request, $restResponse, $xmlRequest, $this->languageLocaleAlpha2);
     }
 
     /**
@@ -147,7 +147,7 @@ class TrackingClient {
         $restXmlResponse = $this->rest->callRestFunction($xmlRequest, $request);
         $restResponse = XmlParser::parseFromXml($restXmlResponse);
 
-        return new Response\Tracking\getPieceEvents($request, $restResponse, $this->rest->getLastRestXMLRequest(), $this->languageLocaleAlpha2);
+        return new Response\Tracking\getPieceEvents($request, $restResponse, $xmlRequest, $this->languageLocaleAlpha2);
     }
 
     /**
@@ -179,7 +179,7 @@ class TrackingClient {
         $restXmlResponse = $this->rest->callRestFunction($xmlRequest, $request);
         $restResponse = XmlParser::parseFromXml($restXmlResponse);
 
-        return new Response\Tracking\getSignature($request, $restResponse, $this->rest->getLastRestXMLRequest(), $this->languageLocaleAlpha2);
+        return new Response\Tracking\getSignature($request, $restResponse, $xmlRequest, $this->languageLocaleAlpha2);
     }
 
     /**
@@ -204,7 +204,7 @@ class TrackingClient {
         $restXmlResponse = $this->rest->callRestFunction($xmlRequest, $request);
         $restResponse = XmlParser::parseFromXml($restXmlResponse);
 
-        return new Response\Tracking\getPieceDetail($request, $restResponse, $this->rest->getLastRestXMLRequest(), $this->languageLocaleAlpha2);
+        return new Response\Tracking\getPieceDetail($request, $restResponse, $xmlRequest, $this->languageLocaleAlpha2);
     }
 
     /**

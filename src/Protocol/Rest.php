@@ -26,8 +26,6 @@ class Rest {
     private $apiToken;
     /** @var bool */
     private $isSandbox;
-    /** @var string */
-    private $lastXML;
 
     /**
      * @param string $appID
@@ -51,8 +49,6 @@ class Rest {
      * @throws DhlXmlParseException
      */
     public function callRestFunction($xml, $request = null, $contentType = 'text/xml') {
-        $this->lastXML = $xml;
-
         $curl = curl_init($this->isSandbox ? self::SANDBOX_URL : self::PRODUCTION_URL);
         curl_setopt($curl, CURLOPT_HTTPHEADER, ["Content-Type: $contentType"]);
         curl_setopt($curl, CURLOPT_USERPWD, $this->appID . ":" . $this->apiToken);
@@ -71,13 +67,6 @@ class Rest {
         curl_close($curl);
 
         return $responseXml;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLastRestXMLRequest() {
-        return $this->lastXML;
     }
 
     /**
