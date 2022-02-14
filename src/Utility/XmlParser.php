@@ -108,13 +108,13 @@ class XmlParser {
     }
 
     /**
-     * @param \SimpleXMLElement $rawResponse
+     * @param \SimpleXMLElement $xmlElement
      * @param Object $object
      *
      * @return Object
      */
-    public static function mapXmlAttributesToObjectProperties(\SimpleXMLElement $rawResponse, $object) {
-        $attributes = (array)((array)$rawResponse->attributes())['@attributes'];
+    public static function mapXmlAttributesToObjectProperties(\SimpleXMLElement $xmlElement, $object) {
+        $attributes = current($xmlElement->attributes());;
         foreach ($attributes as $property => $value):
             $propertyInCamelCase = self::kebabCaseToCamelCase($property);
             if (property_exists($object, $propertyInCamelCase)):
