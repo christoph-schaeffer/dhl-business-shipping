@@ -8,7 +8,24 @@ namespace ChristophSchaeffer\Dhl\BusinessShipping\Request;
  */
 abstract class AbstractTrackingRequest extends AbstractRequest {
 
+    /**
+     * @var array
+     *
+     * Contains objects for xml parsing.
+     *
+     * @internal Please do not modify. This is an internal property.
+     */
     public $contentObjects = [];
+
+    /**
+     * @var string
+     *
+     * This is the request name e.g. "d-get-piece", however this is filled automatically by this library. Please do not
+     * set this field as it will be overwritten anyway.
+     *
+     * @internal Please do not modify. This is an internal property.
+     */
+    public $request;
     /**
      * @var string
      *
@@ -31,14 +48,6 @@ abstract class AbstractTrackingRequest extends AbstractRequest {
      * language code in ISO 3166-1 (Alpha 2) e.g. de, fr, es
      */
     public $languageCode;
-
-    /**
-     * @var string
-     *
-     * This is the request name e.g. "d-get-piece", however this is filled automatically by this library. Please do not
-     * set this field as it will be overwritten anyway.
-     */
-    public $request;
 
     public function __construct() {
     }
