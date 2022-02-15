@@ -5,6 +5,7 @@ namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Integration;
 use ChristophSchaeffer\Dhl\BusinessShipping\Credentials\TrackingClientCredentials;
 use ChristophSchaeffer\Dhl\BusinessShipping\Protocol\Rest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Request;
+use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Tracking\PieceData;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\AbstractTrackingResponse;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\Tracking\Data\PieceEvent;
@@ -125,6 +126,83 @@ class TrackingClientIntegrationTest extends AbstractIntegrationTest {
         $this->assertEquals('18.03.2016', $response->signature->eventDate);
         $this->assertEquals('image/gif', $response->signature->mimeType);
 
+    }
+
+    public function testIntegrationGetStatusForPublicUser() {
+        //given
+
+        $languageLocale           = 'de';
+        $functionString           = 'get-status-for-public-user';
+        $expectedXmlRequestString = '<?xml version="1.0" encoding="UTF-8"?><data from-date="2012-03-09" to-date="2012-03-10" request="'.$functionString.'" appname="' . self::ZT_TOKEN . '" password="' . self::PASSWORD . '" language-code="' . $languageLocale . '"><data piece-code="00340434161094027318" zip-code="53113" international-shipment="false"></data><data piece-code="00340434161094038253"></data></data>';
+        $xmlResponseStringMock    = '<?xml version="1.0" encoding="UTF-8"?><data name="piece-status-public-list" code="0" request-id="15e7f3c8-cf7e-45b3-848f-613c26e96b14"><data name="piece-status-public" piece-identifier="00340434161094027318" _build-time="2012-06-06 18:18:10.000607" piece-id="3b048653-aaa9-485b-b0dd-d16e068230e9" leitcode="" searched-piece-code="00340434161094027318" piece-status="0" identifier-type="2" recipient-name="Hr. Hannes Testler" recipient-id="1" recipient-id-text="Empfänger (orig.)" pan-recipient-name=" " street-name="" house-number="" city-name="" last-event-timestamp="11.03.2012 11:59" shipment-type="" status-next="" status="Die Sendung wurde ausgeliefert." error-status="0" delivery-event-flag="1" upu="" international-flag="0" piece-code="00340434161094027318" ice="DLVRD" ric="ACCPT" division="DPEED" dest-country="de" origin-country="de" product-code="00" product-name="DHL PAKET" searched-ref-no="034234" standard-event-code="ZU" pan-recipient-street="" pan-recipient-city="" event-country="de" event-location="" shipment-length="0.0" shipment-width="0.0" shipment-height="0.0" shipment-weight="0.2" /><data name="piece-status-public" piece-identifier="00340434161094038253" _build-time="2012-06-06 18:18:10.000607" piece-id="3b048653-aaa9-485b-b0dd-d16e068230e8" leitcode="" searched-piece-code="00340434161094038253" piece-status="0" identifier-type="2" recipient-name="Hr. Hannes Testler" recipient-id="1" recipient-id-text="Empfänger (orig.)" pan-recipient-name=" " street-name="" house-number="" city-name="" last-event-timestamp="11.03.2012 11:59" shipment-type="" status-next="" status="Die Sendung wurde ausgeliefert." error-status="0" delivery-event-flag="1" upu="" international-flag="0" piece-code="00340434161094038253" ice="DLVRD" ric="ACCPT" division="DPEED" dest-country="de" origin-country="de" product-code="00" product-name="DHL PAKET" searched-ref-no="034234" standard-event-code="ZU" pan-recipient-street="" pan-recipient-city="" event-country="de" event-location="" shipment-length="0.0" shipment-width="0.0" shipment-height="0.0" shipment-weight="0.2" /></data>';
+        $client                   = $this->getClient($xmlResponseStringMock, $languageLocale, FALSE);
+        $piece1 = new PieceData();
+        $piece1->pieceCode = '00340434161094027318';
+        $piece1->zipCode = '53113';
+        $piece1->internationalShipment = FALSE;
+        $piece2 = new PieceData();
+        $piece2->pieceCode = '00340434161094038253';
+        $requestObject = new Request\Tracking\getStatusForPublicUser([$piece1, $piece2]);
+        $requestObject->fromDate = '2012-03-09';
+        $requestObject->toDate = '2012-03-10';
+
+        //when
+        $response = $client->getStatusForPublicUser($requestObject);
+
+        //then
+        $this->commonAssertions($response, Request\Tracking\getStatusForPublicUser::class, $languageLocale, $expectedXmlRequestString, $xmlResponseStringMock,
+            $functionString, '15e7f3c8-cf7e-45b3-848f-613c26e96b14');
+        $this->assertEquals('2012-03-09', $response->request->fromDate);
+        $this->assertEquals('2012-03-10', $response->request->toDate);
+
+        $this->assertCount(2, $response->request->contentObjects);
+        $this->assertEquals('00340434161094027318', $response->request->contentObjects[0]->pieceCode);
+        $this->assertEquals('53113', $response->request->contentObjects[0]->zipCode);
+        $this->assertEquals(FALSE, $response->request->contentObjects[0]->internationalShipment);
+
+        $this->assertEquals('00340434161094038253', $response->request->contentObjects[1]->pieceCode);
+
+        $this->assertCount(2, $response->pieceStatusPublicList);
+        $this->assertEquals('00340434161094027318', $response->pieceStatusPublicList[0]->pieceIdentifier);
+        $this->assertEquals('00340434161094027318', $response->pieceStatusPublicList[0]->searchedPieceCode);
+        $this->assertEquals('00340434161094027318', $response->pieceStatusPublicList[0]->pieceCode);
+        $this->assertEquals('2012-06-06 18:18:10.000607', $response->pieceStatusPublicList[0]->_buildTime);
+        $this->assertEquals('3b048653-aaa9-485b-b0dd-d16e068230e9', $response->pieceStatusPublicList[0]->pieceId);
+        $this->assertEquals('', $response->pieceStatusPublicList[0]->leitcode);
+        $this->assertEquals('0', $response->pieceStatusPublicList[0]->pieceStatus);
+        $this->assertEquals(2, $response->pieceStatusPublicList[0]->identifierType);
+        $this->assertEquals('Hr. Hannes Testler', $response->pieceStatusPublicList[0]->recipientName);
+        $this->assertEquals(1, $response->pieceStatusPublicList[0]->recipientId);
+        $this->assertEquals('Empfänger (orig.)', $response->pieceStatusPublicList[0]->recipientIdText);
+        $this->assertEquals(' ', $response->pieceStatusPublicList[0]->panRecipientName);
+        $this->assertEquals('', $response->pieceStatusPublicList[0]->panRecipientStreet);
+        $this->assertEquals('', $response->pieceStatusPublicList[0]->panRecipientCity);
+        $this->assertEquals('', $response->pieceStatusPublicList[0]->streetName);
+        $this->assertEquals('', $response->pieceStatusPublicList[0]->houseNumber);
+        $this->assertEquals('', $response->pieceStatusPublicList[0]->cityName);
+        $this->assertEquals('11.03.2012 11:59', $response->pieceStatusPublicList[0]->lastEventTimestamp);
+        $this->assertEquals('', $response->pieceStatusPublicList[0]->shipmentType);
+        $this->assertEquals('', $response->pieceStatusPublicList[0]->statusNext);
+        $this->assertEquals('Die Sendung wurde ausgeliefert.', $response->pieceStatusPublicList[0]->status);
+        $this->assertEquals(0, $response->pieceStatusPublicList[0]->errorStatus);
+        $this->assertEquals(TRUE, $response->pieceStatusPublicList[0]->deliveryEventFlag);
+        $this->assertEquals('', $response->pieceStatusPublicList[0]->upu);
+        $this->assertEquals(FALSE, $response->pieceStatusPublicList[0]->internationalFlag);
+        $this->assertEquals('DLVRD', $response->pieceStatusPublicList[0]->ice);
+        $this->assertEquals('ACCPT', $response->pieceStatusPublicList[0]->ric);
+        $this->assertEquals('DPEED', $response->pieceStatusPublicList[0]->division);
+        $this->assertEquals('de', $response->pieceStatusPublicList[0]->destCountry);
+        $this->assertEquals('de', $response->pieceStatusPublicList[0]->originCountry);
+        $this->assertEquals('00', $response->pieceStatusPublicList[0]->productCode);
+        $this->assertEquals('DHL PAKET', $response->pieceStatusPublicList[0]->productName);
+        $this->assertEquals('034234', $response->pieceStatusPublicList[0]->searchedRefNo);
+        $this->assertEquals('ZU', $response->pieceStatusPublicList[0]->standardEventCode);
+        $this->assertEquals('de', $response->pieceStatusPublicList[0]->eventCountry);
+        $this->assertEquals('', $response->pieceStatusPublicList[0]->eventLocation);
+        $this->assertEquals(0.0, $response->pieceStatusPublicList[0]->shipmentLength);
+        $this->assertEquals(0.0, $response->pieceStatusPublicList[0]->shipmentWidth);
+        $this->assertEquals(0.0, $response->pieceStatusPublicList[0]->shipmentHeight);
+        $this->assertEquals(0.2, $response->pieceStatusPublicList[0]->shipmentWeight);
     }
 
     public function testIntegrationGetPieceEvents() {
@@ -398,11 +476,11 @@ class TrackingClientIntegrationTest extends AbstractIntegrationTest {
     /**
      * @param string $expectedXmlResponseString
      * @param string $languageLocale
+     * @param bool $isSandbox
+     *
      * @return TrackingClient
      */
-    private function getClient($expectedXmlResponseString, $languageLocale = 'DE') {
-        $isSandbox = TRUE;
-
+    private function getClient($expectedXmlResponseString, $languageLocale = 'DE', $isSandbox = TRUE) {
         $restMock = $this->getMockBuilder(Rest::class)
             ->setConstructorArgs([self::APP_ID, self::API_TOKEN, $isSandbox])
             ->setMethods(['callRestFunction'])
@@ -424,6 +502,7 @@ class TrackingClientIntegrationTest extends AbstractIntegrationTest {
      * @param string $xmlResponseStringMock
      * @param string $functionString
      * @param string $requestId
+     *
      * @return void
      */
     private function commonAssertions(AbstractTrackingResponse $response, $requestClass, $languageLocale, $expectedXmlRequestString, $xmlResponseStringMock, $functionString, $requestId) {
