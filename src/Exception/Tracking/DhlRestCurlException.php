@@ -7,6 +7,7 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractTrackingRequest;
 /**
  * Class DhlRestCurlException
  * @package ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking
+ * @codeCoverageIgnore
  *
  * This exception is thrown on curl failures with the rest client
  */

@@ -47,6 +47,7 @@ class Rest {
      * @throws DhlRestCurlException
      * @throws DhlRestHttpException
      * @throws DhlXmlParseException
+     * @codeCoverageIgnore
      */
     public function callRestFunction($xml, $request = null, $contentType = 'text/xml') {
         $curl = curl_init($this->isSandbox ? self::SANDBOX_URL : self::PRODUCTION_URL);
@@ -75,6 +76,7 @@ class Rest {
      * @param string $xml
      *
      * @throws DhlRestHttpException
+     * @codeCoverageIgnore
      */
     private function handleHttpCodes($httpCode, $request, $xml) {
         switch ($httpCode) {

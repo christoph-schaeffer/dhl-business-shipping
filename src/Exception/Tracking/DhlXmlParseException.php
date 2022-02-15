@@ -7,6 +7,7 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Exception\DhlException;
 /**
  * Class DhlXmlParseException
  * @package ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking
+ * @codeCoverageIgnore
  *
  * This exception is thrown on xml parsing failures. For example a not well-formed xml string was given which can't be parsed.
  */

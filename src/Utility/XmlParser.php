@@ -18,8 +18,8 @@ class XmlParser {
      *
      * @return string
      */
-    public static function buildXmlRequest($request, $xmlVersion = "1.0", $encoding = 'ISO-8859-1') {
-        $xmlRequest = '<?xml version="' . $xmlVersion . '" encoding="' . $encoding . '" ?>';
+    public static function buildXmlRequest($request, $xmlVersion = "1.0", $encoding = 'UTF-8') {
+        $xmlRequest = '<?xml version="' . $xmlVersion . '" encoding="' . $encoding . '"?>';
         $xmlContent = '';
         if (isset($request->contentObjects)):
             foreach ($request->contentObjects as $contentObject):
