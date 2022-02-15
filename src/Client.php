@@ -9,6 +9,7 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Protocol\Soap;
  * Class Client
  * @deprecated
  * @package ChristophSchaeffer\Dhl\BusinessShipping
+ * @codeCoverageIgnore
  *
  * This class has been deprecated and will be removed soon. Please use either the MultiClient or ShippingClient please.
  */
