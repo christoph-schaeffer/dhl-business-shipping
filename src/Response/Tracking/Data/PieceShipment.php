@@ -190,6 +190,7 @@ class PieceShipment {
      *
      * Id of the recipient type, however these ids are not documented by DHL.
      *
+     * 1 = Recipient (orig.)
      * 2 = Spouse
      * 5 = Other present person
      */
