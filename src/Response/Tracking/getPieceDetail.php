@@ -6,7 +6,6 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking\DhlXmlParseExcept
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\AbstractTrackingResponse;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\Tracking\Data\PieceShipment;
 use ChristophSchaeffer\Dhl\BusinessShipping\Request;
-use ChristophSchaeffer\Dhl\BusinessShipping\Utility\XmlParser;
 
 /**
  * Class getPieceDetail

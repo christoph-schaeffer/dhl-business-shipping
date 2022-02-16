@@ -3,9 +3,7 @@
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractRequest;
-use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractShippingRequest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
-use ChristophSchaeffer\Dhl\BusinessShipping\TrackingClient;
 
 /**
  * Class AbstractResponse
