@@ -45,6 +45,8 @@ class TrackingClientIntegrationTest extends AbstractIntegrationTest {
 
         $this->assertInstanceOf(PieceShipment::class, $response->pieceShipment);
         $this->assertEquals(0, $response->pieceShipment->errorStatus);
+        $this->assertEquals(Null, $response->pieceShipment->pieceStatus);
+        $this->assertEquals(Null, $response->pieceShipment->pieceStatusDesc);
         $this->assertEquals('fc23a3ec-cca6-483e-8fd5-c927ab0e2b1c', $response->pieceShipment->pieceId);
         $this->assertEquals('', $response->pieceShipment->shipmentCode);
         $this->assertEquals('340434161094042557', $response->pieceShipment->pieceIdentifier);
@@ -340,6 +342,8 @@ class TrackingClientIntegrationTest extends AbstractIntegrationTest {
 
         $this->assertInstanceOf(PieceShipment::class, $response->pieceShipment);
         $this->assertEquals(0, $response->pieceShipment->errorStatus);
+        $this->assertEquals(Null, $response->pieceShipment->pieceStatus);
+        $this->assertEquals(Null, $response->pieceShipment->pieceStatusDesc);
         $this->assertEquals('fc23a3ec-cca6-483e-8fd5-c927ab0e2b1a', $response->pieceShipment->pieceId);
         $this->assertEquals('', $response->pieceShipment->shipmentCode);
         $this->assertEquals('340434161094042557', $response->pieceShipment->pieceIdentifier);
@@ -481,6 +485,91 @@ class TrackingClientIntegrationTest extends AbstractIntegrationTest {
         $this->assertEquals(FALSE, $response->pieceShipment->pieceEventList[6]->ruecksendung);
     }
 
+    public function testIntegrationGetPieceDetailWithInvalidData() {
+        //given
+        $pieceCode                = '1337';
+        $languageLocale           = 'de';
+        $functionString           = 'd-get-piece-detail';
+        $expectedXmlRequestString = '<?xml version="1.0" encoding="UTF-8"?><data piece-code="' . $pieceCode . '" from-date="2018-01-01" to-date="2018-02-02" request="' . $functionString . '" appname="' . self::ZT_TOKEN . '" password="' . self::PASSWORD . '" language-code="' . $languageLocale . '"></data>';
+        $xmlResponseStringMock    = '<?xml version="1.0" encoding="UTF-8"?><data name="piece-shipment-list" code="100" request-id="a4ebfb97-5031-4d1e-837e-0a1822cbd23a"    error="Keine Daten gefunden.">    <data name="piece-shipment" searched-piece-code="1337"        piece-code="1337" international-flag="0" piece-status="100"        piece-status-desc="Keine Daten gefunden."/></data>';
+        $client                   = $this->getClient($xmlResponseStringMock, $languageLocale);
+        $requestObject            = new Request\Tracking\getPieceDetail();
+        $requestObject->pieceCode = $pieceCode;
+        $requestObject->fromDate  = '2018-01-01';
+        $requestObject->toDate    = '2018-02-02';
+
+        //when
+        $response = $client->getPieceDetail($requestObject);
+
+        //then
+        $this->commonAssertions($response, Request\Tracking\getPieceDetail::class, $languageLocale, $expectedXmlRequestString, $xmlResponseStringMock,
+            $functionString, 'a4ebfb97-5031-4d1e-837e-0a1822cbd23a', FALSE);
+        $this->assertEquals(100, $response->code);
+        $this->assertEquals($pieceCode, $response->request->pieceCode);
+        $this->assertEquals('2018-01-01', $response->request->fromDate);
+        $this->assertEquals('2018-02-02', $response->request->toDate);
+
+        $this->assertInstanceOf(PieceShipment::class, $response->pieceShipment);
+        $this->assertEquals(0, $response->pieceShipment->errorStatus);
+        $this->assertEquals(100, $response->pieceShipment->pieceStatus);
+        $this->assertEquals('Keine Daten gefunden.', $response->pieceShipment->pieceStatusDesc);
+        $this->assertEquals(null, $response->pieceShipment->pieceId);
+        $this->assertEquals('', $response->pieceShipment->shipmentCode);
+        $this->assertEquals(null, $response->pieceShipment->pieceIdentifier);
+        $this->assertEquals(null, $response->pieceShipment->identifierType);
+        $this->assertEquals('1337', $response->pieceShipment->pieceCode);
+        $this->assertEquals(null, $response->pieceShipment->eventLocation);
+        $this->assertEquals(null, $response->pieceShipment->eventCountry);
+        $this->assertEquals(null, $response->pieceShipment->statusListe);
+        $this->assertEquals(null, $response->pieceShipment->statusTimestamp);
+        $this->assertEquals(null, $response->pieceShipment->status);
+        $this->assertEquals(null, $response->pieceShipment->shortStatus);
+        $this->assertEquals(null, $response->pieceShipment->recipientName);
+        $this->assertEquals(null, $response->pieceShipment->recipientStreet);
+        $this->assertEquals(null, $response->pieceShipment->recipientCity);
+        $this->assertEquals(null, $response->pieceShipment->panRecipientName);
+        $this->assertEquals(null, $response->pieceShipment->panRecipientStreet);
+        $this->assertEquals(null, $response->pieceShipment->panRecipientCity);
+        $this->assertEquals(null, $response->pieceShipment->panRecipientAddress);
+        $this->assertEquals(null, $response->pieceShipment->panRecipientPostalcode);
+        $this->assertEquals(null, $response->pieceShipment->shipperName);
+        $this->assertEquals(null, $response->pieceShipment->shipperStreet);
+        $this->assertEquals(null, $response->pieceShipment->shipperCity);
+        $this->assertEquals(null, $response->pieceShipment->shipperAddress);
+        $this->assertEquals(null, $response->pieceShipment->productCode);
+        $this->assertEquals(null, $response->pieceShipment->productKey);
+        $this->assertEquals(null, $response->pieceShipment->productName);
+        $this->assertEquals(null, $response->pieceShipment->deliveryEventFlag);
+        $this->assertEquals(null, $response->pieceShipment->recipientId);
+        $this->assertEquals(null, $response->pieceShipment->recipientIdText);
+        $this->assertEquals(null, $response->pieceShipment->upu);
+        $this->assertEquals(null, $response->pieceShipment->shipmentLength);
+        $this->assertEquals(null, $response->pieceShipment->shipmentWidth);
+        $this->assertEquals(null, $response->pieceShipment->shipmentHeight);
+        $this->assertEquals(null, $response->pieceShipment->shipmentWeight);
+        $this->assertEquals(null, $response->pieceShipment->internationalFlag);
+        $this->assertEquals(null, $response->pieceShipment->division);
+        $this->assertEquals(null, $response->pieceShipment->ice);
+        $this->assertEquals(null, $response->pieceShipment->ric);
+        $this->assertEquals(null, $response->pieceShipment->standardEventCode);
+        $this->assertEquals(null, $response->pieceShipment->destCountry);
+        $this->assertEquals(null, $response->pieceShipment->originCountry);
+        $this->assertEquals('1337', $response->pieceShipment->searchedPieceCode);
+        $this->assertEquals(null, $response->pieceShipment->searchedRefNr);
+        $this->assertEquals(null, $response->pieceShipment->pieceCustomerReference);
+        $this->assertEquals(null, $response->pieceShipment->shipmentCustomerReference);
+        $this->assertEquals(null, $response->pieceShipment->leitcode);
+        $this->assertEquals(null, $response->pieceShipment->routingCodeEan);
+        $this->assertEquals(null, $response->pieceShipment->matchcode);
+        $this->assertEquals(null, $response->pieceShipment->domesticId);
+        $this->assertEquals(null, $response->pieceShipment->airwayBillNumber);
+        $this->assertEquals(null, $response->pieceShipment->ruecksendung);
+        $this->assertEquals(null, $response->pieceShipment->pslzNr);
+        $this->assertEquals(null, $response->pieceShipment->orderPreferredDeliveryDay);
+
+        $this->assertCount(0, $response->pieceShipment->pieceEventList);
+    }
+
     /**
      * @param string $expectedXmlResponseString
      * @param string $languageLocale
@@ -513,7 +602,7 @@ class TrackingClientIntegrationTest extends AbstractIntegrationTest {
      *
      * @return void
      */
-    private function commonAssertions(AbstractTrackingResponse $response, $requestClass, $languageLocale, $expectedXmlRequestString, $xmlResponseStringMock, $functionString, $requestId) {
+    private function commonAssertions(AbstractTrackingResponse $response, $requestClass, $languageLocale, $expectedXmlRequestString, $xmlResponseStringMock, $functionString, $requestId, $expectedHasNoErrors = TRUE) {
         $this->assertInstanceOf(Version::class, $response->Version);
         $this->assertEquals(TrackingClient::MAJOR_RELEASE, $response->Version->majorRelease);
         $this->assertEquals(TrackingClient::MINOR_RELEASE, $response->Version->minorRelease);
@@ -523,12 +612,15 @@ class TrackingClientIntegrationTest extends AbstractIntegrationTest {
         $this->assertEquals(self::ZT_TOKEN, $response->request->appname);
         $this->assertEquals(self::PASSWORD, $response->request->password);
         $this->assertEquals($languageLocale, $response->request->languageCode);
-        $this->assertTrue($response->hasNoErrors());
 
         $this->assertEquals($requestId, $response->requestId);
-        $this->assertEquals(0, $response->code);
         $this->assertEquals($expectedXmlRequestString, $response->rawRequest);
         $this->assertEquals(simplexml_load_string($xmlResponseStringMock), $response->rawResponse);
+
+        if($expectedHasNoErrors) {
+            $this->assertEquals(0, $response->code);
+        }
+        $this->assertEquals($expectedHasNoErrors, $response->hasNoErrors());
     }
 
 }
