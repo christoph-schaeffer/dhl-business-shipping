@@ -15,30 +15,6 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Utility\XmlParser;
 class getPieceEvents extends AbstractTrackingResponse {
 
     /**
-     * @var string
-     *
-     * The request id. Example: 229fdf4c-6255-4cf4-947c-8441a85baaf9
-     */
-    public $requestId;
-    /**
-     * @var int
-     *
-     * Error status code for the current request
-     *
-     * For more information check the following url (you need to be authenticated on entwickler.dhl.de)
-     * https://entwickler.dhl.de/group/ep/wsapis/sendungsverfolgung/allgemeinefehlerhandhabung
-     *
-     * 0 = successful
-     */
-    public $code;
-    /**
-     * @var string
-     *
-     * Used for error messages. This is null when there is no error. However, please use the hasNoErrors functions in the
-     * response object for error checking.
-     */
-    public $error;
-    /**
      * @var PieceEvent[]
      *
      * This is where the piece event data is stored, please use this array to obtain the data you need
@@ -54,7 +30,6 @@ class getPieceEvents extends AbstractTrackingResponse {
      */
     public function __construct(Request\Tracking\getPieceEvents $request, \SimpleXMLElement $rawResponse, $rawRequest, $languageLocale) {
         parent::__construct($request, $rawResponse, $rawRequest, $languageLocale);
-        $this->code = XmlParser::nullableStringTypeCast('int', $this->code);
 
         if (isset($rawResponse->data)):
             $rawEventList = $rawResponse->data;
@@ -63,13 +38,4 @@ class getPieceEvents extends AbstractTrackingResponse {
             endforeach;
         endif;
     }
-
-    /**
-     * @return bool
-     */
-    public function hasNoErrors() {
-        return $this->code === 0 && empty($this->error) && parent::hasNoErrors();
-    }
-
-
 }

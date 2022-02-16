@@ -64,5 +64,4 @@ abstract class AbstractResponse {
      */
     public abstract function hasNoErrors();
 
-
 }
