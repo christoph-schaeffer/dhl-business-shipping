@@ -1,17 +1,16 @@
 <?php
 
-namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\Response\Shipping;
+namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\Response;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
 use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractShippingRequest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\AbstractShippingResponse;
-use ChristophSchaeffer\Dhl\BusinessShipping\Response\Status;
 use ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\AbstractUnitTest;
 
 /**
- * Class AbstractResponseTest
- * @package ChristophSchaeffer\Dhl\BusinessShipment\Test\Unit\Response\Shipping
+ * Class AbstractShippingResponseTest
+ * @package ChristophSchaeffer\Dhl\BusinessShipment\Test\Unit\Response
  */
 class AbstractShippingResponseTest extends AbstractUnitTest {
 
