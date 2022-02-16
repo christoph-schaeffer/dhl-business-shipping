@@ -163,9 +163,86 @@ class MultiClient {
      * @param Request\Tracking\getStatusForPublicUser $request
      *
      * @return Response\Tracking\getStatusForPublicUser
+     *
+     * !!! IMPORTANT INFO !!!
+     * This function is disabled in sandbox mode (said the support). No idea why dhl decided to do that ¯\_(ツ)_/¯
+     *
+     * It is highly recommended to just use getPiece or getPieceDetail, as they do the same but with more information.
+     *
+     * The getStatusForPublicUser function provides information in the way it is shown currently in the DHL shipment
+     * tracking area for everyone.
      */
     public function getStatusForPublicUser(Request\Tracking\getStatusForPublicUser $request) {
         return $this->trackingClient->getStatusForPublicUser($request);
+    }
+
+    /**
+     * @param Request\Tracking\getPieceDetail $request
+     *
+     * @return Response\Tracking\getPieceDetail
+     *
+     * The getPieceDetail function retrieves all information about a shipment via a query. This is done by combining the
+     * query of the getPiece and getPieceEvents functions.
+     *
+     * The function can be called with a shipment number, a shipment reference or an order number for an individual pick-up
+     * from the pick-up portal.
+     */
+    public function getPieceDetail(Request\Tracking\getPieceDetail $request) {
+        return $this->trackingClient->getPieceDetail($request);
+    }
+
+    /**
+     * @param Request\Tracking\getPiece $request
+     *
+     * @return Response\Tracking\getPiece
+     *
+     * The getPiece function returns the current shipping status of one or more shipments. In contrast to the query
+     * from the DHL shipment tracking section for everyone, this function provides more status data that must only be used
+     * for business-internal evaluations.
+     *
+     * The function can be called with a shipment number, a shipment reference or an order number for an individual pick-up
+     * from the pick-up portal.
+     */
+    public function getPiece(Request\Tracking\getPiece $request) {
+        return $this->trackingClient->getPiece($request);
+    }
+
+    /**
+     * @param Request\Tracking\getPieceEvents $request
+     *
+     * @return Response\Tracking\getPieceEvents
+     *
+     * The getPieceEvents functions supplies the shipment progress, comprising a shipment's individual events.
+     *
+     * For a successful call, this function requires the piece-id attribute from the getPiece/getPieceDetail call.
+     * As a result, this function can only ever be used in combination with a preceding function call for the shipment
+     * status getPiece/getPieceDetail. Since only one piece-id can ever be transferred, only one route for a shipment is
+     * ever retrieved.
+     */
+    public function getPieceEvents(Request\Tracking\getPieceEvents $request) {
+        return $this->trackingClient->getPieceEvents($request);
+    }
+
+    /**
+     * @param Request\Tracking\getSignature $request
+     *
+     * @return Response\Tracking\getSignature
+     *
+     * The getSignature function can retrieve the recipient's or substitute recipient's signature.
+     * The signatures are also known as POD = Proof of Delivery.
+     *
+     * Of note here are the following particular features:
+     * - Recipient signatures can only be retrieved via the shipment number.
+     * - The signature itself is supplied in the form of a GIF image format. Since this image format contains binary data
+     *   and this would cause problems being converted to XML, the data has been converted byte by byte into hexadecimal
+     *   notation. However, this library converts it back to binary data after it has been received by DHL.
+     * - Accesses typically put considerable strain on resources. It is recommended that signatures only be retrieved for
+     *   delivered shipments (deliveryEventFlag = true) with dest-country = DE since signatures are only available in the
+     *   system for these shipments. The signatures must only be retrieved once. If you have retrieved a signature, you
+     *   should save this in your system in order to access it again later.
+     */
+    public function getSignature(Request\Tracking\getSignature $request) {
+        return $this->trackingClient->getSignature($request);
     }
 
 }

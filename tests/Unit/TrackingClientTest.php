@@ -23,11 +23,13 @@ class TrackingClientTest extends AbstractUnitTest {
         $clientEn = new TrackingClient($credentials, TRUE, MultiClient::LANGUAGE_LOCALE_ENGLISH_GB);
 
         $this->assertEquals('en', $this->getProtectedPropertyValue($clientEn, 'languageLocaleAlpha2'));
+        $this->assertEquals($credentials, $this->getProtectedPropertyValue($clientEn, 'credentials'));
 
-        $client = new TrackingClient($credentials, TRUE);
-        $this->assertEquals('de', $this->getProtectedPropertyValue($client, 'languageLocaleAlpha2'));
+        $clientDe = new TrackingClient($credentials, TRUE);
+        $this->assertEquals('de', $this->getProtectedPropertyValue($clientDe, 'languageLocaleAlpha2'));
+        $this->assertEquals($credentials, $this->getProtectedPropertyValue($clientDe, 'credentials'));
 
-        $rest = $this->getProtectedPropertyValue($client, 'rest');
+        $rest = $this->getProtectedPropertyValue($clientDe, 'rest');
 
         $this->assertInstanceOf(Rest::class, $rest);
         $this->assertEquals(TRUE, $this->getProtectedPropertyValue($rest, 'isSandbox'));
