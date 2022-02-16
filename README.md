@@ -1,6 +1,6 @@
 # DHL business shipping
 
-An unofficial library for the DHL business shipping soap API (Version 3.1) written in PHP. 
+An unofficial library for the DHL business shipping soap API (Version 3.2) written in PHP. 
 
 [![api version](https://img.shields.io/badge/shipping%20api%20version-3.2.0-yellow)](https://entwickler.dhl.de/en/group/ep/gesch%C3%A4ftskundenversand-3.2)
 [![api version](https://img.shields.io/badge/tracking%20api%20version-1.0-yellow)](https://entwickler.dhl.de/en/group/ep/wsapis/sendungsverfolgung)
