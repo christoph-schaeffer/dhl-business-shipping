@@ -32,6 +32,13 @@ class getPieceEvents extends AbstractTrackingResponse {
      */
     public $code;
     /**
+     * @var string
+     *
+     * Used for error messages. This is null when there is no error. However, please use the hasNoErrors functions in the
+     * response object for error checking.
+     */
+    public $error;
+    /**
      * @var PieceEvent[]
      *
      * This is where the piece event data is stored, please use this array to obtain the data you need
@@ -56,5 +63,13 @@ class getPieceEvents extends AbstractTrackingResponse {
             endforeach;
         endif;
     }
+
+    /**
+     * @return bool
+     */
+    public function hasNoErrors() {
+        return $this->code === 0 && empty($this->error) && parent::hasNoErrors();
+    }
+
 
 }

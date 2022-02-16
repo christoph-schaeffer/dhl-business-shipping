@@ -32,6 +32,13 @@ class getPiece extends AbstractTrackingResponse {
      */
     public $code;
     /**
+     * @var string
+     *
+     * Used for error messages. This is null when there is no error. However, please use the hasNoErrors functions in the
+     * response object for error checking.
+     */
+    public $error;
+    /**
      * @var PieceShipment
      *
      * This is where the tracking data is stored, please use this object to obtain the data you need
@@ -56,6 +63,6 @@ class getPiece extends AbstractTrackingResponse {
      * @return bool
      */
     public function hasNoErrors() {
-        return $this->pieceShipment->errorStatus === 0 && parent::hasNoErrors();
+        return $this->pieceShipment->errorStatus === 0 && $this->pieceShipment->pieceStatus === null && $this->code === 0 && empty($this->error) && parent::hasNoErrors();
     }
 }

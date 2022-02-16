@@ -29,6 +29,20 @@ class PieceShipment {
      */
     public $pieceId;
     /**
+     * @var int
+     *
+     * Used for error codes. This is null when there is no error. However, please use the hasNoErrors functions in the
+     * response object for error checking.
+     */
+    public $pieceStatus;
+    /**
+     * @var string
+     *
+     * Used for error messages. This is null when there is no error. However, please use the hasNoErrors functions in the
+     * response object for error checking.
+     */
+    public $pieceStatusDesc;
+    /**
      * @var string
      *
      * Undocumented and seems to be always empty
@@ -361,6 +375,7 @@ class PieceShipment {
         endif;
 
         $this->errorStatus               = XmlParser::nullableStringTypeCast('int', $this->errorStatus);
+        $this->pieceStatus               = XmlParser::nullableStringTypeCast('int', $this->pieceStatus);
         $this->identifierType            = XmlParser::nullableStringTypeCast('int', $this->identifierType);
         $this->recipientId               = XmlParser::nullableStringTypeCast('int', $this->recipientId);
         $this->deliveryEventFlag         = XmlParser::nullableStringTypeCast('bool', $this->deliveryEventFlag);

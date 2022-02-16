@@ -35,6 +35,13 @@ class getStatusForPublicUser extends AbstractTrackingResponse {
     /**
      * @var string
      *
+     * Used for error messages. This is null when there is no error. However, please use the hasNoErrors functions in the
+     * response object for error checking.
+     */
+    public $error;
+    /**
+     * @var string
+     *
      * Undocumented by DHL
      */
     public $_pieceCode;
@@ -83,7 +90,7 @@ class getStatusForPublicUser extends AbstractTrackingResponse {
             endif;
         endforeach;
 
-        return parent::hasNoErrors();
+        return $this->code === 0 && empty($this->error) && parent::hasNoErrors();
     }
 
 }

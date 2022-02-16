@@ -32,6 +32,13 @@ class getSignature extends AbstractTrackingResponse {
      */
     public $code;
     /**
+     * @var string
+     *
+     * Used for error messages. This is null when there is no error. However, please use the hasNoErrors functions in the
+     * response object for error checking.
+     */
+    public $error;
+    /**
      * @var Signature
      *
      * This is where the signature data is stored, please use this object to obtain the data you need
@@ -52,4 +59,10 @@ class getSignature extends AbstractTrackingResponse {
         $this->signature = new Signature($rawResponse->data);
     }
 
+    /**
+     * @return bool
+     */
+    public function hasNoErrors() {
+        return $this->code === 0 && empty($this->error) && parent::hasNoErrors();
+    }
 }
