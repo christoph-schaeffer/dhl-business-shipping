@@ -22,7 +22,7 @@ class ShippingClient {
     /**
      * Minor Release of the shipping this package is developed for
      */
-    const MINOR_RELEASE = 1;
+    const MINOR_RELEASE = 2;
 
     /**
      * @var Soap
