@@ -4,6 +4,7 @@
 namespace ChristophSchaeffer\Dhl\BusinessShipping;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\Credentials\TrackingClientCredentials;
+use ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking\DhlNotAvailableInSandbox;
 use ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking\DhlRestCurlException;
 use ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking\DhlRestHttpException;
 use ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking\DhlXmlParseException;
@@ -48,6 +49,11 @@ class TrackingClient {
     private $credentials;
 
     /**
+     * @var bool
+     */
+    private $isSandbox;
+
+    /**
      * TrackingClient constructor.
      * @param TrackingClientCredentials $credentials
      * @param bool $isSandbox
@@ -57,6 +63,7 @@ class TrackingClient {
     public function __construct(TrackingClientCredentials $credentials, $isSandbox = FALSE,
                                                           $languageLocale = MultiClient::LANGUAGE_LOCALE_GERMAN_DE, $rest = null) {
         $this->credentials = $credentials;
+        $this->isSandbox = $isSandbox;
 
         if (strlen($languageLocale) > 2):
             $this->languageLocaleAlpha2 = CountryCodeConversion::languageLocaleToIsoAlpha2($languageLocale);
@@ -79,6 +86,7 @@ class TrackingClient {
      * @throws DhlRestCurlException
      * @throws DhlRestHttpException
      * @throws DhlXmlParseException
+     * @throws DhlNotAvailableInSandbox
      *
      * !!! IMPORTANT INFO !!!
      * This function is disabled in sandbox mode (said the support). No idea why dhl decided to do that ¯\_(ツ)_/¯
@@ -89,6 +97,9 @@ class TrackingClient {
      * tracking area for everyone.
      */
     public function getStatusForPublicUser(Request\Tracking\getStatusForPublicUser $request) {
+        if($this->isSandbox) {
+            throw new DhlNotAvailableInSandbox('getStatusForPublicUser');
+        }
         $request      = $this->sanitizeRequest($request);
         $request      = $this->fillRequestData($request);
         $xmlRequest = XmlParser::buildXmlRequest($request);
