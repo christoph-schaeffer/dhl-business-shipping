@@ -42,21 +42,29 @@ class Rest {
 
     /**
      * @param string $xml
-     * @param AbstractTrackingRequest|null $request
-     * @param string|null $contentType
+     * @param AbstractTrackingRequest $request
+     * @param bool $isPost
      * @throws DhlRestCurlException
      * @throws DhlRestHttpException
      * @throws DhlXmlParseException
      * @codeCoverageIgnore
      */
-    public function callRestFunction($xml, $request = null, $contentType = 'text/xml') {
-        $curl = curl_init($this->isSandbox ? self::SANDBOX_URL : self::PRODUCTION_URL);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, ["Content-Type: $contentType"]);
+    public function callRestFunction($xml, AbstractTrackingRequest $request, $isPost = TRUE) {
+        $url = $this->isSandbox ? self::SANDBOX_URL : self::PRODUCTION_URL;
+        if(!$isPost):
+            $url .= '?xml='.rawurlencode($xml);
+        endif;
+
+        $curl = curl_init($url);
+        if($isPost):
+            curl_setopt($curl, CURLOPT_POST, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $xml);
+        endif;
+
+        curl_setopt($curl, CURLOPT_HTTPHEADER, ["Content-Type: text/xml"]);
         curl_setopt($curl, CURLOPT_USERPWD, $this->appID . ":" . $this->apiToken);
-        curl_setopt($curl, CURLOPT_POST, true);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $xml);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
         $responseXml = curl_exec($curl);
 
@@ -82,6 +90,8 @@ class Rest {
         switch ($httpCode) {
             case 200:
                 return;
+            case 400:
+                throw new DhlRestHttpException($request, $xml, "$httpCode Bad Request - You have sent a request the dhl server could not understand", $httpCode);
             case 401:
                 throw new DhlRestHttpException($request, $xml, "$httpCode Unauthorized - Please check your tracking client credentials", $httpCode);
             case 403:
