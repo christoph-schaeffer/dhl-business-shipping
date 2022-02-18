@@ -49,17 +49,11 @@ class Rest {
      * @throws DhlXmlParseException
      * @codeCoverageIgnore
      */
-    public function callRestFunction($xml, AbstractTrackingRequest $request, $isPost = TRUE) {
+    public function callRestFunction($xml, AbstractTrackingRequest $request) {
         $url = $this->isSandbox ? self::SANDBOX_URL : self::PRODUCTION_URL;
-        if(!$isPost):
-            $url .= '?xml='.rawurlencode($xml);
-        endif;
+        $url .= '?xml='.rawurlencode($xml);
 
         $curl = curl_init($url);
-        if($isPost):
-            curl_setopt($curl, CURLOPT_POST, true);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $xml);
-        endif;
 
         curl_setopt($curl, CURLOPT_HTTPHEADER, ["Content-Type: text/xml"]);
         curl_setopt($curl, CURLOPT_USERPWD, $this->appID . ":" . $this->apiToken);

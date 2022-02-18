@@ -103,7 +103,7 @@ class TrackingClient {
         $request      = $this->sanitizeRequest($request);
         $request      = $this->fillRequestData($request);
         $xmlRequest = XmlParser::buildXmlRequest($request);
-        $restXmlResponse = $this->rest->callRestFunction($xmlRequest, $request, false);
+        $restXmlResponse = $this->rest->callRestFunction($xmlRequest, $request);
         $restResponse = XmlParser::parseFromXml($restXmlResponse);
 
         return new Response\Tracking\getStatusForPublicUser($request, $restResponse, $xmlRequest, $this->languageLocaleAlpha2);
