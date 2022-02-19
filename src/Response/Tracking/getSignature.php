@@ -29,7 +29,10 @@ class getSignature extends AbstractTrackingResponse {
      */
     public function __construct(Request\Tracking\getSignature $request, \SimpleXMLElement $rawResponse, $rawRequest, $languageLocale) {
         parent::__construct($request, $rawResponse, $rawRequest, $languageLocale);
+        $this->checkForUnknownErrors($languageLocale);
 
-        $this->signature = new Signature($rawResponse->data);
+        if(isset($rawResponse->data)):
+            $this->signature = new Signature($rawResponse->data);
+        endif;
     }
 }

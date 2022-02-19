@@ -29,7 +29,10 @@ class getPieceDetail extends AbstractTrackingResponse {
      */
     public function __construct(Request\Tracking\getPieceDetail $request, \SimpleXMLElement $rawResponse, $rawRequest, $languageLocale) {
         parent::__construct($request, $rawResponse, $rawRequest, $languageLocale);
+        $this->checkForUnknownErrors($languageLocale);
 
-        $this->pieceShipment = new PieceShipment($rawResponse->data);
+        if(isset($rawResponse->data)):
+            $this->pieceShipment = new PieceShipment($rawResponse->data);
+        endif;
     }
 }

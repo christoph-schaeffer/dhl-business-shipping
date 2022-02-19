@@ -33,6 +33,11 @@ class PieceShipment {
      *
      * Used for error codes. This is null when there is no error. However, please use the hasNoErrors functions in the
      * response object for error checking.
+     *
+     * For more information check the following url (you need to be authenticated on entwickler.dhl.de)
+     * https://entwickler.dhl.de/group/ep/wsapis/sendungsverfolgung/allgemeinefehlerhandhabung
+     *
+     * 0 = successful
      */
     public $pieceStatus;
     /**

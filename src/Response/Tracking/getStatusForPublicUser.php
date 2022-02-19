@@ -6,6 +6,7 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking\DhlXmlParseExcept
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\AbstractTrackingResponse;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\Tracking\Data\PieceStatusPublic;
 use ChristophSchaeffer\Dhl\BusinessShipping\Request;
+use ChristophSchaeffer\Dhl\BusinessShipping\Utility\XmlParser;
 
 /**
  * Class getStatusForPublicUser
@@ -45,11 +46,18 @@ class getStatusForPublicUser extends AbstractTrackingResponse {
     public function __construct(Request\Tracking\getStatusForPublicUser $request, \SimpleXMLElement $rawResponse, $rawRequest, $languageLocale) {
         parent::__construct($request, $rawResponse, $rawRequest, $languageLocale);
 
-        if (isset($rawResponse->data) && isset($rawResponse->data)):
-            $rawPieceStatusPublicList = $rawResponse->data->data;
-            foreach ($rawPieceStatusPublicList as $rawPieceStatusPublic):
-                $this->pieceStatusPublicList[] = new PieceStatusPublic($rawPieceStatusPublic);
-            endforeach;
+        if (isset($rawResponse->data)):
+            $rawPieceStatusPublicListObject = $rawResponse->data;
+            XmlParser::mapXmlAttributesToObjectProperties($rawPieceStatusPublicListObject, $this);
+            $this->code = XmlParser::nullableStringTypeCast('int', $this->code);
+            $this->checkForUnknownErrors($languageLocale);
+
+            if(isset($rawResponse->data->data)):
+                $rawPieceStatusPublicList = $rawResponse->data->data;
+                foreach ($rawPieceStatusPublicList as $rawPieceStatusPublic):
+                    $this->pieceStatusPublicList[] = new PieceStatusPublic($rawPieceStatusPublic);
+                endforeach;
+            endif;
         endif;
     }
 }

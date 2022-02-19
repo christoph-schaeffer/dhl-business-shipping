@@ -37,16 +37,38 @@ class PieceStatusPublic {
     public $leitcode;
     /**
      * @var string
+     */
+    public $pslzNr;
+    /**
+     * @var bool
+     *
+     * Defines if the order has been made with a preferred day setting
+     */
+    public $orderPreferredDeliveryDay;
+    /**
+     * @var string
      *
      * Shipment number that was searched for
      */
     public $searchedPieceCode;
     /**
-     * @var string
+     * @var int
      *
-     * Status of an individual piece in the defined language
+     * Error status code for the individual shipment
+     *
+     * For more information check the following url (you need to be authenticated on entwickler.dhl.de)
+     * https://entwickler.dhl.de/group/ep/wsapis/sendungsverfolgung/allgemeinefehlerhandhabung
+     *
+     * 0 = successful
      */
     public $pieceStatus;
+    /**
+     * @var string
+     *
+     * Used for error messages. This is null when there is no error. However, please use the hasNoErrors functions of
+     * this class or the response class for error checking.
+     */
+    public $pieceStatusDesc;
     /**
      * @var int
      *
@@ -78,12 +100,6 @@ class PieceStatusPublic {
     /**
      * @var string
      *
-     * PAN Recipient name. This is not documented by DHL. it is unclear why this exists.
-     */
-    public $panRecipientName;
-    /**
-     * @var string
-     *
      * Recipient street
      */
     public $streetName;
@@ -99,6 +115,24 @@ class PieceStatusPublic {
      * Recipient city name
      */
     public $cityName;
+    /**
+     * @var string
+     *
+     * PAN Recipient name. This is not documented by DHL. it is unclear why this exists.
+     */
+    public $panRecipientName;
+    /**
+     * @var string
+     *
+     * PAN Recipient street and house number. This is not documented by DHL. it is unclear why this exists.
+     */
+    public $panRecipientStreet;
+    /**
+     * @var string
+     *
+     * PAN Recipient city with zip code seperated by a space. E.g. "53113 Bonn". This is not documented by DHL. it is unclear why this exists.
+     */
+    public $panRecipientCity;
     /**
      * @var string
      *
@@ -155,6 +189,18 @@ class PieceStatusPublic {
      * Shipment number that was searched for
      */
     public $pieceCode;
+    /**
+     * @var string
+     */
+    public $matchcode;
+    /**
+     * @var string
+     */
+    public $domesticId;
+    /**
+     * @var string
+     */
+    public $airwayBillNumber;
     /**
      * @var string
      *
@@ -220,18 +266,6 @@ class PieceStatusPublic {
     /**
      * @var string
      *
-     * PAN Recipient street and house number. This is not documented by DHL. it is unclear why this exists.
-     */
-    public $panRecipientStreet;
-    /**
-     * @var string
-     *
-     * PAN Recipient city with zip code seperated by a space. E.g. "53113 Bonn". This is not documented by DHL. it is unclear why this exists.
-     */
-    public $panRecipientCity;
-    /**
-     * @var string
-     *
      * Country at which the shipment event was created
      */
     public $eventCountry;
@@ -241,6 +275,22 @@ class PieceStatusPublic {
      * Location at which the shipment event was created
      */
     public $eventLocation;
+    /**
+     * @var string
+     */
+    public $preferredDeliveryDay;
+    /**
+     * @var string
+     */
+    public $preferredDeliveryTimeframeFrom;
+    /**
+     * @var string
+     */
+    public $preferredDeliveryTimeframeTo;
+    /**
+     * @var string
+     */
+    public $preferredDeliveryTimeframeRefusedText;
     /**
      * @var float
      *
@@ -266,6 +316,9 @@ class PieceStatusPublic {
      */
     public $shipmentWeight;
 
+    /** @var PieceEvent[] */
+    public $pieceEventList = [];
+
     /**
      * @param \SimpleXMLElement $rawXmlStatusForPublicData
      * @throws DhlXmlParseException
@@ -273,15 +326,28 @@ class PieceStatusPublic {
     public function __construct(\SimpleXMLElement $rawXmlStatusForPublicData) {
         XmlParser::mapXmlAttributesToObjectProperties($rawXmlStatusForPublicData, $this);
 
-        $this->errorStatus       = XmlParser::nullableStringTypeCast('int', $this->errorStatus);
-        $this->identifierType    = XmlParser::nullableStringTypeCast('int', $this->identifierType);
-        $this->recipientId       = XmlParser::nullableStringTypeCast('int', $this->recipientId);
-        $this->deliveryEventFlag = XmlParser::nullableStringTypeCast('bool', $this->deliveryEventFlag);
-        $this->internationalFlag = XmlParser::nullableStringTypeCast('bool', $this->internationalFlag);
-        $this->shipmentLength    = XmlParser::nullableStringTypeCast('float', $this->shipmentLength);
-        $this->shipmentWidth     = XmlParser::nullableStringTypeCast('float', $this->shipmentWidth);
-        $this->shipmentHeight    = XmlParser::nullableStringTypeCast('float', $this->shipmentHeight);
-        $this->shipmentWeight    = XmlParser::nullableStringTypeCast('float', $this->shipmentWeight);
+        if (isset($rawXmlStatusForPublicData->data) ):
+            $rawEventList = $rawXmlStatusForPublicData->data;
+            foreach ($rawEventList as $rawEvent):
+                $this->pieceEventList[] = new PieceEvent($rawEvent);
+            endforeach;
+        endif;
+
+        $this->errorStatus               = XmlParser::nullableStringTypeCast('int', $this->errorStatus);
+        $this->identifierType            = XmlParser::nullableStringTypeCast('int', $this->identifierType);
+        $this->recipientId               = XmlParser::nullableStringTypeCast('int', $this->recipientId);
+        $this->pieceStatus               = XmlParser::nullableStringTypeCast('int', $this->pieceStatus);
+        $this->deliveryEventFlag         = XmlParser::nullableStringTypeCast('bool', $this->deliveryEventFlag);
+        $this->internationalFlag         = XmlParser::nullableStringTypeCast('bool', $this->internationalFlag);
+        $this->orderPreferredDeliveryDay = XmlParser::nullableStringTypeCast('bool', $this->orderPreferredDeliveryDay);
+        $this->shipmentLength            = XmlParser::nullableStringTypeCast('float', $this->shipmentLength);
+        $this->shipmentWidth             = XmlParser::nullableStringTypeCast('float', $this->shipmentWidth);
+        $this->shipmentHeight            = XmlParser::nullableStringTypeCast('float', $this->shipmentHeight);
+        $this->shipmentWeight            = XmlParser::nullableStringTypeCast('float', $this->shipmentWeight);
+    }
+
+    public function hasNoErrors() {
+        return $this->pieceStatus === 0 && empty($this->pieceStatusDesc);
     }
 
 }

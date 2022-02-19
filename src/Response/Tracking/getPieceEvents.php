@@ -29,6 +29,7 @@ class getPieceEvents extends AbstractTrackingResponse {
      */
     public function __construct(Request\Tracking\getPieceEvents $request, \SimpleXMLElement $rawResponse, $rawRequest, $languageLocale) {
         parent::__construct($request, $rawResponse, $rawRequest, $languageLocale);
+        $this->checkForUnknownErrors($languageLocale);
 
         if (isset($rawResponse->data)):
             $rawEventList = $rawResponse->data;

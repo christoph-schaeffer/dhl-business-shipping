@@ -2,7 +2,6 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\Response;
 
-use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
 use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractTrackingRequest;
 use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Version;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\AbstractTrackingResponse;
@@ -31,19 +30,6 @@ class AbstractTrackingResponseTest extends AbstractUnitTest {
 
         $this->commonAssertions($response, $restResponse, 100,FALSE);
         $this->assertEquals('Keine Daten gefunden.', $response->error);
-    }
-
-    public function testConstructWithCode100WithoutErrorResponse() {
-        $request      = $this->getMockForAbstractClass(AbstractTrackingRequest::class);
-        $restResponse =  simplexml_load_string('<?xml version="1.0" encoding="UTF-8"?><data code="100" request-id="1337"></data>');
-
-        $responseDe = $this->getMockedResponse($request, $restResponse, 'de');
-        $this->commonAssertions($responseDe, $restResponse, 100,FALSE);
-        $this->assertEquals('Es ist ein unbekannter Fehler aufgetreten', $responseDe->error);
-
-        $responseEn = $this->getMockedResponse($request, $restResponse, 100,'en');
-        $this->commonAssertions($responseEn, $restResponse, 100,FALSE);
-        $this->assertEquals('An unknown error occurred', $responseEn->error);
     }
 
     public function testConstructWithCode0WithErrorResponse() {

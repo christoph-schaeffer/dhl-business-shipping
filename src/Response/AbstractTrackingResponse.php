@@ -2,6 +2,7 @@
 
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Response;
 
+use ChristophSchaeffer\Dhl\BusinessShipping\Exception\Tracking\DhlFunctionNotImplemented;
 use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractTrackingRequest;
 use ChristophSchaeffer\Dhl\BusinessShipping\TrackingClient;
 use ChristophSchaeffer\Dhl\BusinessShipping\Utility\XmlParser;
@@ -46,13 +47,12 @@ abstract class AbstractTrackingResponse extends AbstractResponse {
      */
     public function __construct(AbstractTrackingRequest $request, \SimpleXMLElement $rawResponse, $rawRequest, $languageLocale) {
         parent::__construct($request, $rawResponse, $rawRequest, $languageLocale);
+        XmlParser::mapXmlAttributesToObjectProperties($rawResponse, $this);
+
         $this->Version->majorRelease = TrackingClient::MAJOR_RELEASE;
         $this->Version->minorRelease = TrackingClient::MINOR_RELEASE;
-        XmlParser::mapXmlAttributesToObjectProperties($rawResponse, $this);
+
         $this->code = XmlParser::nullableStringTypeCast('int', $this->code);
-        if($this->code !== 0 && empty($this->error)) {
-            $this->error = $languageLocale === 'de' ? 'Es ist ein unbekannter Fehler aufgetreten' : 'An unknown error occurred';
-        }
     }
 
     /**
@@ -60,6 +60,15 @@ abstract class AbstractTrackingResponse extends AbstractResponse {
      */
     public function hasNoErrors() {
         return empty($this->error) && $this->code === 0;
+    }
+
+    /**
+     * @param string $languageLocale
+     */
+    protected function checkForUnknownErrors($languageLocale) {
+        if($this->code !== 0 && empty($this->error)) {
+            $this->error = $languageLocale === 'de' ? 'Es ist ein unbekannter Fehler aufgetreten' : 'An unknown error occurred';
+        }
     }
 
 }

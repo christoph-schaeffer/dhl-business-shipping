@@ -68,7 +68,7 @@ $shippingClientCredentials = new ShippingClientCredentials(
 ```
 Create a tracking client credentials object and fill it with your credentials.
 ```
-use ChristophSchaeffer\Dhl\BusinessShipping\Credentials\TrackingClientCredentials; // Autoload the ShippingClientCredentials class
+use ChristophSchaeffer\Dhl\BusinessShipping\Credentials\TrackingClientCredentials; // Autoload the TrackingClientCredentials class
 
 $trackingClientCredentials = new TrackingClientCredentials(
     'appID',        // In sandbox mode this is your developer ID.
@@ -79,7 +79,7 @@ $trackingClientCredentials = new TrackingClientCredentials(
 ```
 Create a client object and fill it with your credentials.
 ```
-use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient; // Autoload the Client class
+use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient; // Autoload the MultiClient class
 
 $client = new MultiClient(
     $shippingClientCredentials

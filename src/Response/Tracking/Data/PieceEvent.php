@@ -32,6 +32,8 @@ class PieceEvent {
      * @var string
      *
      * A shorter status message for the current event in the language that has been defined.
+     *
+     * This Property is not available in the getStatusForPublicUser response
      */
     public $eventShortStatus;
     /**
