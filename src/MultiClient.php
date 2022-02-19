@@ -4,8 +4,7 @@ namespace ChristophSchaeffer\Dhl\BusinessShipping;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\Credentials\ShippingClientCredentials;
 use ChristophSchaeffer\Dhl\BusinessShipping\Credentials\TrackingClientCredentials;
-use ChristophSchaeffer\Dhl\BusinessShipping\Request\Tracking\getStatusForPublicUser;
-use ChristophSchaeffer\Dhl\BusinessShipping\Resource\Tracking\PieceData;
+use ChristophSchaeffer\Dhl\BusinessShipping\Exception;
 
 /**
  * Class MultiClient
@@ -164,13 +163,17 @@ class MultiClient {
      *
      * @return Response\Tracking\getStatusForPublicUser
      *
+     * @throws Exception\Tracking\DhlRestCurlException
+     * @throws Exception\Tracking\DhlRestHttpException
+     * @throws Exception\Tracking\DhlXmlParseException
+     * @throws Exception\Tracking\DhlNotAvailableInSandbox
+     *
      * !!! IMPORTANT INFO !!!
      * This function is disabled in sandbox mode (said the support). No idea why dhl decided to do that ¯\_(ツ)_/¯
      *
-     * It is highly recommended to just use getPiece or getPieceDetail, as they do the same but with more information.
-     *
      * The getStatusForPublicUser function provides information in the way it is shown currently in the DHL shipment
-     * tracking area for everyone.
+     * tracking area for everyone. You can request all shipment numbers with this functions, even from shipments you did
+     * not send or receive yourself.
      */
     public function getStatusForPublicUser(Request\Tracking\getStatusForPublicUser $request) {
         return $this->trackingClient->getStatusForPublicUser($request);
@@ -180,6 +183,13 @@ class MultiClient {
      * @param Request\Tracking\getPieceDetail $request
      *
      * @return Response\Tracking\getPieceDetail
+     *
+     * @throws Exception\Tracking\DhlRestCurlException
+     * @throws Exception\Tracking\DhlRestHttpException
+     * @throws Exception\Tracking\DhlXmlParseException
+     *
+     * This function only works with shipments you have sent with the same business customer account as the zt token
+     * credentials you use.
      *
      * The getPieceDetail function retrieves all information about a shipment via a query. This is done by combining the
      * query of the getPiece and getPieceEvents functions.
@@ -195,6 +205,13 @@ class MultiClient {
      * @param Request\Tracking\getPiece $request
      *
      * @return Response\Tracking\getPiece
+     *
+     * @throws Exception\Tracking\DhlRestCurlException
+     * @throws Exception\Tracking\DhlRestHttpException
+     * @throws Exception\Tracking\DhlXmlParseException
+     *
+     * This function only works with shipments you have sent with the same business customer account as the zt token
+     * credentials you use.
      *
      * The getPiece function returns the current shipping status of one or more shipments. In contrast to the query
      * from the DHL shipment tracking section for everyone, this function provides more status data that must only be used
@@ -212,6 +229,13 @@ class MultiClient {
      *
      * @return Response\Tracking\getPieceEvents
      *
+     * @throws Exception\Tracking\DhlRestCurlException
+     * @throws Exception\Tracking\DhlRestHttpException
+     * @throws Exception\Tracking\DhlXmlParseException
+     *
+     * This function only works with shipments you have sent with the same business customer account as the zt token
+     * credentials you use.
+     *
      * The getPieceEvents functions supplies the shipment progress, comprising a shipment's individual events.
      *
      * For a successful call, this function requires the piece-id attribute from the getPiece/getPieceDetail call.
@@ -227,6 +251,13 @@ class MultiClient {
      * @param Request\Tracking\getSignature $request
      *
      * @return Response\Tracking\getSignature
+     *
+     * @throws Exception\Tracking\DhlRestCurlException
+     * @throws Exception\Tracking\DhlRestHttpException
+     * @throws Exception\Tracking\DhlXmlParseException
+     *
+     * This function only works with shipments you have sent with the same business customer account as the zt token
+     * credentials you use.
      *
      * The getSignature function can retrieve the recipient's or substitute recipient's signature.
      * The signatures are also known as POD = Proof of Delivery.
