@@ -44,6 +44,7 @@ This introduced the following new features:
 - To get an API key login to your DHL developer account and register your application [here](https://entwickler.dhl.de/group/ep/myapps). 
 For production mode you will also have to request approval of your application by DHL.
 - [DHL business customer account](https://www.dhl-geschaeftskundenportal.de/webcenter/portal/gkpExternal), which is essentially the live account a user will login and order shipment labels with.
+- For Tracking: ZT-Token and Password of that token. You can get those on the [DHL business customer portal](https://www.dhl-geschaeftskundenportal.de/webcenter/portal/gkpExternal) under My Data->Tracking
 ### Installation
 Add this repository to your composer.json requirements manually or navigate to your repository and enter the following command:
 ```
@@ -156,6 +157,10 @@ else:
 endif;
 ```
 ### Usage for the tracking api
+The following is an example of the getPieceDetail function. If you only track shipments you have sent yourself this is
+the best function to use, because it contains all data getPiece and getPieceEvents will return in one request. However,
+this request only works with shipment numbers of shipments you have sent with the same business customer account you are
+using the zt token of.
 
 Set up the request object, call the getPieceDetail function and get its response.
 ```
@@ -174,6 +179,46 @@ else:
 endif;
 ```
 
+If you want to track shipments that you have not sent yourself you can use the getStatusForPublicUser function. This
+function contains less data, but works with all shipment numbers. You can also request more than one shipment number.
+
+Please also keep in mind, that for some reason DHL decided to disable this function in sandbox mode. So you need to use
+production mode to test it.
+
+Set up the pieces you want to request
+
+```
+$piece1 = new PieceData(); // create the first Piece you want to request
+$piece1->pieceCode = '00340435091628083543'; // set the shipment number
+
+$piece2 = new PieceData(); // create the second Piece you want to request
+$piece2->pieceCode = '00340435091628083544'; // set the shipment number
+
+$pieces = [$piece1, $piece2]; // combine both pieces into an array
+```
+
+Set up the request object, call the getStatusForPublicUser function and get its response.
+```
+$request = new \ChristophSchaeffer\Dhl\BusinessShipping\Request\Tracking\getStatusForPublicUser($pieces);
+$response = $client->getStatusForPublicUser($request);
+```
+To check if the request was successful use the hasNoErrors function. If the request itself or any child object does not
+have the status code "0", which is = success, this will return false.
+```
+if($response->hasNoErrors()): // checks if any error status messages have been returned.
+    echo 'Success!';
+    
+    foreach($response->pieceStatusPublicList as $pieceStatusPublic):
+    if(!$pieceStatusPublic->hasNoErrors()) {
+        echo 'An error occured with the shipment number'.$pieceStatusPublic->pieceCode.'\n';
+        echo $pieceStatusPublic->pieceStatusDesc.'\n';
+    }
+endforeach;
+else:
+    echo 'An error occured!\n';
+    echo $response->error.'\n';   // this is the string error message submitted by dhl
+endif;
+```
 ## Documentation
 - There is an official documentation by DHL found [here](https://entwickler.dhl.de). However it is partly outdated and incomplete.
 - A documentation page for this project can be found [here](https://christoph-schaeffer.de/dhl-business-shipping/documentation/3-0).
