@@ -58,7 +58,7 @@ abstract class AbstractResponse {
     /**
      * @return bool
      *
-     * Checks if the request was successful. Should return true if it was.
+     * Checks if the request was successful. Will return true if it was.
      */
     public abstract function hasNoErrors();
 

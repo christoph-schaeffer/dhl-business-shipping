@@ -92,8 +92,8 @@ class TrackingClient {
      * This function is disabled in sandbox mode (said the support). No idea why dhl decided to do that ¯\_(ツ)_/¯
      *
      * The getStatusForPublicUser function provides information in the way it is shown currently in the DHL shipment
-     * tracking area for everyone. You can request all shipment numbers with this functions, even from shipments you did
-     * not send or receive yourself.
+     * tracking area for everyone. You can request all shipment numbers with this function, even of shipments you have
+     * not sent or receive yourself. You can request up to 15 shipments with one request.
      */
     public function getStatusForPublicUser(Request\Tracking\getStatusForPublicUser $request) {
         if($this->isSandbox) {

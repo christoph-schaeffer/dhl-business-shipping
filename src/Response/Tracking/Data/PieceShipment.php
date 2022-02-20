@@ -122,7 +122,7 @@ class PieceShipment {
     /**
      * @var string
      *
-     *    Recipient zip code and city name seperated by a space. E.g. "53113 Bonn"
+     * Recipient zip code and city name seperated by a space. E.g. "53113 Bonn"
      */
     public $recipientCity;
     /**
@@ -363,7 +363,11 @@ class PieceShipment {
      */
     public $orderPreferredDeliveryDay;
 
-    /** @var PieceEvent[] */
+    /**
+     * @var PieceEvent[]
+     *
+     * Contains an array of the events of this shipment
+     */
     public $pieceEventList = [];
 
     /**

@@ -31,8 +31,6 @@ class getStatusForPublicUser extends AbstractTrackingResponse {
      *
      * This is where the tracking data for each shipment you have queried is stored, please use this array to obtain the
      * data you need.
-     *
-     *
      */
     public $pieceStatusPublicList = [];
 

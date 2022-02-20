@@ -12,7 +12,7 @@ class PieceData {
     /**
      * @var string
      *
-     * This is usually a shipment number
+     * The shipment number you want to query
      */
     public $pieceCode;
 
