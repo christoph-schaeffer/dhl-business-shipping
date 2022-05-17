@@ -15,6 +15,22 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Utility\Sanitizer;
  */
 class ShippingClient {
 
+    const LABEL_FORMAT_WARENPOST      = '100x70mm';   // 100 x  70 mm (+ second page for international shipments; "Customs Declaration")
+    const LABEL_FORMAT_910_300_300    = '910-300-300';// 105 x 148 mm
+    const LABEL_FORMAT_910_300_300_oZ = '910-300-300-oz';
+    const LABEL_FORMAT_910_300_400    = '910-300-400';// 103 x 150 mm
+    const LABEL_FORMAT_910_300_410    = '910-300-400';
+    const LABEL_FORMAT_910_300_600    = '910-300-600';// 103 x 199 mm
+    const LABEL_FORMAT_910_300_610    = '910-300-600';
+    const LABEL_FORMAT_910_300_700    = '910-300-700';// 105 x 205 mm
+    const LABEL_FORMAT_910_300_700_oZ = '910-300-700-oz';
+    const LABEL_FORMAT_910_300_710    = '910-300-710';// 105 x 208 mm
+    const LABEL_FORMAT_A4             = 'A4';         // 210 x 297 mm
+
+    const LABEL_RESPONSE_TYPE_BASE64                       = 'B64';
+    const LABEL_RESPONSE_TYPE_URL                          = 'URL';
+    const LABEL_RESPONSE_TYPE_ZEBRA_PROGRAMMING_LANGUAGE_2 = 'ZPL2';
+
     /**
      * Major Release of the shipping api this package is developed for
      */

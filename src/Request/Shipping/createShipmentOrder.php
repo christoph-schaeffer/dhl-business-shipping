@@ -14,17 +14,6 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Resource\ShipmentOrder;
  */
 class createShipmentOrder extends AbstractShippingRequest {
 
-    const LABEL_FORMAT_910_300_600    = '910-300-600';
-    const LABEL_FORMAT_910_300_610    = '910-300-610';
-    const LABEL_FORMAT_910_300_700    = '910-300-700';
-    const LABEL_FORMAT_910_300_700_oZ = '910-300-700-oZ';
-    const LABEL_FORMAT_910_300_710    = '910-300-710';
-    const LABEL_FORMAT_A4             = 'A4';
-
-    const LABEL_RESPONSE_TYPE_BASE64                       = 'B64';
-    const LABEL_RESPONSE_TYPE_URL                          = 'URL';
-    const LABEL_RESPONSE_TYPE_ZEBRA_PROGRAMMING_LANGUAGE_2 = 'ZPL2';
-
     /**
      * @var ShipmentOrder[]
      *
@@ -58,12 +47,7 @@ class createShipmentOrder extends AbstractShippingRequest {
      * Optional
      *
      * Choose the label output format.
-     * A4
      * 910-300-700 (default)
-     * 910-300-700-oZ
-     * 910-300-600
-     * 910-300-610
-     * 910-300-710
      */
     public $labelFormat;
 
@@ -73,12 +57,7 @@ class createShipmentOrder extends AbstractShippingRequest {
      * Optional
      *
      * Choose the label output format.
-     * A4
      * 910-300-700 (default)
-     * 910-300-700-oZ
-     * 910-300-600
-     * 910-300-610
-     * 910-300-710
      */
     public $labelFormatRetoure;
 

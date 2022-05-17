@@ -12,17 +12,6 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Request\AbstractShippingRequest;
  */
 class getLabel extends AbstractShippingRequest {
 
-    const LABEL_FORMAT_910_300_600    = createShipmentOrder::LABEL_FORMAT_910_300_600;
-    const LABEL_FORMAT_910_300_610    = createShipmentOrder::LABEL_FORMAT_910_300_610;
-    const LABEL_FORMAT_910_300_700    = createShipmentOrder::LABEL_FORMAT_910_300_700;
-    const LABEL_FORMAT_910_300_700_oZ = createShipmentOrder::LABEL_FORMAT_910_300_700_oZ;
-    const LABEL_FORMAT_910_300_710    = createShipmentOrder::LABEL_FORMAT_910_300_710;
-    const LABEL_FORMAT_A4             = createShipmentOrder::LABEL_FORMAT_A4;
-
-    const LABEL_RESPONSE_TYPE_BASE64                       = createShipmentOrder::LABEL_RESPONSE_TYPE_BASE64;
-    const LABEL_RESPONSE_TYPE_URL                          = createShipmentOrder::LABEL_RESPONSE_TYPE_URL;
-    const LABEL_RESPONSE_TYPE_ZEBRA_PROGRAMMING_LANGUAGE_2 = createShipmentOrder::LABEL_RESPONSE_TYPE_ZEBRA_PROGRAMMING_LANGUAGE_2;
-
     /**
      * @var bool
      *
@@ -47,12 +36,7 @@ class getLabel extends AbstractShippingRequest {
      * Optional
      *
      * Choose the label output format.
-     * A4
      * 910-300-700 (default)
-     * 910-300-700-oZ
-     * 910-300-600
-     * 910-300-610
-     * 910-300-710
      */
     public $labelFormat;
 
@@ -62,12 +46,7 @@ class getLabel extends AbstractShippingRequest {
      * Optional
      *
      * Choose the label output format.
-     * A4
      * 910-300-700 (default)
-     * 910-300-700-oZ
-     * 910-300-600
-     * 910-300-610
-     * 910-300-710
      */
     public $labelFormatRetoure;
 
