@@ -5,7 +5,7 @@
         xmlns:cis="http://dhl.de/webservice/cisbase"
         targetNamespace="http://dhl.de/webservices/businesscustomershipping/3.0">
 	  <import namespace="http://dhl.de/webservice/cisbase"
-           schemaLocation="geschaeftskundenversand-api-3.2.2-schema-cis_base.xsd"/>
+           schemaLocation="geschaeftskundenversand-api-3.3.0-schema-cis_base.xsd"/>
 	  <simpleType name="SequenceNumber">
 		    <annotation>
 			      <documentation>A sequence number defined by the (soap-) client. The
@@ -1021,18 +1021,100 @@
 			      </element>
 			      <element name="statusText" type="xs:string" minOccurs="1" maxOccurs="1">
 				        <annotation>
-					          <documentation>Explanation of the statuscode and potential errors.
+					          <documentation>Explanation of the statuscode. Explains what types of errors occurred.
 					</documentation>
 				        </annotation>
 			      </element>
 			      <element name="statusMessage" type="xs:string" minOccurs="0" maxOccurs="30">
 				        <annotation>
+					          <documentation>Detailed explanation of errors or warnings, p.e. “Invalid postal code”. 
+					This element is kept for compatibility reasons only. Please use “statusType” und “errorMassage” with their subelements instead.
+					</documentation>
+				        </annotation>
+			      </element>
+			      <element name="statusType" type="xs:string" minOccurs="0" maxOccurs="1">
+				        <annotation>
+					          <documentation>Explains if an error or warning occurred
+					</documentation>
+				        </annotation>
+			      </element>
+			      <element name="errorMessage" type="bcs:StatusElement" minOccurs="0" maxOccurs="30">
+				        <annotation>
+					          <documentation> Explains details of the error and where it occurred 
+					</documentation>
+				        </annotation>
+			      </element>
+			      <element name="statusType" type="xs:string" minOccurs="0" maxOccurs="1">
+				        <annotation>
+					          <documentation>Explains if an error or warning occurred 
+					</documentation>
+				        </annotation>
+			      </element>
+			      <element name="warningMessage" type="bcs:StatusElement" minOccurs="0" maxOccurs="30">
+				        <annotation>
+					          <documentation> Explains details of the error and where it occurred
+					</documentation>
+				        </annotation>
+			      </element>			
+		    </sequence>
+	  </complexType>
+	  <complexType name="StatusElement">
+		    <sequence>
+			      <element name="statusElement" type="xs:string" minOccurs="1" maxOccurs="1">
+				        <annotation>
+					          <documentation>Explains where the error or warning occured
+					</documentation>
+				        </annotation>
+			      </element>
+			      <element name="statusMessage" type="xs:string" minOccurs="1" maxOccurs="1">
+				        <annotation>
+					          <documentation>Explains the details of the error or warning
+					</documentation>
+				        </annotation>
+			      </element>
+			      <element name="statusType" type="xs:string" minOccurs="0" maxOccurs="1">
+				        <annotation>
 					          <documentation>Explanation of the statuscode and potential errors.
+					</documentation>
+				        </annotation>
+			      </element>
+			      <element name="errorMessage" type="bcs:StatusElement" minOccurs="0" maxOccurs="30">
+				        <annotation>
+					          <documentation> Success status of processing a particular shipment.
+					</documentation>
+				        </annotation>
+			      </element>
+			      <element name="statusType" type="xs:string" minOccurs="0" maxOccurs="1">
+				        <annotation>
+					          <documentation>Explanation of the statuscode and potential errors.
+					</documentation>
+				        </annotation>
+			      </element>
+			      <element name="warningMessage" type="bcs:StatusElement" minOccurs="0" maxOccurs="30">
+				        <annotation>
+					          <documentation> Success status of processing a particular shipment.
+					</documentation>
+				        </annotation>
+			      </element>			
+		    </sequence>
+	  </complexType>
+	  <complexType name="StatusElement">
+		    <sequence>
+			      <element name="statusElement" type="xs:string" minOccurs="1" maxOccurs="1">
+				        <annotation>
+					          <documentation>Explanation of the statusElement and potential errors.
+					</documentation>
+				        </annotation>
+			      </element>
+			      <element name="statusMessage" type="xs:string" minOccurs="1" maxOccurs="1">
+				        <annotation>
+					          <documentation>Explanation of the statusMessage and potential errors.
 					</documentation>
 				        </annotation>
 			      </element>
 		    </sequence>
 	  </complexType>
+	
 	  <complexType name="PieceInformation">
 		    <annotation>
 			      <documentation>Information about each piece (e.g. the generated
@@ -1703,6 +1785,12 @@
 					          <documentation>Service Cash on delivery.</documentation>
 				        </annotation>
 			      </element>
+			      <element name="PDDP" type="bcs:PDDP" minOccurs="0" maxOccurs="1">
+				        <annotation>
+					          <documentation>Postal Delivery Duty Paid 
+					Deutsche Post and sender handle import duties instead of consignee</documentation>
+				        </annotation>
+			      </element>
 			      <element name="AdditionalInsurance" type="bcs:ServiceconfigurationAdditionalInsurance"
                   minOccurs="0"
                   maxOccurs="1">
@@ -2213,6 +2301,21 @@
 			      </xs:simpleType>
 		    </xs:attribute>
 	  </xs:complexType>
+	
+	  <xs:complexType name="PDDP">
+		    <xs:attribute name="active" use="required">
+			      <xs:annotation>
+				        <xs:documentation>	Indicates, if the option is on/off </xs:documentation>
+			      </xs:annotation>
+			      <xs:simpleType>
+				        <xs:restriction base="xs:string">
+					          <xs:enumeration value="0"/>
+					          <xs:enumeration value="1"/>
+				        </xs:restriction>
+			      </xs:simpleType>
+		    </xs:attribute>
+	  </xs:complexType>
+	
 	  <xs:complexType name="ServiceconfigurationIC">
 		    <xs:sequence>
 			      <xs:element name="Ident">
@@ -2540,6 +2643,7 @@
 						            <element name="customsTariffNumber">
 							              <annotation>
 								                <documentation>Customs tariff number of the unit / position.
+								If the service PDDP is used, customsTariffNumber is required.
 								</documentation>
 							              </annotation>
 							              <simpleType>
