@@ -1,8 +1,8 @@
 # DHL business shipping
 
-An unofficial library for the DHL business shipping soap API (Version 3.2) written in PHP. 
+An unofficial library for the DHL business shipping soap API (Version 3.3) written in PHP.
 
-[![api version](https://img.shields.io/badge/shipping%20api%20version-3.2.0-yellow)](https://entwickler.dhl.de/en/group/ep/gesch%C3%A4ftskundenversand-3.2)
+[![api version](https://img.shields.io/badge/shipping%20api%20version-3.3.0-yellow)](https://entwickler.dhl.de/en/group/ep/gesch%C3%A4ftskundenversand-3.3)
 [![api version](https://img.shields.io/badge/tracking%20api%20version-1.0-yellow)](https://entwickler.dhl.de/en/group/ep/wsapis/sendungsverfolgung)
 ![PHP version](https://img.shields.io/badge/php->=5.6-blue)
 [![Build Status](https://travis-ci.com/christoph-schaeffer/dhl-business-shipping.svg?branch=develop)](https://travis-ci.com/github/christoph-schaeffer/dhl-business-shipping/builds)
@@ -10,7 +10,7 @@ An unofficial library for the DHL business shipping soap API (Version 3.2) writt
 [![License](https://img.shields.io/github/license/christoph-schaeffer/dhl-business-shipping)](http://badges.mit-license.org)
 
 ## Features
-This library provides access to functions provided by the official dhl business shipping soap api in an object oriented way. 
+This library provides access to functions provided by the official dhl business shipping soap api in an object oriented way.
 
 Since version 3.2 this library also includes the DHL shipment tracking api to obtain tracking data of sent shipments.
 
@@ -41,7 +41,7 @@ This introduced the following new features:
 - [Composer](https://getcomposer.org)
 ### Authentication Requirements
 - [DHL developer account](https://entwickler.dhl.de)
-- To get an API key login to your DHL developer account and register your application [here](https://entwickler.dhl.de/group/ep/myapps). 
+- To get an API key login to your DHL developer account and register your application [here](https://entwickler.dhl.de/group/ep/myapps).
 For production mode you will also have to request approval of your application by DHL.
 - [DHL business customer account](https://www.dhl-geschaeftskundenportal.de/webcenter/portal/gkpExternal), which is essentially the live account a user will login and order shipment labels with.
 - For Tracking: ZT-Token and Password of that token. You can get those on the [DHL business customer portal](https://www.dhl-geschaeftskundenportal.de/webcenter/portal/gkpExternal) under My Data->Tracking
@@ -90,8 +90,8 @@ $client = new MultiClient(
 );
 ```
 ### Usage for the shipping api (shipment label creation)
-The following is a simple example usage of the createShipmentOrder function. 
-However please keep in mind that there is a lot of additional functionality. 
+The following is a simple example usage of the createShipmentOrder function.
+However please keep in mind that there is a lot of additional functionality.
 For more details or examples of other functions please read the [documentation](https://christoph-schaeffer.de/dhl-business-shipping/documentation/3-0).
 
 
@@ -207,7 +207,7 @@ have the status code "0", which is = success, this will return false.
 ```
 if($response->hasNoErrors()): // checks if any error status messages have been returned.
     echo 'Success!';
-    
+
     foreach($response->pieceStatusPublicList as $pieceStatusPublic):
     if(!$pieceStatusPublic->hasNoErrors()) {
         echo 'An error occured with the shipment number'.$pieceStatusPublic->pieceCode.'\n';
