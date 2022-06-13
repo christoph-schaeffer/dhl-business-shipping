@@ -16,12 +16,19 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Resource\ShipmentOrder;
  */
 class updateShipmentOrder extends AbstractShippingRequest {
 
+
+
+    const LABEL_FORMAT_910_300_300    = createShipmentOrder::LABEL_FORMAT_910_300_300;
+    const LABEL_FORMAT_910_300_300_oZ = createShipmentOrder::LABEL_FORMAT_910_300_300_oZ;
+    const LABEL_FORMAT_910_300_400    = createShipmentOrder::LABEL_FORMAT_910_300_400;
+    const LABEL_FORMAT_910_300_410    = createShipmentOrder::LABEL_FORMAT_910_300_410;
     const LABEL_FORMAT_910_300_600    = createShipmentOrder::LABEL_FORMAT_910_300_600;
     const LABEL_FORMAT_910_300_610    = createShipmentOrder::LABEL_FORMAT_910_300_610;
     const LABEL_FORMAT_910_300_700    = createShipmentOrder::LABEL_FORMAT_910_300_700;
     const LABEL_FORMAT_910_300_700_oZ = createShipmentOrder::LABEL_FORMAT_910_300_700_oZ;
     const LABEL_FORMAT_910_300_710    = createShipmentOrder::LABEL_FORMAT_910_300_710;
     const LABEL_FORMAT_A4             = createShipmentOrder::LABEL_FORMAT_A4;
+    const LABEL_FORMAT_100_70_mm      = createShipmentOrder::LABEL_FORMAT_100_70_mm;
 
     const LABEL_RESPONSE_TYPE_BASE64                       = createShipmentOrder::LABEL_RESPONSE_TYPE_BASE64;
     const LABEL_RESPONSE_TYPE_URL                          = createShipmentOrder::LABEL_RESPONSE_TYPE_URL;

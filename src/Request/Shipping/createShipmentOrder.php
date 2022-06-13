@@ -14,12 +14,17 @@ use ChristophSchaeffer\Dhl\BusinessShipping\Resource\ShipmentOrder;
  */
 class createShipmentOrder extends AbstractShippingRequest {
 
+    const LABEL_FORMAT_910_300_300    = '910-300-300';
+    const LABEL_FORMAT_910_300_300_oZ = '910-300-300-oz';
+    const LABEL_FORMAT_910_300_400    = '910-300-400';
+    const LABEL_FORMAT_910_300_410    = '910-300-410';
     const LABEL_FORMAT_910_300_600    = '910-300-600';
     const LABEL_FORMAT_910_300_610    = '910-300-610';
     const LABEL_FORMAT_910_300_700    = '910-300-700';
     const LABEL_FORMAT_910_300_700_oZ = '910-300-700-oZ';
     const LABEL_FORMAT_910_300_710    = '910-300-710';
     const LABEL_FORMAT_A4             = 'A4';
+    const LABEL_FORMAT_100_70_mm      = '100x70mm';
 
     const LABEL_RESPONSE_TYPE_BASE64                       = 'B64';
     const LABEL_RESPONSE_TYPE_URL                          = 'URL';
