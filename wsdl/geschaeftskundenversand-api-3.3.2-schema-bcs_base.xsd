@@ -5,7 +5,7 @@
         xmlns:cis="http://dhl.de/webservice/cisbase"
         targetNamespace="http://dhl.de/webservices/businesscustomershipping/3.0">
 	  <import namespace="http://dhl.de/webservice/cisbase"
-           schemaLocation="geschaeftskundenversand-api-3.3.0-schema-cis_base.xsd"/>
+           schemaLocation="geschaeftskundenversand-api-3.3.2-schema-cis_base.xsd"/>
 	  <simpleType name="SequenceNumber">
 		    <annotation>
 			      <documentation>A sequence number defined by the (soap-) client. The
@@ -1053,46 +1053,6 @@
 			      <element name="warningMessage" type="bcs:StatusElement" minOccurs="0" maxOccurs="30">
 				        <annotation>
 					          <documentation> Explains details of the error and where it occurred
-					</documentation>
-				        </annotation>
-			      </element>			
-		    </sequence>
-	  </complexType>
-	  <complexType name="StatusElement">
-		    <sequence>
-			      <element name="statusElement" type="xs:string" minOccurs="1" maxOccurs="1">
-				        <annotation>
-					          <documentation>Explains where the error or warning occured
-					</documentation>
-				        </annotation>
-			      </element>
-			      <element name="statusMessage" type="xs:string" minOccurs="1" maxOccurs="1">
-				        <annotation>
-					          <documentation>Explains the details of the error or warning
-					</documentation>
-				        </annotation>
-			      </element>
-			      <element name="statusType" type="xs:string" minOccurs="0" maxOccurs="1">
-				        <annotation>
-					          <documentation>Explanation of the statuscode and potential errors.
-					</documentation>
-				        </annotation>
-			      </element>
-			      <element name="errorMessage" type="bcs:StatusElement" minOccurs="0" maxOccurs="30">
-				        <annotation>
-					          <documentation> Success status of processing a particular shipment.
-					</documentation>
-				        </annotation>
-			      </element>
-			      <element name="statusType" type="xs:string" minOccurs="0" maxOccurs="1">
-				        <annotation>
-					          <documentation>Explanation of the statuscode and potential errors.
-					</documentation>
-				        </annotation>
-			      </element>
-			      <element name="warningMessage" type="bcs:StatusElement" minOccurs="0" maxOccurs="30">
-				        <annotation>
-					          <documentation> Success status of processing a particular shipment.
 					</documentation>
 				        </annotation>
 			      </element>			
@@ -3717,9 +3677,7 @@ Email Address    (mandatory): cis:CommunicationType-&gt;email
 				        </xs:element>
 				        <xs:element name="minorRelease" minOccurs="0">
 					          <xs:annotation>
-						            <xs:documentation>The number of the minor release. E.g. the '2' in
-							version
-							"3.2.".
+						            <xs:documentation>The number of the minor release. E.g. the '2' in version "3.2.". Please note, that if you wish to use the old error handling, you need use Version 3.2 or below
 						</xs:documentation>
 					          </xs:annotation>
 					          <xs:simpleType>
