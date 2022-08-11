@@ -40,9 +40,18 @@ class Receiver {
      *
      * Optional
      *
-     * The address of the receiver is a Postfiliale.
+     * The address of the receiver is a german Postfiliale.
      */
     public $Postfiliale;
+
+    /**
+     * @var Receiver\ParcelShop
+     *
+     * Optional
+     *
+     * The address of the receiver is a ParcelShop (international variant for "postfiliale").
+     */
+    public $ParcelShop;
 
     /**
      * @var string
@@ -62,6 +71,7 @@ class Receiver {
         $this->Communication = new Receiver\Communication();
         $this->Packstation   = new Receiver\Packstation();
         $this->Postfiliale   = new Receiver\Postfiliale();
+        $this->ParcelShop    = new Receiver\ParcelShop();
     }
 
 

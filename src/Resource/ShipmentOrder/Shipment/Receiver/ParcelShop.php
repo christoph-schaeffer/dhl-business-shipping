@@ -3,15 +3,15 @@
 namespace ChristophSchaeffer\Dhl\BusinessShipping\Resource\ShipmentOrder\Shipment\Receiver;
 
 /**
- * Class Postfiliale
+ * Class ParcelShop
  * @package ChristophSchaeffer\Dhl\BusinessShipping\Resource\ShipmentOrder\Shipment\Receiver
  *
- * The address of the receiver is a german Postfiliale.
+ * The address of the receiver is a parcel shop. receiver is in Europe. non-national variant for "postfiliale"
  */
-class Postfiliale {
+class ParcelShop {
 
     /**
-     * @var Postfiliale\Origin
+     * @var ParcelShop\Origin
      *
      * Optional
      *
@@ -32,28 +32,38 @@ class Postfiliale {
     /**
      * @var string
      *
-     * Min length: 6
-     * Max length: 10
+     * Min length: 0
+     * Max length: ?
      *
-     * postNumber of the receiver, if not set receiver e-mail needs to be set.
+     * Number of the ParcelShop
      */
-    public $postNumber;
-
-    /**
-     * @var string
-     *
-     * Min length: 3
-     * Max length: 3
-     *
-     * Number of the postfiliale.
-     */
-    public $postfilialNumber;
+    public $parcelShopNumber;
 
     /**
      * @var string
      *
      * Min length: 0
-     * Max length: 17
+     * Max length: 35
+     *
+     * Name of street of the ParcelShop
+     */
+    public $streetName;
+
+    /**
+     * @var string
+     *
+     * Min length: 0
+     * Max length: 5
+     *
+     * House number of the ParcelShop
+     */
+    public $streetNumber;
+
+    /**
+     * @var string
+     *
+     * Min length: 5
+     * Max length: 5
      *
      * Zip code
      */
