@@ -2,7 +2,7 @@
 
 An unofficial library for the DHL business shipping soap API (Version 3.3) written in PHP.
 
-[![api version](https://img.shields.io/badge/shipping%20api%20version-3.3.0-yellow)](https://entwickler.dhl.de/en/group/ep/gesch%C3%A4ftskundenversand-3.3)
+[![api version](https://img.shields.io/badge/shipping%20api%20version-3.3.2-yellow)](https://entwickler.dhl.de/en/group/ep/gesch%C3%A4ftskundenversand-3.3)
 [![api version](https://img.shields.io/badge/tracking%20api%20version-1.0-yellow)](https://entwickler.dhl.de/en/group/ep/wsapis/sendungsverfolgung)
 ![PHP version](https://img.shields.io/badge/php->=5.6-blue)
 [![Build Status](https://travis-ci.com/christoph-schaeffer/dhl-business-shipping.svg?branch=develop)](https://travis-ci.com/github/christoph-schaeffer/dhl-business-shipping/builds)
