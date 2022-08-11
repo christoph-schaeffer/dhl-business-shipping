@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Version: 3.3.0
-Date: 2022-05-30T08:06:32Z
+Version: 3.3.2
+Date: 2022-07-04T12:51:26Z
 --><wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
                   xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
                   xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
@@ -15,9 +15,9 @@ Date: 2022-05-30T08:06:32Z
   <wsdl:types>
       <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified">
          <xs:import namespace="http://dhl.de/webservice/cisbase"
-                    schemaLocation="geschaeftskundenversand-api-3.3.0-schema-cis_base.xsd"/>
+                    schemaLocation="geschaeftskundenversand-api-3.3.2-schema-cis_base.xsd"/>
          <xs:import namespace="http://dhl.de/webservices/businesscustomershipping/3.0"
-                    schemaLocation="geschaeftskundenversand-api-3.3.0-schema-bcs_base.xsd"/>
+                    schemaLocation="geschaeftskundenversand-api-3.3.2-schema-bcs_base.xsd"/>
       </xs:schema>
   </wsdl:types>
   <wsdl:message name="AuthentificationHeaderMessage">
