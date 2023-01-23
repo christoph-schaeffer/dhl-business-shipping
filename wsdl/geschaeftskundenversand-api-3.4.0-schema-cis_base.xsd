@@ -651,7 +651,9 @@ requesting client is developed.</xs:documentation>
 			</xs:annotation>
 			<xs:element name="phone" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Phone number.</xs:documentation>
+					<xs:documentation>Phone number.
+					
+					If you are using delivery type CDP, the phone number and/or e-mail address are mandatory</xs:documentation>
 				</xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
@@ -661,7 +663,9 @@ requesting client is developed.</xs:documentation>
 			</xs:element>
 			<xs:element name="email" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Emailaddress. </xs:documentation>
+					<xs:documentation>Emailaddress.
+					
+					If you are using delivery type CDP, the phone number and/or e-mail address are mandatory</xs:documentation>
 				</xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
