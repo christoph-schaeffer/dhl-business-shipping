@@ -1,6 +1,6 @@
 <?php
 
-namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\Response\Status;
+namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\Response\Shipping\Status;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
 use ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\AbstractUnitTest;
