@@ -1,6 +1,6 @@
 <?php
 
-namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\Response\Data;
+namespace ChristophSchaeffer\Dhl\BusinessShipping\Test\Unit\Response\Shipping\Data;
 
 use ChristophSchaeffer\Dhl\BusinessShipping\MultiClient;
 use ChristophSchaeffer\Dhl\BusinessShipping\Response\Shipping\Data\LabelData;
