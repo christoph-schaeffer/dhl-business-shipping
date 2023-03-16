@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!-- Mit XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) von Andreas V. Kempf (DHL Verwaltungs GmbH) bearbeitet -->
 <!-- Mit XMLSpy Andreas Kempf bearbeitet -->
-<!-- 
+<!--
 Description:
 The descriped structures and elements are used to provide a basis for cis web services
- 
+
 DHL Verwaltungs GmbH
 Customer Interface Solutions
 Bonn (Germany)
@@ -23,9 +23,9 @@ Refered by:
 
 History:
   v0.4  Element streetAdd renamed to careOfName
-  v0.5  Critical number elements converted to string to keep leading zeros (ZIP:germany, routeCode, identCode, PackStationType, PostOfficeType) 
+  v0.5  Critical number elements converted to string to keep leading zeros (ZIP:germany, routeCode, identCode, PackStationType, PostOfficeType)
   v0.6  streetNameCode and streetNumberCode added, PickupAddressType and DeliveryAddressType expanded by these fields
-  v0.7  version added 
+  v0.7  version added
   v0.8  BankType changed, ShipmentNumberType added
   v0.9  accountNumberExpress added
   v0.9a status and statusDescription added
@@ -651,7 +651,9 @@ requesting client is developed.</xs:documentation>
 			</xs:annotation>
 			<xs:element name="phone" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Phone number.</xs:documentation>
+					<xs:documentation>Phone number.
+
+					If you are using delivery type CDP, the phone number and/or e-mail address are mandatory</xs:documentation>
 				</xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
@@ -661,7 +663,9 @@ requesting client is developed.</xs:documentation>
 			</xs:element>
 			<xs:element name="email" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Emailaddress. </xs:documentation>
+					<xs:documentation>Emailaddress.
+
+					If you are using delivery type CDP, the phone number and/or e-mail address are mandatory</xs:documentation>
 				</xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
