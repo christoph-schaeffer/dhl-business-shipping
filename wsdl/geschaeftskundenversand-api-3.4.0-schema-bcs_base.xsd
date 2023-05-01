@@ -5,7 +5,7 @@
         xmlns:cis="http://dhl.de/webservice/cisbase"
         targetNamespace="http://dhl.de/webservices/businesscustomershipping/3.0">
 	  <import namespace="http://dhl.de/webservice/cisbase"
-           schemaLocation="geschaeftskundenversand-api-3.3.2-schema-cis_base.xsd"/>
+           schemaLocation="geschaeftskundenversand-api-3.4.0-schema-cis_base.xsd"/>
 	  <simpleType name="SequenceNumber">
 		    <annotation>
 			      <documentation>A sequence number defined by the (soap-) client. The
@@ -102,10 +102,10 @@
 						            <documentation>
 							In this optional section you can define the following label formats:
 							A4:common label laser printing A4 plain paper;
-							910-300-700: common label laser printing 105 x 205 mm (910-300-700);
-							910-300-700-oz: common label laser printing 105 x 205 mm without additional barcode labels (910-300-700);
-							910-300-300: common label laser printing 105 x 148 mm (910-300-700);
-							910-300-300-oz: common label laser printing 105 x 148 mm without additional barcode labels (910-300-300);
+							910-300-700: common label laser printing 105 x 205 mm (A5 plain paper, 910-300-700);
+							910-300-700-oz: common label laser printing 105 x 205 mm without additional barcode labels (A5 plain paper, 910-300-700);
+							910-300-300: common label laser printing 105 x 148 mm (A5 plain paper, 910-300-700);
+							910-300-300-oz: common label laser printing 105 x 148 mm without additional barcode labels (A5 plain paper, 910-300-300);
 							910-300-710: common label laser printing 105 x 208 mm (910-300-710);
 							910-300-600: common label thermal printing 103 x 199 mm (910-300-600, 910-300-610);
 							910-300-400: common label thermal printing 103 x 150 mm (910-300-400, 910-300-410);
@@ -122,10 +122,10 @@
 						            <documentation>
 							In this optional section you can define the following label formats:
 							A4:common label laser printing A4 plain paper;
-							910-300-700: common label laser printing 105 x 205 mm (910-300-700);
-							910-300-700-oz: common label laser printing 105 x 205 mm without additional barcode labels (910-300-700);
-							910-300-300: common label laser printing 105 x 148 mm (910-300-700);
-							910-300-300-oz: common label laser printing 105 x 148 mm without additional barcode labels (910-300-300);
+							910-300-700: common label laser printing 105 x 205 mm (a5 plain paper, 910-300-700);
+							910-300-700-oz: common label laser printing 105 x 205 mm without additional barcode labels (A5 plain paper, 910-300-700);
+							910-300-300: common label laser printing 105 x 148 mm (A5 plain paper, 910-300-300);
+							910-300-300-oz: common label laser printing 105 x 148 mm without additional barcode labels (A5 plain paper, 910-300-300);
 							910-300-710: common label laser printing 105 x 208 mm (910-300-710);
 							910-300-600: common label thermal printing 103 x 199 mm (910-300-600, 910-300-610);
 							910-300-400: common label thermal printing 103 x 150 mm (910-300-400, 910-300-410);
@@ -1751,6 +1751,33 @@
 					Deutsche Post and sender handle import duties instead of consignee</documentation>
 				        </annotation>
 			      </element>
+			      <element name="CDP" type="bcs:CDP" minOccurs="0" maxOccurs="1">
+				        <annotation>
+					          <documentation>Closest Droppoint
+
+						Delivery to the droppoint closest to the address of the recipient of the shipment. For this kind of delivery either the phone number and/or the e-mail address of the receiver is mandatory.
+
+						For shipments using DHL Paket International it is recommended that you choose one of the three delivery types:
+							Economy
+							Premium
+							CDP
+
+						Otherwise, the current default for the receiver country will be picked.</documentation>
+				        </annotation>
+			      </element>
+			      <element name="Economy" type="bcs:Economy" minOccurs="0" maxOccurs="1">
+				        <annotation>
+					          <documentation>Standard delivery of international shipments
+
+						For shipments using DHL Paket International it is recommended that you choose one of the three delivery types:
+
+							Economy
+							Premium
+							CDP
+
+						Otherwise, the current default for the receiver country will be picked. </documentation>
+				        </annotation>
+			      </element>
 			      <element name="AdditionalInsurance" type="bcs:ServiceconfigurationAdditionalInsurance"
                   minOccurs="0"
                   maxOccurs="1">
@@ -2276,6 +2303,34 @@
 		    </xs:attribute>
 	  </xs:complexType>
 	
+	  <xs:complexType name="CDP">
+		    <xs:attribute name="active" use="required">
+			      <xs:annotation>
+				        <xs:documentation>	Indicates, if the option is on/off </xs:documentation>
+			      </xs:annotation>
+			      <xs:simpleType>
+				        <xs:restriction base="xs:string">
+					          <xs:enumeration value="0"/>
+					          <xs:enumeration value="1"/>
+				        </xs:restriction>
+			      </xs:simpleType>
+		    </xs:attribute>
+	  </xs:complexType>
+	
+	  <xs:complexType name="Economy">
+		    <xs:attribute name="active" use="required">
+			      <xs:annotation>
+				        <xs:documentation>	Indicates, if the option is on/off </xs:documentation>
+			      </xs:annotation>
+			      <xs:simpleType>
+				        <xs:restriction base="xs:string">
+					          <xs:enumeration value="0"/>
+					          <xs:enumeration value="1"/>
+				        </xs:restriction>
+			      </xs:simpleType>
+		    </xs:attribute>
+	  </xs:complexType>
+	
 	  <xs:complexType name="ServiceconfigurationIC">
 		    <xs:sequence>
 			      <xs:element name="Ident">
@@ -2308,12 +2363,13 @@
 								                </xs:restriction>
 							              </xs:simpleType>
 						            </xs:element>
-						            <xs:element name="dateOfBirth">
+						            <xs:element name="dateOfBirth" minOccurs="0">
 							              <xs:annotation>
 								                <xs:documentation>date of birth (DOB) of the person for ident
 									check,
 									if the option is used: Date in format
 									yyyy-mm-dd
+									This attribute is only optional, if you set a minimum age
 								</xs:documentation>
 							              </xs:annotation>
 							              <xs:simpleType>
@@ -2323,10 +2379,11 @@
 								                </xs:restriction>
 							              </xs:simpleType>
 						            </xs:element>
-						            <xs:element name="minimumAge">
+						            <xs:element name="minimumAge" minOccurs="0">
 							              <xs:annotation>
 								                <xs:documentation> minimum age of the person for ident check
 									("A16" or "A18")
+									This attribute is only optional, if you specify the date of birth
 								</xs:documentation>
 							              </xs:annotation>
 							              <xs:simpleType>

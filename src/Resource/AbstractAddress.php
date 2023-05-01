@@ -85,6 +85,8 @@ abstract class AbstractAddress {
     /**
      * @var string
      *
+     * Optional
+     *
      * Min length: 0
      * Max length: 17
      *
