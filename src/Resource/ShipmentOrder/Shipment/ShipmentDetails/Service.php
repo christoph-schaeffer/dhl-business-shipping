@@ -184,6 +184,13 @@ class Service {
     public $ReturnReceipt;
 
     /**
+     * @var Service\ShipmentHandling
+     *
+     * Service shipment handling for product: V06TG: Kurier Taggleich V06WZ: Kurier Wunschzeit
+     */
+    public $ShipmentHandling;
+
+    /**
      * @var Service\VisualCheckOfAge
      *
      * Service visual age check
